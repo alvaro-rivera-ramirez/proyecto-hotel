@@ -1,0 +1,144 @@
+body{
+    font-family: sans-serif;
+    font-weight: 300;
+    color: #4F4F55;
+}
+p{
+    margin: 0;
+}
+a:hover, a{
+    text-decoration: none;
+    color: #000;
+}
+.bg-primary {
+    background-color: #4F4F55!important;
+}
+#sidebar-container{
+    min-height: 100vh;
+    background-color: white;
+}
+
+#sidebar-container .logo{
+    padding: 1px 1.25rem;
+    padding-top: 15px!important;
+}
+#sidebar-container .logo img{
+    width: 50px;
+    display:block;
+    margin:auto;
+    margin-bottom: 5px;
+}
+
+#sidebar-container .logo p{
+    margin: 0;
+}
+
+#sidebar-container .menu{
+    width: 16rem;
+    font-style: none;
+    background-color: #fff;
+}
+#sidebar-container .menu .modulos{
+    padding-top: 30px;
+    padding-left: 40px;
+    padding-bottom: 10px;
+    color: #000;
+}
+#sidebar-container .menu a{
+    padding-left: 25px;
+    padding-top: 10px;
+    font-size: 16px;
+}
+#sidebar-container .menu>a{
+    padding-bottom: 10px;
+}
+#sidebar-container .menu a:hover,
+.accordion-item button:hover{
+    color:#4F4F55;
+}
+.accordion-item{
+    border: none;
+}
+.accordion-item button{
+    width: 100%;
+    text-align: left;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 25px;
+    padding-right: 10px;
+    color: #000;
+    font-size: 16px;
+    border: none;
+    background: white;
+}
+.despliegue{
+    position: absolute;
+    right: 5px;
+}
+.sub-menu{
+    background: rgba(0,0,0,.06);
+    padding-bottom: 5px;
+}
+.sub-menu a{
+    padding-top: 6px !important ;
+    padding-bottom: 5px !important ;
+    margin-left: 40px;
+}
+.sub-menu i{
+    width: 28px;
+}
+.dropdown-menu li a i{
+    padding-right: 5px;
+}
+.config i{
+    padding-right: 10px;
+}
+/* canvas menu*/
+.canvas-menu{
+    width: 16rem;
+    border: none;
+}
+@media(min-width: 992px){
+    body{
+        overflow: auto!important;
+    }
+    .canvas-menu{
+        transform: none;
+        visibility: visible !important;
+        border: none;
+    }
+    .offcanvas-backdrop::before{
+        display: none;
+    }
+    .navbar div .navbar-brand,.content-body{
+        margin-left: 16rem;
+    }
+    .sec-hab section{
+        width: 85%; margin: auto;
+    }
+}
+
+/*------------ */
+
+.hab{
+    
+}
+.hab .col{
+    padding: 3px 5px !important;
+    text-align: center;
+}
+.hab .col div{
+    padding: 10px;
+}
+.hab .col div mark{
+    background-color: #4F4F55;
+    color: white;
+    padding: 5px;
+}
+.hab .col div p{
+    margin-top: 5px;
+}
+.hab .col img{
+    display: block;
+    margin: auto;
+}
