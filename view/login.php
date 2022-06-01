@@ -9,7 +9,8 @@
     ></script>
     <link rel="stylesheet" href="css/styleLogin.css" />
     <link rel="shortcut icon" href="img/hotel.png" type="image/x-icon">
-    <title>HOTEL MONTEREAL - REGISTRO E INICIO DE SESIÓN</title>
+    <title>Hotel</title>
+    <link rel="shortcut icon" href="Imagenes/hotel.png" type="image/x-icon">
   </head>
 
   <body>
