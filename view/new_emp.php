@@ -22,17 +22,12 @@
                 </div>
             
                 <div class="container-fluid">
-                    <ul class="full-box list-unstyled page-nav-tabs">
-                        <li>
-                            <a class="active" href="#"><i class="fas fa-plus fa-fw"></i> AGREGAR EMPLEADO</a>
-                        </li>
-                        <li>
-                            <a href="#"><i class="fas fa-clipboard-list fa-fw"></i> LISTA DE EMPLEADOS</a>
-                        </li>
-                        <li>
-                            <a href="#"><i class="fas fa-search fa-fw"></i> BUSCAR EMPLEADO</a>
-                        </li>
-                    </ul>	
+                    <div class="container-nav">
+                        <div class="box-nav"> <a class="active" href="#"><i class="fas fa-plus fa-fw"></i> AGREGAR EMPLEADO</a></div>
+                        <div class="box-nav"> <a href="#"><i class="fas fa-clipboard-list fa-fw"></i> LISTA DE EMPLEADOS</a> </div>
+                        <div class="box-nav"> <a href="#"><i class="fas fa-search fa-fw"></i> BUSCAR EMPLEADOS</a> </div>
+                    </div>
+                                
                 </div>
 
                 <div class="container-fluid p-3">

@@ -5,20 +5,6 @@
     <title>Hotel</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <?php include "include/link.php" ?>
-    <style>
-        .container-fluid .nav-registro{
-            margin-bottom: 10px;
-        }
-
-        .nav-item{
-            margin: 5px 10px;
-            height: 45px;
-            
-        }
-        .nav-item:hover{
-            border-bottom: 2px solid #000;
-        }
-    </style>
 </head>
 <body>
    <div class="d-flex">
@@ -37,22 +23,16 @@
                             <h3 class="pb-3">Registro / Empleados</h3>
 
                         <!-- MENU DE OPCIONES-->
-                        <div class="container-fluid nav-registro">
-                            <ul class="nav nav-pills nav-justified">
-                                <li class="nav-item">
-                                    <a href="#"><i class="fas fa-plus fa-fw"></i> AGREGAR EMPLEADO</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="active" href="#"><i class="fas fa-clipboard-list fa-fw"></i> LISTA DE EMPLEADOS</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="#"><i class="fas fa-search fa-fw"></i> BUSCAR EMPLEADO</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="#"><i class="fa-solid fa-print"></i> IMPRIMIR</a>
-                                </li>
-                            </ul>	
-                        </div> 
+                            <div class="container-fluid">
+                                <div class="container-nav">
+                                    <div class="box-nav"> <a href="#"><i class="fas fa-plus fa-fw"></i> AGREGAR EMPLEADO</a></div>
+                                    <div class="box-nav"> <a class="active" href="#"><i class="fas fa-clipboard-list fa-fw"></i> LISTA DE EMPLEADOS</a> </div>
+                                    <div class="box-nav"> <a href="#"><i class="fas fa-search fa-fw"></i> BUSCAR EMPLEADO</a> </div>
+                                    <div class="box-nav"> <a href="#"><i class="fa-solid fa-print"></i> IMRPIMIR</a></div>
+                                </div>
+                                
+                            </div>
+
 
 
                         <!-- TABLE RESPONSIVE-->

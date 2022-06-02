@@ -1,0 +1,54 @@
+.container-nav{
+    width: 100%;
+    height: auto;
+    margin-bottom:30px;
+    
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    flex-wrap: wrap;
+    
+}
+
+.box-nav{
+    margin: 15px;
+    font-size: 17px;
+    width: auto;
+    text-align: center;
+}
+
+.box-nav a{
+    min-width: 200px;
+    line-height: 40px;
+    user-select: none;
+}
+
+@media screen and (max-width:1200px){
+    .box-nav{
+        width: 30%;
+    }
+}
+
+@media screen and (max-width:600px){
+    .box-nav{
+        width: 80%;
+    }
+}
+
+@media screen and (max-width:300px){
+    .box-nav{
+        width: 80%;
+
+    }
+}
+
+.box-nav a.active{
+    color: #EC5252;
+    cursor: none;
+    pointer-events: none;
+    }
+
+.box-nav a:hover{
+    text-decoration: none;
+    border-bottom: 2px solid #333;
+}
