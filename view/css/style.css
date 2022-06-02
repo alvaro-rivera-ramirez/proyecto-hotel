@@ -142,3 +142,52 @@ a:hover, a{
     display: block;
     margin: auto;
 }
+
+
+.full-box{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    width: 100%;
+}
+
+.page-header{
+    padding: 30px 20px 30px 20px;
+}
+
+/*----------  Page nav tabs  ----------*/
+.page-nav-tabs{
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-bottom: 30px;
+}
+.page-nav-tabs li,
+.page-nav-tabs li a{
+    height: 40px;
+    line-height: 40px;
+}
+.page-nav-tabs li{
+    margin: 5px 20px;
+}
+.page-nav-tabs li a{
+    color: var(--accent-color);
+    font-size: 17px;
+    min-width: 200px;
+    width: auto;
+    display: block;
+    text-align: center;
+    user-select: none;
+    transition: all .2s ease-in-out;
+    border-bottom: 2px solid transparent;
+}
+.page-nav-tabs li a.active{
+    color: #EC5252;
+    cursor: none;
+    pointer-events: none;
+}
+.page-nav-tabs li a:hover{
+    text-decoration: none;
+    color: #333;
+    border-bottom: 2px solid #333;
+}

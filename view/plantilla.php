@@ -5,6 +5,10 @@
     <title>Hotel</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <?php include "include/link.php" ?>
+    <style>
+
+
+    </style>
 </head>
 <body>
    <div class="d-flex">
@@ -13,7 +17,17 @@
         <div class="w-100" style="background-color: #F1F3F5">
             <?php include "include/navBar.php"?>
 
-            <!-- Contenido -->
+            <div class="ps-2 pt-3 content-body">
+                
+                <!-- Contenido -->
+
+
+
+
+
+                
+            </div>
+
         </div>
    </div>
 
