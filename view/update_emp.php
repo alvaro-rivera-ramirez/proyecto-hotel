@@ -5,6 +5,7 @@
     <title>Hotel</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <?php include "include/link.php" ?>
+
 </head>
 <body>
    <div class="d-flex">
@@ -13,17 +14,18 @@
         <div class="w-100" style="background-color: #F1F3F5">
             <?php include "include/navBar.php"?>
 
-            <!-- Contenido -->
             <div class="ps-2 pt-3 content-body">
+                
+                <!-- Contenido -->
                 <div class="full-box page-header">
                     <h3 class="text-start">
-                        <i class="fas fa-plus fa-fw"></i> AGREGAR EMPLEADO
+                        <i class="fas fa-sync-alt fa-fw"></i> ACTUALIZAR EMPLEADO
                     </h3>
                 </div>
             
                 <div class="container-fluid">
                     <div class="container-nav">
-                        <div class="box-nav"> <a class="active" href="#"><i class="fas fa-plus fa-fw"></i> AGREGAR EMPLEADO</a></div>
+                        <div class="box-nav"> <a href="#"><i class="fas fa-plus fa-fw"></i> AGREGAR EMPLEADO</a></div>
                         <div class="box-nav"> <a href="#"><i class="fas fa-clipboard-list fa-fw"></i> LISTA DE EMPLEADOS</a> </div>
                         <div class="box-nav"> <a href="#"><i class="fas fa-search fa-fw"></i> BUSCAR EMPLEADOS</a> </div>
                     </div>
@@ -70,8 +72,8 @@
                                 <div class="row g-3">
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label for="emp_usuario" class="bmd-label-floating">Nombre de usuario</label>
-                                            <input type="text" pattern="[a-zA-Z0-9]{1,35}" class="form-control" name="emp_usuario_reg" id="emp_usuario" maxlength="35">
+                                            <label for="emp_username" class="bmd-label-floating">Nombre de usuario</label>
+                                            <input type="text" pattern="[a-zA-Z0-9]{1,35}" class="form-control" name="emp_username_up" id="emp_username" maxlength="35">
                                         </div>
                                     </div>
                                     <div class="col-md-6">
@@ -80,32 +82,50 @@
                                             <input type="email" class="form-control" name="emp_email_reg" id="emp_email" maxlength="70">
                                         </div>
                                     </div>
-                                    <div class="col-md-6">
+                                    <div class="col-md-12">
                                         <div class="form-group">
-                                            <label for="emp_clave_1" class="bmd-label-floating">Contraseña</label>
-                                            <input type="password" class="form-control" name="emp_clave_1_reg" id="emp_clave_1" pattern="[a-zA-Z0-9$@.-]{7,100}" maxlength="100" required="" >
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label for="emp_clave_2" class="bmd-label-floating">Repetir contraseña</label>
-                                            <input type="password" class="form-control" name="emp_clave_2_reg" id="emp_clave_2" pattern="[a-zA-Z0-9$@.-]{7,100}" maxlength="100" required="" >
+                                            <span>Estado de la cuenta <span class="badge bg-info">Activa</span></span>
+                                            <select class="form-control" name="emp_estado_up">
+                                                <option value="Activa" selected="" >Activa</option>
+                                                <option value="Deshabilitada">Deshabilitada</option>
+                                            </select>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </fieldset>
-                        <br><br><br>
+                        
+                        <fieldset>
+                            <legend><i class="fas fa-lock"></i> Nueva contraseña</legend>
+                            <p style="margin-bottom:10px">En caso no desee cambiar la contraseña debe dejar estos espacios en blanco.</p>
+                            <div class="container-fluid">
+                                <div class="row g-3">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="emp_clave_nueva_1" class="bmd-label-floating">Contraseña</label>
+                                            <input type="password" class="form-control" name="emp_clave_nueva_1" id="emp_clave_nueva_1" pattern="[a-zA-Z0-9$@.-]{7,100}" maxlength="100" >
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="emp_clave_nueva_2" class="bmd-label-floating">Repetir contraseña</label>
+                                            <input type="password" class="form-control" name="emp_clave_nueva_2" id="emp_clave_nueva_2" pattern="[a-zA-Z0-9$@.-]{7,100}" maxlength="100" >
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </fieldset>
+
                         <fieldset>
                             <legend><i class="fas fa-medal"></i> Nivel de privilegio</legend>
                             <div class="container-fluid">
                                 <div class="row g-3">
-                                    <div class="col-12">
+                                    <div class="col-md-12">
                                         <p><span class="badge bg-primary" style="background-color:#0d6efd !important">Administrador</span> Permisos para registrar, actualizar y eliminar</p>
                                         <p><span class="badge bg-secondary">Recepcionista</span> Permisos para registrar y actualizar</p>
                                     </div>
 
-                                    <div class="col-12">
+                                    <div class="col-md-12">
                                         <div class="form-group">
                                             <select class="form-control" name="emp_privilegio_reg">
                                                 <option value="" selected="" disabled="">Seleccione una opción</option>
@@ -119,8 +139,27 @@
                             </div>
                         </fieldset>
 
+                        <fieldset>
+                            <p style="margin:10px 0px"class="text-center">Para poder guardar los cambios en esta cuenta debe de ingresar su nombre de usuario y contraseña</p>
+                            <div class="container-fluid">
+                                <div class="row">
+                                    <div class="col-12 col-md-6">
+                                        <div class="form-group">
+                                            <label for="usuario_admin" class="bmd-label-floating">Nombre de usuario</label>
+                                            <input type="text" pattern="[a-zA-Z0-9]{1,35}" class="form-control" name="usuario_admin" id="usuario_admin" maxlength="35" required="" >
+                                        </div>
+                                    </div>
+                                    <div class="col-12 col-md-6">
+                                        <div class="form-group">
+                                            <label for="clave_admin" class="bmd-label-floating">Contraseña</label>
+                                            <input type="password" class="form-control" name="clave_admin" id="clave_admin" pattern="[a-zA-Z0-9$@.-]{7,100}" maxlength="100" required="" >
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </fieldset>
+
                         <p class="text-center" style="margin-top: 20px;">
-                            <button type="reset" class="btn btn-info"><i class="fa-solid fa-brush"></i> Limpiar</button>
                             <button type="submit" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#exampleModal">
                             <i class="fa-regular fa-floppy-disk"></i> Guardar</button>
                             <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" >
@@ -144,10 +183,11 @@
                         
                     </form>
                 </div>
-            
+
             </div>
 
         </div>
+
    </div>
 
    <?php include "include/script.php"?>

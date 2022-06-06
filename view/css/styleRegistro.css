@@ -22,6 +22,14 @@
     line-height: 40px;
     user-select: none;
 }
+.box-nav a.active{
+    color: #EC5252;
+    pointer-events: none;
+}
+
+.container-nav .box-nav a:hover{
+    border-bottom: 2px solid #333;
+}
 
 @media screen and (max-width:1200px){
     .box-nav{
@@ -42,13 +50,3 @@
     }
 }
 
-.box-nav a.active{
-    color: #EC5252;
-    cursor: none;
-    pointer-events: none;
-    }
-
-.box-nav a:hover{
-    text-decoration: none;
-    border-bottom: 2px solid #333;
-}

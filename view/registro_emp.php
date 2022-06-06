@@ -32,9 +32,7 @@
                                 </div>
                                 
                             </div>
-
-
-
+                            
                         <!-- TABLE RESPONSIVE-->
                             <div class="table-responsive">
                             <table class="table bg-white">
