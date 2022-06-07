@@ -1,47 +1,48 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="css/styleLogin.css" />
+    <link rel="shortcut icon" href="img/hotel.png" type="image/x-icon">
     <title>Hotel</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <?php include "include/link.php" ?>
-    <style>
-
-
-    </style>
-</head>
-<body>
-   <div class="d-flex">
-        <?php include "include/navLateral.php"?>     
-       
-        <div class="w-100" style="background-color: #F1F3F5">
-            <?php include "include/navBar.php"?>
-
-            <div class="ps-2 pt-3 content-body">
-                
-                <!-- Contenido -->
-                <div class="container overflow-hidden">
-  <div class="row gy-5">
-    <div class="col-6">
-      <div class="p-3 border bg-info"><h3>Recuperacion de Contraseña</h3></div>
-    </div>
-                <div class="form-floating mb-3">
-                <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
-                 <label for="floatingInput">correo Electronico</label>
-                </div>
-                <div class="form-floating">
-                <input type="telefono" class="form-control" id="floatingTelefono" placeholder="Password">
-                <label for="floatingTelefono">numero de Telefono</label>
-                </div>
-                <button type="button" class="btn btn-primary">enviar codigo de verificacion</button>
-                
-</div>
-                
+    <link rel="shortcut icon" href="Imagenes/hotel.png" type="image/x-icon">
+  </head>
+  
+  <body>
+    <div class="container">
+      <div class="forms-container">
+        <div class="signin-signup">
+          <!-- inicio -->
+          <form action="registro.php" method="post" class="sign-in-form">
+            <h2 class="title">RECUPERAR CONTRASEÑA</h2>            
+            <div class="input-field">
+              <i class="fas fa-at"></i>
+              <input name="Correo electronico" type="text" placeholder="Correo electronico" />
             </div>
-
+            <div class="input-field">
+              <i class="fa fa-mobile-phone"></i>
+              <input name="numero" type="numero celular" placeholder="numero celular" />
+            </div>
+            <button type="button" class="btn btn-primary">enviar por correo</button>
+            <button type="button" class="btn btn-primary">enviar por SMS</button>
+          </form>
         </div>
-   </div>
+      </div>
 
-   <?php include "include/script.php"?>
-</body>
-</html>
+      <div class="panels-container">
+        <div class="panel left-panel">
+          <div class="content">
+            
+            </div>
+          </div>
+        </div>
+        
+        <!--<script src="script.js"></script>-->
+        <script
+          src="https://kit.fontawesome.com/64d58efce2.js"
+          crossorigin="anonymous"
+        ></script>
+      </body>
+      
+      </html>
