@@ -11,9 +11,9 @@
                    <h4>Módulos</h4>
                </div>
                 <!--------------navegación-------->
-                <a href="#" class="d-block" ><i class="icon-home me-3"></i>Inicio</a>
-                <a href="#" class="d-block"><i class="icon-calendar me-3"></i>Reservar</a>
-                <a href="#" class="d-block" ><i class="icon-user-add me-3"></i>Registrar Cliente</a>
+                <a href="home.php" class="d-block" ><i class="icon-home me-3"></i>Inicio</a>
+                <a href="reserva_hab.php" class="d-block"><i class="icon-calendar me-3"></i>Reservar</a>
+                <a href="registrar_cliente.php" class="d-block" ><i class="icon-user-add me-3"></i>Registrar Cliente</a>
                 
                 <div class="accordion accordion-flush" id="accordionFlushExample">
                       <div class="accordion-item">
@@ -24,16 +24,16 @@
                           </button>
                         <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
                           <div class="sub-menu">
-                            <a href="#" class="d-block">
+                            <a href="registro_reservas.php" class="d-block">
                               <i class="fa-solid fa-bell-concierge"></i>
                               Reservas</a>
-                              <a href="#" class="d-block">
+                              <a href="registro_cliente.php" class="d-block">
                               <i class="fa-solid fa-users"></i>
                               Clientes</a>
-                              <a href="#" class="d-block">
+                              <a href="registro_emp.php" class="d-block">
                               <i class="fa-solid fa-users-gear"></i>
                               Empleados</a>
-                              <a href="#" class="d-block">
+                              <a href="registro_hab.php" class="d-block">
                               <i class="fa-solid fa-bed"></i>
                               Habitaciones</a>
                               <a href="#" class="d-block">

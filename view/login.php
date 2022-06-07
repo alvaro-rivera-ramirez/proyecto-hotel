@@ -8,7 +8,6 @@
       crossorigin="anonymous"
     ></script>
     <link rel="stylesheet" href="css/styleLogin.css" />
-    <link rel="shortcut icon" href="img/hotel.png" type="image/x-icon">
     <title>Hotel</title>
     <link rel="shortcut icon" href="Imagenes/hotel.png" type="image/x-icon">
   </head>
@@ -48,8 +47,6 @@
         </div>
       </div>
     </div>
-
-    <!--<script src="script.js"></script>-->
   </body>
 
 </html>
