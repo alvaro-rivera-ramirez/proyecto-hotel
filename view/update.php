@@ -40,7 +40,7 @@
                         <div class="col-12">
                             <div class="row justify-content-center">
                                 <div class="col-xs-9 col-sm-9 col-md-9 col-md-5 col-lg-5 col-xl-5 caja">
-                                    <h1 class=" text-center marco titulo">ACTUALIZAR PERFIL DE USUARIO ultimo</h1>
+                                    <h1 class=" text-center marco titulo">ACTUALIZAR PERFIL DE USUARIO</h1>
                                 </div>
                             </div>
 
