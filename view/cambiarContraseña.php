@@ -30,7 +30,7 @@
     width: 400px;
     float:right;
     border: 2px solid black;
-    margin: 50px;
+    margin: 80px 50px;
     background: violet;
 }
 
@@ -71,11 +71,11 @@
             
                     
                         <div class="izquierda">
-                            <h3>Se recomienda tener en cuenta usar una 
+                            <h4>Se recomienda tener en cuenta usar una 
                              contraseña facil de recordar
                                  y dificil de descifrar 
                              para evitar posibles inconvenientes 
-                             y/o posibles ataques maliciosos.</h3>
+                             y/o posibles ataques maliciosos.</h4>
                         </div> 
        
                        <div class="d">
