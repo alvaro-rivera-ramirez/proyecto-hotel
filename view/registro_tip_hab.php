@@ -15,25 +15,26 @@
 
             <!-- Contenido -->
             <div class="ps-2 pt-3 content-body">
-                  <div class="container-fluid" >
+                 <div class="content p-5" style="background: white;">
+                      <div>
                       <!--<h3 class="pb-4">Registro / TipoHabitaciones</h3> -->
                         <section>
                             <div class="full-box page-header">
-                                <h3 class="text-start">
+                                <h3 class=" pb-2 text-start">
                                     Registro / Tipos de Habitacion
                                 </h3>
                             </div>
                         
                             <div class="container-fluid">
                                 <div class="container-nav">
+                                    <div class="box-nav"> <a href="#"><i class="fas fa-plus fa-fw"></i> NUEVO REGISTRO</a></div>
+                                    <div class="box-nav"> <a href="#"><i class="fa-solid fa-print"></i> IMPRIMIR</a></div>
                                     <div class="box-nav">
                                         <form class="d-flex">
-                                        <input class="form-control me-2" type="search" placeholder="Buscar" aria-label="Search">
-                                        <button class="btn btn-dark" type="submit"><i class="fas fa-search"></i></button>
+                                        <input class="input-buscar me-2" type="search" placeholder="Buscar" aria-label="Search">
+                                        <button class="btn-buscar btn btn-dark" type="submit"><i class="fas fa-search"></i></button>
                                         </form>
                                     </div>
-                                    <div class="box-nav"> <a href="#"><i class="fa-solid fa-print"></i> IMPRIMIR</a></div>
-                                    <div class="box-nav"> <a href="#"><i class="fas fa-plus fa-fw"></i> NUEVO REGISTRO</a></div>
                                 </div>
                                 
                             </div>
@@ -41,7 +42,7 @@
 
                             <!-- TABLA RESPONSIVE -->
                            
-                            <div class="table-responsive">
+                            <div class="table-responsive mt-2">
                             <table class="table bg-white">
                                 <thead class="bg-dark text-light">
                                     <tr class="text-center">
@@ -161,19 +162,22 @@
                             </div>
                             
                             <p class="text-end">1-6 de 6</p>
-                            <nav aria-label="Page navigation example">
+                             <!---- navegacion de pag ------>
+                            <nav class="foot-nav" aria-label="Page navigation example">
                                 <ul class="pagination justify-content-center">
                                     <li class="page-item disabled">
-                                        <a class="page-link" href="#">Previous</a>
+                                        <a class="page-link" href="#" tabindex="-1">Previous</a>
                                     </li>
                                     <li class="page-item"><a class="page-link" href="#">1</a></li>
                                     <li class="page-item"><a class="page-link" href="#">2</a></li>
                                     <li class="page-item"><a class="page-link" href="#">3</a></li>
-                                    <li class="page-item"><a class="page-link" href="#">Next</a></li>
+                                    <li class="page-item"><a class="page-link" href="#">Next</a>
+                                    </li>
                                 </ul>
                             </nav>
                         </section>  
                   </div>
+                </div>
                 </div>
         </div>
    </div>

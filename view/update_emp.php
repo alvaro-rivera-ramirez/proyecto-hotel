@@ -15,7 +15,7 @@
             <?php include "include/navBar.php"?>
 
             <div class="ps-2 pt-3 content-body">
-                
+                <div class="content p-5" style="background: white;">
                 <!-- Contenido -->
                 <div class="full-box page-header">
                     <h3 class="text-start">
@@ -159,31 +159,36 @@
                             </div>
                         </fieldset>
 
-                        <p class="text-center" style="margin-top: 20px;">
-                            <button type="submit" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                            <i class="fa-regular fa-floppy-disk"></i> Guardar</button>
-                            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" >
-                                    <div class="modal-dialog">
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                                <h5 class="modal-title" id="exampleModalLabel">Confirmación</h5>
-                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                            </div>
-                                            <div class="modal-body">
-                                                ¿Esta seguro de guardar?
-                                            </div>
-                                            <div class="modal-footer">
-                                                <button type="submit" class="btn btn-success">Guardar</button>
-                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                                            </div>
-                                        </div>
-                                    </div>
+                        <div class="d-flex justify-content-end">
+                            
+                            
+                            <button type="button" class="btn-guardar" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                            <i class="fa-regular fa-floppy-disk me-1"></i> Guardar</button>
                             </div>
-                        </p>
+                            
+                            
+                            <!---- confirmación--------->
+                            <!--- modal de confirmación----->
+                                    <div class="m-confirmacion modal fade" tabindex="-1" id="exampleModal" aria-labelledby="exampleModalLabel" aria-hidden="true" >
+                                      <div class="modal-dialog">
+                                        <div class="modal-content">
+                                          <div class="modal-body">
+                                           <h5 class="modal-title mb-2" >Confirmación</h5>
+                                           <p class="mb-3"> ¿Estas seguro de guardar?</p>
+                                             <div class="d-flex justify-content-end">
+                                                <button type="submit" class="btn-guardar me-1">Guardar</button>
+                                                <button type="button" class="btn-cancelar" data-bs-dismiss="modal">Cerrar</button>
+                                             </div>
+                                          </div>
+                                        </div>
+                                      </div>
+                                    </div>
+                                    
+                                    <!--- modal ----->
                         
                     </form>
                 </div>
-
+                </div>
             </div>
 
         </div>

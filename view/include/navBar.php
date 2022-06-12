@@ -2,7 +2,7 @@
            <nav class="navbar navbar-dark bg-dark navbar-expand-lg bg-primary pe-2">
               <div class="container-fluid">
                <!--- canvas trigger --->
-               <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample" aria-controls="offcanvasExample" >
+               <button class="navbar-toggler" type="button" id="menu-btn" >
                   
                   <span class="navbar-toggler-icon"></span>
                 </button>

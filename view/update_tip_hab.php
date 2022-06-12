@@ -16,6 +16,7 @@
             <div class="ps-2 pt-3 content-body">
                 
                 <!-- Contenido -->
+                <div class="content p-5" style="background: white;">
 
                 <div class="full-box page-header">
                     <h3 class="text-start">
@@ -38,30 +39,22 @@
                             <legend><i class="far fa-plus-square"></i> Información</legend>
                             <div class="container-fluid">
                                 <div class="row">
-                                    <div class="col-12 col-md-4">
+                                    <div class="col-12 col-md-3">
                                         <div class="form-group">
-                                            <label for="num_hab" class="bmd-label-floating">Numero</label>
-                                            <input type="text" pattern="[0-9-]{1,27}" class="form-control" name="num_hab" id="num_hab"  maxlength="4">
+                                            <label for="num_hab" class="bmd-label-floating">Tipo</label>
+                                            <input type="text" name="tipo_hab" id="num_hab" maxlength="4">
                                         </div>
                                     </div>
-                                    <div class="col-12 col-md-4">
+                                    <div class="col-12 col-md-3">
                                         <div class="form-group">
                                             <label for="precio_hab" class="bmd-label-floating">Precio</label>
-                                            <input type="text" disabled="" class="form-control" name="precio_hab" id="precio_hab">
+                                            <input type="text"  name="precio_hab" id="precio_hab" placeholder="S/00.00">
                                         </div>
                                     </div>
-                                    <div class="col-12 col-md-4">
+                                    <div class="col-12 col-md-6">
                                         <div class="form-group">
-                                            <label for="item_tipo" class="bmd-label-floating">Tipo Habitación</label>
-                                            <select class="form-control" name="item_tipo" id="item_tipo">
-                                                <option value="" selected="" disabled="">Seleccione una opción</option>
-                                                <option value="Simple">Simple</option>
-                                                <option value="Doble">Doble</option>
-                                                <option value="Triple">Triple</option>
-                                                <option value="Suit">Suit</option>
-                                                <option value="Familiar">Familiar</option>
-                                                <option value="Matrimonial">Matrimonial</option>
-                                            </select>
+                                            <label for="tipo_hab" class="bmd-label-floating">Descripción</label>
+                                            <input type="text"  name="precio_hab" id="des_hab" placeholder="TV con Cable, Cama de plaza y media, Baño Privado....">
                                         </div>
                                     </div>
                                 </div>
@@ -88,13 +81,37 @@
                             </div>
                         </fieldset>
 
-                        <p class="text-center" style="margin-top: 40px;">
-                            <button type="submit" class="btn btn-success">
-                            <i class="fa-regular fa-floppy-disk"></i> GUARDAR</button>
-                        </p>
+                        <div class="d-flex justify-content-end">
+                            
+                            
+                            <button type="button" class="btn-guardar" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                            <i class="fa-regular fa-floppy-disk me-1"></i> Guardar</button>
+                            </div>
+                        
+                            <!---- confirmación--------->
+                            <!--- modal de confirmación----->
+                                    <div class="m-confirmacion modal fade" tabindex="-1" id="exampleModal" aria-labelledby="exampleModalLabel" aria-hidden="true" >
+                                      <div class="modal-dialog">
+                                        <div class="modal-content">
+                                          <div class="modal-body">
+                                           <h5 class="modal-title mb-2" >Confirmación</h5>
+                                           <p class="mb-3"> ¿Estas seguro de guardar?</p>
+                                             <div class="d-flex justify-content-end">
+                                                <button type="submit" class="btn-guardar me-1">Guardar</button>
+                                                <button type="button" class="btn-cancelar" data-bs-dismiss="modal">Cerrar</button>
+                                             </div>
+                                          </div>
+                                        </div>
+                                      </div>
+                                    </div>
+                                    
+                                    <!--- modal ----->
+                        
+                        
                     </form>
                 </div>
         
+                </div>
             </div>
 
         </div>

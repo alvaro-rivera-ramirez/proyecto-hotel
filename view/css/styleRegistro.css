@@ -1,8 +1,6 @@
 .container-nav{
     width: 100%;
     height: auto;
-    margin-bottom:30px;
-    
     display: flex;
     flex-direction: row;
     justify-content:space-around;
@@ -23,14 +21,65 @@
     user-select: none;
 }
 .box-nav a.active{
-    color: #EC5252;
+    color: #CE9A48;
     pointer-events: none;
 }
 
 .container-nav .box-nav a:hover{
     border-bottom: 2px solid #333;
 }
-
+/* empleado */
+h3{
+    color: #A27A3B;
+    border-bottom: 1px solid #A27A3B;
+}
+input:focus{
+    box-shadow: none!important;
+}
+select:focus{
+    box-shadow: none!important;
+}
+input, select{
+    border-radius: 0.25rem;
+    outline: inherit !important;
+    width: 100%;
+    padding: 6px 12px;
+    border: solid 1px #d3d3d3;
+    background: #FFFEFC;
+    font-size: 15px;
+    color: #4F4F55;
+}
+input:focus{
+    border: solid 1px #CE9A48 !important;
+    transition-duration: 0.7s;    
+}
+label{
+    font-size: 14px;
+}
+/*registro */
+.input-buscar{
+    margin-right: 0!important;
+}
+.input-buscar:focus{
+    border: solid 1px #282727 !important;
+    transition-duration: 0.7s;
+}
+thead{
+    background: red !important;
+}
+.btn-buscar{
+    border-top-left-radius: 0px;
+    border-bottom-left-radius: 0px;
+}
+.foot-nav a{
+    color: #282727;
+}
+.foot-nav a:hover{
+    color: #927136;
+}
+.foot-nav ul li a:hover{
+    background: #F1F3F5 !important;
+}
 @media screen and (max-width:1200px){
     .box-nav{
         width: 30%;

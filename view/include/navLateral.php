@@ -1,7 +1,7 @@
-    <div id="sidebar-container">
+    <div class="nav-lateral" id="sidebar-container">
             
             <!---- ofcanvas--->
-        <div class="offcanvas offcanvas-start canvas-menu" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
+        <div>
          <div class="logo align-items-center bg-primary">
                <img src="Imagenes/usuario.png">
                 <p class="text-center text-light font-weight-bold">Administrador</p>

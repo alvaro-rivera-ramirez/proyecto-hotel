@@ -15,12 +15,12 @@
 
                       <!-- Contenido -->
             <div class="ps-2 pt-3 content-body">
-                
+                <div class="content p-5" style="background: white;">
                 <!-- Contenedor de Registros -->
                   
-                    <div class="container-fluid" >
+                    <div >
                         <section>
-                            <h3 class="pb-3">Registro / Empleados</h3>
+                            <h3 class="pb-2">Registro / Empleados</h3>
 
                         <!-- MENU DE OPCIONES-->
                             <div class="container-fluid">
@@ -31,8 +31,8 @@
                                     <div class="box-nav"> <a href="#"><i class="fa-solid fa-print"></i> IMRPIMIR</a></div>
                                     <div class="box-nav">
                                         <form class="d-flex">
-                                            <input class="form-control me-2" type="search" placeholder="Buscar" aria-label="Search">
-                                            <button class="btn btn-dark" type="submit"><i class="fas fa-search"></i></button>
+                                            <input class="input-buscar me-2"  type="search" placeholder="Buscar" aria-label="Search">
+                                            <button class="btn-buscar btn btn-dark" type="submit"><i class="fas fa-search"></i></button>
                                         </form>
                                     </div>
                                 </div>
@@ -40,7 +40,7 @@
                             </div>
                             
                         <!-- TABLE RESPONSIVE-->
-                            <div class="table-responsive">
+                            <div class="table-responsive mt-2">
                             <table class="table bg-white">
                                 <thead class="bg-dark text-light">
                                     <tr class="text-center">
@@ -220,7 +220,8 @@
                             </table>
                         </div>
                             <p class="text-end">Mostrando Empleados 1 al 10 de un total de 27</p>
-                            <nav aria-label="Page navigation example">
+                             <!---- navegacion de pag ------>
+                            <nav class="foot-nav" aria-label="Page navigation example">
                                 <ul class="pagination justify-content-center">
                                     <li class="page-item disabled">
                                         <a class="page-link" href="#" tabindex="-1">Previous</a>
@@ -235,6 +236,8 @@
                         </section>  
                   </div>
                 </div>
+            
+            </div>
         </div>
    </div>
 

@@ -16,7 +16,7 @@
             <div class="ps-2 pt-3 content-body">
                 
                 <!-- Contenido -->
-
+                <div class="content p-5" style="background: white;">
                 <div class="full-box page-header">
                     <h3 class="text-start">
                         <i class="fas fa-sync-alt fa-fw"></i> ACTUALIZAR HABITACION
@@ -88,13 +88,34 @@
                             </div>
                         </fieldset>
 
-                        <p class="text-center" style="margin-top: 40px;">
-                            <button type="submit" class="btn btn-success">
-                            <i class="fa-regular fa-floppy-disk"></i> GUARDAR</button>
-                        </p>
+                        <div class="d-flex justify-content-end">
+                            
+                            
+                            <button type="button" class="btn-guardar" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                            <i class="fa-regular fa-floppy-disk me-1"></i> Guardar</button>
+                            </div>
+                        
+                        <!---- confirmación--------->
+                            <!--- modal de confirmación----->
+                                    <div class="m-confirmacion modal fade" tabindex="-1" id="exampleModal" aria-labelledby="exampleModalLabel" aria-hidden="true" >
+                                      <div class="modal-dialog">
+                                        <div class="modal-content">
+                                          <div class="modal-body">
+                                           <h5 class="modal-title mb-2" >Confirmación</h5>
+                                           <p class="mb-3"> ¿Estas seguro de guardar?</p>
+                                             <div class="d-flex justify-content-end">
+                                                <button type="submit" class="btn-guardar me-1">Guardar</button>
+                                                <button type="button" class="btn-cancelar" data-bs-dismiss="modal">Cerrar</button>
+                                             </div>
+                                          </div>
+                                        </div>
+                                      </div>
+                                    </div>
+                                    
+                                    <!--- modal ----->
                     </form>
                 </div>
-        
+                </div>
             </div>
 
         </div>
