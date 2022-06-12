@@ -4,15 +4,22 @@ body{
     color: #4F4F55;
 }
 p{
-    margin: 0px;
+    margin: 0;
 }
 a:hover, a{
     text-decoration: none;
     color: #000;
 }
 .bg-primary {
-    background-color: #4F4F55!important;
+    background-color: #282727!important;
 }
+/* ------*/
+.navbar{
+    -webkit-box-shadow: 0px 6px 19px -8px rgba(0,0,0,0.5);
+    -moz-box-shadow: 0px 6px 19px -8px rgba(0,0,0,0.5);
+    box-shadow: 0px 6px 19px -8px rgba(0,0,0,0.5);
+}
+/* ------*/
 #sidebar-container{
     min-height: 100vh;
     background-color: white;
@@ -54,7 +61,7 @@ a:hover, a{
 }
 #sidebar-container .menu a:hover,
 .accordion-item button:hover{
-    color:#4F4F55;
+    color:#927136;
 }
 .accordion-item{
     border: none;
@@ -71,10 +78,12 @@ a:hover, a{
     border: none;
     background: white;
 }
+/* ----modifiaciòn--------*/
 .despliegue{
-    position: absolute;
-    right: 5px;
+    position:absolute;
+    left: 14rem;
 }
+/* ----modifiaciòn--------*/
 .sub-menu{
     background: rgba(0,0,0,.06);
     padding-bottom: 5px;
@@ -94,24 +103,28 @@ a:hover, a{
     padding-right: 10px;
 }
 /* canvas menu*/
-.canvas-menu{
-    width: 16rem;
-    border: none;
+
+/* ----modifiaciòn--------*/
+.nav-lateral{
+    position: relative;
+    margin-left: -16rem;
+    transition: 0.4s;
 }
+.nav-lateral-active{
+    margin-left: 0;
+    display: block;
+    height: 100%;
+}
+.nav-lateral-con{
+    overflow: none !important;
+}
+/* ----modifiaciòn--------*/
 @media(min-width: 992px){
     body{
         overflow: auto!important;
     }
-    .canvas-menu{
-        transform: none;
-        visibility: visible !important;
-        border: none;
-    }
-    .offcanvas-backdrop::before{
-        display: none;
-    }
-    .navbar div .navbar-brand,.content-body{
-        margin-left: 16rem;
+    .nav-lateral{
+        margin-left: 0rem;
     }
     .sec-hab section{
         width: 85%; margin: auto;
@@ -120,8 +133,41 @@ a:hover, a{
 
 /*------------ */
 
-.hab{
-    
+.contend-estados{
+    background: white;
+    padding: 15px;
+}
+.contend-estados>div>div{
+    border-radius: 5px;
+}
+.contend-estados>div>div>p{
+    font-weight: 550;
+}
+.bg-libre{
+    border-top: solid 3px !important;
+    border-top-color: #01BC49 !important;
+}
+.bg-ocupado{
+    border-top: solid 3px !important;
+    border-top-color: #D11111 !important;
+}
+.bg-reserva{
+    border-top: solid 3px !important;
+    border-top-color: #FFB212 !important;
+}
+.bg-clean{
+    border-top: solid 3px !important;
+    border-top-color: #1CD2C7 !important;
+}
+.bg-disabled{
+    border-top: solid 3px !important;
+    border-top-color: #999999 !important;
+}
+
+.sec-hab{
+    margin-top: 10px;
+    background: white;
+    padding-bottom: 10px;
 }
 .hab .col{
     padding: 3px 5px !important;
@@ -129,6 +175,7 @@ a:hover, a{
 }
 .hab .col div{
     padding: 10px;
+    cursor: pointer!important;
 }
 .hab .col div mark{
     background-color: #4F4F55;
@@ -142,14 +189,84 @@ a:hover, a{
     display: block;
     margin: auto;
 }
-
-.full-box{
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    width: 100%;
+.hab .col div:hover{
+    transform: scale(1.02);
+    background: red;
 }
-
-.page-header{
-    padding: 30px 20px 30px 20px;
+/* */
+.cli-content{
+    margin-left: 0px;
+}
+.cli-title{
+    color: #A27A3B;
+    border-bottom: 1px solid #A27A3B;
+}
+.cli-content .cli-img{
+    align-items: center;
+}
+.cli-content form{
+    margin-top: 0;
+}
+.cli-content legend{
+    margin-top: 0;
+}
+.cli-content h5{
+    padding: 7px 7px;
+    margin-top: 0;
+    margin-bottom: 0;
+    color: #282727;
+}
+.cli-content form label{
+    margin-bottom: 5px;
+    font-size: 14px;
+}
+/*Inputs */
+.cli-form-input input{
+    border-radius: 0;
+    outline: inherit !important;
+    width: 100%;
+    padding: 8px 10px;
+    border: solid 1px #d3d3d3;
+    background: #FFFEFC;
+    font-size: 15px;
+    color: #4F4F55;
+}
+.cli-form-input input:focus{
+    border-bottom: solid 1px #CE9A48 !important;
+    transition-duration: 0.7s;    
+}
+/*botones */
+.btn-guardar{
+    background: #CE9A48 !important;
+    padding: 12px 25px;
+    border: none;
+    font-size: 13px;
+    color: white;
+    border-radius: 5px;
+}
+.btn-guardar:hover{
+    background: #B0843F !important;
+}
+.btn-limpiar{
+    background: #25A1BA !important;
+    padding: 12px 25px;
+    border: none;
+    font-size: 13px;
+    color: white;
+    border-radius: 5px;
+}
+.btn-limpiar:hover{
+    background: #208CA1 !important;
+}
+.btn-cancelar{
+    border: solid 1px #940D05;
+    background: #fff;
+    padding: 12px 25px;
+    font-size: 13px;
+    color: #940D05;
+    border-radius: 5px;
+}
+.btn-cancelar:hover{
+    background: #940D05;
+    color: white;
 }
