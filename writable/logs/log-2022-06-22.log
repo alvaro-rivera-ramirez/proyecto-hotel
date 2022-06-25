@@ -1,0 +1,387 @@
+CRITICAL - 2022-06-22 13:57:00 --> syntax error, unexpected '$sesion' (T_VARIABLE)
+in APPPATH\Controllers\Login.php on line 28.
+ 1 SYSTEMPATH\Autoloader\Autoloader.php(261): CodeIgniter\Autoloader\Autoloader->includeFile('APPPATH\\Controllers\\Login.php')
+ 2 SYSTEMPATH\Autoloader\Autoloader.php(239): CodeIgniter\Autoloader\Autoloader->loadInNamespace('App\\Controllers\\Login')
+ 3 [internal function]: CodeIgniter\Autoloader\Autoloader->loadClass('App\\Controllers\\Login')
+ 4 [internal function]: spl_autoload_call('App\\Controllers\\Login')
+ 5 SYSTEMPATH\CodeIgniter.php(846): class_exists('\\App\\Controllers\\Login', true)
+ 6 SYSTEMPATH\CodeIgniter.php(453): CodeIgniter\CodeIgniter->startController()
+ 7 SYSTEMPATH\CodeIgniter.php(349): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 FCPATH\index.php(55): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2022-06-22 13:58:26 --> Undefined variable: table
+in APPPATH\Models\UsuariosModel.php on line 11.
+ 1 APPPATH\Models\UsuariosModel.php(11): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined variable: table', 'APPPATH\\Models\\UsuariosModel.php', 11, [...])
+ 2 APPPATH\Controllers\Login.php(21): App\Models\UsuariosModel->obtenerUsuario([...])
+ 3 SYSTEMPATH\CodeIgniter.php(896): App\Controllers\Login->login()
+ 4 SYSTEMPATH\CodeIgniter.php(466): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Login))
+ 5 SYSTEMPATH\CodeIgniter.php(349): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 6 FCPATH\index.php(55): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2022-06-22 14:03:59 --> Undefined variable: table
+in APPPATH\Models\UsuariosModel.php on line 11.
+ 1 APPPATH\Models\UsuariosModel.php(11): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined variable: table', 'APPPATH\\Models\\UsuariosModel.php', 11, [...])
+ 2 APPPATH\Controllers\Login.php(21): App\Models\UsuariosModel->obtenerUsuario([...])
+ 3 SYSTEMPATH\CodeIgniter.php(896): App\Controllers\Login->login()
+ 4 SYSTEMPATH\CodeIgniter.php(466): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Login))
+ 5 SYSTEMPATH\CodeIgniter.php(349): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 6 FCPATH\index.php(55): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2022-06-22 14:05:15 --> Undefined variable: datosUser
+in APPPATH\Controllers\Login.php on line 23.
+ 1 APPPATH\Controllers\Login.php(23): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined variable: datosUser', 'APPPATH\\Controllers\\Login.php', 23, [...])
+ 2 SYSTEMPATH\CodeIgniter.php(896): App\Controllers\Login->login()
+ 3 SYSTEMPATH\CodeIgniter.php(466): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Login))
+ 4 SYSTEMPATH\CodeIgniter.php(349): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(55): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2022-06-22 16:09:00 --> Class 'App\Controllers\HabitacionesModel' not found
+in APPPATH\Controllers\Inicio.php on line 8.
+ 1 SYSTEMPATH\CodeIgniter.php(896): App\Controllers\Inicio->index()
+ 2 SYSTEMPATH\CodeIgniter.php(466): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Inicio))
+ 3 SYSTEMPATH\CodeIgniter.php(349): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(55): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2022-06-22 16:39:15 --> Call to undefined method App\Models\HabitacionModel::obtenerHabitaciones
+in SYSTEMPATH\Model.php on line 773.
+ 1 APPPATH\Controllers\Inicio.php(9): CodeIgniter\Model->__call('obtenerHabitaciones', [])
+ 2 SYSTEMPATH\CodeIgniter.php(896): App\Controllers\Inicio->index()
+ 3 SYSTEMPATH\CodeIgniter.php(466): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Inicio))
+ 4 SYSTEMPATH\CodeIgniter.php(349): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(55): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2022-06-22 16:40:21 --> Call to undefined method App\Models\HabitacionModel::obtenerHabitaciones
+in SYSTEMPATH\Model.php on line 773.
+ 1 APPPATH\Controllers\Inicio.php(9): CodeIgniter\Model->__call('obtenerHabitaciones', [])
+ 2 SYSTEMPATH\CodeIgniter.php(896): App\Controllers\Inicio->index()
+ 3 SYSTEMPATH\CodeIgniter.php(466): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Inicio))
+ 4 SYSTEMPATH\CodeIgniter.php(349): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(55): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2022-06-22 16:40:22 --> Call to undefined method App\Models\HabitacionModel::obtenerHabitaciones
+in SYSTEMPATH\Model.php on line 773.
+ 1 APPPATH\Controllers\Inicio.php(9): CodeIgniter\Model->__call('obtenerHabitaciones', [])
+ 2 SYSTEMPATH\CodeIgniter.php(896): App\Controllers\Inicio->index()
+ 3 SYSTEMPATH\CodeIgniter.php(466): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Inicio))
+ 4 SYSTEMPATH\CodeIgniter.php(349): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(55): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2022-06-22 16:40:23 --> Call to undefined method App\Models\HabitacionModel::obtenerHabitaciones
+in SYSTEMPATH\Model.php on line 773.
+ 1 APPPATH\Controllers\Inicio.php(9): CodeIgniter\Model->__call('obtenerHabitaciones', [])
+ 2 SYSTEMPATH\CodeIgniter.php(896): App\Controllers\Inicio->index()
+ 3 SYSTEMPATH\CodeIgniter.php(466): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Inicio))
+ 4 SYSTEMPATH\CodeIgniter.php(349): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(55): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2022-06-22 16:40:23 --> Call to undefined method App\Models\HabitacionModel::obtenerHabitaciones
+in SYSTEMPATH\Model.php on line 773.
+ 1 APPPATH\Controllers\Inicio.php(9): CodeIgniter\Model->__call('obtenerHabitaciones', [])
+ 2 SYSTEMPATH\CodeIgniter.php(896): App\Controllers\Inicio->index()
+ 3 SYSTEMPATH\CodeIgniter.php(466): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Inicio))
+ 4 SYSTEMPATH\CodeIgniter.php(349): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(55): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2022-06-22 16:40:23 --> Call to undefined method App\Models\HabitacionModel::obtenerHabitaciones
+in SYSTEMPATH\Model.php on line 773.
+ 1 APPPATH\Controllers\Inicio.php(9): CodeIgniter\Model->__call('obtenerHabitaciones', [])
+ 2 SYSTEMPATH\CodeIgniter.php(896): App\Controllers\Inicio->index()
+ 3 SYSTEMPATH\CodeIgniter.php(466): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Inicio))
+ 4 SYSTEMPATH\CodeIgniter.php(349): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(55): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2022-06-22 16:40:23 --> Call to undefined method App\Models\HabitacionModel::obtenerHabitaciones
+in SYSTEMPATH\Model.php on line 773.
+ 1 APPPATH\Controllers\Inicio.php(9): CodeIgniter\Model->__call('obtenerHabitaciones', [])
+ 2 SYSTEMPATH\CodeIgniter.php(896): App\Controllers\Inicio->index()
+ 3 SYSTEMPATH\CodeIgniter.php(466): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Inicio))
+ 4 SYSTEMPATH\CodeIgniter.php(349): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(55): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2022-06-22 16:40:30 --> Call to undefined method App\Models\HabitacionModel::obtenerHabitaciones
+in SYSTEMPATH\Model.php on line 773.
+ 1 APPPATH\Controllers\Inicio.php(9): CodeIgniter\Model->__call('obtenerHabitaciones', [])
+ 2 SYSTEMPATH\CodeIgniter.php(896): App\Controllers\Inicio->index()
+ 3 SYSTEMPATH\CodeIgniter.php(466): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Inicio))
+ 4 SYSTEMPATH\CodeIgniter.php(349): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(55): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2022-06-22 16:53:28 --> Cannot use object of type stdClass as array
+in APPPATH\Views\home.php on line 59.
+ 1 SYSTEMPATH\View\View.php(213): include()
+ 2 SYSTEMPATH\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 3 SYSTEMPATH\Common.php(1135): CodeIgniter\View\View->render('home', [], true)
+ 4 APPPATH\Controllers\Inicio.php(10): view('home', [...])
+ 5 SYSTEMPATH\CodeIgniter.php(896): App\Controllers\Inicio->index()
+ 6 SYSTEMPATH\CodeIgniter.php(466): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Inicio))
+ 7 SYSTEMPATH\CodeIgniter.php(349): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 FCPATH\index.php(55): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2022-06-22 18:44:33 --> Cannot use object of type stdClass as array
+in APPPATH\Views\home.php on line 59.
+ 1 SYSTEMPATH\View\View.php(213): include()
+ 2 SYSTEMPATH\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 3 SYSTEMPATH\Common.php(1135): CodeIgniter\View\View->render('home', [], true)
+ 4 APPPATH\Controllers\Inicio.php(10): view('home', [...])
+ 5 SYSTEMPATH\CodeIgniter.php(896): App\Controllers\Inicio->index()
+ 6 SYSTEMPATH\CodeIgniter.php(466): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Inicio))
+ 7 SYSTEMPATH\CodeIgniter.php(349): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 FCPATH\index.php(55): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2022-06-22 18:44:42 --> Cannot use object of type stdClass as array
+in APPPATH\Views\home.php on line 59.
+ 1 SYSTEMPATH\View\View.php(213): include()
+ 2 SYSTEMPATH\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 3 SYSTEMPATH\Common.php(1135): CodeIgniter\View\View->render('home', [], true)
+ 4 APPPATH\Controllers\Inicio.php(10): view('home', [...])
+ 5 SYSTEMPATH\CodeIgniter.php(896): App\Controllers\Inicio->index()
+ 6 SYSTEMPATH\CodeIgniter.php(466): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Inicio))
+ 7 SYSTEMPATH\CodeIgniter.php(349): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 FCPATH\index.php(55): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2022-06-22 18:50:30 --> Undefined index: tipo
+in APPPATH\Views\home.php on line 60.
+ 1 APPPATH\Views\home.php(60): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined index: tipo', 'APPPATH\\Views\\home.php', 60, [...])
+ 2 SYSTEMPATH\View\View.php(213): include('APPPATH\\Views\\home.php')
+ 3 SYSTEMPATH\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1135): CodeIgniter\View\View->render('home', [], true)
+ 5 APPPATH\Controllers\Inicio.php(10): view('home', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(896): App\Controllers\Inicio->index()
+ 7 SYSTEMPATH\CodeIgniter.php(466): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Inicio))
+ 8 SYSTEMPATH\CodeIgniter.php(349): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(55): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2022-06-22 18:50:31 --> Undefined index: tipo
+in APPPATH\Views\home.php on line 60.
+ 1 APPPATH\Views\home.php(60): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined index: tipo', 'APPPATH\\Views\\home.php', 60, [...])
+ 2 SYSTEMPATH\View\View.php(213): include('APPPATH\\Views\\home.php')
+ 3 SYSTEMPATH\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1135): CodeIgniter\View\View->render('home', [], true)
+ 5 APPPATH\Controllers\Inicio.php(10): view('home', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(896): App\Controllers\Inicio->index()
+ 7 SYSTEMPATH\CodeIgniter.php(466): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Inicio))
+ 8 SYSTEMPATH\CodeIgniter.php(349): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(55): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2022-06-22 18:50:32 --> Undefined index: tipo
+in APPPATH\Views\home.php on line 60.
+ 1 APPPATH\Views\home.php(60): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined index: tipo', 'APPPATH\\Views\\home.php', 60, [...])
+ 2 SYSTEMPATH\View\View.php(213): include('APPPATH\\Views\\home.php')
+ 3 SYSTEMPATH\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1135): CodeIgniter\View\View->render('home', [], true)
+ 5 APPPATH\Controllers\Inicio.php(10): view('home', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(896): App\Controllers\Inicio->index()
+ 7 SYSTEMPATH\CodeIgniter.php(466): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Inicio))
+ 8 SYSTEMPATH\CodeIgniter.php(349): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(55): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2022-06-22 18:50:32 --> Undefined index: tipo
+in APPPATH\Views\home.php on line 60.
+ 1 APPPATH\Views\home.php(60): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined index: tipo', 'APPPATH\\Views\\home.php', 60, [...])
+ 2 SYSTEMPATH\View\View.php(213): include('APPPATH\\Views\\home.php')
+ 3 SYSTEMPATH\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1135): CodeIgniter\View\View->render('home', [], true)
+ 5 APPPATH\Controllers\Inicio.php(10): view('home', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(896): App\Controllers\Inicio->index()
+ 7 SYSTEMPATH\CodeIgniter.php(466): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Inicio))
+ 8 SYSTEMPATH\CodeIgniter.php(349): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(55): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2022-06-22 18:51:01 --> Undefined index: tipoHab.tipo
+in APPPATH\Views\home.php on line 60.
+ 1 APPPATH\Views\home.php(60): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined index: tipoHab.tipo', 'APPPATH\\Views\\home.php', 60, [...])
+ 2 SYSTEMPATH\View\View.php(213): include('APPPATH\\Views\\home.php')
+ 3 SYSTEMPATH\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1135): CodeIgniter\View\View->render('home', [], true)
+ 5 APPPATH\Controllers\Inicio.php(10): view('home', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(896): App\Controllers\Inicio->index()
+ 7 SYSTEMPATH\CodeIgniter.php(466): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Inicio))
+ 8 SYSTEMPATH\CodeIgniter.php(349): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(55): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2022-06-22 18:51:02 --> Undefined index: tipoHab.tipo
+in APPPATH\Views\home.php on line 60.
+ 1 APPPATH\Views\home.php(60): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined index: tipoHab.tipo', 'APPPATH\\Views\\home.php', 60, [...])
+ 2 SYSTEMPATH\View\View.php(213): include('APPPATH\\Views\\home.php')
+ 3 SYSTEMPATH\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1135): CodeIgniter\View\View->render('home', [], true)
+ 5 APPPATH\Controllers\Inicio.php(10): view('home', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(896): App\Controllers\Inicio->index()
+ 7 SYSTEMPATH\CodeIgniter.php(466): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Inicio))
+ 8 SYSTEMPATH\CodeIgniter.php(349): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(55): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2022-06-22 18:51:03 --> Undefined index: tipoHab.tipo
+in APPPATH\Views\home.php on line 60.
+ 1 APPPATH\Views\home.php(60): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined index: tipoHab.tipo', 'APPPATH\\Views\\home.php', 60, [...])
+ 2 SYSTEMPATH\View\View.php(213): include('APPPATH\\Views\\home.php')
+ 3 SYSTEMPATH\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1135): CodeIgniter\View\View->render('home', [], true)
+ 5 APPPATH\Controllers\Inicio.php(10): view('home', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(896): App\Controllers\Inicio->index()
+ 7 SYSTEMPATH\CodeIgniter.php(466): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Inicio))
+ 8 SYSTEMPATH\CodeIgniter.php(349): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(55): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2022-06-22 20:04:59 --> Invalid file: registro-cliente.php
+in SYSTEMPATH\Exceptions\FrameworkException.php on line 33.
+ 1 SYSTEMPATH\View\View.php(201): CodeIgniter\Exceptions\FrameworkException::forInvalidFile('registro-cliente.php')
+ 2 SYSTEMPATH\Common.php(1135): CodeIgniter\View\View->render('registro-cliente', [], true)
+ 3 APPPATH\Controllers\ClientesController.php(8): view('registro-cliente')
+ 4 SYSTEMPATH\CodeIgniter.php(896): App\Controllers\ClientesController->index()
+ 5 SYSTEMPATH\CodeIgniter.php(466): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\ClientesController))
+ 6 SYSTEMPATH\CodeIgniter.php(349): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 FCPATH\index.php(55): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2022-06-22 20:05:38 --> Invalid file: registro-cliente.php
+in SYSTEMPATH\Exceptions\FrameworkException.php on line 33.
+ 1 SYSTEMPATH\View\View.php(201): CodeIgniter\Exceptions\FrameworkException::forInvalidFile('registro-cliente.php')
+ 2 SYSTEMPATH\Common.php(1135): CodeIgniter\View\View->render('registro-cliente', [], true)
+ 3 APPPATH\Controllers\ClientesController.php(8): view('registro-cliente')
+ 4 SYSTEMPATH\CodeIgniter.php(896): App\Controllers\ClientesController->index()
+ 5 SYSTEMPATH\CodeIgniter.php(466): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\ClientesController))
+ 6 SYSTEMPATH\CodeIgniter.php(349): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 FCPATH\index.php(55): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2022-06-22 20:05:52 --> Invalid file: registro-cliente.php
+in SYSTEMPATH\Exceptions\FrameworkException.php on line 33.
+ 1 SYSTEMPATH\View\View.php(201): CodeIgniter\Exceptions\FrameworkException::forInvalidFile('registro-cliente.php')
+ 2 SYSTEMPATH\Common.php(1135): CodeIgniter\View\View->render('registro-cliente', [], true)
+ 3 APPPATH\Controllers\ClientesController.php(8): view('registro-cliente')
+ 4 SYSTEMPATH\CodeIgniter.php(896): App\Controllers\ClientesController->index()
+ 5 SYSTEMPATH\CodeIgniter.php(466): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\ClientesController))
+ 6 SYSTEMPATH\CodeIgniter.php(349): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 FCPATH\index.php(55): CodeIgniter\CodeIgniter->run()
+ERROR - 2022-06-22 20:40:01 --> Unknown column 'tpoHab.precio' in 'field list'
+CRITICAL - 2022-06-22 20:40:01 --> Unknown column 'tpoHab.precio' in 'field list'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 292.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(292): mysqli->query('SELECT `hab`.*, `estado_hab`.`estado` as `estado`, `tpoHab`.`precio`
+FROM `habitacion` as `hab`
+JOIN `estado_hab` ON `hab`.`idEstado` = `estado_hab`.`idEstado`
+JOIN `tipo_habitacion` as `tipoHab` ON `hab`.`idTipoHab` = `tipoHab`.`idTipo`
+ORDER BY `idHab` ASC', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(695): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `hab`.*, `estado_hab`.`estado` as `estado`, `tpoHab`.`precio`
+FROM `habitacion` as `hab`
+JOIN `estado_hab` ON `hab`.`idEstado` = `estado_hab`.`idEstado`
+JOIN `tipo_habitacion` as `tipoHab` ON `hab`.`idTipoHab` = `tipoHab`.`idTipo`
+ORDER BY `idHab` ASC')
+ 3 SYSTEMPATH\Database\BaseConnection.php(609): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `hab`.*, `estado_hab`.`estado` as `estado`, `tpoHab`.`precio`
+FROM `habitacion` as `hab`
+JOIN `estado_hab` ON `hab`.`idEstado` = `estado_hab`.`idEstado`
+JOIN `tipo_habitacion` as `tipoHab` ON `hab`.`idTipoHab` = `tipoHab`.`idTipo`
+ORDER BY `idHab` ASC')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(1585): CodeIgniter\Database\BaseConnection->query('SELECT `hab`.*, `estado_hab`.`estado` as `estado`, `tpoHab`.`precio`
+FROM `habitacion` as `hab`
+JOIN `estado_hab` ON `hab`.`idEstado` = `estado_hab`.`idEstado`
+JOIN `tipo_habitacion` as `tipoHab` ON `hab`.`idTipoHab` = `tipoHab`.`idTipo`
+ORDER BY `idHab` ASC', [], false)
+ 5 APPPATH\Models\HabitacionModel.php(31): CodeIgniter\Database\BaseBuilder->get()
+ 6 APPPATH\Controllers\HabitacionController.php(9): App\Models\HabitacionModel->getAll()
+ 7 SYSTEMPATH\CodeIgniter.php(896): App\Controllers\HabitacionController->index()
+ 8 SYSTEMPATH\CodeIgniter.php(466): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\HabitacionController))
+ 9 SYSTEMPATH\CodeIgniter.php(349): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 FCPATH\index.php(55): CodeIgniter\CodeIgniter->run()
+ERROR - 2022-06-22 20:40:09 --> Unknown column 'tpoHab.precio' in 'field list'
+CRITICAL - 2022-06-22 20:40:09 --> Unknown column 'tpoHab.precio' in 'field list'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 292.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(292): mysqli->query('SELECT `hab`.*, `estado_hab`.`estado` as `estado`, `tpoHab`.`precio`
+FROM `habitacion` as `hab`
+JOIN `estado_hab` ON `hab`.`idEstado` = `estado_hab`.`idEstado`
+JOIN `tipo_habitacion` as `tipoHab` ON `hab`.`idTipoHab` = `tipoHab`.`idTipo`
+ORDER BY `idHab` ASC', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(695): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `hab`.*, `estado_hab`.`estado` as `estado`, `tpoHab`.`precio`
+FROM `habitacion` as `hab`
+JOIN `estado_hab` ON `hab`.`idEstado` = `estado_hab`.`idEstado`
+JOIN `tipo_habitacion` as `tipoHab` ON `hab`.`idTipoHab` = `tipoHab`.`idTipo`
+ORDER BY `idHab` ASC')
+ 3 SYSTEMPATH\Database\BaseConnection.php(609): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `hab`.*, `estado_hab`.`estado` as `estado`, `tpoHab`.`precio`
+FROM `habitacion` as `hab`
+JOIN `estado_hab` ON `hab`.`idEstado` = `estado_hab`.`idEstado`
+JOIN `tipo_habitacion` as `tipoHab` ON `hab`.`idTipoHab` = `tipoHab`.`idTipo`
+ORDER BY `idHab` ASC')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(1585): CodeIgniter\Database\BaseConnection->query('SELECT `hab`.*, `estado_hab`.`estado` as `estado`, `tpoHab`.`precio`
+FROM `habitacion` as `hab`
+JOIN `estado_hab` ON `hab`.`idEstado` = `estado_hab`.`idEstado`
+JOIN `tipo_habitacion` as `tipoHab` ON `hab`.`idTipoHab` = `tipoHab`.`idTipo`
+ORDER BY `idHab` ASC', [], false)
+ 5 APPPATH\Models\HabitacionModel.php(31): CodeIgniter\Database\BaseBuilder->get()
+ 6 APPPATH\Controllers\HabitacionController.php(9): App\Models\HabitacionModel->getAll()
+ 7 SYSTEMPATH\CodeIgniter.php(896): App\Controllers\HabitacionController->index()
+ 8 SYSTEMPATH\CodeIgniter.php(466): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\HabitacionController))
+ 9 SYSTEMPATH\CodeIgniter.php(349): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 FCPATH\index.php(55): CodeIgniter\CodeIgniter->run()
+ERROR - 2022-06-22 20:40:29 --> Unknown column 'tpoHab.precio' in 'field list'
+CRITICAL - 2022-06-22 20:40:29 --> Unknown column 'tpoHab.precio' in 'field list'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 292.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(292): mysqli->query('SELECT `hab`.*, `estado_hab`.`estado` as `estado`, `tpoHab`.`precio`
+FROM `habitacion` as `hab`
+JOIN `estado_hab` ON `hab`.`idEstado` = `estado_hab`.`idEstado`
+ORDER BY `idHab` ASC', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(695): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `hab`.*, `estado_hab`.`estado` as `estado`, `tpoHab`.`precio`
+FROM `habitacion` as `hab`
+JOIN `estado_hab` ON `hab`.`idEstado` = `estado_hab`.`idEstado`
+ORDER BY `idHab` ASC')
+ 3 SYSTEMPATH\Database\BaseConnection.php(609): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `hab`.*, `estado_hab`.`estado` as `estado`, `tpoHab`.`precio`
+FROM `habitacion` as `hab`
+JOIN `estado_hab` ON `hab`.`idEstado` = `estado_hab`.`idEstado`
+ORDER BY `idHab` ASC')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(1585): CodeIgniter\Database\BaseConnection->query('SELECT `hab`.*, `estado_hab`.`estado` as `estado`, `tpoHab`.`precio`
+FROM `habitacion` as `hab`
+JOIN `estado_hab` ON `hab`.`idEstado` = `estado_hab`.`idEstado`
+ORDER BY `idHab` ASC', [], false)
+ 5 APPPATH\Models\HabitacionModel.php(31): CodeIgniter\Database\BaseBuilder->get()
+ 6 APPPATH\Controllers\HabitacionController.php(9): App\Models\HabitacionModel->getAll()
+ 7 SYSTEMPATH\CodeIgniter.php(896): App\Controllers\HabitacionController->index()
+ 8 SYSTEMPATH\CodeIgniter.php(466): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\HabitacionController))
+ 9 SYSTEMPATH\CodeIgniter.php(349): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 FCPATH\index.php(55): CodeIgniter\CodeIgniter->run()
+ERROR - 2022-06-22 20:40:30 --> Unknown column 'tpoHab.precio' in 'field list'
+CRITICAL - 2022-06-22 20:40:30 --> Unknown column 'tpoHab.precio' in 'field list'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 292.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(292): mysqli->query('SELECT `hab`.*, `estado_hab`.`estado` as `estado`, `tpoHab`.`precio`
+FROM `habitacion` as `hab`
+JOIN `estado_hab` ON `hab`.`idEstado` = `estado_hab`.`idEstado`
+ORDER BY `idHab` ASC', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(695): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `hab`.*, `estado_hab`.`estado` as `estado`, `tpoHab`.`precio`
+FROM `habitacion` as `hab`
+JOIN `estado_hab` ON `hab`.`idEstado` = `estado_hab`.`idEstado`
+ORDER BY `idHab` ASC')
+ 3 SYSTEMPATH\Database\BaseConnection.php(609): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `hab`.*, `estado_hab`.`estado` as `estado`, `tpoHab`.`precio`
+FROM `habitacion` as `hab`
+JOIN `estado_hab` ON `hab`.`idEstado` = `estado_hab`.`idEstado`
+ORDER BY `idHab` ASC')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(1585): CodeIgniter\Database\BaseConnection->query('SELECT `hab`.*, `estado_hab`.`estado` as `estado`, `tpoHab`.`precio`
+FROM `habitacion` as `hab`
+JOIN `estado_hab` ON `hab`.`idEstado` = `estado_hab`.`idEstado`
+ORDER BY `idHab` ASC', [], false)
+ 5 APPPATH\Models\HabitacionModel.php(31): CodeIgniter\Database\BaseBuilder->get()
+ 6 APPPATH\Controllers\HabitacionController.php(9): App\Models\HabitacionModel->getAll()
+ 7 SYSTEMPATH\CodeIgniter.php(896): App\Controllers\HabitacionController->index()
+ 8 SYSTEMPATH\CodeIgniter.php(466): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\HabitacionController))
+ 9 SYSTEMPATH\CodeIgniter.php(349): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 FCPATH\index.php(55): CodeIgniter\CodeIgniter->run()
+ERROR - 2022-06-22 20:41:00 --> Unknown column 'tpoHab.precio' in 'field list'
+CRITICAL - 2022-06-22 20:41:00 --> Unknown column 'tpoHab.precio' in 'field list'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 292.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(292): mysqli->query('SELECT `hab`.*, `estado_hab`.`estado` as `estado`, `tpoHab`.`precio`
+FROM `habitacion` as `hab`
+JOIN `estado_hab` ON `hab`.`idEstado` = `estado_hab`.`idEstado`
+ORDER BY `idHab` ASC', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(695): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `hab`.*, `estado_hab`.`estado` as `estado`, `tpoHab`.`precio`
+FROM `habitacion` as `hab`
+JOIN `estado_hab` ON `hab`.`idEstado` = `estado_hab`.`idEstado`
+ORDER BY `idHab` ASC')
+ 3 SYSTEMPATH\Database\BaseConnection.php(609): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `hab`.*, `estado_hab`.`estado` as `estado`, `tpoHab`.`precio`
+FROM `habitacion` as `hab`
+JOIN `estado_hab` ON `hab`.`idEstado` = `estado_hab`.`idEstado`
+ORDER BY `idHab` ASC')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(1585): CodeIgniter\Database\BaseConnection->query('SELECT `hab`.*, `estado_hab`.`estado` as `estado`, `tpoHab`.`precio`
+FROM `habitacion` as `hab`
+JOIN `estado_hab` ON `hab`.`idEstado` = `estado_hab`.`idEstado`
+ORDER BY `idHab` ASC', [], false)
+ 5 APPPATH\Models\HabitacionModel.php(31): CodeIgniter\Database\BaseBuilder->get()
+ 6 APPPATH\Controllers\HabitacionController.php(9): App\Models\HabitacionModel->getAll()
+ 7 SYSTEMPATH\CodeIgniter.php(896): App\Controllers\HabitacionController->index()
+ 8 SYSTEMPATH\CodeIgniter.php(466): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\HabitacionController))
+ 9 SYSTEMPATH\CodeIgniter.php(349): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 FCPATH\index.php(55): CodeIgniter\CodeIgniter->run()
+ERROR - 2022-06-22 20:41:01 --> Unknown column 'tpoHab.precio' in 'field list'
+CRITICAL - 2022-06-22 20:41:01 --> Unknown column 'tpoHab.precio' in 'field list'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 292.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(292): mysqli->query('SELECT `hab`.*, `estado_hab`.`estado` as `estado`, `tpoHab`.`precio`
+FROM `habitacion` as `hab`
+JOIN `estado_hab` ON `hab`.`idEstado` = `estado_hab`.`idEstado`
+ORDER BY `idHab` ASC', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(695): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `hab`.*, `estado_hab`.`estado` as `estado`, `tpoHab`.`precio`
+FROM `habitacion` as `hab`
+JOIN `estado_hab` ON `hab`.`idEstado` = `estado_hab`.`idEstado`
+ORDER BY `idHab` ASC')
+ 3 SYSTEMPATH\Database\BaseConnection.php(609): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `hab`.*, `estado_hab`.`estado` as `estado`, `tpoHab`.`precio`
+FROM `habitacion` as `hab`
+JOIN `estado_hab` ON `hab`.`idEstado` = `estado_hab`.`idEstado`
+ORDER BY `idHab` ASC')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(1585): CodeIgniter\Database\BaseConnection->query('SELECT `hab`.*, `estado_hab`.`estado` as `estado`, `tpoHab`.`precio`
+FROM `habitacion` as `hab`
+JOIN `estado_hab` ON `hab`.`idEstado` = `estado_hab`.`idEstado`
+ORDER BY `idHab` ASC', [], false)
+ 5 APPPATH\Models\HabitacionModel.php(31): CodeIgniter\Database\BaseBuilder->get()
+ 6 APPPATH\Controllers\HabitacionController.php(9): App\Models\HabitacionModel->getAll()
+ 7 SYSTEMPATH\CodeIgniter.php(896): App\Controllers\HabitacionController->index()
+ 8 SYSTEMPATH\CodeIgniter.php(466): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\HabitacionController))
+ 9 SYSTEMPATH\CodeIgniter.php(349): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 FCPATH\index.php(55): CodeIgniter\CodeIgniter->run()

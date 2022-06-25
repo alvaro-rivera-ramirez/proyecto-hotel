@@ -1,0 +1,46 @@
+ERROR - 2022-06-23 01:03:40 --> Unknown column 'u.usuario' in 'field list'
+CRITICAL - 2022-06-23 01:03:40 --> Unknown column 'u.usuario' in 'field list'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 292.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(292): mysqli->query('SELECT `u`.`usuario`, `u`.`pass`, `rol`.`cargo`
+FROM `usuarios` as `u`
+JOIN `roles` as `rol` ON `u`.`idRol` = `rol`.`idRol`
+WHERE `username` = \'user\'', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(695): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `u`.`usuario`, `u`.`pass`, `rol`.`cargo`
+FROM `usuarios` as `u`
+JOIN `roles` as `rol` ON `u`.`idRol` = `rol`.`idRol`
+WHERE `username` = \'user\'')
+ 3 SYSTEMPATH\Database\BaseConnection.php(609): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `u`.`usuario`, `u`.`pass`, `rol`.`cargo`
+FROM `usuarios` as `u`
+JOIN `roles` as `rol` ON `u`.`idRol` = `rol`.`idRol`
+WHERE `username` = \'user\'')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(1585): CodeIgniter\Database\BaseConnection->query('SELECT `u`.`usuario`, `u`.`pass`, `rol`.`cargo`
+FROM `usuarios` as `u`
+JOIN `roles` as `rol` ON `u`.`idRol` = `rol`.`idRol`
+WHERE `username` = :username:', [...], false)
+ 5 APPPATH\Models\UsuariosModel.php(15): CodeIgniter\Database\BaseBuilder->get()
+ 6 APPPATH\Controllers\Login.php(17): App\Models\UsuariosModel->obtenerUsuario([...])
+ 7 SYSTEMPATH\CodeIgniter.php(896): App\Controllers\Login->login()
+ 8 SYSTEMPATH\CodeIgniter.php(466): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Login))
+ 9 SYSTEMPATH\CodeIgniter.php(349): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 FCPATH\index.php(55): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2022-06-23 01:05:33 --> Undefined variable: datos
+in APPPATH\Controllers\Login.php on line 28.
+ 1 APPPATH\Controllers\Login.php(28): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined variable: datos', 'APPPATH\\Controllers\\Login.php', 28, [...])
+ 2 SYSTEMPATH\CodeIgniter.php(896): App\Controllers\Login->login()
+ 3 SYSTEMPATH\CodeIgniter.php(466): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Login))
+ 4 SYSTEMPATH\CodeIgniter.php(349): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(55): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2022-06-23 01:06:35 --> Undefined variable: datos
+in APPPATH\Controllers\Login.php on line 28.
+ 1 APPPATH\Controllers\Login.php(28): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined variable: datos', 'APPPATH\\Controllers\\Login.php', 28, [...])
+ 2 SYSTEMPATH\CodeIgniter.php(896): App\Controllers\Login->login()
+ 3 SYSTEMPATH\CodeIgniter.php(466): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Login))
+ 4 SYSTEMPATH\CodeIgniter.php(349): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(55): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2022-06-23 01:06:58 --> Undefined variable: datos
+in APPPATH\Controllers\Login.php on line 28.
+ 1 APPPATH\Controllers\Login.php(28): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined variable: datos', 'APPPATH\\Controllers\\Login.php', 28, [...])
+ 2 SYSTEMPATH\CodeIgniter.php(896): App\Controllers\Login->login()
+ 3 SYSTEMPATH\CodeIgniter.php(466): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Login))
+ 4 SYSTEMPATH\CodeIgniter.php(349): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(55): CodeIgniter\CodeIgniter->run()

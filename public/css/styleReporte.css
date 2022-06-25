@@ -1,0 +1,210 @@
+img.graf{
+    position:absolute;
+    left: 901px;
+    top: 147px;
+    width: 422px;
+    height: 300px;
+    border: 1px solid #000000;
+}
+div.content{
+    text-align: center;
+    width: 253px;
+    height: 105px;
+    float: left;
+    margin: 10px;
+
+    background: #eaeaea;
+    border: 1px solid #000000;
+}
+
+h4.texto{
+    font-size: 20px;
+    font: 'IBM Plex Sans';
+    position: relative;
+    left: 50%;
+    top: 35%;
+    transform: translateX(-50%) translateY(-35%);
+}
+
+div.largecontent{
+    text-align: center;
+    width: 525px;
+    height: 175px;
+    margin: 10px;
+    margin-top: 140px;
+
+    background: #eaeaea;
+    border: 1px solid #000000;
+}
+
+div.largecontent2{
+    text-align: center;
+    width: 525px;
+    height: 275px;
+    margin: 10px;
+    top: 263px;
+    margin-top: 20px;
+
+    background: #eaeaea;
+    border: 1px solid #000000;
+}
+
+h5.texto{
+    width: 180px;
+    height: 25px;
+
+    font-size: 20px;
+
+    display: flex;
+    align-items: center;
+    text-align: center;
+
+    color: #000000;
+}
+
+h5#tit{
+    position: absolute;
+    left: 315px;
+    top: 280px;
+}
+
+h5#pr{
+    position: absolute;
+    left: 343px;
+    top: 316px;
+}
+
+h5#se{
+    position: absolute;
+    left: 343px;
+    top: 352px;
+}
+
+h5#tr{
+    position: absolute;
+    left: 343px;
+    top: 388px;
+}
+
+h6.texto{
+    width: 250px;
+    height: 26px;
+
+    font-size: 20px;
+
+    display: flex;
+    align-items: center;
+    text-align: center;
+    
+    color: #000000;
+}
+
+h6#pr{
+    position: absolute;
+    left: 500px;
+    top: 316px;
+}
+
+h6#se{
+    position: absolute;
+    left: 500px;
+    top: 352px;
+}
+
+h6#tr{
+    position: absolute;
+    left: 500px;
+    top: 388px;
+}
+
+h7.texto{
+    width: 180px;
+    height: 34px;
+
+    font-size: 20px;
+
+    display: flex;
+    align-items: center;
+    text-align: center;
+
+    color: #000000;
+}
+
+h7#tit{
+    position: absolute;
+    left: 315px;
+    top: 155px;
+}
+
+h7#pr{
+    position: absolute;
+    left: 315px;
+    top: 191px;
+}
+
+h7#se{
+    position: absolute;
+    left: 315px;
+    top: 227px;
+}
+
+h7#tr{
+    position: absolute;
+    left: 315px;
+    top: 263px;
+}
+
+h7#qr{
+    position: absolute;
+    left: 315px;
+    top: 299px;
+}
+
+h7#qt{
+    position: absolute;
+    left: 315px;
+    top: 335px;
+}
+
+h8.texto{
+    width: 250px;
+    height: 26px;
+
+    font-size: 20px;
+
+    display: flex;
+    align-items: center;
+    text-align: center;
+    
+    color: #000000;
+}
+
+h8#pr{
+    position: absolute;
+    left: 505px;
+    top: 195px;
+}
+
+h8#se{
+    position: absolute;
+    left: 505px;
+    top: 230px;
+}
+
+h8#tr{
+    position: absolute;
+    left: 505px;
+    top: 265px;
+}
+
+h8#qr{
+    position: absolute;
+    left: 505px;
+    top: 300px;
+}
+
+h8#qt{
+    position: absolute;
+    left: 505px;
+    top: 335px;
+}
