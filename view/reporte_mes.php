@@ -22,13 +22,18 @@
                   
                     <div class="container-fluid" >
                         <section>
-                            <h3 class="pb-3">Reportes / Diario</h3>
-                            <div class="largecontent"> 
-                                <h5 class="texto" id="tit">Reporte diario</h5>
-                                <h5 class="texto" id="se">Fecha</h5>
-                                <h6 class="texto" id="se">25/02/2022</h6>
-                                <h5 class="texto" id="tr">Total</h5>
-                                <h6 class="texto" id="tr">S/.480</h6>
+                            <img src="Imagenes/cuadro.png" class="graf">  
+                            <h3 class="pb-3">Reportes / Mes</h3>
+                            <div class="largecontent2"> 
+                                <h7 class="texto" id="tit">Reporte de Mes</h7>
+                                <h7 class="texto" id="pr">Año</h7>
+                                <h8 class="texto" id="pr">2022</h8>
+                                <h7 class="texto" id="se">Mes</h7>
+                                <h8 class="texto" id="se">Febrero</h8>
+                                <h7 class="texto" id="tr">Fecha</h7>
+                                <h8 class="texto" id="tr">25/02/2022</h8>
+                                <h7 class="texto" id="qr">Total</h7>
+                                <h8 class="texto" id="qr">S/.480</h8>
                             </div>
                         <!-- MENU DE OPCIONES-->
                             <div class="container-fluid">
@@ -49,8 +54,8 @@
                                         <th>Tipo</th>
                                         <th>Cliente</th>
                                         <th>Monto</th>
-                                        <th>Hora Ingreso</th>
-                                        <th>Hora Salida</th>
+                                        <th>Fecha / Hora Ingreso</th>
+                                        <th>Fecha / Hora Salida</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -60,8 +65,8 @@
                                         <td>Simple</td>
                                         <td>Yvan Mamani</td>
                                         <td>S/.80</td>
-                                        <td>10:40:05</td>
-                                        <td>14:40:15</td>
+                                        <td>04/02/2022  10:40:05</td>
+                                        <td>05/02/2022  14:40:15</td>
                                     </tr>
                                     <tr class="text-center">
                                         <td>2</td>
@@ -69,8 +74,8 @@
                                         <td>Doble</td>
                                         <td>Diego Gomez</td>
                                         <td>S/.100</td>
-                                        <td>10:40:05</td>
-                                        <td>14:40:15</td>
+                                        <td>04/02/2022  10:40:05</td>
+                                        <td>05/02/2022  14:40:15</td>
                                     </tr>
                                     <tr class="text-center">
                                         <td>3</td>
@@ -78,8 +83,8 @@
                                         <td>Simple</td>
                                         <td>Alvaro Gutierrez</td>
                                         <td>S/.80</td>
-                                        <td>10:40:05</td>
-                                        <td>14:40:15</td>
+                                        <td>04/02/2022  10:40:05</td>
+                                        <td>05/02/2022  14:40:15</td>
                                     </tr>
                                     <tr class="text-center">
                                         <td>4</td>
@@ -87,8 +92,8 @@
                                         <td>Simple</td>
                                         <td>Richard Smit</td>
                                         <td>S/.80</td>
-                                        <td>10:40:05</td>
-                                        <td>14:40:15</td>
+                                        <td>04/02/2022  10:40:05</td>
+                                        <td>05/02/2022  14:40:15</td>
                                     </tr>
                                     <tr class="text-center">
                                         <td>5</td>
@@ -96,8 +101,8 @@
                                         <td>Doble</td>
                                         <td>Carlos Yufra</td>
                                         <td>S/.100</td>
-                                        <td>10:40:05</td>
-                                        <td>14:40:15</td>
+                                        <td>04/02/2022  10:40:05</td>
+                                        <td>05/02/2022  14:40:15</td>
                                     </tr>
                                 </tbody>
                             </table>
