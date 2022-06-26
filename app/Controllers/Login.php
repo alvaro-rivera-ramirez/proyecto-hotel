@@ -6,7 +6,11 @@ class Login extends BaseController
 {
     public function index()
     {
-        return view('login-view');
+        if(!session('usuario')){
+            return view('login-view');
+        }else{
+            return redirect()->to(base_url('/inicio'));
+        }
     }
 
     public function login(){
