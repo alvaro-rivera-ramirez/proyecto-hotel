@@ -36,7 +36,7 @@
                               <a href="<?php echo base_url('/lista-habitaciones')?>" class="d-block">
                               <i class="fa-solid fa-bed"></i>
                               Habitaciones</a>
-                              <a href="#" class="d-block">
+                              <a href="<?php echo base_url('/lista-tipohab')?>" class="d-block">
                               <i class="fa-solid fa-tag"></i>
                               Tipo de Habitacion</a>
                             </div>
