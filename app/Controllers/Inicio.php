@@ -7,6 +7,8 @@ class Inicio extends Controller{
     public function index(){
         $Hab=new HabitacionModel();
         $datosHab['habitacion']=$Hab->innerJoinTipoHab();
+        $datosHab['estado']=$Hab->countEstadoHab();
+        //print_r($datosHab);
         return view('home',$datosHab);
     }
 

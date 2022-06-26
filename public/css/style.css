@@ -270,3 +270,24 @@ a:hover, a{
     background: #940D05;
     color: white;
 }
+
+.box-libre{
+    border-radius: 10px;
+    background-color: #01BC49;
+}
+.box-ocupado{
+    border-radius: 10px;
+    background-color: #D11111;
+}
+.box-reserva{
+    border-radius: 10px;
+    background-color: #FFB212;
+}
+.box-clean{
+    border-radius: 10px;
+    background-color: #1CD2C7;
+}
+.box-disabled{
+    border-radius: 10px;
+    background-color: #999999;
+}

@@ -20,3 +20,12 @@ in APPPATH\Views\home.php on line 56.
  7 SYSTEMPATH\CodeIgniter.php(466): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Login))
  8 SYSTEMPATH\CodeIgniter.php(349): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
  9 FCPATH\index.php(55): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2022-06-26 12:49:43 --> syntax error, unexpected '{', expecting endswitch (T_ENDSWITCH) or case (T_CASE) or default (T_DEFAULT)
+in APPPATH\Views\home.php on line 64.
+ 1 SYSTEMPATH\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 2 SYSTEMPATH\Common.php(1135): CodeIgniter\View\View->render('home', [], true)
+ 3 APPPATH\Controllers\Inicio.php(12): view('home', [...])
+ 4 SYSTEMPATH\CodeIgniter.php(896): App\Controllers\Inicio->index()
+ 5 SYSTEMPATH\CodeIgniter.php(466): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Inicio))
+ 6 SYSTEMPATH\CodeIgniter.php(349): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 FCPATH\index.php(55): CodeIgniter\CodeIgniter->run()

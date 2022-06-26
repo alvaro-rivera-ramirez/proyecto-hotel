@@ -20,31 +20,32 @@
                     <div class="col">
                       <div class="p-3 border bg-libre">
                       <p class="text-center"><i class="fa-solid fa-bed me-2"></i>Disponible</p>
-                      <p class="text-center">5</p>
+                      <p class="text-center"><?= $estado[0]['cantidad']?></p>
                       </div>
                     </div>
                     <div class="col">
                       <div class="p-3 border bg-reserva">
                       <p class="text-center"><i class="fa-solid fa-calendar-check me-2"></i>Reservado</p>
-                      <p class="text-center">5</p>
+                      <p class="text-center"><?= $estado[1]['cantidad']?></p>
                       </div>
                     </div>
                     <div class="col">
                       <div class="p-3 border bg-ocupado">
                       <p class="text-center"><i class="fa-solid fa-cart-flatbed me-2"></i>Ocupado</p>
-                      <p class="text-center">4</p>
+                      <p class="text-center"><?= $estado[2]['cantidad']?></p>
                       </div>
                     </div>
                     <div class="col">
                       <div class="p-3 border bg-clean">
                       <p class="text-center"><i class="fa-solid fa-bath me-2"></i>Limpieza</p>
-                      <p class="text-center">2</p>
+                      <p class="text-center"><?= $estado[3]['cantidad']?></p>
                       </div>
                     </div>
                     <div class="col">
                       <div class="p-3 border bg-disabled">
                       <p class="text-center"><i class="fa-solid fa-bell-slash me-2"></i>Deshabilitado</p>
-                      <p class="text-center">1</p></div>
+                      <p class="text-center"><?= $estado[4]['cantidad']?></p>
+                      </div>
                     </div>
                   </div>
                    
@@ -55,18 +56,36 @@
                               <div  class="hab row row-cols-2 row-cols-md-3 row-cols-lg-5 g-2 g-lg-3 col-lg-12">
                                 <?php foreach($habitacion as $habitaciones):?>
                                     <div class="col">
-                                      <div class="border bg-light d-block">
-                                         <a href="#">
-                                          <mark><?= $habitaciones['numero'];?></mark>
-                                          <p><?= $habitaciones['tipo_hab'];?></p>
-                                          <img src="Imagenes/cama.png" width="40px">
-                                      </a>
-                                      </div>
+                                    
+                                    <?php switch($habitaciones['idEstado']):
+                                         case 1:  ?>
+                                            <div class="border bg-light d-block bg-libre">
+                                        <?php break; ?>
+                                        <?php case 2: ?>
+                                            <div class="border bg-light d-block bg-reserva">
+                                        <?php break;?>
+                                        <?php case 3: ?>
+                                            <div class="border bg-light d-block bg-ocupado">
+                                        <?php break;?>
+                                        <?php case 4: ?>
+                                            <div class="border bg-light d-block bg-clean">
+                                        <?php break;?>
+                                        <?php case 5: ?>
+                                            <div class="border bg-light d-block bg-disabled">
+                                        <?php break;?>
+                                    <?php endswitch;?>
+                                            <a href="#">
+                                            <mark><?= $habitaciones['numero'];?></mark>
+                                            <p><?= $habitaciones['tipo_hab'];?></p>
+                                            <img src="Imagenes/cama.png" width="40px">
+                                            </a>
+                                        </div>
                                     </div>
+
                                 <?php endforeach;?>
                                   <!-- <div class="col">
-                                     
                                       <div class="border bg-light d-block">
+                                     
                                          <a href="#">
                                           <mark>100</mark>
                                           <p>Simple</p>
