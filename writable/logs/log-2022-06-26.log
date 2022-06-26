@@ -20,3 +20,14 @@ in APPPATH\Views\home.php on line 56.
  7 SYSTEMPATH\CodeIgniter.php(466): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Login))
  8 SYSTEMPATH\CodeIgniter.php(349): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
  9 FCPATH\index.php(55): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2022-06-26 12:52:03 --> Undefined array key "idTipo"
+in APPPATH\Views\tipoHabitaciones\registro_tipo_hab.php on line 61.
+ 1 APPPATH\Views\tipoHabitaciones\registro_tipo_hab.php(61): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array key "idTipo"', 'APPPATH\\Views\\tipoHabitaciones\\registro_tipo_hab.php', 61)
+ 2 SYSTEMPATH\View\View.php(213): include('APPPATH\\Views\\tipoHabitaciones\\registro_tipo_hab.php')
+ 3 SYSTEMPATH\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1135): CodeIgniter\View\View->render('tipoHabitaciones/registro_tipo_hab', [], true)
+ 5 APPPATH\Controllers\TipoHabController.php(11): view('tipoHabitaciones/registro_tipo_hab', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(896): App\Controllers\TipoHabController->index()
+ 7 SYSTEMPATH\CodeIgniter.php(466): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\TipoHabController))
+ 8 SYSTEMPATH\CodeIgniter.php(349): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(55): CodeIgniter\CodeIgniter->run()
