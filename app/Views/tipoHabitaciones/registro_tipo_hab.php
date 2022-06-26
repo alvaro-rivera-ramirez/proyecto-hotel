@@ -55,10 +55,12 @@
                                     </tr>
                                 </thead>
                                 <tbody>
+
+                                <?php foreach($tipo as $tipos):?>
                                     <tr class="text-center">
-                                        <td>10</td>
-                                        <th>Simple<th>
-                                        <td>S/. 50</td>
+                                        <td><?= $tipos['idTipo'] ?></td>
+                                        <th><?= $tipos['tipo'] ?><th>
+                                        <td>S/. <?= $tipos['precio'] ?></td>
                                         <td>TV con Cable, Cama de plaza y media, Baño Privado</td>
                                         <td>
                                             <a class="btn btn-success" href="#" role="button">
@@ -72,91 +74,8 @@
                                             </form>
                                         </td>
                                     </tr>
-                                    <tr class="text-center">
-                                        <td>11</td>
-                                        <th>Doble<th>
-                                        <td>S/. 100</td>
-                                        <td>TV con Cable, 2 Camas de plaza y media, Baño Privado</td>
-                                        <td>
-                                            <a class="btn btn-success" href="#" role="button">
-                                            <i class="fa-solid fa-pen-to-square"></i>
-                                            </a>
-                                        </td>
-                                        <td>
-                                            <form action="">
-                                                <button class="btn btn-danger" type="button"><i class="fa-solid fa-trash-can"></i>
-                                                </button>
-                                            </form>
-                                        </td>
-                                    </tr>
-                                    <tr class="text-center">
-                                        <td>12</td>
-                                        <th>Triple<th>
-                                        <td>S/. 150</td>
-                                        <td>TV con Cable, 3 Camas de plaza y media, Baño Privado</td>
-                                        <td>
-                                            <a class="btn btn-success" href="#" role="button">
-                                            <i class="fa-solid fa-pen-to-square"></i>
-                                            </a>
-                                        </td>
-                                        <td>
-                                            <form action="">
-                                                <button class="btn btn-danger" type="button"><i class="fa-solid fa-trash-can"></i>
-                                                </button>
-                                            </form>
-                                        </td>
-                                    </tr>
-                                    <tr class="text-center">
-                                        <td>13</td>
-                                        <th>Familiar<th>
-                                        <td>S/. 200</td>
-                                        <td>TV con Cable, 3 Camas de dos plazas, Baño Privado</td>
-                                        <td>
-                                            <a class="btn btn-success" href="#" role="button">
-                                            <i class="fa-solid fa-pen-to-square"></i>
-                                            </a>
-                                        </td>
-                                        <td>
-                                            <form action="">
-                                                <button class="btn btn-danger" type="button"><i class="fa-solid fa-trash-can"></i>
-                                                </button>
-                                            </form>
-                                        </td>
-                                    </tr>
-                                    <tr class="text-center">
-                                        <td>14</td>
-                                        <th>Matrimonial<th>
-                                        <td>S/. 250</td>
-                                        <td>TV con Cable, Cama de tres plazas, 2 Baños Privados</td>
-                                        <td>
-                                            <a class="btn btn-success" href="#" role="button">
-                                            <i class="fa-solid fa-pen-to-square"></i>
-                                            </a>
-                                        </td>
-                                        <td>
-                                            <form action="">
-                                                <button class="btn btn-danger" type="button"><i class="fa-solid fa-trash-can"></i>
-                                                </button>
-                                            </form>
-                                        </td>
-                                    </tr>
-                                    <tr class="text-center">
-                                        <td>15</td>
-                                        <th>Suit<th>
-                                        <td>S/. 300</td>
-                                        <td>TV con Cable, 2 Camas de tres plazas, 2 Baños Privados</td>
-                                        <td>
-                                            <a class="btn btn-success" href="#" role="button">
-                                            <i class="fa-solid fa-pen-to-square"></i>
-                                            </a>
-                                        </td>
-                                        <td>
-                                            <form action="">
-                                                <button class="btn btn-danger" type="button"><i class="fa-solid fa-trash-can"></i>
-                                                </button>
-                                            </form>
-                                        </td>
-                                    </tr>
+                                <?php endforeach;?>
+                                    
                                 </tbody>
                             </table>
                             </div>

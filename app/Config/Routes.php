@@ -61,3 +61,4 @@ $routes->post('/login', 'Login::login');
 $routes->get('salir', 'Inicio::salir');
 $routes->get('/lista-clientes', 'ClientesController::index');
 $routes->get('/lista-habitaciones', 'HabitacionController::index');
+$routes->get('/lista-tipohab', 'TipoHabController::index');
