@@ -272,22 +272,22 @@ a:hover, a{
 }
 
 .box-libre{
-    border-radius: 10px;
-    background-color: #01BC49 !important;
+    border-radius: 5px;
+    background-color: #038d38 !important;
 }
 .box-ocupado{
-    border-radius: 10px;
-    background-color: #D11111 !important ;
+    border-radius: 5px;
+    background-color: #f81d1d !important ;
 }
 .box-reserva{
-    border-radius: 10px;
+    border-radius: 5px;
     background-color: #FFB212 !important;
 }
 .box-clean{
-    border-radius: 10px;
+    border-radius: 5px;
     background-color: #1CD2C7 !important;
 }
 .box-disabled{
-    border-radius: 10px;
+    border-radius: 5px;
     background-color: #999999 !important;
 }

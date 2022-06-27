@@ -58,19 +58,19 @@
                                     
                                     <?php switch($habitaciones['idEstado']):
                                          case 1:  ?>
-                                            <div class="border bg-light d-block bg-libre">
+                                            <div class="d-block box-libre">
                                         <?php break; ?>
                                         <?php case 2: ?>
-                                            <div class="border bg-light d-block bg-reserva">
+                                            <div class="d-block box-reserva">
                                         <?php break;?>
                                         <?php case 3: ?>
-                                            <div class="border bg-light d-block bg-ocupado">
+                                            <div class="d-block box-ocupado">
                                         <?php break;?>
                                         <?php case 4: ?>
-                                            <div class="border bg-light d-block bg-clean">
+                                            <div class="d-block box-clean">
                                         <?php break;?>
                                         <?php case 5: ?>
-                                            <div class="border bg-light d-block bg-disabled">
+                                            <div class="d-block box-disabled">
                                         <?php break;?>
                                     <?php endswitch;?>
                                             <a href="#">

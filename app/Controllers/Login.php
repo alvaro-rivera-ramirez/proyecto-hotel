@@ -17,16 +17,12 @@ class Login extends BaseController
         $usuario=$this->request->getPost('usuario');
         $password=$this->request->getPost('password');
     
-        /*LLAMA AL MODELO USUARIO */
+        /*instancia al modelo usuario */
         $Usuario=new UsuariosModel();
         $datosUsuario=$Usuario->obtenerUsuario(['username' => $usuario]);
 
         if(count($datosUsuario)>0 && password_verify($password,$datosUsuario[0]['pass'])){
-            /*if($datosUsuario[0]['idRol']==1){
-                $rol="Administrador";
-            }else{
-                $rol="Usuario";
-            }*/
+
             $data=[
                 "usuario" => $datosUsuario[0]['username'],
                 "nombre" => $datosUsuario[0]['nombre'],
@@ -34,8 +30,12 @@ class Login extends BaseController
             ];
             $session= session();
             $session->set($data);
+            
             return redirect()->to(base_url('/inicio'));
+            //echo json_encode(array('success'=> 1));
         }else{
+            //echo json_encode(array('success'=> 0));
+
             return redirect()->to(base_url('/'));
         }
     }

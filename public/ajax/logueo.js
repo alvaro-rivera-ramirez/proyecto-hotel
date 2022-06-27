@@ -1,28 +1,37 @@
-$(document).ready(function () {   
-    $("#form").submit(function () {
-        var datos = {
-            fono: $("#fono").val(),
-            comentarios: $("#comentarios").val(),
-            emisor: $("#email").val()
-        };
-        $.get("pag_email.php", datos, funcion_mensaje).fail(ProcesarError);
-        return false;
-    }); 
-});
+window.addEventListener('load',()=>{
+    let button = document.getElementById('formLoginG');
+    let usuario = document.getElementById('exampleInputEmail1');
+    let password = document.getElementById('exampleInputPassword1');
+    let alert = document.getElementById('alerta');
 
-function funcion_mensaje(mensaje) {
-    if(mensaje== "EMAIL MALO"){
-        $("#caja").html("<p class='bad'>EL EMAIL NO ES VÁLIDO, POR FAVOR REVISE BIEN O INGRESE OTRO EMAIL</p>");
-    } else{
-        if (mensaje == "BUENA") {
-            $("#caja").html("<p class='good'> EL MENSAJE HA SIDO ENVIADO CON ÉXITO, UNO DE NUESTROS ASEOSORES SE COMUNICARÁ CON USTED LO MÁS PRONTO POSIBLE</p>");
-        } else {
-            $("#caja").html("<p class='bad'>HA OCURRIDO UN ERROR AL ENVIAR EL MENSAJE, VUÉLVALO A INTENTAR POR FAVOR</p>");
-        }
+    function data(){ 
+        let datos = new FormData();
+        datos.append("usuario", usuario.value);
+        datos.append("password", password.value);
+        fetch('login',{
+            method: 'POST',
+            body: datos
+        }).then(Response => Response.json())
+        .then(({ success }) => {
+            //console.log(success);
+            if(success === 1){
+                location.href = 'http://localhost/proyecto-hotel/public/inicio';    
+                // console.log("verdad");
+            }else{
+                alerta();
+                // console.log("falso");
+            }
+        });
     }
-}
 
-function ProcesarError(error) {
-    var msg = "Upps! HA OCURRIDO UN ERROR AL CARGAR SU MENSAJE, POR FAVOR INTÉNTELO MÁS TARDE";
-    $("#caja").html("<p class='bad'>" + msg + "</p>");
-}
+    function alerta(){
+        alert.innerHTML = `contraseña incorrecta`;
+    }
+
+    button.addEventListener('submit',(e) =>{
+        e.preventDefault();
+        // vacio();
+        data();
+    });
+
+});

@@ -24,15 +24,15 @@
                           </button>
                         <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
                           <div class="sub-menu">
-                              <a href="registro_reservas.php" class="d-block">
+                              <a href="<?php echo base_url('/lista_reservas') ?>" class="d-block">
                               <i class="fa-solid fa-bell-concierge"></i>
                               Reservas</a>
                               <a href="<?php echo base_url('/lista-clientes')?>" class="d-block">
                               <i class="fa-solid fa-users"></i>
                               Clientes</a>
-                              <a href="registro_emp.php" class="d-block">
+                              <a href="<?php echo base_url('/lista_usuarios') ?>" class="d-block">
                               <i class="fa-solid fa-users-gear"></i>
-                              Empleados</a>
+                              Usuarios</a>
                               <a href="<?php echo base_url('/lista-habitaciones')?>" class="d-block">
                               <i class="fa-solid fa-bed"></i>
                               Habitaciones</a>

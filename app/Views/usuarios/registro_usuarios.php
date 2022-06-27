@@ -15,24 +15,24 @@
 
                       <!-- Contenido -->
             <div class="ps-2 pt-3 content-body">
-                
-                <div class="content p-5" style="background: white;"> 
+                <div class="content p-5" style="background: white;">
                 <!-- Contenedor de Registros -->
-                    
-                    <div>
+                  
+                    <div >
                         <section>
-                            <h3 class="pb-2">Registro / Reservas</h3>
+                            <h3 class="pb-2">Registro / Usuarios</h3>
 
                         <!-- MENU DE OPCIONES-->
                             <div class="container-fluid">
                                 <div class="container-nav">
-                                    <div class="box-nav"> <a href="#"><i class="fas fa-plus fa-fw"></i> AGREGAR REGISTRO</a></div>
-                                    <div class="box-nav"> <a class="active" href="#"><i class="fas fa-clipboard-list fa-fw"></i> LISTA DE REGISTROS</a> </div>
+                                    <div class="box-nav"> <a href="new_emp.php"><i class="fas fa-plus fa-fw"></i> AGREGAR EMPLEADO</a></div>
+                                    <div class="box-nav"> <a class="active" href="#"><i class="fas fa-clipboard-list fa-fw"></i> LISTA DE EMPLEADOS</a> </div>
+                                    <!-- <div class="box-nav"> <a href="#"><i class="fas fa-search fa-fw"></i> BUSCAR EMPLEADO</a> </div> -->
                                     <div class="box-nav"> <a href="#"><i class="fa-solid fa-print"></i> IMPRIMIR</a></div>
                                     <div class="box-nav">
                                         <form class="d-flex">
-                                        <input class="input-buscar me-2" type="search" placeholder="Buscar" aria-label="Search">
-                                        <button class="btn-buscar btn btn-dark" type="submit"><i class="fas fa-search"></i></button>
+                                            <input class="input-buscar me-2"  type="search" placeholder="Buscar" aria-label="Search">
+                                            <button class="btn-buscar btn btn-dark" type="submit"><i class="fas fa-search"></i></button>
                                         </form>
                                     </div>
                                 </div>
@@ -45,29 +45,25 @@
                                 <thead class="bg-dark text-light">
                                     <tr class="text-center">
                                         <th>N°</th>
-                                        <th>Id. Cliente</th>
+                                        <th>DNI</th>
                                         <th>Nombre</th>
-                                        <th>Id. Emp.</th>
-                                        <th>Num. Hab.</th>
-                                        <th>Fecha Inicio</th>
-                                        <th>Fecha Fin</th>
-                                        <th>Monto Total</th>
-                                        <th>Estado</th>
+                                        <th>Apellidos</th>
+                                        <th>Telefono</th>
+                                        <th>Correo</th>
+                                        <th>Username</th>
                                         <th>Editar</th>
                                         <th>Eliminar</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                <tr class="text-center">
+                                    <tr class="text-center">
                                         <td>1</td>
-                                        <td>10</td>
-                                        <td>Arturo Mayta</td>
-                                        <td>1000</td>
-                                        <td>101</td>
-                                        <td>14/05/22</td>
-                                        <td>16/05/22</td>
-                                        <td>100.00</td>
-                                        <td>Pagado</td>
+                                        <td>71651610</td>
+                                        <td>Alvaro</td>
+                                        <td>Ramirez</td>
+                                        <td>954482013</td>
+                                        <td>aaa@gmail.com</td>
+                                        <td>user11</td>
                                         <td>
                                             <a class="btn btn-success" href="#" role="button">
                                             <i class="fa-solid fa-pen-to-square"></i>
@@ -79,16 +75,15 @@
                                                 </button>
                                             </form>
                                         </td>
-                                    </tr><tr class="text-center">
+                                    </tr>
+                                    <tr class="text-center">
                                         <td>2</td>
-                                        <td>10</td>
-                                        <td>Arturo Mayta</td>
-                                        <td>1000</td>
-                                        <td>101</td>
-                                        <td>14/05/22</td>
-                                        <td>16/05/22</td>
-                                        <td>100.00</td>
-                                        <td>Pagado</td>
+                                        <td>71651610</td>
+                                        <td>Alvaro</td>
+                                        <td>Ramirez</td>
+                                        <td>954482013</td>
+                                        <td>aaa@gmail.com</td>
+                                        <td>user11</td>
                                         <td>
                                             <a class="btn btn-success" href="#" role="button">
                                             <i class="fa-solid fa-pen-to-square"></i>
@@ -103,14 +98,12 @@
                                     </tr>
                                     <tr class="text-center">
                                         <td>3</td>
-                                        <td>12</td>
-                                        <td>Daniel Mayta</td>
-                                        <td>1001</td>
-                                        <td>102</td>
-                                        <td>14/05/22</td>
-                                        <td>16/05/22</td>
-                                        <td>150.00</td>
-                                        <td>Pagado</td>
+                                        <td>71651610</td>
+                                        <td>Alvaro</td>
+                                        <td>Ramirez</td>
+                                        <td>954482013</td>
+                                        <td>aaa@gmail.com</td>
+                                        <td>user11</td>
                                         <td>
                                             <a class="btn btn-success" href="#" role="button">
                                             <i class="fa-solid fa-pen-to-square"></i>
@@ -125,14 +118,12 @@
                                     </tr>
                                     <tr class="text-center">
                                         <td>4</td>
-                                        <td>12</td>
-                                        <td>Daniel Mayta</td>
-                                        <td>1001</td>
-                                        <td>102</td>
-                                        <td>14/05/22</td>
-                                        <td>16/05/22</td>
-                                        <td>150.00</td>
-                                        <td>Pagado</td>
+                                        <td>71651610</td>
+                                        <td>Alvaro</td>
+                                        <td>Ramirez</td>
+                                        <td>954482013</td>
+                                        <td>aaa@gmail.com</td>
+                                        <td>user11</td>
                                         <td>
                                             <a class="btn btn-success" href="#" role="button">
                                             <i class="fa-solid fa-pen-to-square"></i>
@@ -147,14 +138,12 @@
                                     </tr>
                                     <tr class="text-center">
                                         <td>5</td>
-                                        <td>18</td>
-                                        <td>Aldo Centeno</td>
-                                        <td>1001</td>
-                                        <td>110</td>
-                                        <td>24/05/22</td>
-                                        <td>26/05/22</td>
-                                        <td>50.00</td>
-                                        <td>Pagado</td>
+                                        <td>71651610</td>
+                                        <td>Alvaro</td>
+                                        <td>Ramirez</td>
+                                        <td>954482013</td>
+                                        <td>aaa@gmail.com</td>
+                                        <td>user11</td>
                                         <td>
                                             <a class="btn btn-success" href="#" role="button">
                                             <i class="fa-solid fa-pen-to-square"></i>
@@ -169,14 +158,12 @@
                                     </tr>
                                     <tr class="text-center">
                                         <td>6</td>
-                                        <td>10</td>
-                                        <td>Arturo Mayta</td>
-                                        <td>1000</td>
-                                        <td>101</td>
-                                        <td>14/05/22</td>
-                                        <td>16/05/22</td>
-                                        <td>100.00</td>
-                                        <td>Pagado</td>
+                                        <td>71651610</td>
+                                        <td>Alvaro</td>
+                                        <td>Ramirez</td>
+                                        <td>954482013</td>
+                                        <td>aaa@gmail.com</td>
+                                        <td>user11</td>
                                         <td>
                                             <a class="btn btn-success" href="#" role="button">
                                             <i class="fa-solid fa-pen-to-square"></i>
@@ -191,14 +178,12 @@
                                     </tr>
                                     <tr class="text-center">
                                         <td>7</td>
-                                        <td>10</td>
-                                        <td>Arturo Mayta</td>
-                                        <td>1000</td>
-                                        <td>101</td>
-                                        <td>14/05/22</td>
-                                        <td>16/05/22</td>
-                                        <td>100.00</td>
-                                        <td>Pagado</td>
+                                        <td>71651610</td>
+                                        <td>Alvaro</td>
+                                        <td>Ramirez</td>
+                                        <td>954482013</td>
+                                        <td>aaa@gmail.com</td>
+                                        <td>user11</td>
                                         <td>
                                             <a class="btn btn-success" href="#" role="button">
                                             <i class="fa-solid fa-pen-to-square"></i>
@@ -213,14 +198,12 @@
                                     </tr>
                                     <tr class="text-center">
                                         <td>8</td>
-                                        <td>10</td>
-                                        <td>Arturo Mayta</td>
-                                        <td>1000</td>
-                                        <td>101</td>
-                                        <td>14/05/22</td>
-                                        <td>16/05/22</td>
-                                        <td>100.00</td>
-                                        <td>Pagado</td>
+                                        <td>71651610</td>
+                                        <td>Alvaro</td>
+                                        <td>Ramirez</td>
+                                        <td>954482013</td>
+                                        <td>aaa@gmail.com</td>
+                                        <td>user11</td>
                                         <td>
                                             <a class="btn btn-success" href="#" role="button">
                                             <i class="fa-solid fa-pen-to-square"></i>
@@ -233,51 +216,6 @@
                                             </form>
                                         </td>
                                     </tr>
-                                    <tr class="text-center">
-                                        <td>9</td>
-                                        <td>10</td>
-                                        <td>Arturo Mayta</td>
-                                        <td>1000</td>
-                                        <td>101</td>
-                                        <td>14/05/22</td>
-                                        <td>16/05/22</td>
-                                        <td>100.00</td>
-                                        <td>Pagado</td>
-                                        <td>
-                                            <a class="btn btn-success" href="#" role="button">
-                                            <i class="fa-solid fa-pen-to-square"></i>
-                                            </a>
-                                        </td>
-                                        <td>
-                                            <form action="">
-                                                <button class="btn btn-danger" type="button"><i class="fa-solid fa-trash-can"></i>
-                                                </button>
-                                            </form>
-                                        </td>
-                                    </tr>
-                                    <tr class="text-center">
-                                        <td>10</td>
-                                        <td>10</td>
-                                        <td>Arturo Mayta</td>
-                                        <td>1000</td>
-                                        <td>101</td>
-                                        <td>14/05/22</td>
-                                        <td>16/05/22</td>
-                                        <td>100.00</td>
-                                        <td>Pagado</td>
-                                        <td>
-                                            <a class="btn btn-success" href="#" role="button">
-                                            <i class="fa-solid fa-pen-to-square"></i>
-                                            </a>
-                                        </td>
-                                        <td>
-                                            <form action="">
-                                                <button class="btn btn-danger" type="button"><i class="fa-solid fa-trash-can"></i>
-                                                </button>
-                                            </form>
-                                        </td>
-                                    </tr>
-                                   
                                 </tbody>
                             </table>
                         </div>
@@ -298,6 +236,7 @@
                         </section>  
                   </div>
                 </div>
+            
             </div>
         </div>
    </div>

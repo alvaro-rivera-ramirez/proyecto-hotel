@@ -63,3 +63,6 @@ $routes->get('/lista-clientes', 'ClientesController::index');
 $routes->get('/lista-habitaciones', 'HabitacionController::index');
 $routes->get('/lista-tipohab', 'TipoHabController::index');
 $routes->get('/registrar_cliente', 'ClientesController::registrar_cliente');
+$routes->get('/lista_reservas', 'ReservasController::index');
+$routes->get('/lista_usuarios', 'UsuariosController::index');
+$routes->get('/actualizar_usuario', 'UsuariosController::actualizar');
