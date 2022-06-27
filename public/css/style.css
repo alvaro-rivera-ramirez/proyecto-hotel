@@ -273,21 +273,21 @@ a:hover, a{
 
 .box-libre{
     border-radius: 10px;
-    background-color: #01BC49;
+    background-color: #01BC49 !important;
 }
 .box-ocupado{
     border-radius: 10px;
-    background-color: #D11111;
+    background-color: #D11111 !important ;
 }
 .box-reserva{
     border-radius: 10px;
-    background-color: #FFB212;
+    background-color: #FFB212 !important;
 }
 .box-clean{
     border-radius: 10px;
-    background-color: #1CD2C7;
+    background-color: #1CD2C7 !important;
 }
 .box-disabled{
     border-radius: 10px;
-    background-color: #999999;
+    background-color: #999999 !important;
 }

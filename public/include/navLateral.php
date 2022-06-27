@@ -11,9 +11,9 @@
                    <h4>Módulos</h4>
                </div>
                 <!--------------navegación-------->
-                <a href="home.php" class="d-block" ><i class="icon-home me-3"></i>Inicio</a>
+                <a href="<?php echo base_url('inicio')?>" class="d-block" ><i class="icon-home me-3"></i>Inicio</a>
                 <a href="reserva_hab.php" class="d-block"><i class="icon-calendar me-3"></i>Reservar</a>
-                <a href="registrar_cliente.php" class="d-block" ><i class="icon-user-add me-3"></i>Registrar Cliente</a>
+                <a href="<?php echo base_url('/registrar_cliente')?>" class="d-block" ><i class="icon-user-add me-3"></i>Registrar Cliente</a>
                 
                 <div class="accordion accordion-flush" id="accordionFlushExample">
                       <div class="accordion-item">

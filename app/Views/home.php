@@ -7,7 +7,6 @@
     <?php include_once "include/link.php" ?>
 </head>
 <body>
-    
    <div class="d-flex">
         <?php include_once "include/navLateral.php"?>     
        

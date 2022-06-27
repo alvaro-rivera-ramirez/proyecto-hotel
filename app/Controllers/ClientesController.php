@@ -10,4 +10,9 @@ class ClientesController extends Controller{
         $datosCli['cliente']=$cliente->getClientes();
         return view("clientes/registro-cliente",$datosCli);
     }
+
+    public function registrar_cliente(){
+
+        return view('clientes/registrar_cliente');
+    }
 }

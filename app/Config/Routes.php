@@ -62,3 +62,4 @@ $routes->get('salir', 'Inicio::salir');
 $routes->get('/lista-clientes', 'ClientesController::index');
 $routes->get('/lista-habitaciones', 'HabitacionController::index');
 $routes->get('/lista-tipohab', 'TipoHabController::index');
+$routes->get('/registrar_cliente', 'ClientesController::registrar_cliente');

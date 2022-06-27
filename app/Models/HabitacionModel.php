@@ -24,8 +24,8 @@ class HabitacionModel extends Model{
 
     public function countEstadoHab(){
         $con=$this->db->table("habitacion as h");
-        $con->select('e.idEstado,e.estado, count(e.estado) as cantidad');
-        $con->join('estado_hab e','h.idEstado=e.idEstado');
+        $con->select('e.idEstado,e.estado, count(h.idEstado) as cantidad');
+        $con->join('estado_hab e','h.idEstado=e.idEstado','right');
         $con->groupBy('e.estado')->orderBy('e.idEstado','ASC');
         $data = $con->get()->getResultArray();
         return $data;
