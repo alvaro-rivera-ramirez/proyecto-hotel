@@ -23,24 +23,7 @@
                                    <img src="Imagenes/logoHotel.png" width="100%">
                                </div>
                           </div>
-                            <form action="<?php echo base_url('/login')?>" method="post">
-                              <div class="form-input">
-                                <label for="exampleInputEmail1" class="form-label">Usuario</label>
-                                <input type="text" id="exampleInputEmail1" name="usuario">
-                              </div>
-                              <div class="form-input">
-                               <div class="d-flex justify-content-between">
-                                   <label for="exampleInputPassword1" class="form-label">Contraseña</label>
-                                    <a href="#" class="login-recu" data-bs-toggle="modal" data-bs-target="#exampleModal">Olvidate tu contraseña?</a>
-                               </div>
-                                
-                                <input type="password"  id="exampleInputPassword1" name="password">
-                              </div>
-                              <div class="login-button d-flex justify-content-end">
-                                  <button type="submit" class="btn btn-primary">Ingresar</button>
-                              </div>
-                              </form>
-                              <!-- <form id="formLoginG"  method="post">
+                           <!--<form id="formLogin"  method="post">
                               <div class="form-input">
                                 <label for="exampleInputEmail1" class="form-label">Usuario</label>
                                 <input type="text" id="exampleInputEmail1" class="invalidos" name="usuario">
@@ -57,9 +40,26 @@
                                 
                               </div>
                               <div class="login-button d-flex justify-content-end">
-                                  <button type="submit" class="btn btn-primary">Ingresar</button>
+                                  <button type="submit" class="btn btn-primary" id="ingresar">Ingresar</button>
                               </div>
                               </form> -->
+                           <form action="<?= base_url('/login')?>" method="post">
+                              <div class="form-input">
+                                <label for="exampleInputEmail1" class="form-label">Usuario</label>
+                                <input type="text" id="exampleInputEmail1" name="usuario">
+                              </div>
+                              <div class="form-input">
+                               <div class="d-flex justify-content-between">
+                                   <label for="exampleInputPassword1" class="form-label">Contraseña</label>
+                                    <a href="#" class="login-recu" data-bs-toggle="modal" data-bs-target="#exampleModal">Olvidate tu contraseña?</a>
+                               </div>
+                                
+                                <input type="password"  id="exampleInputPassword1" name="password">
+                              </div>
+                              <div class="login-button d-flex justify-content-end">
+                                  <button type="submit" class="btn btn-primary">Ingresar</button>
+                              </div>
+                              </form>
                         </div>
                     </div>
                 </div>

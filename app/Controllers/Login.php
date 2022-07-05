@@ -16,7 +16,8 @@ class Login extends BaseController
     public function login(){
         $usuario=$this->request->getPost('usuario');
         $password=$this->request->getPost('password');
-    
+        //$usuario=$_POST['usuario'];
+        //$password=$_POST['password'];
         /*instancia al modelo usuario */
         $Usuario=new UsuariosModel();
         $datosUsuario=$Usuario->obtenerUsuario(['username' => $usuario]);
@@ -31,11 +32,10 @@ class Login extends BaseController
             $session= session();
             $session->set($data);
             
-            return redirect()->to(base_url('/inicio'));
-            //echo json_encode(array('success'=> 1));
+            return redirect()->to(base_url('inicio'));
+            //echo json_encode(array('success'=> 1));  
         }else{
             //echo json_encode(array('success'=> 0));
-
             return redirect()->to(base_url('/'));
         }
     }

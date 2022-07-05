@@ -19,15 +19,14 @@
                 <!-- Contenido -->
                 <div class="full-box page-header">
                     <h3 class="text-start">
-                        <i class="fas fa-sync-alt fa-fw"></i> ACTUALIZAR EMPLEADO
+                        <i class="fas fa-sync-alt fa-fw"></i> ACTUALIZAR USUARIO
                     </h3>
                 </div>
             
                 <div class="container-fluid">
                     <div class="container-nav">
-                        <div class="box-nav"> <a href="#"><i class="fas fa-plus fa-fw"></i> AGREGAR EMPLEADO</a></div>
+                        <div class="box-nav"> <a href="#" class="active"><i class="fas fa-plus fa-fw"></i> AGREGAR EMPLEADO</a></div>
                         <div class="box-nav"> <a href="#"><i class="fas fa-clipboard-list fa-fw"></i> LISTA DE EMPLEADOS</a> </div>
-                        <div class="box-nav"> <a href="#"><i class="fas fa-search fa-fw"></i> BUSCAR EMPLEADOS</a> </div>
                     </div>
                                 
                 </div>

@@ -25,9 +25,8 @@
                         <!-- MENU DE OPCIONES-->
                             <div class="container-fluid">
                                 <div class="container-nav">
-                                    <div class="box-nav"> <a href="new_emp.php"><i class="fas fa-plus fa-fw"></i> AGREGAR EMPLEADO</a></div>
-                                    <div class="box-nav"> <a class="active" href="#"><i class="fas fa-clipboard-list fa-fw"></i> LISTA DE EMPLEADOS</a> </div>
-                                    <!-- <div class="box-nav"> <a href="#"><i class="fas fa-search fa-fw"></i> BUSCAR EMPLEADO</a> </div> -->
+                                    <div class="box-nav"> <a href="<?= base_url('nuevo_usuario')?>"><i class="fas fa-plus fa-fw"></i> AGREGAR USUARIO</a></div>
+                                    <div class="box-nav"> <a class="active" href="#"><i class="fas fa-clipboard-list fa-fw"></i> LISTA DE USUARIOS</a> </div>
                                     <div class="box-nav"> <a href="#"><i class="fa-solid fa-print"></i> IMPRIMIR</a></div>
                                     <div class="box-nav">
                                         <form class="d-flex">
@@ -56,14 +55,15 @@
                                     </tr>
                                 </thead>
                                 <tbody>
+                                    <?php foreach($usuario as $usuarios) :?>
                                     <tr class="text-center">
-                                        <td>1</td>
-                                        <td>71651610</td>
-                                        <td>Alvaro</td>
-                                        <td>Ramirez</td>
-                                        <td>954482013</td>
-                                        <td>aaa@gmail.com</td>
-                                        <td>user11</td>
+                                        <td><?= $usuarios['id']?></td>
+                                        <td><?= $usuarios['dni']?></td>
+                                        <td><?= $usuarios['nombre']?></td>
+                                        <td><?= $usuarios['apellidoPaterno']." ".$usuarios['apellidoMaterno']?></td>
+                                        <td><?= $usuarios['telefono']?></td>
+                                        <td><?= $usuarios['email']?></td>
+                                        <td><?= $usuarios['username']?></td>
                                         <td>
                                             <a class="btn btn-success" href="#" role="button">
                                             <i class="fa-solid fa-pen-to-square"></i>
@@ -76,7 +76,9 @@
                                             </form>
                                         </td>
                                     </tr>
-                                    <tr class="text-center">
+                                    <?php endforeach;?>
+
+                                    <!-- <tr class="text-center">
                                         <td>2</td>
                                         <td>71651610</td>
                                         <td>Alvaro</td>
@@ -95,127 +97,8 @@
                                                 </button>
                                             </form>
                                         </td>
-                                    </tr>
-                                    <tr class="text-center">
-                                        <td>3</td>
-                                        <td>71651610</td>
-                                        <td>Alvaro</td>
-                                        <td>Ramirez</td>
-                                        <td>954482013</td>
-                                        <td>aaa@gmail.com</td>
-                                        <td>user11</td>
-                                        <td>
-                                            <a class="btn btn-success" href="#" role="button">
-                                            <i class="fa-solid fa-pen-to-square"></i>
-                                            </a>
-                                        </td>
-                                        <td>
-                                            <form action="">
-                                                <button class="btn btn-danger" type="button"><i class="fa-solid fa-trash-can"></i>
-                                                </button>
-                                            </form>
-                                        </td>
-                                    </tr>
-                                    <tr class="text-center">
-                                        <td>4</td>
-                                        <td>71651610</td>
-                                        <td>Alvaro</td>
-                                        <td>Ramirez</td>
-                                        <td>954482013</td>
-                                        <td>aaa@gmail.com</td>
-                                        <td>user11</td>
-                                        <td>
-                                            <a class="btn btn-success" href="#" role="button">
-                                            <i class="fa-solid fa-pen-to-square"></i>
-                                            </a>
-                                        </td>
-                                        <td>
-                                            <form action="">
-                                                <button class="btn btn-danger" type="button"><i class="fa-solid fa-trash-can"></i>
-                                                </button>
-                                            </form>
-                                        </td>
-                                    </tr>
-                                    <tr class="text-center">
-                                        <td>5</td>
-                                        <td>71651610</td>
-                                        <td>Alvaro</td>
-                                        <td>Ramirez</td>
-                                        <td>954482013</td>
-                                        <td>aaa@gmail.com</td>
-                                        <td>user11</td>
-                                        <td>
-                                            <a class="btn btn-success" href="#" role="button">
-                                            <i class="fa-solid fa-pen-to-square"></i>
-                                            </a>
-                                        </td>
-                                        <td>
-                                            <form action="">
-                                                <button class="btn btn-danger" type="button"><i class="fa-solid fa-trash-can"></i>
-                                                </button>
-                                            </form>
-                                        </td>
-                                    </tr>
-                                    <tr class="text-center">
-                                        <td>6</td>
-                                        <td>71651610</td>
-                                        <td>Alvaro</td>
-                                        <td>Ramirez</td>
-                                        <td>954482013</td>
-                                        <td>aaa@gmail.com</td>
-                                        <td>user11</td>
-                                        <td>
-                                            <a class="btn btn-success" href="#" role="button">
-                                            <i class="fa-solid fa-pen-to-square"></i>
-                                            </a>
-                                        </td>
-                                        <td>
-                                            <form action="">
-                                                <button class="btn btn-danger" type="button"><i class="fa-solid fa-trash-can"></i>
-                                                </button>
-                                            </form>
-                                        </td>
-                                    </tr>
-                                    <tr class="text-center">
-                                        <td>7</td>
-                                        <td>71651610</td>
-                                        <td>Alvaro</td>
-                                        <td>Ramirez</td>
-                                        <td>954482013</td>
-                                        <td>aaa@gmail.com</td>
-                                        <td>user11</td>
-                                        <td>
-                                            <a class="btn btn-success" href="#" role="button">
-                                            <i class="fa-solid fa-pen-to-square"></i>
-                                            </a>
-                                        </td>
-                                        <td>
-                                            <form action="">
-                                                <button class="btn btn-danger" type="button"><i class="fa-solid fa-trash-can"></i>
-                                                </button>
-                                            </form>
-                                        </td>
-                                    </tr>
-                                    <tr class="text-center">
-                                        <td>8</td>
-                                        <td>71651610</td>
-                                        <td>Alvaro</td>
-                                        <td>Ramirez</td>
-                                        <td>954482013</td>
-                                        <td>aaa@gmail.com</td>
-                                        <td>user11</td>
-                                        <td>
-                                            <a class="btn btn-success" href="#" role="button">
-                                            <i class="fa-solid fa-pen-to-square"></i>
-                                            </a>
-                                        </td>
-                                        <td>
-                                            <form action="">
-                                                <button class="btn btn-danger" type="button"><i class="fa-solid fa-trash-can"></i>
-                                                </button>
-                                            </form>
-                                        </td>
-                                    </tr>
+                                    </tr> -->
+                                   
                                 </tbody>
                             </table>
                         </div>

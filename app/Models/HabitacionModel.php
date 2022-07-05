@@ -14,11 +14,11 @@ class HabitacionModel extends Model{
 
     public function innerJoinTipoHab()
     {
-        $builder = $this->db->table("habitacion as hab");
-        $builder->select('hab.*, tipoHab.tipo as tipo_hab');
-        $builder->join('tipo_habitacion as tipoHab', 'hab.idTipoHab = tipoHab.idTipo');
-        $builder->orderBy('idHab','ASC');
-        $data = $builder->get()->getResultArray();
+        $con = $this->db->table("habitacion as hab");
+        $con->select('hab.*, tipoHab.tipo as tipo_hab');
+        $con->join('tipo_habitacion as tipoHab', 'hab.idTipoHab = tipoHab.idTipo');
+        $con->orderBy('idHab','ASC');
+        $data = $con->get()->getResultArray();
         return $data;
     }
 

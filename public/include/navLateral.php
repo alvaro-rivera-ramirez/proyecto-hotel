@@ -12,7 +12,7 @@
                </div>
                 <!--------------navegación-------->
                 <a href="<?php echo base_url('inicio')?>" class="d-block" ><i class="icon-home me-3"></i>Inicio</a>
-                <a href="reserva_hab.php" class="d-block"><i class="icon-calendar me-3"></i>Reservar</a>
+                <a href="<?= base_url('reservar')?>" class="d-block"><i class="icon-calendar me-3"></i>Reservar</a>
                 <a href="<?php echo base_url('/registrar_cliente')?>" class="d-block" ><i class="icon-user-add me-3"></i>Registrar Cliente</a>
                 
                 <div class="accordion accordion-flush" id="accordionFlushExample">
@@ -73,17 +73,17 @@
                         <div id="flush-collapseThree" class="accordion-collapse collapse" aria-labelledby="flush-headingThree" data-bs-parent="#accordionFlushExample">
                           <div class="sub-menu">
                               
-                              <a href="#" class="d-block">
+                              <a href="<?= base_url('perfil')?>" class="d-block">
                               <i class="icon-user"></i>
                                 Perfil</a>
-                              <a href="#" class="d-block">
+                              <a href="<?= base_url('actualizarPassword')?>" class="d-block">
                               <i class="icon-key"></i>
                                Contraseña</a>
                           </div>
                         </div>
                       </div>
                     </div>
-                <a href="#" class="d-block"><i class="icon-logout me-3"></i>Salir</a>
+                <a href="<?= base_url('salir')?>" class="d-block"><i class="icon-logout me-3"></i>Salir</a>
             </div>
         </div>
 

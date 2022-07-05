@@ -18,48 +18,52 @@
                 <div class="content p-5" style="background: white;">
                        <!---->
                        <div class="full-box page-header">
-                            <h3 class="emp-title pb-2">
-                                <i class="fas fa-plus fa-fw"></i> AGREGAR EMPLEADO
+                            <h3 class="text-start">
+                                <i class="fas fa-plus fa-fw"></i> AGREGAR USUARIO
                             </h3>
                         </div>
             
                 <div class="container-fluid">
                     <div class="container-nav">
-                        <div class="box-nav"> <a class="active" href="#"><i class="fas fa-plus fa-fw"></i> AGREGAR EMPLEADO</a></div>
-                        <div class="box-nav"> <a href="registro_emp.php"><i class="fas fa-clipboard-list fa-fw"></i> LISTA DE EMPLEADOS</a> </div>
-                        <div class="box-nav"> <a href="#"><i class="fas fa-search fa-fw"></i> BUSCAR EMPLEADOS</a> </div>
+                        <div class="box-nav"> <a class="active" href="#"><i class="fas fa-plus fa-fw"></i> AGREGAR USUARIO</a></div>
+                        <div class="box-nav"> <a href="<?= base_url('lista_usuarios') ?>"><i class="fas fa-clipboard-list fa-fw"></i> LISTA DE USUARIOS</a> </div>
+                        <!-- <div class="box-nav"> <a href="#"><i class="fas fa-search fa-fw"></i> BUSCAR EMPLEADOS</a> </div> -->
                     </div>
                                 
                 </div>
                 
                      <div class="container-fluid">
-                          <form action="" class="row g-3" autocomplete="off">
+                          <form action="<?= base_url('guardar_usuario') ?>" class="row g-3" autocomplete="off" method="post">
                         <fieldset>
                             <legend><i class="far fa-address-card"></i> Información Personal</legend>
                             <div class="container-fluid">
                                 <div class="row g-3">
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label for="emp_dni" class="bmd-label-floating">DNI</label>
-                                            <input type="text" pattern="[0-9-]{1,27}" name="emp_dni_reg" id="emp_dni" maxlength="27">
+                                            <label for="user_dni" class="bmd-label-floating">DNI</label>
+                                            <input type="text" name="user_dni" id="user_dni" value="<?= old('user_dni')?>" required>
+                                            <p><?= session('errors.user_dni')?></p>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label for="emp_nombre" class="bmd-label-floating">Nombre</label>
-                                            <input type="text" pattern="[a-zA-ZáéíóúÁÉÍÓÚñÑ ]{1,40}"  name="emp_nombre_reg" id="emp_nombre" maxlength="40">
+                                            <label for="user_nombre" class="bmd-label-floating">Nombre</label>
+                                            <input type="text" name="user_nombre" id="user_nombre" value="<?= old('user_nombre')?>" maxlength="40">
+                                            <p><?= session('errors.user_nombre')?></p>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label for="emp_apellido" class="bmd-label-floating">Apellidos</label>
-                                            <input type="text" pattern="[a-zA-ZáéíóúÁÉÍÓÚñÑ ]{1,40}"  name="emp_apellido_reg" id="emp_apellido" maxlength="40">
+                                            <label for="user_apellido" class="bmd-label-floating">Apellidos</label>
+                                            <input type="text" name="user_apellido" id="user_apellido" value="<?= old('user_apellido')?>" maxlength="40">
+                                            <p><?= session('errors.user_apellido')?></p>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label for="emp_telefono" class="bmd-label-floating">Teléfono</label>
-                                            <input type="text" pattern="[0-9()+]{8,20}" name="emp_telefono_reg" id="emp_telefono" maxlength="15">
+                                            <label for="user_telefono" class="bmd-label-floating">Teléfono</label>
+                                            <input type="text" name="user_telefono" id="user_telefono" value="<?= old('user_telefono')?>" maxlength="15">
+                                            <p><?= session('errors.user_telefono')?></p>
                                         </div>
                                     </div>
                                 </div>
@@ -72,32 +76,35 @@
                                 <div class="row g-3">
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label for="emp_usuario" class="bmd-label-floating">Nombre de usuario</label>
-                                            <input type="text" pattern="[a-zA-Z0-9]{1,35}"  name="emp_usuario_reg" id="emp_usuario" maxlength="35">
+                                            <label for="user_usuario" class="bmd-label-floating">Nombre de usuario</label>
+                                            <input type="text" name="user_usuario" id="user_usuario" value="<?= old('user_usuario')?>" maxlength="35">
+                                            <p><?= session('errors.user_usuario')?></p>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label for="emp_email" class="bmd-label-floating">Email</label>
-                                            <input type="email" name="emp_email_reg" id="emp_email" maxlength="70">
+                                            <label for="user_email" class="bmd-label-floating">Email</label>
+                                            <input type="email" name="user_email" id="user_email" value="<?= old('user_email')?>" maxlength="70">
+                                            <p><?= session('errors.user_email')?></p>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label for="emp_clave_1" class="bmd-label-floating">Contraseña</label>
-                                            <input type="password" name="emp_clave_1_reg" id="emp_clave_1" pattern="[a-zA-Z0-9$@.-]{7,100}" maxlength="100" required="" >
+                                            <label for="user_clave_1" class="bmd-label-floating">Contraseña</label>
+                                            <input type="password" name="user_clave_1" id="user_clave_1" maxlength="100" required>
+                                            <p><?= session('errors.user_clave_1')?></p>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label for="emp_clave_2" class="bmd-label-floating">Repetir contraseña</label>
-                                            <input type="password" name="emp_clave_2_reg" id="emp_clave_2" pattern="[a-zA-Z0-9$@.-]{7,100}" maxlength="100" required="" >
+                                            <label for="user_clave_2" class="bmd-label-floating">Repetir contraseña</label>
+                                            <input type="password" name="user_clave_2" id="user_clave_2" maxlength="100" required>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </fieldset>
-                        <br><br><br>
+                        
                         <fieldset>
                             <legend><i class="fas fa-medal"></i> Nivel de privilegio</legend>
                             <div class="container-fluid">
@@ -109,12 +116,12 @@
 
                                     <div class="col-12">
                                         <div class="form-group">
-                                            <select name="emp_privilegio_reg">
+                                            <select name="user_privilegio">
                                                 <option value="" selected="" disabled="">Seleccione una opción</option>
-                                                <option value="1">Administrador</option>
-                                                <option value="2">Recepcionista</option>
-                                                <option value="3">Registrar</option>
+                                                <option value="1" <?php if(old('user_privilegio')=="1"):?> selected <?php endif; ?>>Administrador</option>
+                                                <option value="2" <?php if(old('user_privilegio')=="2"):?> selected <?php endif; ?>>Recepcionista</option>
                                             </select>
+                                            <p><?= session('errors.user_privilegio')?></p>
                                         </div>
                                     </div>
                                 </div>
@@ -124,8 +131,8 @@
                             <div class="d-flex justify-content-end">
                                 <button type="reset" class="btn-limpiar me-2"><i class="fa-solid fa-brush me-1"></i> Limpiar</button>
                             
-                            <button type="submit" class="btn-guardar" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                            <i class="fa-regular fa-floppy-disk me-1"></i> Guardar</button>
+                                <button type="submit" class="btn-guardar" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                <i class="fa-regular fa-floppy-disk me-1"></i> Guardar</button>
                             </div>
                             
                             <!---- confirmación--------->
