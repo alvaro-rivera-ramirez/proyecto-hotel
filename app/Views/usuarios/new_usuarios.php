@@ -42,28 +42,28 @@
                                         <div class="form-group">
                                             <label for="user_dni" class="bmd-label-floating">DNI</label>
                                             <input type="text" name="user_dni" id="user_dni" value="<?= old('user_dni')?>" required>
-                                            <p><?= session('errors.user_dni')?></p>
+                                            <p class="text-danger"><?= session('errors.user_dni')?></p>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label for="user_nombre" class="bmd-label-floating">Nombre</label>
                                             <input type="text" name="user_nombre" id="user_nombre" value="<?= old('user_nombre')?>" maxlength="40">
-                                            <p><?= session('errors.user_nombre')?></p>
+                                            <p class="text-danger"><?= session('errors.user_nombre')?></p>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label for="user_apellido" class="bmd-label-floating">Apellidos</label>
                                             <input type="text" name="user_apellido" id="user_apellido" value="<?= old('user_apellido')?>" maxlength="40">
-                                            <p><?= session('errors.user_apellido')?></p>
+                                            <p class="text-danger"><?= session('errors.user_apellido')?></p>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label for="user_telefono" class="bmd-label-floating">Teléfono</label>
                                             <input type="text" name="user_telefono" id="user_telefono" value="<?= old('user_telefono')?>" maxlength="15">
-                                            <p><?= session('errors.user_telefono')?></p>
+                                            <p class="text-danger"><?= session('errors.user_telefono')?></p>
                                         </div>
                                     </div>
                                 </div>
@@ -78,21 +78,21 @@
                                         <div class="form-group">
                                             <label for="user_usuario" class="bmd-label-floating">Nombre de usuario</label>
                                             <input type="text" name="user_usuario" id="user_usuario" value="<?= old('user_usuario')?>" maxlength="35">
-                                            <p><?= session('errors.user_usuario')?></p>
+                                            <p class="text-danger"><?= session('errors.user_usuario')?></p>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label for="user_email" class="bmd-label-floating">Email</label>
                                             <input type="email" name="user_email" id="user_email" value="<?= old('user_email')?>" maxlength="70">
-                                            <p><?= session('errors.user_email')?></p>
+                                            <p class="text-danger"><?= session('errors.user_email')?></p>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label for="user_clave_1" class="bmd-label-floating">Contraseña</label>
                                             <input type="password" name="user_clave_1" id="user_clave_1" maxlength="100" required>
-                                            <p><?= session('errors.user_clave_1')?></p>
+                                            <p class="text-danger"><?= session('errors.user_clave_1')?></p>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
@@ -116,12 +116,12 @@
 
                                     <div class="col-12">
                                         <div class="form-group">
-                                            <select name="user_privilegio">
+                                            <select name="user_privilegio" class="form-control">
                                                 <option value="" selected="" disabled="">Seleccione una opción</option>
                                                 <option value="1" <?php if(old('user_privilegio')=="1"):?> selected <?php endif; ?>>Administrador</option>
                                                 <option value="2" <?php if(old('user_privilegio')=="2"):?> selected <?php endif; ?>>Recepcionista</option>
                                             </select>
-                                            <p><?= session('errors.user_privilegio')?></p>
+                                            <p class="text-danger"><?= session('errors.user_privilegio')?></p>
                                         </div>
                                     </div>
                                 </div>

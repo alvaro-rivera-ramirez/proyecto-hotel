@@ -12,7 +12,7 @@ class ClientesController extends Controller{
     }
 
     public function registrar_cliente(){
-
         return view('clientes/registrar_cliente');
     }
+    
 }
