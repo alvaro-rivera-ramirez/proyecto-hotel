@@ -18,7 +18,7 @@
                     
                     <li class="nav-item dropdown">
                       <a class="  text-light nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        <img src="Imagenes/usuario.png" width="30px" class="me-2">
+                        <img src="<?= base_url('Imagenes/usuario.png')?>" width="30px" class="me-2">
                         <?php echo session('nombre')?>
                       </a>
                       <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">

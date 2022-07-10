@@ -27,14 +27,14 @@
                 <div class="container-fluid">
                     <div class="container-nav">
                         <div class="box-nav"> <a class="active" href="#"><i class="fas fa-plus fa-fw"></i> AGREGAR HABITACION</a></div>
-                        <div class="box-nav"> <a href="#"><i class="fas fa-clipboard-list fa-fw"></i> LISTA DE HABITACIONES</a> </div>
-                        <div class="box-nav"> <a href="#"><i class="fas fa-search fa-fw"></i> BUSCAR HABITACION</a> </div>
+                        <div class="box-nav"> <a href="<?= base_url('lista-habitaciones')?>"><i class="fas fa-clipboard-list fa-fw"></i> LISTA DE HABITACIONES</a> </div>
+                        <!-- <div class="box-nav"> <a href="#"><i class="fas fa-search fa-fw"></i> BUSCAR HABITACION</a> </div> -->
                     </div>
                                 
                 </div>
 
                 <div class="container-fluid">
-                    <form action="" class="row g-3" autocomplete="off">
+                    <form action="<?= base_url('guardar_habitacion')?>" class="row g-3" method="POST">
                         <fieldset>
                             <legend><i class="far fa-plus-square"></i> Información</legend>
                             <div class="container-fluid">
@@ -42,7 +42,8 @@
                                     <div class="col-12 col-md-4">
                                         <div class="form-group">
                                             <label for="num_hab" class="bmd-label-floating">Numero</label>
-                                            <input type="text" pattern="[0-9-]{1,27}" name="num_hab" id="num_hab" maxlength="4">
+                                            <input type="text" name="num_hab" id="num_hab" value="<?= old('num_hab')?>">
+                                            <p class="text-danger"><?= session('errors.num_hab')?></p>
                                         </div>
                                     </div>
                                     <div class="col-12 col-md-4">
@@ -54,15 +55,13 @@
                                     <div class="col-12 col-md-4">
                                         <div class="form-group">
                                             <label for="tipo_hab" class="bmd-label-floating">Tipo Habitación</label>
-                                            <select name="tipo_hab" id="tipo_hab">
+                                            <select name="tipo_hab" id="tipo_hab" class="form-control">
                                                 <option value="" selected="" disabled="">Seleccione una opción</option>
-                                                <option value="Simple">Simple</option>
-                                                <option value="Doble">Doble</option>
-                                                <option value="Triple">Triple</option>
-                                                <option value="Suit">Suit</option>
-                                                <option value="Familiar">Familiar</option>
-                                                <option value="Matrimonial">Matrimonial</option>
+                                                <?php foreach($tipo as $tipos):?>
+                                                <option value="<?= $tipos->idTipo ?>" <?php if(old('tipo_hab')==$tipos->idTipo):?>selected <?php endif;?>> <?= $tipos->tipo ?></option>
+                                                <?php endforeach; ?>
                                             </select>
+                                            <p class="text-danger"><?= session('errors.tipo_hab')?></p>
                                         </div>
                                     </div>
                                 </div>

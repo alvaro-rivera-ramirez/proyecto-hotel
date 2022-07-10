@@ -6,7 +6,9 @@ use CodeIgniter\Model;
 class HabitacionModel extends Model{
     protected $table      = 'habitacion';
     // Uncomment below if you want add primary key
-    // protected $primaryKey = 'id';
+    protected $primaryKey = 'id';
+    protected $allowedFields=['numero','idTipoHab','idEstado'];
+
     public function getHabitaciones(){
         $user=$this->db->table($this->table);
         return $user->get()->getResultArray();

@@ -3,6 +3,13 @@ body{
     height: 100vh;
     padding-top: 3%;
 }
+.invalido{
+   /* ESTILOS PARA FALTA DE TEXTO EN CAJAS DE FORMULARIO */
+    border-width: 5px !important; 
+    border-style: solid !important;
+    border-color: #C70039 !important;
+
+}
 .login-body{
     margin: auto;
     width: 100%;
@@ -78,6 +85,7 @@ body{
 .login-button button:hover{
     background: #B38741;
 }
+
 
 .modal-button{
     margin-top: 15px;

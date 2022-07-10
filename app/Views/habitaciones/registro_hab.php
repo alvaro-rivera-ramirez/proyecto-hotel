@@ -28,7 +28,7 @@
                         
                             <div class="container-fluid">
                                 <div class="container-nav">
-                                    <div class="box-nav"> <a href="#"><i class="fas fa-plus fa-fw"></i> AGREGAR HABITACION</a></div>
+                                    <div class="box-nav"> <a href="<?= base_url('nueva_habitacion')?>"><i class="fas fa-plus fa-fw"></i> AGREGAR HABITACION</a></div>
                                     <div class="box-nav"> <a class="active" href="#"><i class="fas fa-clipboard-list fa-fw"></i> LISTA DE HABITACIONES</a> </div>
                                     <!--<div class="box-nav"> <a href="#"><i class="fas fa-search fa-fw"></i> BUSCAR HABITACION</a> </div>-->
                                     <div class="box-nav"> <a href="#"><i class="fa-solid fa-print"></i> IMPRIMIR</a></div>
@@ -70,21 +70,17 @@
                                         <td>TV con Cable, Cama de plaza y media, Baño Privado</td>
                                         <td><?= $habitaciones['estado'] ?></td>
                                         <td>
-                                            <a class="btn btn-success" href="#" role="button">
+                                            <a class="btn btn-success" href="<?= base_url('editar_habitacion/'.$habitaciones['idHab']) ?>" role="button">
                                             <i class="fa-solid fa-pen-to-square"></i>
                                             </a>
                                         </td>
                                         <td>
-                                            <form action="">
-                                                <button class="btn btn-danger" type="button"><i class="fa-solid fa-trash-can"></i>
-                                                </button>
-                                            </form>
+                                            <a class="btn btn-danger" href="<?= base_url('eliminar_habitacion/'.$habitaciones['idHab']) ?>"><i class="fa-solid fa-trash-can"></i>
+                                            </a>                                           
                                         </td>
                                     </tr>
                                 <?php endforeach;?>
-                                    <!-- <tr class="text-center">
-                                        
-                                    </tr> -->
+                                    
                                 </tbody>
                             </table>
                             </div>
