@@ -29,13 +29,13 @@
                         <!-- MENU DE OPCIONES-->
                             <div class="container-fluid">
                                 <div class="container-nav">
-                                    <div class="box-nav"> <a href="#"><i class="fas fa-plus fa-fw"></i> AGREGAR CLIENTE</a></div>
+                                    <div class="box-nav"> <a href="<?= base_url('nuevo_cliente')?>"><i class="fas fa-plus fa-fw"></i> AGREGAR CLIENTE</a></div>
                                     <div class="box-nav"> <a class="active" href="#"><i class="fas fa-clipboard-list fa-fw"></i> LISTA DE CLIENTES</a> </div>
                                     <!--<div class="box-nav"> <a href="#"><i class="fas fa-search fa-fw"></i> BUSCAR CLIENTE</a> </div> -->
                                     <div class="box-nav"> <a href="#"><i class="fa-solid fa-print"></i> IMPRIMIR</a></div>
                                     <div class="box-nav">
-                                        <form class="d-flex">
-                                        <input class="input-buscar me-2" type="search" placeholder="Buscar" aria-label="Search">
+                                        <form class="d-flex" id="form" method="GET" action="<?= base_url('lista-clientes')?>">
+                                        <input class="input-buscar me-2" type="text" id="query" name="query" placeholder="Buscar" aria-label="text">
                                         <button class="btn-buscar btn btn-dark" type="submit"><i class="fas fa-search"></i></button>
                                         </form>
                                     </div>
@@ -61,6 +61,8 @@
                                 </thead>
                                 <tbody>
                                 
+                            
+
                                 <?php foreach($cliente as $clientes):?>
 
                                     <tr class="text-center">
@@ -84,6 +86,8 @@
                                             </td>
                                         </tr>
                                     <?php endforeach;?>  
+
+
                                     
                                 </tbody>
                             </table>
