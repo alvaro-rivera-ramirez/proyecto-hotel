@@ -93,8 +93,8 @@
                                         <div class="form-group">
                                             <select class="form-control" name="user_activo">
                                                 <option value="" selected="" disabled="">Seleccione una opción</option>
-                                                <option value="1" <?php if(old('user_activo',$usuario['activo'])=="1"):?> selected <?php endif; ?>>Activa</option>
-                                                <option value="0" <?php if(old('user_activo',$usuario['activo'])=="0"):?> selected <?php endif; ?>>Deshabilitada</option>
+                                                <option value="1" <?php if(old('user_activo',$usuario['activo'])=="1"):?> selected <?php endif; ?>>Activo</option>
+                                                <option value="0" <?php if(old('user_activo',$usuario['activo'])=="0"):?> selected <?php endif; ?>>Inactivo</option>
                                             </select>
                                         </div>
                                     </div>

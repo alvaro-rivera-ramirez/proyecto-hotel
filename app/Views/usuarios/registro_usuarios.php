@@ -70,10 +70,8 @@
                                             </a>
                                         </td>
                                         <td>
-                                            <form action="">
-                                                <button class="btn btn-danger" type="button"><i class="fa-solid fa-trash-can"></i>
-                                                </button>
-                                            </form>
+                                            <a class="btn btn-danger" href="<?= base_url('eliminar_usuario/'.$usuarios['id'])?>"><i class="fa-solid fa-trash-can"></i>
+                                            </a>
                                         </td>
                                     </tr>
                                     <?php endforeach;?>

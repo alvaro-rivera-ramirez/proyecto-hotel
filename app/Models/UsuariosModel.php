@@ -7,7 +7,14 @@ class UsuariosModel extends Model{
     protected $table      = 'usuarios';
     // Uncomment below if you want add primary key
     protected $primaryKey = 'id';
-    protected $allowedFields=['username','pass','dni','nombre','apellidoPaterno','apellidoMaterno','telefono','email','idRol','created_at','updated_at'];
+    protected $useTimestamps= true;
+    protected $useSoftDeletes = true;
+    protected $dateFormat= 'datetime';
+    protected $createdField  = 'created_at';
+    protected $updatedField  = 'updated_at';
+    protected $deletedField  = 'deleted_at';
+
+    protected $allowedFields=['username','pass','dni','nombre','apellidoPaterno','apellidoMaterno','telefono','email','idRol','activo'];
     public function obtenerUsuario($data){
         $user=$this->db->table('usuarios as u');
         $user->select('u.id,u.username, u.pass, u.nombre, roles.cargo');
@@ -24,7 +31,7 @@ class UsuariosModel extends Model{
         return $user->get()->getRowArray();
     }
     public function getUsuarios(){
-        $consulta=$this->db->query("SELECT * FROM usuarios");
+        $consulta=$this->db->query("SELECT * FROM usuarios WHERE deleted_at IS NULL");
         return $consulta->getResultArray();
     }
 

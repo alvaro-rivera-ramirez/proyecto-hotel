@@ -28,6 +28,7 @@ class Login extends BaseController
         if(count($datosUsuario)>0 && password_verify($password,$datosUsuario[0]['pass'])){
 
             $data=[
+                "id" => $datosUsuario[0]['id'],
                 "usuario" => $datosUsuario[0]['username'],
                 "nombre" => $datosUsuario[0]['nombre'],
                 "rol" =>$datosUsuario[0]['cargo']
