@@ -13,9 +13,9 @@ class HabitacionController extends Controller{
        $model = new HabitacionModel();
 
        $data = [
-           'habitacion' => $model->join('tipo_habitacion', 'tipo_habitacion.idTipo = habitacion.idTipoHab')
+           'habitacion' => $model->join('tipo_habitacion', 'tipo_habitacion.idTipo = habitacion.idTipo')
            ->join('estado_hab', 'estado_hab.idEstado = habitacion.idEstado')
-           ->orderBy('idHab','ASC')->paginate(10, 'group1'),
+           ->orderBy('idHab','ASC')->paginate(8, 'group1'),
            'pager' => $model->pager
        ];
        

@@ -13,7 +13,7 @@ class ClientesController extends Controller{
         $model = new ClientesModel();
 
         $data = [
-            'cliente' => $model->paginate(1, 'group1'),
+            'cliente' => $model->paginate(8, 'group1'),
             'pager' => $model->pager
         ];
 

@@ -12,7 +12,7 @@ class UsuariosController extends Controller{
         $model = new UsuariosModel();
 
         $data = [
-            'usuario' => $model->paginate(10, 'group1'),
+            'usuario' => $model->paginate(8, 'group1'),
             'pager' => $model->pager
         ];
 

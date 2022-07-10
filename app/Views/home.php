@@ -15,7 +15,6 @@
              <!--------------CONTENIDO-------------->
             <div class="ps-2 pt-3 content-body">
                   <div class="contend-estados w-100 row row-cols-4-col row-cols-lg-5 row-cols-md-3 row-cols-sm-3 g-2">
-                   
                     <div class="col">
                       <div class="p-3 border bg-libre">
                       <p class="text-center"><i class="fa-solid fa-bed me-2"></i>Disponible</p>
@@ -75,125 +74,15 @@
                                     <?php endswitch;?>
                                             <a href="#">
                                             <mark><?= $habitaciones['numero'];?></mark>
-                                            <p><?= $habitaciones['tipo_hab'];?></p>
+                                            <p><?= $habitaciones['tipo'];?></p>
                                             <img src="Imagenes/cama.png" width="40px">
                                             </a>
                                         </div>
                                     </div>
 
                                 <?php endforeach;?>
-                                  <!-- <div class="col">
-                                      <div class="border bg-light d-block">
-                                     
-                                         <a href="#">
-                                          <mark>100</mark>
-                                          <p>Simple</p>
-                                          <img src="Imagenes/cama.png" width="40px">
-                                      </a>
-                                      </div>
-                                  </div>
-                                  <div class="col">
-                                      <div class="border bg-light d-block">
-                                          <mark>100</mark>
-                                          <p>Simple</p>
-                                          <img src="Imagenes/cama.png" width="40px">
-                                      </div>
-                                  </div>
-                                  <div class="col">
-                                      <div class="border bg-light d-block">
-                                          <mark>100</mark>
-                                          <p>Simple</p>
-                                          <img src="Imagenes/cama.png" width="40px">
-                                      </div>
-                                  </div>
-                                  <div class="col">
-                                      <div class="border bg-light d-block">
-                                          <mark>100</mark>
-                                          <p>Simple</p>
-                                          <img src="Imagenes/cama.png" width="40px">
-                                      </div>
-                                  </div>
-                                  <div class="col">
-                                      <div class="border bg-light d-block">
-                                          <mark>100</mark>
-                                          <p>Simple</p>
-                                          <img src="Imagenes/cama.png" width="40px">
-                                      </div>
-                                  </div>
-                                  <div class="col">
-                                      <div class="border bg-light d-block">
-                                          <mark>100</mark>
-                                          <p>Simple</p>
-                                          <img src="Imagenes/cama.png" width="40px">
-                                      </div>
-                                  </div>
-                                  <div class="col">
-                                      <div class="border bg-light d-block">
-                                          <mark>100</mark>
-                                          <p>Simple</p>
-                                          <img src="Imagenes/cama.png" width="40px">
-                                      </div>
-                                  </div>
-                                  <div class="col">
-                                      <div class="border bg-light d-block">
-                                          <mark>100</mark>
-                                          <p>Simple</p>
-                                          <img src="Imagenes/cama.png" width="40px">
-                                      </div>
-                                  </div>
-                                  <div class="col">
-                                      <div class="border bg-light d-block">
-                                          <mark>100</mark>
-                                          <p>Simple</p>
-                                          <img src="Imagenes/cama.png" width="40px">
-                                      </div>
-                                  </div>
-                                  <div class="col">
-                                      <div class="border bg-light d-block">
-                                          <mark>100</mark>
-                                          <p>Simple</p>
-                                          <img src="Imagenes/cama.png" width="40px">
-                                      </div>
-                                  </div>
-                                  <div class="col">
-                                      <div class="border bg-light d-block">
-                                          <mark>100</mark>
-                                          <p>Simple</p>
-                                          <img src="Imagenes/cama.png" width="40px">
-                                      </div>
-                                  </div>
-                                  <div class="col">
-                                      <div class="border bg-light d-block">
-                                          <mark>100</mark>
-                                          <p>Simple</p>
-                                          <img src="Imagenes/cama.png" width="40px">
-                                      </div>
-                                  </div>
-                                  <div class="col">
-                                      <div class="border bg-light d-block">
-                                          <mark>100</mark>
-                                          <p>Simple</p>
-                                          <img src="Imagenes/cama.png" width="40px">
-                                      </div>
-                                  </div>
-                                  <div class="col">
-                                      <div class="border bg-light d-block">
-                                          <mark>100</mark>
-                                          <p>Simple</p>
-                                          <img src="Imagenes/cama.png" width="40px">
-                                      </div>
-                                  </div>
-                                  <div class="col">
-                                      <div class="border bg-light d-block">
-                                          <mark>100</mark>
-                                          <p>Simple</p>
-                                          <img src="Imagenes/cama.png" width="40px">
-                                      </div>
-                                  </div>
-                                  <!----->
                               </div>
-                          </div>
-                            
+                          </div>   
                         </div>
                       </section>  
                   </div>

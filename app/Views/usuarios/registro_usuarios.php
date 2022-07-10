@@ -62,7 +62,7 @@
                                         <td><?= $usuarios['nombre']?></td>
                                         <td><?= $usuarios['apellidoPaterno']." ".$usuarios['apellidoMaterno']?></td>
                                         <td><?= $usuarios['telefono']?></td>
-                                        <td><?= $usuarios['correo']?></td>
+                                        <td><?= $usuarios['email']?></td>
                                         <td><?= $usuarios['username']?></td>
                                         <td>
                                             <a class="btn btn-success" href="<?= base_url('editar_usuario/'.$usuarios['id'])?>" role="button">

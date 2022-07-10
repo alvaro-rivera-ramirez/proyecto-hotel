@@ -58,7 +58,7 @@
                                             <select name="tipo_hab" id="tipo_hab" class="form-control">
                                                 <option value="" selected="" disabled="">Seleccione una opción</option>
                                                 <?php foreach($tipo as $tipos):?>
-                                                <option value="<?= $tipos->idTipo ?>" <?php if(old('tipo_hab')==$tipos->idTipo):?>selected <?php endif;?>> <?= $tipos->tipo ?></option>
+                                                <option value="<?= $tipos['idTipo'] ?>" <?php if(old('tipo_hab')==$tipos['idTipo']):?>selected <?php endif;?>> <?= $tipos['tipo'] ?></option>
                                                 <?php endforeach; ?>
                                             </select>
                                             <p class="text-danger"><?= session('errors.tipo_hab')?></p>

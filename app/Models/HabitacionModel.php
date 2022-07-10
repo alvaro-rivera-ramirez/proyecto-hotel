@@ -17,8 +17,8 @@ class HabitacionModel extends Model{
     public function innerJoinTipoHab()
     {
         $con = $this->db->table("habitacion as hab");
-        $con->select('hab.*, tipoHab.tipo as tipo_hab');
-        $con->join('tipo_habitacion as tipoHab', 'hab.idTipoHab = tipoHab.idTipo');
+        $con->select('hab.*, tipoHab.tipo');
+        $con->join('tipo_habitacion as tipoHab', 'hab.idTipo= tipoHab.idTipo');
         $con->orderBy('idHab','ASC');
         $data = $con->get()->getResultArray();
         return $data;
@@ -37,7 +37,7 @@ class HabitacionModel extends Model{
         $builder = $this->db->table("habitacion as hab");
         $builder->select('hab.*, estado_hab.estado, tipoHab.*');
         $builder->join('estado_hab', 'hab.idEstado = estado_hab.idEstado');
-        $builder->join('tipo_habitacion as tipoHab', 'hab.idTipoHab = tipoHab.idTipo');
+        $builder->join('tipo_habitacion as tipoHab', 'hab.idTipo= tipoHab.idTipo');
         $builder->orderBy('idHab','ASC');
         $data = $builder->get()->getResultArray();
         return $data;
