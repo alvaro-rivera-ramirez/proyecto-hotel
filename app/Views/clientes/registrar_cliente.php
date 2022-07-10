@@ -34,52 +34,58 @@
                        <div class="container-fluid">
                         <div class="container-nav">
                             <div class="box-nav"> <a class="active" href="#"><i class="fas fa-plus fa-fw"></i> AGREGAR CLIENTE</a></div>
-                            <div class="box-nav"> <a href="registro_emp.php"><i class="fas fa-clipboard-list fa-fw"></i> LISTA DE CLIENTE</a> </div>
-                            <div class="box-nav"> <a href="#"><i class="fas fa-search fa-fw"></i> BUSCAR CLIENTES</a> </div>
+                            <div class="box-nav"> <a href="<?= base_url('lista_clientes') ?>"><i class="fas fa-clipboard-list fa-fw"></i> LISTA DE CLIENTE</a> </div>
+                            <!--div class="box-nav"> <a href="#"><i class="fas fa-search fa-fw"></i> BUSCAR CLIENTES</a> </div> -->
                         </div>
                         </div>
                         
                         <section class=" row cli-content">
-                        <form class="row g-3 col-md-12">
+                        <form action="<?= base_url('registrar_cliente') ?>" class="row g-3" autocomplete="off" method="post">
                              <legend><i class="far fa-address-card"></i> Información Personal</legend>
                              
                             <div class="container-fluid">
                                 <div class="row g-3">
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label for="cli_dni" class="bmd-label-floating">DNI</label>
-                                            <input type="text" pattern="[0-9-]{1,27}" name="cli_dni_reg" id="cli_dni" maxlength="27">
+                                            <label for="cli_dni_reg" class="bmd-label-floating">DNI</label>
+                                            <input type="text" pattern="[0-9-]{1,27}" name="cli_dni_reg" id="cli_dni_reg" maxlength="27">
+                                            <p><?= session('errors.cli_dni_reg')?></p>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label for="cli_nombre" class="bmd-label-floating">Nombre</label>
-                                            <input type="text" pattern="[a-zA-ZáéíóúÁÉÍÓÚñÑ ]{1,40}"  name="cli_nombre_reg" id="cli_nombre" maxlength="40">
+                                            <label for="cli_nombre_reg" class="bmd-label-floating">Nombre</label>
+                                            <input type="text" pattern="[a-zA-ZáéíóúÁÉÍÓÚñÑ ]{1,40}"  name="cli_nombre_reg" id="cli_nombre_reg" maxlength="40">
+                                            <p><?= session('errors.cli_nombre_reg')?></p>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label for="cli_apellidop_reg" class="bmd-label-floating">Apellido Paterno</label>
                                             <input type="text" pattern="[a-zA-ZáéíóúÁÉÍÓÚñÑ ]{1,40}"  name="cli_apellidop_reg" id="cli_apellidop_reg" maxlength="40">
+                                            <p><?= session('errors.cli_apellidop_reg')?></p>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label for="cli_apellidom_reg" class="bmd-label-floating">Apellido Materno</label>
                                             <input type="text" pattern="[a-zA-ZáéíóúÁÉÍÓÚñÑ ]{1,40}"  name="cli_apellidom_reg" id="cli_apellidom_reg" maxlength="40">
+                                            <p><?= session('errors.cli_apellidom_reg')?></p>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label for="cli_telefono" class="bmd-label-floating">Teléfono</label>
-                                            <input type="text" pattern="[0-9()+]{8,20}" name="cli_telefono_reg" id="cli_telefono" maxlength="15">
+                                            <label for="cli_telefono_reg" class="bmd-label-floating">Teléfono</label>
+                                            <input type="text" pattern="[0-9()+]{8,20}" name="cli_telefono_reg" id="cli_telefono_reg" maxlength="15">
+                                            <p><?= session('errors.cli_telefono_reg')?></p>
                                         </div>
                                     </div>
                                     
                                       <div class="col-md-6">
-                                        <label for="inputEmail" class="form-label">Email</label>
-                                        <div class="d-flex cli-form-input">
-                                        <input type="email" id="inputEmail">
+                                        <div class="form-group">
+                                            <label for="cli_email_reg" class="form-label">Email</label>
+                                            <input type="email" name="cli_email_reg" id="cli_email_reg">
+                                            <p><?= session('errors.cli_email_reg')?></p>
                                         </div>
                                       </div>
                                 </div>
