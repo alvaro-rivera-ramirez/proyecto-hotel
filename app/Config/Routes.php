@@ -66,13 +66,14 @@ $routes->get('reservar', 'ReservasController::reservar');
 $routes->get('/lista-habitaciones', 'HabitacionController::index');
 $routes->get('nueva_habitacion', 'HabitacionController::crear');
 $routes->post('guardar_habitacion', 'HabitacionController::guardar');
+$routes->get('editar_habitacion/(:num)', 'HabitacionController::editar/$1');
+$routes->get('eliminar_habitacion/(:num)', 'HabitacionController::borrar/$1');
 
 $routes->get('/lista-tipohab', 'TipoHabController::index');
 $routes->get('/lista_reservas', 'ReservasController::index');
 
 $routes->get('/lista-clientes', 'ClientesController::index');
 $routes->get('nuevo_cliente', 'ClientesController::crear_cli');
-$routes->get('registrar_cliente', 'ClientesController::registrar');
 $routes->post('registrar_cliente', 'ClientesController::registrar');
 
 $routes->get('/lista_usuarios', 'UsuariosController::index');

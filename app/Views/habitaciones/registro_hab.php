@@ -70,15 +70,14 @@
                                         <td>TV con Cable, Cama de plaza y media, Baño Privado</td>
                                         <td><?= $habitaciones['estado'] ?></td>
                                         <td>
-                                            <a class="btn btn-success" href="#" role="button">
+                                            <a class="btn btn-success" href="<?= base_url('editar_habitacion/'.$habitaciones['idHab']) ?>" role="button">
                                             <i class="fa-solid fa-pen-to-square"></i>
                                             </a>
                                         </td>
                                         <td>
-                                            <form action="">
-                                                <button class="btn btn-danger" type="button"><i class="fa-solid fa-trash-can"></i>
-                                                </button>
-                                            </form>
+                                            <a class="btn btn-danger" href="<?= base_url('eliminar_habitacion/'.$habitaciones['idHab']) ?>"><i class="fa-solid fa-trash-can"></i>
+                                            </a>
+                                            
                                         </td>
                                     </tr>
                                 <?php endforeach;?>

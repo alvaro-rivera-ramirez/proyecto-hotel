@@ -15,6 +15,6 @@ class TipoHabModel extends Model{
 
     public function getTipo(){
         $query=$this->db->query("SELECT idTipo, tipo FROM tipo_habitacion");
-        return $query->getResult();
+        return $query->getResultArray();
     }
 }

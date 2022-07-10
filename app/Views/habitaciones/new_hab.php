@@ -55,7 +55,7 @@
                                     <div class="col-12 col-md-4">
                                         <div class="form-group">
                                             <label for="tipo_hab" class="bmd-label-floating">Tipo Habitación</label>
-                                            <select name="tipo_hab" id="tipo_hab">
+                                            <select name="tipo_hab" id="tipo_hab" class="form-control">
                                                 <option value="" selected="" disabled="">Seleccione una opción</option>
                                                 <?php foreach($tipo as $tipos):?>
                                                 <option value="<?= $tipos->idTipo ?>" <?php if(old('tipo_hab')==$tipos->idTipo):?>selected <?php endif;?>> <?= $tipos->tipo ?></option>

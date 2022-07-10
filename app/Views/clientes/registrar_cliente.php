@@ -35,7 +35,6 @@
                         <div class="container-nav">
                             <div class="box-nav"> <a class="active" href="#"><i class="fas fa-plus fa-fw"></i> AGREGAR CLIENTE</a></div>
                             <div class="box-nav"> <a href="<?= base_url('lista-clientes') ?>"><i class="fas fa-clipboard-list fa-fw"></i> LISTA DE CLIENTE</a> </div>
-                            <!--div class="box-nav"> <a href="#"><i class="fas fa-search fa-fw"></i> BUSCAR CLIENTES</a> </div> -->
                         </div>
                         </div>
                         
@@ -76,7 +75,7 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label for="cli_telefono_reg" class="bmd-label-floating">Teléfono</label>
-                                            <input type="text" pattern="[0-9()+]{8,20}" name="cli_telefono_reg" id="cli_telefono_reg" maxlength="15">
+                                            <input type="text" name="cli_telefono_reg" id="cli_telefono_reg" maxlength="15">
                                             <p><?= session('errors.cli_telefono_reg')?></p>
                                         </div>
                                     </div>

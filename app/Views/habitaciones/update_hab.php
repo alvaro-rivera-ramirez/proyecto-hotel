@@ -25,9 +25,8 @@
             
                 <div class="container-fluid">
                     <div class="container-nav">
-                        <div class="box-nav"> <a href="#"><i class="fas fa-plus fa-fw"></i> AGREGAR HABITACION</a></div>
-                        <div class="box-nav"> <a href="#"><i class="fas fa-clipboard-list fa-fw"></i> LISTA DE HABITACIONES</a> </div>
-                        <div class="box-nav"> <a href="#"><i class="fas fa-search fa-fw"></i> BUSCAR HABITACION</a> </div>
+                        <div class="box-nav"> <a href="#" class="active"><i class="fas fa-sync-alt fa-fw"></i> EDITAR HABITACION</a></div>
+                        <div class="box-nav"> <a href="<?= base_url('lista-habitaciones')?>"><i class="fas fa-clipboard-list fa-fw"></i> LISTA DE HABITACIONES</a> </div>
                     </div>
                                 
                 </div>

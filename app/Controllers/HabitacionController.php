@@ -17,8 +17,14 @@ class HabitacionController extends Controller{
         return view('habitaciones/new_hab',$datos);
     }
 
-    public function editar(){
-        return view('habitaciones/update_hab');
+    public function editar($id=null){
+
+        $tipoHab=new TipoHabModel();
+        $hab=new HabitacionModel();
+        
+        $datos['tipo']=$tipoHab->getTipo();
+        $datos['hab']=$hab->where('idHab',$id)->first();
+        return view('habitaciones/update_hab',$datos);
     }
 
     public function guardar(){
@@ -26,12 +32,16 @@ class HabitacionController extends Controller{
         $validation = service('validation');
         $validation->setRules([ 
             'num_hab' => 'required|is_unique[habitacion.numero]|numeric|min_length[3]|max_length[4]',
-            'tipo_hab' => 'required|is_not_unique[tipo_habitacion.tipo]'
+            'tipo_hab' => 'required|is_not_unique[tipo_habitacion.idTipo]'
         ]);
 
         if(!$validation->withRequest($this->request)->run()){
             //dd($validation->getErrors());
             return redirect()->to(base_url('nueva_habitacion'))->withInput()->with('errors',$validation->getErrors());
         }
+    }
+
+    public function borrar($id=null){
+
     }
 }
