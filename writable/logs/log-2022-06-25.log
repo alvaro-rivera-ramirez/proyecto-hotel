@@ -1,0 +1,48 @@
+ERROR - 2022-06-25 21:43:16 --> Error connecting to the database: Unknown database 'hotel'
+CRITICAL - 2022-06-25 21:43:16 --> Unable to connect to the database.
+Main connection [MySQLi]: Unknown database 'hotel'
+in SYSTEMPATH\Database\BaseConnection.php on line 416.
+ 1 SYSTEMPATH\Database\BaseConnection.php(586): CodeIgniter\Database\BaseConnection->initialize()
+ 2 SYSTEMPATH\Database\BaseBuilder.php(1585): CodeIgniter\Database\BaseConnection->query('SELECT `u`.`username`, `u`.`pass`, `u`.`nombre`, `roles`.`cargo`
+FROM `usuarios` as `u`
+JOIN `roles` ON `u`.`idRol` = `roles`.`idRol`
+WHERE `username` = :username:', [...], false)
+ 3 APPPATH\Models\UsuariosModel.php(15): CodeIgniter\Database\BaseBuilder->get()
+ 4 APPPATH\Controllers\Login.php(18): App\Models\UsuariosModel->obtenerUsuario([...])
+ 5 SYSTEMPATH\CodeIgniter.php(896): App\Controllers\Login->login()
+ 6 SYSTEMPATH\CodeIgniter.php(466): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Login))
+ 7 SYSTEMPATH\CodeIgniter.php(349): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 FCPATH\index.php(55): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2022-06-25 23:29:21 --> Use of undefined constant base_url - assumed 'base_url' (this will throw an Error in a future version of PHP)
+in APPPATH\Views\login-view.php on line 69.
+ 1 APPPATH\Views\login-view.php(69): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Use of undefined constant base_url - assumed \'base_url\' (this will throw an Error in a future version of PHP)', 'APPPATH\\Views\\login-view.php', 69, [])
+ 2 SYSTEMPATH\View\View.php(213): include('APPPATH\\Views\\login-view.php')
+ 3 SYSTEMPATH\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1135): CodeIgniter\View\View->render('login-view', [], true)
+ 5 APPPATH\Controllers\Login.php(9): view('login-view')
+ 6 SYSTEMPATH\CodeIgniter.php(896): App\Controllers\Login->index()
+ 7 SYSTEMPATH\CodeIgniter.php(466): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Login))
+ 8 SYSTEMPATH\CodeIgniter.php(349): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(55): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2022-06-25 23:29:22 --> Use of undefined constant base_url - assumed 'base_url' (this will throw an Error in a future version of PHP)
+in APPPATH\Views\login-view.php on line 69.
+ 1 APPPATH\Views\login-view.php(69): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Use of undefined constant base_url - assumed \'base_url\' (this will throw an Error in a future version of PHP)', 'APPPATH\\Views\\login-view.php', 69, [])
+ 2 SYSTEMPATH\View\View.php(213): include('APPPATH\\Views\\login-view.php')
+ 3 SYSTEMPATH\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1135): CodeIgniter\View\View->render('login-view', [], true)
+ 5 APPPATH\Controllers\Login.php(9): view('login-view')
+ 6 SYSTEMPATH\CodeIgniter.php(896): App\Controllers\Login->index()
+ 7 SYSTEMPATH\CodeIgniter.php(466): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Login))
+ 8 SYSTEMPATH\CodeIgniter.php(349): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(55): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2022-06-25 23:29:22 --> Use of undefined constant base_url - assumed 'base_url' (this will throw an Error in a future version of PHP)
+in APPPATH\Views\login-view.php on line 69.
+ 1 APPPATH\Views\login-view.php(69): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Use of undefined constant base_url - assumed \'base_url\' (this will throw an Error in a future version of PHP)', 'APPPATH\\Views\\login-view.php', 69, [])
+ 2 SYSTEMPATH\View\View.php(213): include('APPPATH\\Views\\login-view.php')
+ 3 SYSTEMPATH\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1135): CodeIgniter\View\View->render('login-view', [], true)
+ 5 APPPATH\Controllers\Login.php(9): view('login-view')
+ 6 SYSTEMPATH\CodeIgniter.php(896): App\Controllers\Login->index()
+ 7 SYSTEMPATH\CodeIgniter.php(466): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Login))
+ 8 SYSTEMPATH\CodeIgniter.php(349): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(55): CodeIgniter\CodeIgniter->run()
