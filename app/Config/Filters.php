@@ -72,7 +72,7 @@ class Filters extends BaseConfig
     public $filters = [
         "SessionAdmin" =>[
             "before" =>[
-                "inicio","lista-clientes","lista-habitaciones"
+                "inicio","lista-clientes","lista-habitaciones","lista_usuarios","nuevo_usuario","lista_reservas","registrar_cliente","lista-tipohab"
             ]
         ]
 

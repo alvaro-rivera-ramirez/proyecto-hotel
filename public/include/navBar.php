@@ -23,13 +23,13 @@
                       </a>
                       <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                         <li>
-                        <a class="dropdown-item" href="#">
+                        <a class="dropdown-item" href="<?= base_url('perfil')?>">
                         <i class="icon-user"></i>
                         Perfil</a>
                         </li>
                         
                         <li>
-                        <a class="dropdown-item" href="#">
+                        <a class="dropdown-item" href="<?= base_url('actualizarPassword')?>">
                         <i class="icon-key"></i>
                         Contraseña</a>
                         </li>

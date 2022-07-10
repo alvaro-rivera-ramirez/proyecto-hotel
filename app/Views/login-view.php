@@ -97,7 +97,6 @@
   <script src="js/Login.js"></script> 
   <!-- <script src="js\Loginquery.js"></script> -->
 
-  
 </body>
 
 </html>

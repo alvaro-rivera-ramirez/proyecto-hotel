@@ -6,6 +6,7 @@ class Login extends BaseController
 {
     public function index()
     {
+
         $mensaje = session('mensaje');
 
         if(!session('usuario')){
@@ -19,7 +20,7 @@ class Login extends BaseController
     public function login(){
         $usuario=$this->request->getPost('usuario');
         $password=$this->request->getPost('password');
-    
+
         /*instancia al modelo usuario */
         $Usuario=new UsuariosModel();
         $datosUsuario=$Usuario->obtenerUsuario(['username' => $usuario]);

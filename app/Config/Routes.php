@@ -58,6 +58,19 @@ if (is_file(APPPATH . 'Config/' . ENVIRONMENT . '/Routes.php')) {
 //ruta  --> 
 $routes->get('/inicio', 'Inicio::index');
 $routes->post('/login', 'Login::login');
+$routes->get('perfil', 'UsuariosController::configurarPerfil');
+$routes->get('actualizarPassword', 'UsuariosController::configurarPassword');
 $routes->get('salir', 'Inicio::salir');
+$routes->get('reservar', 'ReservasController::reservar');
+
 $routes->get('/lista-clientes', 'ClientesController::index');
 $routes->get('/lista-habitaciones', 'HabitacionController::index');
+$routes->get('/lista-tipohab', 'TipoHabController::index');
+$routes->get('/registrar_cliente', 'ClientesController::registrar_cliente');
+$routes->get('/lista_reservas', 'ReservasController::index');
+
+
+$routes->get('/lista_usuarios', 'UsuariosController::index');
+$routes->get('editar_usuario', 'UsuariosController::editar');
+$routes->get('nuevo_usuario', 'UsuariosController::crear');
+$routes->post('guardar_usuario', 'UsuariosController::guardar');
