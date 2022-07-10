@@ -62,7 +62,7 @@
                                         <td><?= $usuarios['nombre']?></td>
                                         <td><?= $usuarios['apellidoPaterno']." ".$usuarios['apellidoMaterno']?></td>
                                         <td><?= $usuarios['telefono']?></td>
-                                        <td><?= $usuarios['email']?></td>
+                                        <td><?= $usuarios['correo']?></td>
                                         <td><?= $usuarios['username']?></td>
                                         <td>
                                             <a class="btn btn-success" href="#" role="button">
@@ -104,18 +104,10 @@
                         </div>
                             <p class="text-end">Mostrando Empleados 1 al 10 de un total de 27</p>
                              <!---- navegacion de pag ------>
-                            <nav class="foot-nav" aria-label="Page navigation example">
-                                <ul class="pagination justify-content-center">
-                                    <li class="page-item disabled">
-                                        <a class="page-link" href="#" tabindex="-1">Previous</a>
-                                    </li>
-                                    <li class="page-item"><a class="page-link" href="#">1</a></li>
-                                    <li class="page-item"><a class="page-link" href="#">2</a></li>
-                                    <li class="page-item"><a class="page-link" href="#">3</a></li>
-                                    <li class="page-item"><a class="page-link" href="#">Next</a>
-                                    </li>
-                                </ul>
-                            </nav>
+                             
+                             <?= $pager->links('group1','botts_pagination'); ?>
+                             
+
                         </section>  
                   </div>
                 </div>
