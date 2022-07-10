@@ -20,4 +20,16 @@ class ClientesModel extends Model{
         return $consulta->get()->getResultArray();
     }
 
+    public function buscar($query)
+    {
+        $this->db->like('dni', $query);
+        $this->db->get('cliente');
+
+        if($query->num_rows()>0){
+            return $query;
+        }else{
+            return false;
+        }
+    }
+
 }

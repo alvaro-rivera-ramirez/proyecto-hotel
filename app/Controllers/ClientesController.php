@@ -3,7 +3,6 @@ namespace App\Controllers;
 
 use CodeIgniter\Controller;
 use App\Models\ClientesModel;
-use App\Models\RegistrarClientesModel;
 
 class ClientesController extends Controller{
     public function index(){
@@ -51,5 +50,25 @@ class ClientesController extends Controller{
 
         return redirect()->to(base_url('nuevo_cliente'));
     }
+
+    public function buscar(){
+        $data = array(); 
+        $query = $this->input->get('query', TRUE);
+
+        if($query){
+            $result = $this->ClientesModel()->buscar(trim($query));
+            if($query != false){
+                $data = array('result'=> $result);
+            }else{
+                $data = array('result'=> '');
+            }
+        
+        $this->load->view('clientes/registro-cliente',$data);
+
+
+        }
+
+    }
+
 }
 

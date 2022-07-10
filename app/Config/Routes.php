@@ -76,3 +76,4 @@ $routes->get('/lista_usuarios', 'UsuariosController::index');
 $routes->get('editar_usuario', 'UsuariosController::editar');
 $routes->get('nuevo_usuario', 'UsuariosController::crear');
 $routes->post('guardar_usuario', 'UsuariosController::guardar');
+
