@@ -6,9 +6,18 @@ use App\Models\ClientesModel;
 
 class ClientesController extends Controller{
     public function index(){
-        $cliente=new ClientesModel();
-        $datosCli['cliente']=$cliente->getClientes();
-        return view("clientes/registro-cliente",$datosCli);
+        //$cliente=new ClientesModel();
+        //$datosCli['cliente']=$cliente->getClientes();
+
+        $pager = service('pager');
+        $model = new ClientesModel();
+
+        $data = [
+            'cliente' => $model->paginate(1, 'group1'),
+            'pager' => $model->pager
+        ];
+
+        return view("clientes/registro-cliente",$data);
     }
 
     public function crear_cli(){

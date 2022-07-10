@@ -58,31 +58,12 @@
                                     </tr>
                                 </thead>
                                 <tbody>
+
+                                <?php foreach($reserva as $reservaciones) :?>
                                 <tr class="text-center">
-                                        <td>1</td>
-                                        <td>10</td>
-                                        <td>Arturo Mayta</td>
-                                        <td>1000</td>
-                                        <td>101</td>
-                                        <td>14/05/22</td>
-                                        <td>16/05/22</td>
-                                        <td>100.00</td>
-                                        <td>Pagado</td>
-                                        <td>
-                                            <a class="btn btn-success" href="#" role="button">
-                                            <i class="fa-solid fa-pen-to-square"></i>
-                                            </a>
-                                        </td>
-                                        <td>
-                                            <form action="">
-                                                <button class="btn btn-danger" type="button"><i class="fa-solid fa-trash-can"></i>
-                                                </button>
-                                            </form>
-                                        </td>
-                                    </tr><tr class="text-center">
-                                        <td>2</td>
-                                        <td>10</td>
-                                        <td>Arturo Mayta</td>
+                                        <td><?= $reservaciones['idReserva']?></td>
+                                        <td><?= $reservaciones['dni']?></td>
+                                        <td><?= $reservaciones['nombre']?></td>
                                         <td>1000</td>
                                         <td>101</td>
                                         <td>14/05/22</td>
@@ -101,200 +82,17 @@
                                             </form>
                                         </td>
                                     </tr>
-                                    <tr class="text-center">
-                                        <td>3</td>
-                                        <td>12</td>
-                                        <td>Daniel Mayta</td>
-                                        <td>1001</td>
-                                        <td>102</td>
-                                        <td>14/05/22</td>
-                                        <td>16/05/22</td>
-                                        <td>150.00</td>
-                                        <td>Pagado</td>
-                                        <td>
-                                            <a class="btn btn-success" href="#" role="button">
-                                            <i class="fa-solid fa-pen-to-square"></i>
-                                            </a>
-                                        </td>
-                                        <td>
-                                            <form action="">
-                                                <button class="btn btn-danger" type="button"><i class="fa-solid fa-trash-can"></i>
-                                                </button>
-                                            </form>
-                                        </td>
-                                    </tr>
-                                    <tr class="text-center">
-                                        <td>4</td>
-                                        <td>12</td>
-                                        <td>Daniel Mayta</td>
-                                        <td>1001</td>
-                                        <td>102</td>
-                                        <td>14/05/22</td>
-                                        <td>16/05/22</td>
-                                        <td>150.00</td>
-                                        <td>Pagado</td>
-                                        <td>
-                                            <a class="btn btn-success" href="#" role="button">
-                                            <i class="fa-solid fa-pen-to-square"></i>
-                                            </a>
-                                        </td>
-                                        <td>
-                                            <form action="">
-                                                <button class="btn btn-danger" type="button"><i class="fa-solid fa-trash-can"></i>
-                                                </button>
-                                            </form>
-                                        </td>
-                                    </tr>
-                                    <tr class="text-center">
-                                        <td>5</td>
-                                        <td>18</td>
-                                        <td>Aldo Centeno</td>
-                                        <td>1001</td>
-                                        <td>110</td>
-                                        <td>24/05/22</td>
-                                        <td>26/05/22</td>
-                                        <td>50.00</td>
-                                        <td>Pagado</td>
-                                        <td>
-                                            <a class="btn btn-success" href="#" role="button">
-                                            <i class="fa-solid fa-pen-to-square"></i>
-                                            </a>
-                                        </td>
-                                        <td>
-                                            <form action="">
-                                                <button class="btn btn-danger" type="button"><i class="fa-solid fa-trash-can"></i>
-                                                </button>
-                                            </form>
-                                        </td>
-                                    </tr>
-                                    <tr class="text-center">
-                                        <td>6</td>
-                                        <td>10</td>
-                                        <td>Arturo Mayta</td>
-                                        <td>1000</td>
-                                        <td>101</td>
-                                        <td>14/05/22</td>
-                                        <td>16/05/22</td>
-                                        <td>100.00</td>
-                                        <td>Pagado</td>
-                                        <td>
-                                            <a class="btn btn-success" href="#" role="button">
-                                            <i class="fa-solid fa-pen-to-square"></i>
-                                            </a>
-                                        </td>
-                                        <td>
-                                            <form action="">
-                                                <button class="btn btn-danger" type="button"><i class="fa-solid fa-trash-can"></i>
-                                                </button>
-                                            </form>
-                                        </td>
-                                    </tr>
-                                    <tr class="text-center">
-                                        <td>7</td>
-                                        <td>10</td>
-                                        <td>Arturo Mayta</td>
-                                        <td>1000</td>
-                                        <td>101</td>
-                                        <td>14/05/22</td>
-                                        <td>16/05/22</td>
-                                        <td>100.00</td>
-                                        <td>Pagado</td>
-                                        <td>
-                                            <a class="btn btn-success" href="#" role="button">
-                                            <i class="fa-solid fa-pen-to-square"></i>
-                                            </a>
-                                        </td>
-                                        <td>
-                                            <form action="">
-                                                <button class="btn btn-danger" type="button"><i class="fa-solid fa-trash-can"></i>
-                                                </button>
-                                            </form>
-                                        </td>
-                                    </tr>
-                                    <tr class="text-center">
-                                        <td>8</td>
-                                        <td>10</td>
-                                        <td>Arturo Mayta</td>
-                                        <td>1000</td>
-                                        <td>101</td>
-                                        <td>14/05/22</td>
-                                        <td>16/05/22</td>
-                                        <td>100.00</td>
-                                        <td>Pagado</td>
-                                        <td>
-                                            <a class="btn btn-success" href="#" role="button">
-                                            <i class="fa-solid fa-pen-to-square"></i>
-                                            </a>
-                                        </td>
-                                        <td>
-                                            <form action="">
-                                                <button class="btn btn-danger" type="button"><i class="fa-solid fa-trash-can"></i>
-                                                </button>
-                                            </form>
-                                        </td>
-                                    </tr>
-                                    <tr class="text-center">
-                                        <td>9</td>
-                                        <td>10</td>
-                                        <td>Arturo Mayta</td>
-                                        <td>1000</td>
-                                        <td>101</td>
-                                        <td>14/05/22</td>
-                                        <td>16/05/22</td>
-                                        <td>100.00</td>
-                                        <td>Pagado</td>
-                                        <td>
-                                            <a class="btn btn-success" href="#" role="button">
-                                            <i class="fa-solid fa-pen-to-square"></i>
-                                            </a>
-                                        </td>
-                                        <td>
-                                            <form action="">
-                                                <button class="btn btn-danger" type="button"><i class="fa-solid fa-trash-can"></i>
-                                                </button>
-                                            </form>
-                                        </td>
-                                    </tr>
-                                    <tr class="text-center">
-                                        <td>10</td>
-                                        <td>10</td>
-                                        <td>Arturo Mayta</td>
-                                        <td>1000</td>
-                                        <td>101</td>
-                                        <td>14/05/22</td>
-                                        <td>16/05/22</td>
-                                        <td>100.00</td>
-                                        <td>Pagado</td>
-                                        <td>
-                                            <a class="btn btn-success" href="#" role="button">
-                                            <i class="fa-solid fa-pen-to-square"></i>
-                                            </a>
-                                        </td>
-                                        <td>
-                                            <form action="">
-                                                <button class="btn btn-danger" type="button"><i class="fa-solid fa-trash-can"></i>
-                                                </button>
-                                            </form>
-                                        </td>
-                                    </tr>
+                                    <?php endforeach;?>
+                                    
                                    
                                 </tbody>
                             </table>
                         </div>
                             <p class="text-end">Mostrando Empleados 1 al 10 de un total de 27</p>
                              <!---- navegacion de pag ------>
-                            <nav class="foot-nav" aria-label="Page navigation example">
-                                <ul class="pagination justify-content-center">
-                                    <li class="page-item disabled">
-                                        <a class="page-link" href="#" tabindex="-1">Previous</a>
-                                    </li>
-                                    <li class="page-item"><a class="page-link" href="#">1</a></li>
-                                    <li class="page-item"><a class="page-link" href="#">2</a></li>
-                                    <li class="page-item"><a class="page-link" href="#">3</a></li>
-                                    <li class="page-item"><a class="page-link" href="#">Next</a>
-                                    </li>
-                                </ul>
-                            </nav>
+                             <?= $pager->links('group1','botts_pagination'); ?>
+
+
                         </section>  
                   </div>
                 </div>

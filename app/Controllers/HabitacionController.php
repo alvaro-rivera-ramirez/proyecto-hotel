@@ -6,9 +6,22 @@ use App\Models\HabitacionModel;
 use App\Models\TipoHabModel;
 class HabitacionController extends Controller{
     public function index(){
-        $habitacion=new HabitacionModel();
-        $datosHab['habitacion']=$habitacion->getAll();
-        return view("habitaciones/registro_hab",$datosHab);
+    
+       // $datosHab['habitacion']=$habitacion->getAll();
+
+       $pager = service('pager');
+       $model = new HabitacionModel();
+
+       $data = [
+           'habitacion' => $model->join('tipo_habitacion', 'tipo_habitacion.idTipo = habitacion.idTipoHab')
+           ->join('estado_hab', 'estado_hab.idEstado = habitacion.idEstado')
+           ->orderBy('idHab','ASC')->paginate(10, 'group1'),
+           'pager' => $model->pager
+       ];
+       
+       //var_dump($model->join('tipo_habitacion', 'tipo_habitacion.idTipo = habitacion.idTipoHab')->join('estado_hab', 'estado_hab.idEstado = habitacion.idEstado')->paginate(10, 'group1'));
+
+       return view("habitaciones/registro_hab",$data);
     }
 
     public function crear(){

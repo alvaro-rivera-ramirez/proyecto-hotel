@@ -75,10 +75,12 @@ thead{
     color: #282727;
 }
 .foot-nav a:hover{
+    background: #282727!important;
     color: #927136;
 }
 .foot-nav ul li a:hover{
-    background: #F1F3F5 !important;
+    background: #282727!important;
+    color: #927136;
 }
 @media screen and (max-width:1200px){
     .box-nav{
@@ -99,3 +101,11 @@ thead{
     }
 }
 
+.activo{
+    background: #282727!important;
+    color: #927136!important;
+}
+.activo:hover{
+    background: #282727!important;
+    color: #927136!important;
+}

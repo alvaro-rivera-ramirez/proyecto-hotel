@@ -1,60 +1,272 @@
-ERROR - 2022-07-10 01:24:52 --> You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '==NULL' at line 1
-CRITICAL - 2022-07-10 01:24:52 --> You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '==NULL' at line 1
-in SYSTEMPATH\Database\MySQLi\Connection.php on line 292.
- 1 SYSTEMPATH\Database\MySQLi\Connection.php(292): mysqli->query('SELECT * FROM usuarios WHERE deleted_at==NULL', 0)
- 2 SYSTEMPATH\Database\BaseConnection.php(695): CodeIgniter\Database\MySQLi\Connection->execute('SELECT * FROM usuarios WHERE deleted_at==NULL')
- 3 SYSTEMPATH\Database\BaseConnection.php(609): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT * FROM usuarios WHERE deleted_at==NULL')
- 4 APPPATH\Models\UsuariosModel.php(34): CodeIgniter\Database\BaseConnection->query('SELECT * FROM usuarios WHERE deleted_at==NULL')
- 5 APPPATH\Controllers\UsuariosController.php(9): App\Models\UsuariosModel->getUsuarios()
- 6 SYSTEMPATH\CodeIgniter.php(896): App\Controllers\UsuariosController->index()
- 7 SYSTEMPATH\CodeIgniter.php(466): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\UsuariosController))
- 8 SYSTEMPATH\CodeIgniter.php(349): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
- 9 FCPATH\index.php(55): CodeIgniter\CodeIgniter->run()
-ERROR - 2022-07-10 17:06:44 --> Unknown column 'id' in 'where clause'
-CRITICAL - 2022-07-10 17:06:44 --> Unknown column 'id' in 'where clause'
+ERROR - 2022-07-10 10:36:40 --> Column 'idEstado' in on clause is ambiguous
+CRITICAL - 2022-07-10 10:36:40 --> Column 'idEstado' in on clause is ambiguous
 in SYSTEMPATH\Database\MySQLi\Connection.php on line 292.
  1 SYSTEMPATH\Database\MySQLi\Connection.php(292): mysqli->query('SELECT *
 FROM `habitacion`
-WHERE `id` = \'5\'
- LIMIT 1', 0)
+JOIN `estado_hab` ON `estado_hab`.`idEstado` = `idEstado`
+ LIMIT 10', 0)
  2 SYSTEMPATH\Database\BaseConnection.php(695): CodeIgniter\Database\MySQLi\Connection->execute('SELECT *
 FROM `habitacion`
-WHERE `id` = \'5\'
- LIMIT 1')
+JOIN `estado_hab` ON `estado_hab`.`idEstado` = `idEstado`
+ LIMIT 10')
  3 SYSTEMPATH\Database\BaseConnection.php(609): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT *
 FROM `habitacion`
-WHERE `id` = \'5\'
- LIMIT 1')
+JOIN `estado_hab` ON `estado_hab`.`idEstado` = `idEstado`
+ LIMIT 10')
  4 SYSTEMPATH\Database\BaseBuilder.php(1585): CodeIgniter\Database\BaseConnection->query('SELECT *
 FROM `habitacion`
-WHERE `id` = :id:
- LIMIT 1', [...], false)
- 5 SYSTEMPATH\Model.php(249): CodeIgniter\Database\BaseBuilder->get()
- 6 SYSTEMPATH\BaseModel.php(622): CodeIgniter\Model->doFirst()
- 7 APPPATH\Controllers\HabitacionController.php(26): CodeIgniter\BaseModel->first()
- 8 SYSTEMPATH\CodeIgniter.php(896): App\Controllers\HabitacionController->editar('5')
+JOIN `estado_hab` ON `estado_hab`.`idEstado` = `idEstado`
+ LIMIT 10', [], false)
+ 5 SYSTEMPATH\Model.php(771): CodeIgniter\Database\BaseBuilder->get(10)
+ 6 APPPATH\Controllers\HabitacionController.php(16): CodeIgniter\Model->__call('get', [...])
+ 7 SYSTEMPATH\CodeIgniter.php(896): App\Controllers\HabitacionController->index()
+ 8 SYSTEMPATH\CodeIgniter.php(466): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\HabitacionController))
+ 9 SYSTEMPATH\CodeIgniter.php(349): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 FCPATH\index.php(55): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2022-07-10 10:37:38 --> Cannot use object of type mysqli as array
+in APPPATH\Views\habitaciones\registro_hab.php on line 66.
+ 1 SYSTEMPATH\View\View.php(213): include()
+ 2 SYSTEMPATH\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 3 SYSTEMPATH\Common.php(1135): CodeIgniter\View\View->render('habitaciones/registro_hab', [], true)
+ 4 APPPATH\Controllers\HabitacionController.php(22): view('habitaciones/registro_hab', [...])
+ 5 SYSTEMPATH\CodeIgniter.php(896): App\Controllers\HabitacionController->index()
+ 6 SYSTEMPATH\CodeIgniter.php(466): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\HabitacionController))
+ 7 SYSTEMPATH\CodeIgniter.php(349): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 FCPATH\index.php(55): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2022-07-10 10:38:16 --> Cannot use object of type mysqli as array
+in APPPATH\Views\habitaciones\registro_hab.php on line 66.
+ 1 SYSTEMPATH\View\View.php(213): include()
+ 2 SYSTEMPATH\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 3 SYSTEMPATH\Common.php(1135): CodeIgniter\View\View->render('habitaciones/registro_hab', [], true)
+ 4 APPPATH\Controllers\HabitacionController.php(22): view('habitaciones/registro_hab', [...])
+ 5 SYSTEMPATH\CodeIgniter.php(896): App\Controllers\HabitacionController->index()
+ 6 SYSTEMPATH\CodeIgniter.php(466): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\HabitacionController))
+ 7 SYSTEMPATH\CodeIgniter.php(349): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 FCPATH\index.php(55): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2022-07-10 10:38:50 --> Cannot use object of type mysqli as array
+in APPPATH\Views\habitaciones\registro_hab.php on line 66.
+ 1 SYSTEMPATH\View\View.php(213): include()
+ 2 SYSTEMPATH\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 3 SYSTEMPATH\Common.php(1135): CodeIgniter\View\View->render('habitaciones/registro_hab', [], true)
+ 4 APPPATH\Controllers\HabitacionController.php(22): view('habitaciones/registro_hab', [...])
+ 5 SYSTEMPATH\CodeIgniter.php(896): App\Controllers\HabitacionController->index()
+ 6 SYSTEMPATH\CodeIgniter.php(466): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\HabitacionController))
+ 7 SYSTEMPATH\CodeIgniter.php(349): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 FCPATH\index.php(55): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2022-07-10 10:39:04 --> Call to a member function paginate() on array
+in APPPATH\Controllers\HabitacionController.php on line 21.
+ 1 SYSTEMPATH\CodeIgniter.php(896): App\Controllers\HabitacionController->index()
+ 2 SYSTEMPATH\CodeIgniter.php(466): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\HabitacionController))
+ 3 SYSTEMPATH\CodeIgniter.php(349): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(55): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2022-07-10 10:39:23 --> Call to undefined function App\Controllers\getall()
+in APPPATH\Controllers\HabitacionController.php on line 21.
+ 1 SYSTEMPATH\CodeIgniter.php(896): App\Controllers\HabitacionController->index()
+ 2 SYSTEMPATH\CodeIgniter.php(466): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\HabitacionController))
+ 3 SYSTEMPATH\CodeIgniter.php(349): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(55): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2022-07-10 10:39:36 --> Call to undefined function App\Controllers\getAll()
+in APPPATH\Controllers\HabitacionController.php on line 21.
+ 1 SYSTEMPATH\CodeIgniter.php(896): App\Controllers\HabitacionController->index()
+ 2 SYSTEMPATH\CodeIgniter.php(466): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\HabitacionController))
+ 3 SYSTEMPATH\CodeIgniter.php(349): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(55): CodeIgniter\CodeIgniter->run()
+ERROR - 2022-07-10 10:40:16 --> Column 'idEstado' in on clause is ambiguous
+CRITICAL - 2022-07-10 10:40:16 --> Column 'idEstado' in on clause is ambiguous
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 292.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(292): mysqli->query('SELECT COUNT(*) AS `numrows`
+FROM `habitacion`
+JOIN `estado_hab` ON `estado_hab`.`idEstado` = `idEstado`', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(695): CodeIgniter\Database\MySQLi\Connection->execute('SELECT COUNT(*) AS `numrows`
+FROM `habitacion`
+JOIN `estado_hab` ON `estado_hab`.`idEstado` = `idEstado`')
+ 3 SYSTEMPATH\Database\BaseConnection.php(609): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT COUNT(*) AS `numrows`
+FROM `habitacion`
+JOIN `estado_hab` ON `estado_hab`.`idEstado` = `idEstado`')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(1669): CodeIgniter\Database\BaseConnection->query('SELECT COUNT(*) AS `numrows`
+FROM `habitacion`
+JOIN `estado_hab` ON `estado_hab`.`idEstado` = `idEstado`', [], false)
+ 5 SYSTEMPATH\Model.php(550): CodeIgniter\Database\BaseBuilder->countAllResults(false)
+ 6 SYSTEMPATH\BaseModel.php(1084): CodeIgniter\Model->countAllResults(false)
+ 7 APPPATH\Controllers\HabitacionController.php(21): CodeIgniter\BaseModel->paginate(10, 'group1')
+ 8 SYSTEMPATH\CodeIgniter.php(896): App\Controllers\HabitacionController->index()
  9 SYSTEMPATH\CodeIgniter.php(466): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\HabitacionController))
 10 SYSTEMPATH\CodeIgniter.php(349): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
 11 FCPATH\index.php(55): CodeIgniter\CodeIgniter->run()
-CRITICAL - 2022-07-10 17:07:06 --> Undefined variable: datos
-in APPPATH\Views\habitaciones\update_hab.php on line 11.
- 1 APPPATH\Views\habitaciones\update_hab.php(11): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined variable: datos', 'APPPATH\\Views\\habitaciones\\update_hab.php', 11, [...])
- 2 SYSTEMPATH\View\View.php(213): include('APPPATH\\Views\\habitaciones\\update_hab.php')
+CRITICAL - 2022-07-10 10:40:39 --> Cannot use object of type mysqli as array
+in APPPATH\Views\habitaciones\registro_hab.php on line 66.
+ 1 SYSTEMPATH\View\View.php(213): include()
+ 2 SYSTEMPATH\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 3 SYSTEMPATH\Common.php(1135): CodeIgniter\View\View->render('habitaciones/registro_hab', [], true)
+ 4 APPPATH\Controllers\HabitacionController.php(22): view('habitaciones/registro_hab', [...])
+ 5 SYSTEMPATH\CodeIgniter.php(896): App\Controllers\HabitacionController->index()
+ 6 SYSTEMPATH\CodeIgniter.php(466): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\HabitacionController))
+ 7 SYSTEMPATH\CodeIgniter.php(349): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 FCPATH\index.php(55): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2022-07-10 10:40:50 --> Undefined array key "tipo"
+in APPPATH\Views\habitaciones\registro_hab.php on line 68.
+ 1 APPPATH\Views\habitaciones\registro_hab.php(68): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array key "tipo"', 'APPPATH\\Views\\habitaciones\\registro_hab.php', 68)
+ 2 SYSTEMPATH\View\View.php(213): include('APPPATH\\Views\\habitaciones\\registro_hab.php')
  3 SYSTEMPATH\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
- 4 SYSTEMPATH\Common.php(1135): CodeIgniter\View\View->render('habitaciones/update_hab', [], true)
- 5 APPPATH\Controllers\HabitacionController.php(27): view('habitaciones/update_hab', [...])
- 6 SYSTEMPATH\CodeIgniter.php(896): App\Controllers\HabitacionController->editar('5')
+ 4 SYSTEMPATH\Common.php(1135): CodeIgniter\View\View->render('habitaciones/registro_hab', [], true)
+ 5 APPPATH\Controllers\HabitacionController.php(21): view('habitaciones/registro_hab', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(896): App\Controllers\HabitacionController->index()
  7 SYSTEMPATH\CodeIgniter.php(466): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\HabitacionController))
  8 SYSTEMPATH\CodeIgniter.php(349): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
  9 FCPATH\index.php(55): CodeIgniter\CodeIgniter->run()
-CRITICAL - 2022-07-10 17:07:09 --> Undefined variable: datos
-in APPPATH\Views\habitaciones\update_hab.php on line 11.
- 1 APPPATH\Views\habitaciones\update_hab.php(11): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined variable: datos', 'APPPATH\\Views\\habitaciones\\update_hab.php', 11, [...])
- 2 SYSTEMPATH\View\View.php(213): include('APPPATH\\Views\\habitaciones\\update_hab.php')
+CRITICAL - 2022-07-10 10:41:37 --> Undefined array key "tipo"
+in APPPATH\Views\habitaciones\registro_hab.php on line 68.
+ 1 APPPATH\Views\habitaciones\registro_hab.php(68): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array key "tipo"', 'APPPATH\\Views\\habitaciones\\registro_hab.php', 68)
+ 2 SYSTEMPATH\View\View.php(213): include('APPPATH\\Views\\habitaciones\\registro_hab.php')
  3 SYSTEMPATH\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
- 4 SYSTEMPATH\Common.php(1135): CodeIgniter\View\View->render('habitaciones/update_hab', [], true)
- 5 APPPATH\Controllers\HabitacionController.php(27): view('habitaciones/update_hab', [...])
- 6 SYSTEMPATH\CodeIgniter.php(896): App\Controllers\HabitacionController->editar('5')
+ 4 SYSTEMPATH\Common.php(1135): CodeIgniter\View\View->render('habitaciones/registro_hab', [], true)
+ 5 APPPATH\Controllers\HabitacionController.php(21): view('habitaciones/registro_hab', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(896): App\Controllers\HabitacionController->index()
  7 SYSTEMPATH\CodeIgniter.php(466): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\HabitacionController))
  8 SYSTEMPATH\CodeIgniter.php(349): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
  9 FCPATH\index.php(55): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2022-07-10 10:42:19 --> Undefined array key "tipo"
+in APPPATH\Views\habitaciones\registro_hab.php on line 68.
+ 1 APPPATH\Views\habitaciones\registro_hab.php(68): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array key "tipo"', 'APPPATH\\Views\\habitaciones\\registro_hab.php', 68)
+ 2 SYSTEMPATH\View\View.php(213): include('APPPATH\\Views\\habitaciones\\registro_hab.php')
+ 3 SYSTEMPATH\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1135): CodeIgniter\View\View->render('habitaciones/registro_hab', [], true)
+ 5 APPPATH\Controllers\HabitacionController.php(21): view('habitaciones/registro_hab', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(896): App\Controllers\HabitacionController->index()
+ 7 SYSTEMPATH\CodeIgniter.php(466): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\HabitacionController))
+ 8 SYSTEMPATH\CodeIgniter.php(349): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(55): CodeIgniter\CodeIgniter->run()
+ERROR - 2022-07-10 10:45:04 --> Unknown column 'habitacion.idTipo' in 'on clause'
+CRITICAL - 2022-07-10 10:45:04 --> Unknown column 'habitacion.idTipo' in 'on clause'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 292.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(292): mysqli->query('SELECT COUNT(*) AS `numrows`
+FROM `habitacion`
+JOIN `tipo_habitacion` ON `tipo_habitacion`.`idTipo` = `habitacion`.`idTipo`', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(695): CodeIgniter\Database\MySQLi\Connection->execute('SELECT COUNT(*) AS `numrows`
+FROM `habitacion`
+JOIN `tipo_habitacion` ON `tipo_habitacion`.`idTipo` = `habitacion`.`idTipo`')
+ 3 SYSTEMPATH\Database\BaseConnection.php(609): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT COUNT(*) AS `numrows`
+FROM `habitacion`
+JOIN `tipo_habitacion` ON `tipo_habitacion`.`idTipo` = `habitacion`.`idTipo`')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(1669): CodeIgniter\Database\BaseConnection->query('SELECT COUNT(*) AS `numrows`
+FROM `habitacion`
+JOIN `tipo_habitacion` ON `tipo_habitacion`.`idTipo` = `habitacion`.`idTipo`', [], false)
+ 5 SYSTEMPATH\Model.php(550): CodeIgniter\Database\BaseBuilder->countAllResults(false)
+ 6 SYSTEMPATH\BaseModel.php(1084): CodeIgniter\Model->countAllResults(false)
+ 7 APPPATH\Controllers\HabitacionController.php(21): CodeIgniter\BaseModel->paginate(10, 'group1')
+ 8 SYSTEMPATH\CodeIgniter.php(896): App\Controllers\HabitacionController->index()
+ 9 SYSTEMPATH\CodeIgniter.php(466): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\HabitacionController))
+10 SYSTEMPATH\CodeIgniter.php(349): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+11 FCPATH\index.php(55): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2022-07-10 10:45:29 --> Undefined array key "tipo"
+in APPPATH\Views\habitaciones\registro_hab.php on line 68.
+ 1 APPPATH\Views\habitaciones\registro_hab.php(68): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array key "tipo"', 'APPPATH\\Views\\habitaciones\\registro_hab.php', 68)
+ 2 SYSTEMPATH\View\View.php(213): include('APPPATH\\Views\\habitaciones\\registro_hab.php')
+ 3 SYSTEMPATH\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1135): CodeIgniter\View\View->render('habitaciones/registro_hab', [], true)
+ 5 APPPATH\Controllers\HabitacionController.php(22): view('habitaciones/registro_hab', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(896): App\Controllers\HabitacionController->index()
+ 7 SYSTEMPATH\CodeIgniter.php(466): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\HabitacionController))
+ 8 SYSTEMPATH\CodeIgniter.php(349): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(55): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2022-07-10 10:46:09 --> Undefined array key "tipo"
+in APPPATH\Views\habitaciones\registro_hab.php on line 68.
+ 1 APPPATH\Views\habitaciones\registro_hab.php(68): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array key "tipo"', 'APPPATH\\Views\\habitaciones\\registro_hab.php', 68)
+ 2 SYSTEMPATH\View\View.php(213): include('APPPATH\\Views\\habitaciones\\registro_hab.php')
+ 3 SYSTEMPATH\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1135): CodeIgniter\View\View->render('habitaciones/registro_hab', [], true)
+ 5 APPPATH\Controllers\HabitacionController.php(22): view('habitaciones/registro_hab', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(896): App\Controllers\HabitacionController->index()
+ 7 SYSTEMPATH\CodeIgniter.php(466): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\HabitacionController))
+ 8 SYSTEMPATH\CodeIgniter.php(349): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(55): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2022-07-10 10:49:19 --> Call to a member function paginate() on array
+in APPPATH\Controllers\HabitacionController.php on line 16.
+ 1 SYSTEMPATH\CodeIgniter.php(896): App\Controllers\HabitacionController->index()
+ 2 SYSTEMPATH\CodeIgniter.php(466): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\HabitacionController))
+ 3 SYSTEMPATH\CodeIgniter.php(349): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(55): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2022-07-10 10:55:35 --> Class "App\Models\ReservasModels" not found
+in APPPATH\Controllers\ReservasController.php on line 11.
+ 1 SYSTEMPATH\CodeIgniter.php(896): App\Controllers\ReservasController->index()
+ 2 SYSTEMPATH\CodeIgniter.php(466): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\ReservasController))
+ 3 SYSTEMPATH\CodeIgniter.php(349): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(55): CodeIgniter\CodeIgniter->run()
+ERROR - 2022-07-10 10:55:57 --> Table 'hotel.reservas' doesn't exist
+CRITICAL - 2022-07-10 10:55:57 --> Table 'hotel.reservas' doesn't exist
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 292.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(292): mysqli->query('SELECT COUNT(*) AS `numrows`
+FROM `reservas`
+JOIN `tipo_habitacion` ON `tipo_habitacion`.`idTipo` = `habitacion`.`idTipoHab`
+JOIN `estado_hab` ON `estado_hab`.`idEstado` = `habitacion`.`idEstado`', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(695): CodeIgniter\Database\MySQLi\Connection->execute('SELECT COUNT(*) AS `numrows`
+FROM `reservas`
+JOIN `tipo_habitacion` ON `tipo_habitacion`.`idTipo` = `habitacion`.`idTipoHab`
+JOIN `estado_hab` ON `estado_hab`.`idEstado` = `habitacion`.`idEstado`')
+ 3 SYSTEMPATH\Database\BaseConnection.php(609): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT COUNT(*) AS `numrows`
+FROM `reservas`
+JOIN `tipo_habitacion` ON `tipo_habitacion`.`idTipo` = `habitacion`.`idTipoHab`
+JOIN `estado_hab` ON `estado_hab`.`idEstado` = `habitacion`.`idEstado`')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(1669): CodeIgniter\Database\BaseConnection->query('SELECT COUNT(*) AS `numrows`
+FROM `reservas`
+JOIN `tipo_habitacion` ON `tipo_habitacion`.`idTipo` = `habitacion`.`idTipoHab`
+JOIN `estado_hab` ON `estado_hab`.`idEstado` = `habitacion`.`idEstado`', [], false)
+ 5 SYSTEMPATH\Model.php(550): CodeIgniter\Database\BaseBuilder->countAllResults(false)
+ 6 SYSTEMPATH\BaseModel.php(1084): CodeIgniter\Model->countAllResults(false)
+ 7 APPPATH\Controllers\ReservasController.php(15): CodeIgniter\BaseModel->paginate(10, 'group1')
+ 8 SYSTEMPATH\CodeIgniter.php(896): App\Controllers\ReservasController->index()
+ 9 SYSTEMPATH\CodeIgniter.php(466): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\ReservasController))
+10 SYSTEMPATH\CodeIgniter.php(349): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+11 FCPATH\index.php(55): CodeIgniter\CodeIgniter->run()
+ERROR - 2022-07-10 11:05:47 --> Table 'hotel.reservas' doesn't exist
+CRITICAL - 2022-07-10 11:05:47 --> Table 'hotel.reservas' doesn't exist
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 292.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(292): mysqli->query('SELECT COUNT(*) AS `numrows`
+FROM `reservas`
+JOIN `cliente` ON `cliente`.`idCliente` = `reserva`.`idCliente`
+JOIN `usuarios` ON `usuarios`.`idUser` = `reserva`.`idUser`', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(695): CodeIgniter\Database\MySQLi\Connection->execute('SELECT COUNT(*) AS `numrows`
+FROM `reservas`
+JOIN `cliente` ON `cliente`.`idCliente` = `reserva`.`idCliente`
+JOIN `usuarios` ON `usuarios`.`idUser` = `reserva`.`idUser`')
+ 3 SYSTEMPATH\Database\BaseConnection.php(609): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT COUNT(*) AS `numrows`
+FROM `reservas`
+JOIN `cliente` ON `cliente`.`idCliente` = `reserva`.`idCliente`
+JOIN `usuarios` ON `usuarios`.`idUser` = `reserva`.`idUser`')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(1669): CodeIgniter\Database\BaseConnection->query('SELECT COUNT(*) AS `numrows`
+FROM `reservas`
+JOIN `cliente` ON `cliente`.`idCliente` = `reserva`.`idCliente`
+JOIN `usuarios` ON `usuarios`.`idUser` = `reserva`.`idUser`', [], false)
+ 5 SYSTEMPATH\Model.php(550): CodeIgniter\Database\BaseBuilder->countAllResults(false)
+ 6 SYSTEMPATH\BaseModel.php(1084): CodeIgniter\Model->countAllResults(false)
+ 7 APPPATH\Controllers\ReservasController.php(16): CodeIgniter\BaseModel->paginate(10, 'group1')
+ 8 SYSTEMPATH\CodeIgniter.php(896): App\Controllers\ReservasController->index()
+ 9 SYSTEMPATH\CodeIgniter.php(466): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\ReservasController))
+10 SYSTEMPATH\CodeIgniter.php(349): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+11 FCPATH\index.php(55): CodeIgniter\CodeIgniter->run()
+ERROR - 2022-07-10 11:06:14 --> Unknown column 'usuarios.idUser' in 'on clause'
+CRITICAL - 2022-07-10 11:06:14 --> Unknown column 'usuarios.idUser' in 'on clause'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 292.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(292): mysqli->query('SELECT COUNT(*) AS `numrows`
+FROM `reserva`
+JOIN `cliente` ON `cliente`.`idCliente` = `reserva`.`idCliente`
+JOIN `usuarios` ON `usuarios`.`idUser` = `reserva`.`idUser`', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(695): CodeIgniter\Database\MySQLi\Connection->execute('SELECT COUNT(*) AS `numrows`
+FROM `reserva`
+JOIN `cliente` ON `cliente`.`idCliente` = `reserva`.`idCliente`
+JOIN `usuarios` ON `usuarios`.`idUser` = `reserva`.`idUser`')
+ 3 SYSTEMPATH\Database\BaseConnection.php(609): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT COUNT(*) AS `numrows`
+FROM `reserva`
+JOIN `cliente` ON `cliente`.`idCliente` = `reserva`.`idCliente`
+JOIN `usuarios` ON `usuarios`.`idUser` = `reserva`.`idUser`')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(1669): CodeIgniter\Database\BaseConnection->query('SELECT COUNT(*) AS `numrows`
+FROM `reserva`
+JOIN `cliente` ON `cliente`.`idCliente` = `reserva`.`idCliente`
+JOIN `usuarios` ON `usuarios`.`idUser` = `reserva`.`idUser`', [], false)
+ 5 SYSTEMPATH\Model.php(550): CodeIgniter\Database\BaseBuilder->countAllResults(false)
+ 6 SYSTEMPATH\BaseModel.php(1084): CodeIgniter\Model->countAllResults(false)
+ 7 APPPATH\Controllers\ReservasController.php(16): CodeIgniter\BaseModel->paginate(10, 'group1')
+ 8 SYSTEMPATH\CodeIgniter.php(896): App\Controllers\ReservasController->index()
+ 9 SYSTEMPATH\CodeIgniter.php(466): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\ReservasController))
+10 SYSTEMPATH\CodeIgniter.php(349): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+11 FCPATH\index.php(55): CodeIgniter\CodeIgniter->run()
