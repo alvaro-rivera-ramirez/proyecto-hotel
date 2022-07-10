@@ -6,33 +6,41 @@ class Login extends BaseController
 {
     public function index()
     {
-        return view('login-view');
+        $mensaje = session('mensaje');
+
+        if(!session('usuario')){
+            return view('login-view');
+            
+        }else{
+            return redirect()->to(base_url('/inicio'));
+        }
     }
 
     public function login(){
         $usuario=$this->request->getPost('usuario');
         $password=$this->request->getPost('password');
     
-        /*LLAMA AL MODELO USUARIO */
+        /*instancia al modelo usuario */
         $Usuario=new UsuariosModel();
         $datosUsuario=$Usuario->obtenerUsuario(['username' => $usuario]);
 
         if(count($datosUsuario)>0 && password_verify($password,$datosUsuario[0]['pass'])){
-            /*if($datosUsuario[0]['idRol']==1){
-                $rol="Administrador";
-            }else{
-                $rol="Usuario";
-            }*/
+
             $data=[
                 "usuario" => $datosUsuario[0]['username'],
                 "nombre" => $datosUsuario[0]['nombre'],
                 "rol" =>$datosUsuario[0]['cargo']
             ];
+
             $session= session();
             $session->set($data);
-            return redirect()->to(base_url('/inicio'));
+
+            return redirect()->to(base_url('/inicio'));   
         }else{
-            return redirect()->to(base_url('/'));
+            if($usuario=="" || $password =="")
+                return redirect()->to(base_url('/'))->with('mensaje','1');  
+            else
+                return redirect()->to(base_url('/'))->with('mensaje','0');  
         }
     }
 
