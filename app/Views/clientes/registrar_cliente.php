@@ -34,7 +34,7 @@
                        <div class="container-fluid">
                         <div class="container-nav">
                             <div class="box-nav"> <a class="active" href="#"><i class="fas fa-plus fa-fw"></i> AGREGAR CLIENTE</a></div>
-                            <div class="box-nav"> <a href="<?= base_url('lista_clientes') ?>"><i class="fas fa-clipboard-list fa-fw"></i> LISTA DE CLIENTE</a> </div>
+                            <div class="box-nav"> <a href="<?= base_url('lista-clientes') ?>"><i class="fas fa-clipboard-list fa-fw"></i> LISTA DE CLIENTE</a> </div>
                             <!--div class="box-nav"> <a href="#"><i class="fas fa-search fa-fw"></i> BUSCAR CLIENTES</a> </div> -->
                         </div>
                         </div>
