@@ -3,7 +3,7 @@
             <!---- ofcanvas--->
         <div>
          <div class="logo align-items-center bg-primary">
-               <img src="Imagenes/usuario.png">
+               <img src="<?= base_url('Imagenes/usuario.png') ?>">
                 <p class="text-center text-light font-weight-bold"><?php echo session('rol')?></p>
             </div>
             <div class="menu">
@@ -11,7 +11,7 @@
                    <h4>Módulos</h4>
                </div>
                 <!--------------navegación-------->
-                <a href="<?php echo base_url('inicio')?>" class="d-block" ><i class="icon-home me-3"></i>Inicio</a>
+                <a href="<?= base_url('inicio')?>" class="d-block" ><i class="icon-home me-3"></i>Inicio</a>
                 <a href="<?= base_url('reservar')?>" class="d-block"><i class="icon-calendar me-3"></i>Reservar</a>
                 <a href="<?php echo base_url('/registrar_cliente')?>" class="d-block" ><i class="icon-user-add me-3"></i>Registrar Cliente</a>
                 

@@ -6,8 +6,12 @@ class Login extends BaseController
 {
     public function index()
     {
+
+        $mensaje = session('mensaje');
+
         if(!session('usuario')){
             return view('login-view');
+            
         }else{
             return redirect()->to(base_url('/inicio'));
         }
@@ -16,8 +20,7 @@ class Login extends BaseController
     public function login(){
         $usuario=$this->request->getPost('usuario');
         $password=$this->request->getPost('password');
-        //$usuario=$_POST['usuario'];
-        //$password=$_POST['password'];
+
         /*instancia al modelo usuario */
         $Usuario=new UsuariosModel();
         $datosUsuario=$Usuario->obtenerUsuario(['username' => $usuario]);
@@ -25,18 +28,21 @@ class Login extends BaseController
         if(count($datosUsuario)>0 && password_verify($password,$datosUsuario[0]['pass'])){
 
             $data=[
+                "id" => $datosUsuario[0]['id'],
                 "usuario" => $datosUsuario[0]['username'],
                 "nombre" => $datosUsuario[0]['nombre'],
                 "rol" =>$datosUsuario[0]['cargo']
             ];
+
             $session= session();
             $session->set($data);
-            
-            return redirect()->to(base_url('inicio'));
-            //echo json_encode(array('success'=> 1));  
+
+            return redirect()->to(base_url('/inicio'));   
         }else{
-            //echo json_encode(array('success'=> 0));
-            return redirect()->to(base_url('/'));
+            if($usuario=="" || $password =="")
+                return redirect()->to(base_url('/'))->with('mensaje','1');  
+            else
+                return redirect()->to(base_url('/'))->with('mensaje','0');  
         }
     }
 

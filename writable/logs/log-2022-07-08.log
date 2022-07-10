@@ -1,0 +1,23 @@
+CRITICAL - 2022-07-08 23:51:28 --> Undefined property: Config\App::$indexPage
+in SYSTEMPATH\Helpers\url_helper.php on line 51.
+ 1 SYSTEMPATH\Helpers\url_helper.php(51): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined property: Config\\App::$indexPage', 'SYSTEMPATH\\Helpers\\url_helper.php', 51, [...])
+ 2 SYSTEMPATH\Helpers\url_helper.php(133): _get_uri('editar_usuario/2')
+ 3 SYSTEMPATH\Debug\Toolbar.php(81): current_url()
+ 4 SYSTEMPATH\Debug\Toolbar.php(376): CodeIgniter\Debug\Toolbar->run(1657342288.077031, 0.0436, Object(CodeIgniter\HTTP\IncomingRequest), Object(CodeIgniter\HTTP\Response))
+ 5 SYSTEMPATH\Filters\DebugToolbar.php(40): CodeIgniter\Debug\Toolbar->prepare(Object(CodeIgniter\HTTP\IncomingRequest), Object(CodeIgniter\HTTP\Response))
+ 6 SYSTEMPATH\Filters\Filters.php(196): CodeIgniter\Filters\DebugToolbar->after(Object(CodeIgniter\HTTP\IncomingRequest), Object(CodeIgniter\HTTP\Response), null)
+ 7 SYSTEMPATH\CodeIgniter.php(483): CodeIgniter\Filters\Filters->run('editar_usuario/2', 'after')
+ 8 SYSTEMPATH\CodeIgniter.php(349): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(55): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2022-07-08 23:57:37 --> Use of undefined constant site_url - assumed 'site_url' (this will throw an Error in a future version of PHP)
+in FCPATH\include\link.php on line 5.
+ 1 FCPATH\include\link.php(5): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Use of undefined constant site_url - assumed \'site_url\' (this will throw an Error in a future version of PHP)', 'FCPATH\\include\\link.php', 5, [])
+ 2 APPPATH\Views\usuarios\update_usuarios.php(7): include('FCPATH\\include\\link.php')
+ 3 SYSTEMPATH\View\View.php(213): include('APPPATH\\Views\\usuarios\\update_usuarios.php')
+ 4 SYSTEMPATH\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 5 SYSTEMPATH\Common.php(1135): CodeIgniter\View\View->render('usuarios/update_usuarios', [], true)
+ 6 APPPATH\Controllers\UsuariosController.php(14): view('usuarios/update_usuarios')
+ 7 SYSTEMPATH\CodeIgniter.php(896): App\Controllers\UsuariosController->editar('3')
+ 8 SYSTEMPATH\CodeIgniter.php(466): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\UsuariosController))
+ 9 SYSTEMPATH\CodeIgniter.php(349): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 FCPATH\index.php(55): CodeIgniter\CodeIgniter->run()

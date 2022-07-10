@@ -9,7 +9,12 @@ class TipoHabModel extends Model{
     // protected $primaryKey = 'id';
     
     public function getTipoHab(){
-        $user=$this->db->table($this->table);
-        return $user->get()->getResultArray();
+        $query=$this->db->table($this->table);
+        return $query->get()->getResultArray();
+    }
+
+    public function getTipo(){
+        $query=$this->db->query("SELECT idTipo, tipo FROM tipo_habitacion");
+        return $query->getResult();
     }
 }
