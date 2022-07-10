@@ -8,13 +8,6 @@
 
 </head>
 <body>
-    <?php 
-        $apellido=explode(" ",'rivera');
-        if(!(count($apellido)>1)){
-            $apellido[1]="";
-        }
-        print_r($apellido);
-    ?>
    <div class="d-flex">
         <?php include "include/navLateral.php"?>     
        
