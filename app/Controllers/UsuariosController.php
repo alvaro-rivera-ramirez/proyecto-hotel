@@ -43,6 +43,9 @@ class UsuariosController extends Controller{
         $dni=$this->request->getPost('user_dni');
         $nombre=$this->request->getPost('user_nombre');
         $apellidos=explode(" ",$this->request->getPost('user_apellido'));
+        if(!(count($apellidos)>1)){
+            $apellidos[1]="";
+        }
         $telefono=$this->request->getPost('user_telefono');
         $email=$this->request->getPost('user_email');
         $idRol=$this->request->getPost('user_privilegio');
