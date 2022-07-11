@@ -7,7 +7,13 @@ class HabitacionModel extends Model{
     protected $table      = 'habitacion';
     // Uncomment below if you want add primary key
     protected $primaryKey = 'id';
-    protected $allowedFields=['numero','idTipoHab','idEstado'];
+    protected $useTimestamps= true;
+    protected $useSoftDeletes = true;
+    protected $dateFormat= 'datetime';
+    protected $createdField  = 'created_at';
+    protected $updatedField  = 'updated_at';
+    protected $deletedField  = 'deleted_at';
+    protected $allowedFields=['numero','idTipo','idEstado'];
 
     public function getHabitaciones(){
         $user=$this->db->table($this->table);

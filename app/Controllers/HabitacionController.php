@@ -49,9 +49,21 @@ class HabitacionController extends Controller{
         ]);
 
         if(!$validation->withRequest($this->request)->run()){
-            //dd($validation->getErrors());
             return redirect()->to(base_url('nueva_habitacion'))->withInput()->with('errors',$validation->getErrors());
         }
+
+        $data=[
+            'numero' => $this->request->getPost('num_hab'),
+            'idTipo' => $this->request->getPost('tipo_hab'),
+            'idEstado' => 1
+        ];
+
+        $habitacion=new HabitacionModel();
+
+        $habitacion->insert($data);
+
+        return redirect()->to(base_url('nueva_habitacion'));
+
     }
 
     public function borrar($id=null){
