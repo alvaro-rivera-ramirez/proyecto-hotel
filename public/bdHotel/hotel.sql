@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1:3306
--- Tiempo de generación: 10-07-2022 a las 03:16:37
+-- Tiempo de generación: 11-07-2022 a las 02:37:48
 -- Versión del servidor: 5.7.31
 -- Versión de PHP: 7.4.9
 
@@ -38,16 +38,19 @@ CREATE TABLE IF NOT EXISTS `cliente` (
   `email` varchar(50) DEFAULT NULL,
   `created_at` datetime DEFAULT NULL,
   `updated_at` datetime DEFAULT NULL,
+  `deleted_at` datetime DEFAULT NULL,
   PRIMARY KEY (`idCliente`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4;
 
 --
 -- Volcado de datos para la tabla `cliente`
 --
 
-INSERT INTO `cliente` (`idCliente`, `dni`, `nombre`, `apellidoPaterno`, `apellidoMaterno`, `telefono`, `email`, `created_at`, `updated_at`) VALUES
-(1, '74916163', 'Sergio', 'Linares', NULL, '917484585', NULL, NULL, NULL),
-(2, '70548126', 'Camila', 'Hernandez', NULL, '978946143', NULL, NULL, NULL);
+INSERT INTO `cliente` (`idCliente`, `dni`, `nombre`, `apellidoPaterno`, `apellidoMaterno`, `telefono`, `email`, `created_at`, `updated_at`, `deleted_at`) VALUES
+(1, '74916163', 'Sergio', 'Linares', NULL, '917484585', NULL, NULL, NULL, NULL),
+(2, '70548126', 'Camila', 'Hernandez', NULL, '978946143', NULL, NULL, NULL, NULL),
+(3, '75785', 'Jorge', 'Velasquez', 'Valdivia', '9765875', 'jorge11@gmail.com', NULL, NULL, NULL),
+(4, '734451', 'dasdasdasd', 'asdas', 'cxzczxc', 'xzczxczxc', 'alvaro@gmail.com', NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -103,12 +106,13 @@ DROP TABLE IF EXISTS `habitacion`;
 CREATE TABLE IF NOT EXISTS `habitacion` (
   `idHab` int(11) NOT NULL AUTO_INCREMENT,
   `numero` varchar(4) NOT NULL,
-  `idTipoHab` int(11) DEFAULT NULL,
+  `idTipo` int(11) DEFAULT NULL,
   `idEstado` int(11) DEFAULT NULL,
   `created_at` datetime DEFAULT NULL,
   `updated_at` datetime DEFAULT NULL,
+  `deleted_at` datetime DEFAULT NULL,
   PRIMARY KEY (`idHab`),
-  KEY `idTipoHab` (`idTipoHab`),
+  KEY `idTipoHab` (`idTipo`),
   KEY `idEstado` (`idEstado`)
 ) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8mb4;
 
@@ -116,22 +120,22 @@ CREATE TABLE IF NOT EXISTS `habitacion` (
 -- Volcado de datos para la tabla `habitacion`
 --
 
-INSERT INTO `habitacion` (`idHab`, `numero`, `idTipoHab`, `idEstado`, `created_at`, `updated_at`) VALUES
-(1, '151', 5, 1, '2022-07-06 15:00:12', NULL),
-(2, '152', 2, 1, '2022-07-06 15:00:12', NULL),
-(3, '153', 4, 1, '2022-07-06 15:00:12', NULL),
-(4, '154', 3, 1, '2022-07-06 15:00:12', NULL),
-(5, '155', 5, 3, '2022-07-06 15:00:12', NULL),
-(6, '156', 1, 1, '2022-07-06 15:00:12', NULL),
-(7, '157', 2, 1, '2022-07-06 15:00:12', NULL),
-(8, '158', 3, 1, '2022-07-06 15:00:12', NULL),
-(9, '159', 4, 2, '2022-07-06 15:00:12', NULL),
-(10, '160', 5, 1, '2022-07-06 15:00:12', NULL),
-(11, '161', 5, 1, '2022-07-06 15:00:12', NULL),
-(12, '162', 3, 1, '2022-07-06 15:00:12', NULL),
-(13, '163', 1, 1, '2022-07-06 15:00:12', NULL),
-(14, '164', 2, 1, '2022-07-06 15:00:12', NULL),
-(15, '165', 4, 1, '2022-07-06 15:00:12', NULL);
+INSERT INTO `habitacion` (`idHab`, `numero`, `idTipo`, `idEstado`, `created_at`, `updated_at`, `deleted_at`) VALUES
+(1, '151', 5, 1, '2022-07-06 15:00:12', NULL, NULL),
+(2, '152', 2, 1, '2022-07-06 15:00:12', NULL, NULL),
+(3, '153', 4, 1, '2022-07-06 15:00:12', NULL, NULL),
+(4, '154', 3, 1, '2022-07-06 15:00:12', NULL, NULL),
+(5, '155', 5, 3, '2022-07-06 15:00:12', NULL, NULL),
+(6, '156', 1, 1, '2022-07-06 15:00:12', NULL, NULL),
+(7, '157', 2, 1, '2022-07-06 15:00:12', NULL, NULL),
+(8, '158', 3, 1, '2022-07-06 15:00:12', NULL, NULL),
+(9, '159', 4, 2, '2022-07-06 15:00:12', NULL, NULL),
+(10, '160', 5, 1, '2022-07-06 15:00:12', NULL, NULL),
+(11, '161', 5, 1, '2022-07-06 15:00:12', NULL, NULL),
+(12, '162', 3, 1, '2022-07-06 15:00:12', NULL, NULL),
+(13, '163', 1, 1, '2022-07-06 15:00:12', NULL, NULL),
+(14, '164', 2, 1, '2022-07-06 15:00:12', NULL, NULL),
+(15, '165', 4, 1, '2022-07-06 15:00:12', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -147,6 +151,7 @@ CREATE TABLE IF NOT EXISTS `reserva` (
   `fecha` date DEFAULT NULL,
   `created_at` datetime DEFAULT NULL,
   `updated_at` datetime DEFAULT NULL,
+  `deleted_at` datetime DEFAULT NULL,
   PRIMARY KEY (`idReserva`),
   KEY `idCliente` (`idCliente`),
   KEY `idUser` (`idUser`)
@@ -187,6 +192,7 @@ CREATE TABLE IF NOT EXISTS `tipo_habitacion` (
   `descripcion` varchar(100) DEFAULT NULL,
   `created_at` datetime DEFAULT NULL,
   `updated_at` datetime DEFAULT NULL,
+  `deleted_at` datetime DEFAULT NULL,
   PRIMARY KEY (`idTipo`)
 ) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4;
 
@@ -194,13 +200,13 @@ CREATE TABLE IF NOT EXISTS `tipo_habitacion` (
 -- Volcado de datos para la tabla `tipo_habitacion`
 --
 
-INSERT INTO `tipo_habitacion` (`idTipo`, `tipo`, `precio`, `descripcion`, `created_at`, `updated_at`) VALUES
-(1, 'Simple', '20.00', NULL, NULL, NULL),
-(2, 'Doble', '50.00', NULL, NULL, NULL),
-(3, 'Triple', '70.00', NULL, NULL, NULL),
-(4, 'Suites', '100.00', NULL, NULL, NULL),
-(5, 'Familiar', '120.00', NULL, NULL, NULL),
-(6, 'Matrimonial', '150.00', NULL, NULL, NULL);
+INSERT INTO `tipo_habitacion` (`idTipo`, `tipo`, `precio`, `descripcion`, `created_at`, `updated_at`, `deleted_at`) VALUES
+(1, 'Simple', '20.00', NULL, NULL, NULL, NULL),
+(2, 'Doble', '50.00', NULL, NULL, NULL, NULL),
+(3, 'Triple', '70.00', NULL, NULL, NULL, NULL),
+(4, 'Suites', '100.00', NULL, NULL, NULL, NULL),
+(5, 'Familiar', '120.00', NULL, NULL, NULL, NULL),
+(6, 'Matrimonial', '150.00', NULL, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -223,21 +229,25 @@ CREATE TABLE IF NOT EXISTS `usuarios` (
   `created_at` datetime DEFAULT NULL,
   `updated_at` datetime DEFAULT NULL,
   `activo` tinyint(1) DEFAULT NULL,
+  `deleted_at` datetime DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `idRol` (`idRol`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4;
 
 --
 -- Volcado de datos para la tabla `usuarios`
 --
 
-INSERT INTO `usuarios` (`id`, `username`, `pass`, `dni`, `nombre`, `apellidoPaterno`, `apellidoMaterno`, `telefono`, `email`, `idRol`, `created_at`, `updated_at`, `activo`) VALUES
-(1, 'admin', '$2y$10$lXy7A6GxW2Qb5OImtOSIHOEilMYjt9VT.T6HloTkgw07z5WBmypsq', '73000', 'alvaro', 'rivera', 'ramirez', '543543543', 'alvarirvera2001@gmail.com', 1, '2022-06-30 15:47:49', NULL, 1),
-(2, 'user', '$2y$10$zQdY4DSLnyaDSnwLzZIqiedcvOblAW.MN5qWIvSfdlA8ZogTXgs2S', '54354245', 'carlos', 'yufra', 'loza', '981161423', 'carlos222@gmail.com', 2, '2022-06-30 15:48:37', '2022-07-09 21:36:06', 1),
-(3, 'Aldo', '$2y$10$YYUoBN6UWLjSYvZ7QvRbmumaCq9zyX19.wWdxQp44k0.yavtNRB8u', '7324343', 'Aldo', 'Centeno', 'Maquera', '94523452', 'aldo111@hotmail.com', 1, '2022-06-30 15:49:09', '2022-07-09 21:33:48', 1),
-(4, 'arturo', '$2y$10$fVL.1aSttFNRap5hV5/p3eYq3vbu899qDvyy9vO2ssF5sjdLmREUy', '716156', 'Arturo', 'Mayta', 'Castillo', '924525414', 'arturo11@gmail.com', 1, '2022-07-04 19:31:25', NULL, 1),
-(5, 'richard', '$2y$10$lXy7A6GxW2Qb5OImtOSIHOEilMYjt9VT.T6HloTkgw07z5WBmypsq', '75745', 'Richar', 'Ticona', 'Copari', '94532542', 'richard@gmail.com', 2, '2022-07-04 19:33:06', NULL, 1),
-(6, 'diego', '$2y$10$99iiUlDk.KC5KtyMIrkx1O1zWPgH5YrPnBfKzVp0IrlxNvyyrVdQe', '7575786', 'Diego', 'Gomez', '', '756164542', 'diego_gomez@gmail.com', 2, '2022-07-04 20:53:34', '2022-07-09 21:32:31', 1);
+INSERT INTO `usuarios` (`id`, `username`, `pass`, `dni`, `nombre`, `apellidoPaterno`, `apellidoMaterno`, `telefono`, `email`, `idRol`, `created_at`, `updated_at`, `activo`, `deleted_at`) VALUES
+(1, 'admin', '$2y$10$lXy7A6GxW2Qb5OImtOSIHOEilMYjt9VT.T6HloTkgw07z5WBmypsq', '73000', 'alvaro', 'rivera', 'ramirez', '543543543', 'alvarirvera2001@gmail.com', 1, '2022-06-30 15:47:49', NULL, 1, NULL),
+(2, 'user', '$2y$10$zQdY4DSLnyaDSnwLzZIqiedcvOblAW.MN5qWIvSfdlA8ZogTXgs2S', '54354245', 'carlos', 'yufra', 'loza', '981161423', 'carlos222@gmail.com', 2, '2022-06-30 15:48:37', '2022-07-10 21:12:24', 1, '2022-07-10 21:12:24'),
+(3, 'Aldo', '$2y$10$YYUoBN6UWLjSYvZ7QvRbmumaCq9zyX19.wWdxQp44k0.yavtNRB8u', '7324343', 'Aldo', 'Centeno', 'Maquera', '94523452', 'aldo111@hotmail.com', 1, '2022-06-30 15:49:09', '2022-07-10 01:37:15', 1, NULL),
+(4, 'arturo', '$2y$10$fVL.1aSttFNRap5hV5/p3eYq3vbu899qDvyy9vO2ssF5sjdLmREUy', '716156', 'Arturo', 'Mayta', 'Castillo', '924525414', 'arturo11@gmail.com', 1, '2022-07-04 19:31:25', '2022-07-10 01:37:14', 1, NULL),
+(5, 'richard', '$2y$10$lXy7A6GxW2Qb5OImtOSIHOEilMYjt9VT.T6HloTkgw07z5WBmypsq', '75745', 'Richar', 'Ticona', 'Copari', '94532542', 'richard@gmail.com', 2, '2022-07-04 19:33:06', '2022-07-10 01:36:13', 1, NULL),
+(6, 'diego', '$2y$10$99iiUlDk.KC5KtyMIrkx1O1zWPgH5YrPnBfKzVp0IrlxNvyyrVdQe', '7575786', 'Diego', 'Gomez', '', '756164542', 'diego_gomez@gmail.com', 2, '2022-07-04 20:53:34', '2022-07-10 01:37:13', 1, NULL),
+(7, 'yvan', '$2y$10$79Di97zAoFXMErcET3KrNOp4V18tsCxd.gRI2HWq4jWPv9lLEh4fO', '7544554', 'Yvan', 'Mamani', '', '9548754', 'yvan100@gmail.com', 1, '2022-07-09 22:38:51', '2022-07-10 01:37:08', 1, NULL),
+(8, 'ivan', '$2y$10$Lsx21.FsxzJCtvUsVC6dk.3m6rMaXMKC1XBs8b7V8b1ZCaAB8ih.S', '7855425', 'ivan', 'reyes', 'martinez', '95525457', 'ivan94@gmail.com', 2, '2022-07-10 00:03:43', '2022-07-10 01:36:03', 1, NULL),
+(9, 'carlos', '$2y$10$2esUgRMQYtCSyzUKHjB4oe3alA5w2VzNDFz3UoUq4gSDxFKIosGga', '794115', 'carlos', 'yufra', '', '98554133', 'carlosss@hotmail.com', 2, '2022-07-10 20:40:03', '2022-07-10 20:40:03', 1, NULL);
 
 --
 -- Restricciones para tablas volcadas
@@ -254,7 +264,7 @@ ALTER TABLE `detalle_reserva`
 -- Filtros para la tabla `habitacion`
 --
 ALTER TABLE `habitacion`
-  ADD CONSTRAINT `habitacion_ibfk_1` FOREIGN KEY (`idTipoHab`) REFERENCES `tipo_habitacion` (`idTipo`),
+  ADD CONSTRAINT `habitacion_ibfk_1` FOREIGN KEY (`idTipo`) REFERENCES `tipo_habitacion` (`idTipo`),
   ADD CONSTRAINT `habitacion_ibfk_2` FOREIGN KEY (`idEstado`) REFERENCES `estado_hab` (`idEstado`);
 
 --

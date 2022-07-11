@@ -34,7 +34,7 @@
                                     <!--<div class="box-nav"> <a href="#"><i class="fas fa-search fa-fw"></i> BUSCAR CLIENTE</a> </div> -->
                                     <div class="box-nav"> <a href="#"><i class="fa-solid fa-print"></i> IMPRIMIR</a></div>
                                     <div class="box-nav">
-                                        <form class="d-flex" id="form" method="GET" action="<?= base_url('lista-clientes')?>">
+                                        <form class="d-flex" id="form" method="POST" action="<?= base_url('lista-clientes')?>">
                                         <input class="input-buscar me-2" type="text" id="query" name="query" placeholder="Buscar" aria-label="text">
                                         <button class="btn-buscar btn btn-dark" type="submit"><i class="fas fa-search"></i></button>
                                         </form>
