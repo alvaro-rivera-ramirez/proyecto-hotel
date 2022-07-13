@@ -99,6 +99,8 @@ class HabitacionController extends Controller{
         $tipo_hab=$this->request->getPost('tipo_hab');
     }
     public function borrar($id=null){
-        
+        $hab=new HabitacionModel();
+        $hab->where('idHab',$id)->delete($id);
+        return redirect()->route('lista-habitaciones');
     }
 }
