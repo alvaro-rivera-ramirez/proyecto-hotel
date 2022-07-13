@@ -4,6 +4,7 @@ namespace App\Controllers;
 use CodeIgniter\Controller;
 use App\Models\HabitacionModel;
 use App\Models\TipoHabModel;
+use App\Models\UsuariosModel;
 class HabitacionController extends Controller{
     public function index(){
     
@@ -67,6 +68,36 @@ class HabitacionController extends Controller{
 
     }
 
+
+    public function actualizar(){
+        $hab_id=$this->request->getPost('id_hab');
+        $admin_id=session('id');
+
+        $usuario=new UsuariosModel();
+
+        $admin=$usuario->obtenerDatos($admin_id);
+
+        $validation = service('validation');
+        $validation->setRules([ 
+            'num_hab' => 'required|is_unique[habitacion.numero,habitacion.idHab,'.$hab_id.']|numeric|min_length[3]|max_length[4]',
+            'tipo_hab' => 'required|is_not_unique[tipo_habitacion.idTipo]',
+            'admin_usuario' => 'required|alpha_numeric',
+            'admin_clave' => 'required|min_length[5]|max_length[8]' 
+        ]);
+
+        if(!$validation->withRequest($this->request)->run()){
+            return redirect()->to(base_url('editar_habitacion/'.$hab_id))->withInput()->with('errors',$validation->getErrors());
+        }
+
+        $admin_usuario=$this->request->getPost('admin_usuario');
+        $admin_pass=$this->request->getPost('admin_clave');
+        if($admin['username']!=$admin_usuario || !PASSWORD_VERIFY($admin_pass,$admin['pass'])){
+            return redirect()->to(base_url('editar_habitacion/'.$hab_id))->withInput()->with('msg','Usuario y/o Password Incorrectos'); 
+        }
+
+        $numero=$this->request->getPost('num_hab');
+        $tipo_hab=$this->request->getPost('tipo_hab');
+    }
     public function borrar($id=null){
         
     }
