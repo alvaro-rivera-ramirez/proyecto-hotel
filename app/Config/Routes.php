@@ -66,6 +66,7 @@ $routes->get('reservar', 'ReservasController::reservar');
 $routes->get('/lista-habitaciones', 'HabitacionController::index');
 $routes->get('nueva_habitacion', 'HabitacionController::crear');
 $routes->post('guardar_habitacion', 'HabitacionController::guardar');
+$routes->post('actualizar_habitacion', 'HabitacionController::actualizar');
 $routes->get('editar_habitacion/(:num)', 'HabitacionController::editar/$1');
 $routes->get('eliminar_habitacion/(:num)', 'HabitacionController::borrar/$1');
 
