@@ -40,7 +40,7 @@
                                     <div class="col-12 col-md-4">
                                         <div class="form-group">
                                             <label for="num_hab" class="bmd-label-floating">Numero</label>
-                                            <input type="text" pattern="[0-9-]{1,27}" class="form-control" name="num_hab" id="num_hab"  maxlength="4">
+                                            <input type="text" class="form-control" value="<?= old('num_hab',$hab['numero']) ?>" name="num_hab" id="num_hab"  maxlength="4">
                                         </div>
                                     </div>
                                     <div class="col-12 col-md-4">

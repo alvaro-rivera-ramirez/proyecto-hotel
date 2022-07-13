@@ -49,6 +49,7 @@ class HabitacionController extends Controller{
         ]);
 
         if(!$validation->withRequest($this->request)->run()){
+            //dd($validation->getErrors());
             return redirect()->to(base_url('nueva_habitacion'))->withInput()->with('errors',$validation->getErrors());
         }
 
@@ -67,6 +68,6 @@ class HabitacionController extends Controller{
     }
 
     public function borrar($id=null){
-
+        
     }
 }
