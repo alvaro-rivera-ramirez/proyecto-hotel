@@ -69,7 +69,7 @@
                                         <input class="form-control marco mb-3" type="text" placeholder="Dirección">
                                     </div>
                                     <div class="col-xs-11 col-sm-11 col-md-11 col-md-6 col-lg-6 col-xl-6">
-                                        <input class="form-control marco mb-3" type="text" placeholder="Ciudad">
+                                        <input class="form-control marco mb-3" type="text" placeholder="Username">
                                     </div>
 
                                     <div class="col-6 ">
@@ -77,7 +77,6 @@
                                     </div>
                                     <div class="col-6 ">
                                         <input class="btn btn-success mt-2" type="button" value="Actualizar">
-                                        <input class="btn btn-danger mt-2" type="button" value="Cancelar ">
                                     </div>
                                 </div>
                         </div>
