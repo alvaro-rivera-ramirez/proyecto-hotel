@@ -6,7 +6,7 @@ use CodeIgniter\Model;
 class HabitacionModel extends Model{
     protected $table      = 'habitacion';
     // Uncomment below if you want add primary key
-    protected $primaryKey = 'id';
+    protected $primaryKey = 'idHab';
     protected $useTimestamps= true;
     protected $useSoftDeletes = true;
     protected $dateFormat= 'datetime';
