@@ -5,11 +5,10 @@ use CodeIgniter\Controller;
 use App\Models\HabitacionModel;
 use App\Models\TipoHabModel;
 use App\Models\UsuariosModel;
+use App\Models\EstadoHabitacion;
 class HabitacionController extends Controller{
     public function index(){
     
-       // $datosHab['habitacion']=$habitacion->getAll();
-
        $pager = service('pager');
        $model = new HabitacionModel();
 
@@ -35,9 +34,10 @@ class HabitacionController extends Controller{
 
         $tipoHab=new TipoHabModel();
         $hab=new HabitacionModel();
-        
+        $estado=new EstadoHabitacion();
         $datos['tipo']=$tipoHab->getTipo();
         $datos['hab']=$hab->where('idHab',$id)->first();
+        $datos['estado']=$estado->findAll();
         return view('habitaciones/update_hab',$datos);
     }
 
@@ -81,6 +81,7 @@ class HabitacionController extends Controller{
         $validation->setRules([ 
             'num_hab' => 'required|is_unique[habitacion.numero,habitacion.idHab,'.$hab_id.']|numeric|min_length[3]|max_length[4]',
             'tipo_hab' => 'required|is_not_unique[tipo_habitacion.idTipo]',
+            'estado_hab' => 'required|is_not_unique[estado_hab.idEstado]',
             'admin_usuario' => 'required|alpha_numeric',
             'admin_clave' => 'required|min_length[5]|max_length[8]' 
         ]);
@@ -95,8 +96,19 @@ class HabitacionController extends Controller{
             return redirect()->to(base_url('editar_habitacion/'.$hab_id))->withInput()->with('msg','Usuario y/o Password Incorrectos'); 
         }
 
-        $numero=$this->request->getPost('num_hab');
-        $tipo_hab=$this->request->getPost('tipo_hab');
+        $data=[
+            'numero' => $this->request->getPost('num_hab'),
+            'idTipo' => $this->request->getPost('tipo_hab'),
+            'idEstado' => $this->request->getPost('estado_hab')
+        ];
+
+        $habitacion=new HabitacionModel();
+
+        $habitacion->update($hab_id,$data);
+
+        return redirect()->route('lista-habitaciones');
+
+
     }
     public function borrar($id=null){
         $hab=new HabitacionModel();
