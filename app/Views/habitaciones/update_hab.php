@@ -47,20 +47,26 @@
                                     </div>
                                     <div class="col-12 col-md-4">
                                         <div class="form-group">
-                                            <label for="precio_hab" class="bmd-label-floating">Precio</label>
-                                            <input type="text" disabled="" class="form-control" name="precio_hab" id="precio_hab">
-                                        </div>
-                                    </div>
-                                    <div class="col-12 col-md-4">
-                                        <div class="form-group">
                                             <label for="tipo_hab" class="bmd-label-floating">Tipo Habitación</label>
                                             <select class="form-control" name="tipo_hab" id="tipo_hab">
                                                 <option value="" selected="" disabled="">Seleccione una opción</option>
                                                 <?php foreach($tipo as $tipos):?>
-                                                <option value="<?= $tipos['idTipo'] ?>" <?php if(old('tipo_hab',$hab['idTipo'])==$tipos['idTipo']):?>selected <?php endif;?>> <?= $tipos['tipo'] ?></option>
+                                                <option value="<?= $tipos['idTipo'] ?>" <?php if(old('tipo_hab',$hab['idTipo'])==$tipos['idTipo']):?>selected <?php endif;?>> <?= $tipos['tipo'].' - '.$tipos['precio'] ?></option>
                                                 <?php endforeach; ?>
                                             </select>
                                             <p class="text-danger"><?= session('errors.tipo_hab')?></p>
+                                        </div>
+                                    </div>
+                                    <div class="col-12 col-md-4">
+                                        <div class="form-group">
+                                            <label for="estado_hab" class="bmd-label-floating">Estado</label>
+                                            <select class="form-control" name="estado_hab" id="estado_hab">
+                                                <option value="" selected="" disabled="">Seleccione una opción</option>
+                                                <?php foreach($estado as $estados):?>
+                                                <option value="<?= $estados['idEstado'] ?>" <?php if(old('estado_hab',$hab['idEstado'])==$estados['idEstado']):?>selected <?php endif;?>> <?= $estados['estado'] ?></option>
+                                                <?php endforeach; ?>
+                                            </select>
+                                            <p class="text-danger"><?= session('errors.estado_hab')?></p>
                                         </div>
                                     </div>
                                 </div>
@@ -75,12 +81,14 @@
                                         <div class="form-group">
                                             <label for="admin_usuario" class="bmd-label-floating">Nombre de usuario</label>
                                             <input type="text" class="form-control" name="admin_usuario" id="admin_usuario" value="<?= old('admin_usuario')?>" required>
+                                            <p class="text-danger"><?= session('errors.admin_usuario')?></p>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label for="admin_clave" class="bmd-label-floating">Contraseña</label>
                                             <input type="password" class="form-control" value="<?= old('admin_clave')?>" name="admin_clave" id="admin_clave" required>
+                                            <p class="text-danger"><?= session('errors.admin_clave')?></p>
                                         </div>
                                     </div>
                                     <?php if(session('msg')): ?>
