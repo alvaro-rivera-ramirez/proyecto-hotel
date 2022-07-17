@@ -156,4 +156,8 @@ class UsuariosController extends Controller{
     public function configurarPassword(){
         return view('configuracion/cambiarPassword');
     }
+
+    public function recuperarPassword(){
+        return view('configuracion/recuperarPassword');
+    }
 }

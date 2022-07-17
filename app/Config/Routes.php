@@ -83,4 +83,4 @@ $routes->get('nuevo_usuario', 'UsuariosController::crear');
 $routes->post('guardar_usuario', 'UsuariosController::guardar');
 $routes->post('actualizar_usuario', 'UsuariosController::actualizar');
 $routes->get('eliminar_usuario/(:num)', 'UsuariosController::borrar/$1');
-
+$routes->get('recuperar_password', 'UsuariosController::recuperarPassword');
