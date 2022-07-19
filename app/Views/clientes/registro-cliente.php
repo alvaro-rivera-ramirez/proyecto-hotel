@@ -22,7 +22,7 @@
                        <!---->
                        <!-- Contenedor de Registros -->
                   
-                    <div class="" >
+                    <div>
                         <section>
                             <h3 class="pb-2">Registro / Clientes</h3>
 
@@ -31,7 +31,6 @@
                                 <div class="container-nav">
                                     <div class="box-nav"> <a href="<?= base_url('nuevo_cliente')?>"><i class="fas fa-plus fa-fw"></i> AGREGAR CLIENTE</a></div>
                                     <div class="box-nav"> <a class="active" href="#"><i class="fas fa-clipboard-list fa-fw"></i> LISTA DE CLIENTES</a> </div>
-                                    <!--<div class="box-nav"> <a href="#"><i class="fas fa-search fa-fw"></i> BUSCAR CLIENTE</a> </div> -->
                                     <div class="box-nav"> <a href="#"><i class="fa-solid fa-print"></i> IMPRIMIR</a></div>
                                     <div class="box-nav">
                                         <form class="d-flex" id="form" method="POST" action="<?= base_url('lista-clientes')?>">

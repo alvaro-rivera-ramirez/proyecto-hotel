@@ -76,27 +76,6 @@
                                     </tr>
                                     <?php endforeach;?>
 
-                                    <!-- <tr class="text-center">
-                                        <td>2</td>
-                                        <td>71651610</td>
-                                        <td>Alvaro</td>
-                                        <td>Ramirez</td>
-                                        <td>954482013</td>
-                                        <td>aaa@gmail.com</td>
-                                        <td>user11</td>
-                                        <td>
-                                            <a class="btn btn-success" href="#" role="button">
-                                            <i class="fa-solid fa-pen-to-square"></i>
-                                            </a>
-                                        </td>
-                                        <td>
-                                            <form action="">
-                                                <button class="btn btn-danger" type="button"><i class="fa-solid fa-trash-can"></i>
-                                                </button>
-                                            </form>
-                                        </td>
-                                    </tr> -->
-                                   
                                 </tbody>
                             </table>
                         </div>

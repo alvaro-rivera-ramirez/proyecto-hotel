@@ -76,6 +76,7 @@ $routes->get('/lista_reservas', 'ReservasController::index');
 $routes->get('/lista-clientes', 'ClientesController::index');
 $routes->get('nuevo_cliente', 'ClientesController::crear_cli');
 $routes->post('registrar_cliente', 'ClientesController::registrar');
+$routes->post('buscar_dni', 'ClientesController::buscardni');
 
 $routes->get('/lista_usuarios', 'UsuariosController::index');
 $routes->get('editar_usuario/(:num)', 'UsuariosController::editar/$1');

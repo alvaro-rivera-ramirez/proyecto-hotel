@@ -79,5 +79,13 @@ class ClientesController extends Controller{
 
     }
 
+    public function buscardni(){
+        $dni=$this->request->getPost('cli_dni');
+
+        $cliente=new ClientesModel();
+        $data=$cliente->where('dni',$dni)->first();
+        echo json_encode($data);
+    }
+
 }
 
