@@ -32,4 +32,11 @@ class ClientesModel extends Model{
         }
     }
 
+    public function buscarCliente($dni){
+        $cliente=$this->db->table('cliente as c');
+        $cliente->select('c.*');
+        $cliente->where('dni',$dni);
+        return $cliente->get()->getRowArray();
+    }
+
 }
