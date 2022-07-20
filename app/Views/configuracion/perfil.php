@@ -12,7 +12,7 @@
         }
 
         .titulo {
-            font-size: 20px;
+            font-size: 10px;
             background-color: #4CD7F5;
             border-radius: 10px;
             color: black;
@@ -73,10 +73,10 @@
                                     </div>
 
                                     <div class="col-6 ">
-                                        <input class="btn btn-info mt-2" type="button" value=" Limpiar ">
+                                        <input class="btn btn-info mt-1" type="button" value=" Limpiar ">
                                     </div>
                                     <div class="col-6 ">
-                                        <input class="btn btn-success mt-2" type="button" value="Actualizar">
+                                        <input class="btn btn-success mt-1" type="button" value="Actualizar">
                                     </div>
                                 </div>
                         </div>
