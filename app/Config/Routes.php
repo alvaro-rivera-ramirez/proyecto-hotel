@@ -66,6 +66,7 @@ $routes->get('reservar', 'ReservasController::reservar');
 $routes->get('/lista-habitaciones', 'HabitacionController::index');
 $routes->get('nueva_habitacion', 'HabitacionController::crear');
 $routes->post('guardar_habitacion', 'HabitacionController::guardar');
+$routes->post('actualizar_habitacion', 'HabitacionController::actualizar');
 $routes->get('editar_habitacion/(:num)', 'HabitacionController::editar/$1');
 $routes->get('eliminar_habitacion/(:num)', 'HabitacionController::borrar/$1');
 
@@ -75,6 +76,7 @@ $routes->get('/lista_reservas', 'ReservasController::index');
 $routes->get('/lista-clientes', 'ClientesController::index');
 $routes->get('nuevo_cliente', 'ClientesController::crear_cli');
 $routes->post('registrar_cliente', 'ClientesController::registrar');
+$routes->post('buscar_dni', 'ClientesController::buscardni');
 
 $routes->get('/lista_usuarios', 'UsuariosController::index');
 $routes->get('editar_usuario/(:num)', 'UsuariosController::editar/$1');
@@ -82,4 +84,4 @@ $routes->get('nuevo_usuario', 'UsuariosController::crear');
 $routes->post('guardar_usuario', 'UsuariosController::guardar');
 $routes->post('actualizar_usuario', 'UsuariosController::actualizar');
 $routes->get('eliminar_usuario/(:num)', 'UsuariosController::borrar/$1');
-
+$routes->get('recuperar_password', 'UsuariosController::recuperarPassword');

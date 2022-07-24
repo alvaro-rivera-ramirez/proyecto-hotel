@@ -32,35 +32,41 @@
                 </div>
 
                 <div class="container-fluid">
-                    <form action="" class="row g-3" autocomplete="off">
+                    <form action="<?= base_url('actualizar_habitacion')?>" class="row g-3" method="POST">
                         <fieldset>
                             <legend><i class="far fa-plus-square"></i> Información</legend>
                             <div class="container-fluid">
                                 <div class="row">
                                     <div class="col-12 col-md-4">
                                         <div class="form-group">
+                                            <input type="hidden" name="id_hab" value="<?= $hab['idHab']?>">
                                             <label for="num_hab" class="bmd-label-floating">Numero</label>
-                                            <input type="text" pattern="[0-9-]{1,27}" class="form-control" name="num_hab" id="num_hab"  maxlength="4">
+                                            <input type="text" class="form-control" value="<?= old('num_hab',$hab['numero']) ?>" name="num_hab" id="num_hab"  maxlength="4">
+                                            <p class="text-danger"><?= session('errors.num_hab')?></p>
                                         </div>
                                     </div>
                                     <div class="col-12 col-md-4">
                                         <div class="form-group">
-                                            <label for="precio_hab" class="bmd-label-floating">Precio</label>
-                                            <input type="text" disabled="" class="form-control" name="precio_hab" id="precio_hab">
-                                        </div>
-                                    </div>
-                                    <div class="col-12 col-md-4">
-                                        <div class="form-group">
-                                            <label for="item_tipo" class="bmd-label-floating">Tipo Habitación</label>
-                                            <select class="form-control" name="item_tipo" id="item_tipo">
+                                            <label for="tipo_hab" class="bmd-label-floating">Tipo Habitación</label>
+                                            <select class="form-control" name="tipo_hab" id="tipo_hab">
                                                 <option value="" selected="" disabled="">Seleccione una opción</option>
-                                                <option value="Simple">Simple</option>
-                                                <option value="Doble">Doble</option>
-                                                <option value="Triple">Triple</option>
-                                                <option value="Suit">Suit</option>
-                                                <option value="Familiar">Familiar</option>
-                                                <option value="Matrimonial">Matrimonial</option>
+                                                <?php foreach($tipo as $tipos):?>
+                                                <option value="<?= $tipos['idTipo'] ?>" <?php if(old('tipo_hab',$hab['idTipo'])==$tipos['idTipo']):?>selected <?php endif;?>> <?= $tipos['tipo'].' - '.$tipos['precio'] ?></option>
+                                                <?php endforeach; ?>
                                             </select>
+                                            <p class="text-danger"><?= session('errors.tipo_hab')?></p>
+                                        </div>
+                                    </div>
+                                    <div class="col-12 col-md-4">
+                                        <div class="form-group">
+                                            <label for="estado_hab" class="bmd-label-floating">Estado</label>
+                                            <select class="form-control" name="estado_hab" id="estado_hab">
+                                                <option value="" selected="" disabled="">Seleccione una opción</option>
+                                                <?php foreach($estado as $estados):?>
+                                                <option value="<?= $estados['idEstado'] ?>" <?php if(old('estado_hab',$hab['idEstado'])==$estados['idEstado']):?>selected <?php endif;?>> <?= $estados['estado'] ?></option>
+                                                <?php endforeach; ?>
+                                            </select>
+                                            <p class="text-danger"><?= session('errors.estado_hab')?></p>
                                         </div>
                                     </div>
                                 </div>
@@ -70,19 +76,28 @@
                         <fieldset>
                             <p style="margin:10px 0px"class="text-center">Para poder guardar los cambios en esta cuenta debe de ingresar su nombre de usuario y contraseña</p>
                             <div class="container-fluid">
-                                <div class="row">
-                                    <div class="col-12 col-md-6">
+                                <div class="row g-3">
+                                    <div class="col-md-6">
                                         <div class="form-group">
-                                            <label for="usuario_admin" class="bmd-label-floating">Nombre de usuario</label>
-                                            <input type="text" pattern="[a-zA-Z0-9]{1,35}" class="form-control" name="usuario_admin" id="usuario_admin" maxlength="35" required="" >
+                                            <label for="admin_usuario" class="bmd-label-floating">Nombre de usuario</label>
+                                            <input type="text" class="form-control" name="admin_usuario" id="admin_usuario" value="<?= old('admin_usuario')?>" required>
+                                            <p class="text-danger"><?= session('errors.admin_usuario')?></p>
                                         </div>
                                     </div>
-                                    <div class="col-12 col-md-6">
+                                    <div class="col-md-6">
                                         <div class="form-group">
-                                            <label for="clave_admin" class="bmd-label-floating">Contraseña</label>
-                                            <input type="password" class="form-control" name="clave_admin" id="clave_admin" pattern="[a-zA-Z0-9$@.-]{7,100}" maxlength="100" required="" >
+                                            <label for="admin_clave" class="bmd-label-floating">Contraseña</label>
+                                            <input type="password" class="form-control" value="<?= old('admin_clave')?>" name="admin_clave" id="admin_clave" required>
+                                            <p class="text-danger"><?= session('errors.admin_clave')?></p>
                                         </div>
                                     </div>
+                                    <?php if(session('msg')): ?>
+                                        <div class="col-md-12">
+                                            <div class="alert alert-danger" role="alert">
+                                                <?= session('msg')?>
+                                            </div>
+                                        </div>
+                                    <?php endif; ?>                    
                                 </div>
                             </div>
                         </fieldset>

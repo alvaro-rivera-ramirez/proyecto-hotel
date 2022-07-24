@@ -90,6 +90,7 @@
                                     </tbody>
                                 </table>
                             </div>
+
                             <p class="text-end">Mostrando Empleados 1 al 10 de un total de 27</p>
                             <!---- navegacion de pag ------>
 

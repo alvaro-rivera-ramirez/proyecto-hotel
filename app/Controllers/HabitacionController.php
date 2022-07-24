@@ -4,11 +4,11 @@ namespace App\Controllers;
 use CodeIgniter\Controller;
 use App\Models\HabitacionModel;
 use App\Models\TipoHabModel;
+use App\Models\UsuariosModel;
+use App\Models\EstadoHabitacion;
 class HabitacionController extends Controller{
     public function index(){
     
-       // $datosHab['habitacion']=$habitacion->getAll();
-
        $pager = service('pager');
        $model = new HabitacionModel();
 
@@ -34,9 +34,10 @@ class HabitacionController extends Controller{
 
         $tipoHab=new TipoHabModel();
         $hab=new HabitacionModel();
-        
+        $estado=new EstadoHabitacion();
         $datos['tipo']=$tipoHab->getTipo();
         $datos['hab']=$hab->where('idHab',$id)->first();
+        $datos['estado']=$estado->findAll();
         return view('habitaciones/update_hab',$datos);
     }
 
@@ -52,9 +53,66 @@ class HabitacionController extends Controller{
             //dd($validation->getErrors());
             return redirect()->to(base_url('nueva_habitacion'))->withInput()->with('errors',$validation->getErrors());
         }
+
+        $data=[
+            'numero' => $this->request->getPost('num_hab'),
+            'idTipo' => $this->request->getPost('tipo_hab'),
+            'idEstado' => 1
+        ];
+
+        $habitacion=new HabitacionModel();
+
+        $habitacion->insert($data);
+
+        return redirect()->to(base_url('nueva_habitacion'));
+
     }
 
-    public function borrar($id=null){
 
+    public function actualizar(){
+        $hab_id=$this->request->getPost('id_hab');
+        $admin_id=session('id');
+
+        $usuario=new UsuariosModel();
+
+        $admin=$usuario->obtenerDatos($admin_id);
+
+        $validation = service('validation');
+        $validation->setRules([ 
+            'num_hab' => 'required|is_unique[habitacion.numero,habitacion.idHab,'.$hab_id.']|numeric|min_length[3]|max_length[4]',
+            'tipo_hab' => 'required|is_not_unique[tipo_habitacion.idTipo]',
+            'estado_hab' => 'required|is_not_unique[estado_hab.idEstado]',
+            'admin_usuario' => 'required|alpha_numeric',
+            'admin_clave' => 'required|min_length[5]|max_length[8]' 
+        ]);
+
+        if(!$validation->withRequest($this->request)->run()){
+            return redirect()->to(base_url('editar_habitacion/'.$hab_id))->withInput()->with('errors',$validation->getErrors());
+        }
+
+        $admin_usuario=$this->request->getPost('admin_usuario');
+        $admin_pass=$this->request->getPost('admin_clave');
+        if($admin['username']!=$admin_usuario || !PASSWORD_VERIFY($admin_pass,$admin['pass'])){
+            return redirect()->to(base_url('editar_habitacion/'.$hab_id))->withInput()->with('msg','Usuario y/o Password Incorrectos'); 
+        }
+
+        $data=[
+            'numero' => $this->request->getPost('num_hab'),
+            'idTipo' => $this->request->getPost('tipo_hab'),
+            'idEstado' => $this->request->getPost('estado_hab')
+        ];
+
+        $habitacion=new HabitacionModel();
+
+        $habitacion->update($hab_id,$data);
+
+        return redirect()->route('lista-habitaciones');
+
+
+    }
+    public function borrar($id=null){
+        $hab=new HabitacionModel();
+        $hab->where('idHab',$id)->delete($id);
+        return redirect()->route('lista-habitaciones');
     }
 }

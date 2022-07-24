@@ -31,7 +31,7 @@
                                     <div class="box-nav"> <a href="#"><i class="fa-solid fa-print"></i> IMPRIMIR</a></div>
                                     <div class="box-nav">
                                         <form class="d-flex">
-                                        <input class="input-buscar me-2" type="search" placeholder="Buscar" aria-label="Search">
+                                        <input class="input-buscar me-2" type="text" placeholder="Buscar" aria-label="text">
                                         <button class="btn-buscar btn btn-dark" type="submit"><i class="fas fa-search"></i></button>
                                         </form>
                                     </div>
