@@ -8,6 +8,7 @@ class UsuariosController extends Controller{
         //$usuario=new UsuariosModel();
         //$datosUsuario['usuario']=$usuario->getUsuarios();
 
+        $msg = session('msg');
         $pager = service('pager');
         $model = new UsuariosModel();
 
@@ -141,7 +142,7 @@ class UsuariosController extends Controller{
         $usuario_up=new UsuariosModel();
         $usuario_up->update($user_id,$data);
 
-        return redirect()->route('lista_usuarios');
+        return redirect()->route('lista_usuarios')->with('msg','1');
     }
 
     public function borrar($id=null){
