@@ -3,6 +3,8 @@ namespace App\Controllers;
 
 use CodeIgniter\Controller;
 use App\Models\ReservasModel;
+use App\Models\HabitacionModel;
+use App\Models\TipoHabModel;
 
 class ReservasController extends Controller{
     public function index(){
@@ -11,8 +13,8 @@ class ReservasController extends Controller{
         $model = new ReservasModel();
 
         $data = [
-            'reserva' => $model->join('cliente', 'cliente.idCliente = reserva.idCliente')
-            ->join('usuarios', 'usuarios.id = reserva.idUser')
+            'reserva' => $model->select('reserva.idReserva,reserva.idCliente,reserva.idUser,DATE_FORMAT(reserva.created_at, "%Y-%m-%d") as fecha,c.dni,concat(c.nombre," ",c.apellidoPaterno," ",c.apellidoMaterno) as nombreC,u.nombre as nombreU')->join('cliente as c', 'c.idCliente = reserva.idCliente')
+            ->join('usuarios as u', 'u.id = reserva.idUser')
             ->orderBy('idReserva','DESC')->paginate(10, 'group1'),
             'pager' => $model->pager
         ];
@@ -21,6 +23,58 @@ class ReservasController extends Controller{
     }
 
     public function reservar(){
-        return view('reservas/reservar_hab');
+        $habitacion=new HabitacionModel();
+        $datos['habitaciones']=$habitacion->getHabitaciones();
+        $datos['tipos']=$habitacion->getTipos();
+        return view('reservas/reservar_hab',$datos);
+    }
+
+    public function guardar(){
+        $idCliente= $_POST['idCliente'];
+        $cant=$_POST['cant'];
+        $tipo = $_POST['tipo'];
+        $hab = $_POST['hab'];
+        $fechaI = $_POST['fechaI'];
+        $fechaF = $_POST['fechaF'];
+        //print_r($fechaI);
+        if(!empty($idCliente)){
+            //validamos si existe un campo vacio
+            if($this->validar_campo($tipo) && $this->validar_campo($hab) && $this->validar_campo($fechaI) && $this->validar_campo($fechaF)) {
+                $datoReserva=[
+                    'idCliente' => $idCliente,
+                    'idUser' => session("id")
+                ];   
+                $reserva=new ReservasModel();
+                $reserva->insert($datoReserva);
+                $id_reserva=$reserva->insertID();
+                $detalleR=new ReservasModel();
+                $habitacion=new HabitacionModel();
+                $tipoHab=new TipoHabModel();
+                for($i=0;$i<$cant;$i++){
+                    $fecha1 = date_create_from_format('Y-m-d', $fechaI[$i]);
+                    $fecha2 = date_create_from_format('Y-m-d', $fechaF[$i]);
+                    $dias= $fecha2->diff($fecha1)->format('%d');
+                    $precio=$tipoHab->obtener_precio($tipo[$i],$dias);
+                    $detalleR->agregar_detalle($id_reserva,$hab[$i],$fechaI[$i],$fechaF[$i],$dias,$precio);
+                    $habitacion->update($hab[$i],['idEstado' =>3]);
+                }
+                echo json_encode(['respuesta' => true,'mensaje' =>'Se registro la(s) reserva(s) correctamente']);
+            }else{
+                echo json_encode(['respuesta' => false,'mensaje' =>'No se pudo realizar la reserva']);
+            }
+            //echo json_encode(['respuesta' => true,'mensaje' =>'Se registro la reserva correctamente']);
+
+        }else{
+            echo json_encode(['respuesta' => false,'mensaje' =>'No se pudo realizar la reserva']);
+        }
+    }
+
+    public function validar_campo($arreglo){
+        foreach($arreglo as $valor){
+            if(empty($valor)){
+                return false;
+            }
+        }
+        return true;
     }
 }

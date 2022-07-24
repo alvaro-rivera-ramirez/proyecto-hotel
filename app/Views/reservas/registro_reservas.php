@@ -7,6 +7,7 @@
     <?php include "include/link.php" ?>
 </head>
 <body>
+    <?php print_r($reserva);?>
    <div class="d-flex">
         <?php include "include/navLateral.php"?>     
        
@@ -45,12 +46,10 @@
                                 <thead class="bg-dark text-light">
                                     <tr class="text-center">
                                         <th>N°</th>
-                                        <th>Id. Cliente</th>
-                                        <th>Nombre</th>
-                                        <th>Id. Emp.</th>
-                                        <th>Num. Hab.</th>
-                                        <th>Fecha Inicio</th>
-                                        <th>Fecha Fin</th>
+                                        <th>DNI</th>
+                                        <th>Nombre Completo</th>
+                                        <th>Usuario</th>
+                                        <th>Fecha</th>
                                         <th>Monto Total</th>
                                         <th>Estado</th>
                                         <th>Editar</th>
@@ -63,11 +62,9 @@
                                 <tr class="text-center">
                                         <td><?= $reservaciones['idReserva']?></td>
                                         <td><?= $reservaciones['dni']?></td>
-                                        <td><?= $reservaciones['nombre']?></td>
-                                        <td>1000</td>
-                                        <td>101</td>
-                                        <td>14/05/22</td>
-                                        <td>16/05/22</td>
+                                        <td><?= $reservaciones['nombreC']?></td>
+                                        <td><?= $reservaciones['nombreU']?></td>
+                                        <td><?= $reservaciones['fecha']?></td>
                                         <td>100.00</td>
                                         <td>Pagado</td>
                                         <td>

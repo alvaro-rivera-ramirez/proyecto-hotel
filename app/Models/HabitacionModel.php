@@ -15,7 +15,7 @@ class HabitacionModel extends Model{
     protected $deletedField  = 'deleted_at';
     protected $allowedFields=['numero','idTipo','idEstado'];
 
-    public function getHabitaciones(){
+    public function getAll(){
         $user=$this->db->table($this->table);
         return $user->get()->getResultArray();
     }
@@ -37,5 +37,15 @@ class HabitacionModel extends Model{
         $con->where('h.deleted_at IS NULL');
         $con->groupBy('e.estado')->orderBy('e.idEstado','ASC');
         return $con->get()->getResultArray();
+    }
+
+    public function getHabitaciones(){
+        $query=$this->db->query('SELECT idHab,numero,idTipo FROM habitacion WHERE deleted_at IS NULL AND idEstado=1');
+        return $query->getResultArray();
+    }
+
+    public function getTipos(){
+        $query=$this->db->query('SELECT idTipo,tipo,precio FROM tipo_habitacion WHERE deleted_at IS NULL');
+        return $query->getResultArray();
     }
 }
