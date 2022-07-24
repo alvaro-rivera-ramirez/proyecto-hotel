@@ -71,6 +71,7 @@
                     <section>
                         <div class="row g-2" id="datosCliente">
                             <h4 class="pt-4"><i class="far fa-address-card"></i> Información Cliente</h4>
+                            <div class="" role="alert" id="alerta_dni"> </div>
                             <form class="col-md-4" id="form_cliente" method='POST'>
                                 <label for="cli_dni" class="bmd-label-floating">DNI</label>
                                 <div class="nh input-group ">
@@ -82,110 +83,83 @@
                             </form>
                             <div class="col-md-4">
                                 <label for="cli_nombre" class="bmd-label-floating">Nombre</label>
-                                <input type="text" id="cli_nombre" value="">
+                                <input type="text" id="cli_nombre" class="form-control">
                             </div>
                             <div class="col-md-4">
-                                <div class="form-group">
-                                    <label for="cli_apellido" class="bmd-label-floating">Apellidos</label>
-                                    <input type="text" name="cli_apellido" id="cli_apellido" maxlength="40">
-                                </div>
+                                <label for="cli_apellido" class="bmd-label-floating">Apellidos</label>
+                                <input type="text" name="cli_apellido" id="cli_apellido" class="form-control">
                             </div>
                             <div class="col-md-4">
-                                <div class="form-group">
-                                    <label for="cli_telefono" class="bmd-label-floating">Teléfono</label>
-                                    <input type="text" name="cli_telefono_reg" id="cli_telefono" maxlength="15">
-                                </div>
+                                <label for="cli_telefono" class="bmd-label-floating">Teléfono</label>
+                                <input type="text" name="cli_telefono_reg" id="cli_telefono" class="form-control">
+
                             </div>
 
                             <div class="col-md-4">
-                                <div class="form-group">
-                                    <label for="cli_email" class="bmd-label-floating">Email</label>
-                                    <input type="email" name="cli_email" id="cli_email">
-                                </div>
+                                <label for="cli_email" class="bmd-label-floating">Email</label>
+                                <input type="email" name="cli_email" id="cli_email" class="form-control">
                             </div>
                         </div>
-                        
-                        <form>
+
+                        <form id="form_reserva" method='POST'>
                             <div class="row g-2" id="detalle">
                                 <h4 class="pt-4"><i class="far fa-address-card"></i> Datos de Alojamiento</h4>
                                 <div class="col-md-12">
                                     <label for="cant-hab">Número Habitaciones</label>
                                     <div class="input-group">
-                                        <input type="text" id="cant-hab"class="form-control" value="1">
+                                        <input type="text" id="cant-hab" class="form-control" value="1" name="cant-hab"
+                                            disabled>
                                         <button class="btn-buscar btn btn-dark" id="agregar"><i
                                                 class="fa-solid fa-plus"></i></button>
                                     </div>
                                 </div>
-                                <div class="row g-2 clonar">
+                                <div class="row g-2">
                                     <div class="col-md-4">
-                                        <label for="inputTipo">Tipo habitación</label>
-                                        <select id="inputTipo" class="form-select" name="tipo[]">
-                                            <option selected>...</option>
+                                        <label for="TipoHab1">Tipo habitación</label>
+                                        <select id="TipoHab1" class="form-select" name="tipo[]"
+                                            onchange="filtroHab(this)">
                                         </select>
                                     </div>
                                     <div class="col-md-4">
-                                        <label for="inputHab">Habitación</label>
-                                        <select id="inputHab" class="form-select" name="hab[]">
-                                            <option selected>...</option>
+                                        <label for="Hab1">Habitación</label>
+                                        <select id="Hab1" class="form-select" name="hab[]">
+                                            <option selected> Seleccione una opción </option>
                                         </select>
                                     </div>
                                     <div class="col-md-3">
-                                        <label for="inputNum">Noches</label>
-                                        <input type="text" id="inputNum" class="form-control">
+                                        <label for="Num1">Noches</label>
+                                        <input type="text" id="Num1" class="form-control" disabled readonly>
                                     </div>
                                     <div class="col-md-1 d-flex align-items-end justify-content-center">
-                                        <button class="btn btn-dark puntero ocultar" type="button" onclick="eliminar(this)"><i class="fa-solid fa-trash-can"></i>
-                                                    </button>
-                                    </div>           
-                                    <div class="col-md-4">
-                                        <label for="inputApellido">Fecha Ingreso</label>
-                                        <input type="date" id="inputApellido" class="form-control" name="fechaI[]">
+                                        <button class="btn btn-dark puntero ocultar" type="button"
+                                            onclick="eliminar(this)"><i class="fa-solid fa-trash-can"></i>
+                                        </button>
                                     </div>
                                     <div class="col-md-4">
-                                        <label for="inputAddress">Fecha Salida</label>
-                                        <input type="date" id="inputAddress" placeholder="Calle/avenida"
-                                        class="form-control" name="fechaF[]">
+                                        <label for="fechaI1">Fecha Ingreso</label>
+                                        <input type="date" id="fechaI1" class="form-control" name="fechaI[]">
+                                    </div>
+                                    <div class="col-md-4">
+                                        <label for="fechaF1">Fecha Salida</label>
+                                        <input type="date" id="fechaF1" class="form-control" name="fechaF[]">
                                     </div>
                                     <div class="col-md-3 input-costo">
-                                        <label for="inputCosto">Costo (S/.)</label>
-                                        <input placeholder="00,00" type="text" class="form-control" id="inputCosto" disabled
-                                        readonly>
+                                        <label for="costo1">Costo (S/.)</label>
+                                        <input placeholder="00,00" type="text" class="form-control" id="costo1" disabled
+                                            readonly>
                                     </div>
                                 </div>
                             </div>
 
-                    
+
 
 
                             <!------botones----------->
                             <div class="col-12 pt-4">
-                                <div class="d-flex">
-                                    <div class="w-100 d-flex justify-content-end">
-                                        <button type="button" class="btn-guardar btn btn-success" data-bs-toggle="modal"
-                                            data-bs-target="#exampleModal">
-                                            Guardar
-                                        </button>
-                                        <!--- modal de confirmación----->
-                                        <div class="m-confirmacion modal fade" tabindex="-1" id="exampleModal"
-                                            aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                            <div class="modal-dialog">
-                                                <div class="modal-content">
-                                                    <div class="modal-body">
-                                                        <h5 class="modal-title mb-2">Confirmación</h5>
-                                                        <p class="mb-3"> ¿Estas seguro de guardar?</p>
-                                                        <div class="d-flex justify-content-end">
-                                                            <button type="submit"
-                                                                class="btn-guardar me-1">Guardar</button>
-                                                            <button type="button" class="btn-cancelar"
-                                                                data-bs-dismiss="modal">Cerrar</button>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <!--- modal ----->
-                                    </div>
+                                <div class="w-100 d-flex justify-content-end">
+                                    <button type="button" class="btn-guardar btn btn-success" id="enviar_reserva">
+                                        Guardar
+                                    </button>
                                 </div>
                             </div>
 
@@ -198,34 +172,143 @@
     </div>
     <?php include "include/script.php"?>
     <script>
+    let Jhabitacion = <?= json_encode($habitaciones);?>;
+    let Jtipo = <?= json_encode($tipos);?>;
+    let $tipo = document.getElementById('TipoHab1');
+    let boton_enviar = document.getElementById('enviar_reserva');
+    let id_cliente = '';
+    let cont = 1;
+    mostrarTipoHab(Jtipo, 'idTipo', 'tipo', $tipo)
+
+    //Mostrar el select TipoHabitacion y Habitacion
+    function mostrarTipoHab(datosJson, id, atributo, opcion) {
+        let elementos = '<option selected> Seleccione una opción </option>'
+        opcion.innerHTML = ''
+        let tam = Object.keys(datosJson).length;
+        for (let i = 0; i < datosJson.length; i++) {
+            elementos += '<option value="' + datosJson[i][id] + '">' + datosJson[i][atributo] + '</option>'
+        }
+        opcion.innerHTML = elementos
+    }
+
+    //Filtramos el selector de habitaciones
+    const filtroHab = (e) => {
+        let aux = e.getAttribute("id")
+        let $habitacion = document.getElementById('Hab' + aux.charAt(aux.length - 1))
+        let valor = e.value
+        let habitacionFilter = Jhabitacion.filter(f => f.idTipo == valor)
+        mostrarTipoHab(habitacionFilter, 'idHab', 'numero', $habitacion)
+    };
+
+    boton_enviar.addEventListener('click', e => {
+        e.preventDefault();
+        if (id_cliente != '') {
+            Swal.fire({
+                title: '¿Estas seguro de registrar la reserva?',
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Guardar'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    let form_r = document.getElementById('form_reserva');
+                    let form_c = document.getElementById('form_cliente');
+                    let reserva = new FormData(form_r);
+                    reserva.append("idCliente", id_cliente);
+                    reserva.append("cant", cont);
+                    for (const value of reserva.values()) {
+                        console.log(value);
+                    }
+                    fetch('<?= base_url('guardar_reserva') ?>', {
+                        method: 'POST',
+                        mode: 'no-cors',
+                        headers: {
+                            "Content-Type": "application/json",
+                            "X-Requested-With": "XMLHttpRequest"
+                        },
+                        body: reserva
+                    }).then(res => res.json()).then(res => {
+                        if (res['respuesta']) {
+                            Swal.fire(
+                                'Good job!',
+                                res['mensaje'],
+                                'success'
+                            ).then((value) => {
+                                location.reload();
+                            });
+                        } else {
+                            Swal.fire(
+                                'Error!',
+                                res['mensaje'],
+                                'error'
+                            );
+                        }
+                    })
+                }
+            })
+        } else {
+            let alerta = document.getElementById('alerta_dni')
+            alerta.setAttribute('class', 'alert alert-danger');
+            alerta.innerHTML = 'Debe colocar el dni del cliente';
+        }
+    })
+    </script>
+    <script>
     let agregar = document.getElementById('agregar');
     let detalleHab = document.getElementById('detalle');
-    const cont_hab=document.getElementById('cant-hab');
-    let cont=1;
+    const cont_hab = document.getElementById('cant-hab');
+    //let cont = 1;
     agregar.addEventListener('click', e => {
         e.preventDefault();
-        
-        let clonado = document.querySelector('.clonar');
-        let clon = clonado.cloneNode(true);
-        detalleHab.appendChild(clon).classList.remove('clonar');
-        cont_hab.setAttribute('value',++cont);
-        
-        let remover = detalleHab.lastChild.childNodes[7].querySelectorAll('button');
-        remover[0].classList.remove('ocultar');
+        cont++;
+        let hab = document.createElement('div');
+        hab.setAttribute('class', 'row g-2')
+        hab.innerHTML = `<div class="col-md-4">
+                                        <label for="TipoHab${cont}">Tipo habitación</label>
+                                        <select id="TipoHab${cont}" class="form-select" name="tipo[]" onchange="filtroHab(this)">
+                                        </select>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <label for="Hab${cont}">Habitación</label>
+                                        <select id="Hab${cont}" class="form-select" name="hab[]">
+                                        <option selected> Seleccione una opción </option>  
+                                        </select>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <label for="Num${cont}">Noches</label>
+                                        <input type="text" id="Num${cont}" class="form-control" disabled readonly>
+                                    </div>
+                                    <div class="col-md-1 d-flex align-items-end justify-content-center">
+                                        <button class="btn btn-dark puntero" type="button" onclick="eliminar(this)"><i class="fa-solid fa-trash-can"></i>
+                                                    </button>
+                                    </div>           
+                                    <div class="col-md-4">
+                                        <label for="fechaI${cont}">Fecha Ingreso</label>
+                                        <input type="date" id="fechaI${cont}" class="form-control" name="fechaI[]">
+                                    </div>
+                                    <div class="col-md-4">
+                                        <label for="fechaF${cont}">Fecha Salida</label>
+                                        <input type="date" id="fechaF${cont}" class="form-control" name="fechaF[]">
+                                    </div>
+                                    <div class="col-md-3 input-costo">
+                                        <label for="costo${cont}">Costo (S/.)</label>
+                                        <input placeholder="00,00" type="text" class="form-control" id="costo${cont}" disabled
+                                        readonly>
+                                    </div>`
+        detalleHab.appendChild(hab)
+        cont_hab.setAttribute('value', cont);
+        mostrarTipoHab(Jtipo, 'idTipo', 'tipo', document.getElementById('TipoHab' + cont))
     });
-    
-    /*detalleHab.addEventListener('click',e=>{
-        e.preventDefault();
-        if(e.target.classList.contains('puntero')){
-            let habitacion=e.target.parentNode.parentNode;
-            detalleHab.removeChild(habitacion);
-        }
-    }); */
-    const eliminar =(e) =>{
-        let hab=e.parentNode.parentNode;
+
+    //Eliminar una habitacion
+    const eliminar = (e) => {
+        let hab = e.parentNode.parentNode;
         detalleHab.removeChild(hab);
-        cont_hab.setAttribute('value',--cont);
-    }
+        cont_hab.setAttribute('value', --cont);
+    };
+
+
     document.getElementById('buscar').addEventListener('click', e => {
         e.preventDefault();
         let form = document.getElementById('form_cliente');
@@ -239,16 +322,20 @@
             },
             body: dataCliente
         }).then(datos => datos.json()).then(datosForm => {
+            id_cliente = datosForm.idCliente;
             document.getElementById('cli_nombre').setAttribute('value', datosForm.nombre);
             document.getElementById('cli_apellido').setAttribute('value', datosForm.apellidoPaterno +
-                " " + datosForm.apellidoMaterno);
+                " " + ((datosForm.apellidoMaterno) ? datosForm.apellidoMaterno : ''));
             document.getElementById('cli_telefono').setAttribute('value', datosForm.telefono);
             document.getElementById('cli_email').setAttribute('value', datosForm.email);
+            document.getElementById('cli_nombre').setAttribute('disabled', '');
+            document.getElementById('cli_apellido').setAttribute('disabled', '');
+            document.getElementById('cli_telefono').setAttribute('disabled', '');
+            document.getElementById('cli_email').setAttribute('disabled', '');
             console.log(datosForm);
 
         })
-    });
-
+    })
     </script>
 </body>
 

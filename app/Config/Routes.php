@@ -62,6 +62,7 @@ $routes->get('perfil', 'UsuariosController::configurarPerfil');
 $routes->get('actualizarPassword', 'UsuariosController::configurarPassword');
 $routes->get('salir', 'Inicio::salir');
 $routes->get('reservar', 'ReservasController::reservar');
+$routes->post('guardar_reserva', 'ReservasController::guardar');
 
 $routes->get('/lista-habitaciones', 'HabitacionController::index');
 $routes->get('nueva_habitacion', 'HabitacionController::crear');
