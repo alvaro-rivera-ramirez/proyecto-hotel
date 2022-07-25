@@ -31,12 +31,8 @@ class HabitacionModel extends Model{
     }
 
     public function countEstadoHab(){
-        $con=$this->db->table("habitacion as h");
-        $con->select('e.idEstado,e.estado, count(h.idEstado) as cantidad');
-        $con->join('estado_hab e','h.idEstado=e.idEstado','right');
-        $con->where('h.deleted_at IS NULL');
-        $con->groupBy('e.estado')->orderBy('e.idEstado','ASC');
-        return $con->get()->getResultArray();
+        $con=$this->db->query('SELECT e.*,count(h.idHab) as cantidad FROM estado_hab e LEFT JOIN (SELECT hab.* FROM habitacion hab WHERE hab.deleted_at IS NULL)as h ON e.idEstado=h.idEstado GROUP BY e.idEstado ORDER BY e.idEstado');
+        return $con->getResultArray();
     }
 
     public function getHabitaciones(){
