@@ -56,8 +56,7 @@ class ClientesController extends Controller{
         ];
         $cliente=new ClientesModel();
         $cliente->insert($data);
-
-        return redirect()->to(base_url('nuevo_cliente'));
+        echo json_encode(['respuesta' => true,'mensaje' =>'Cliente registrado exitosamente']);
     }
 
     public function buscar(){

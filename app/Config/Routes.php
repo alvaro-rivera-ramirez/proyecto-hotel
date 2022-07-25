@@ -69,7 +69,7 @@ $routes->get('nueva_habitacion', 'HabitacionController::crear');
 $routes->post('guardar_habitacion', 'HabitacionController::guardar');
 $routes->post('actualizar_habitacion', 'HabitacionController::actualizar');
 $routes->get('editar_habitacion/(:num)', 'HabitacionController::editar/$1');
-$routes->get('eliminar_habitacion/(:num)', 'HabitacionController::borrar/$1');
+$routes->post('eliminar_habitacion/(:num)', 'HabitacionController::borrar/$1');
 
 $routes->get('/lista-tipohab', 'TipoHabController::index');
 $routes->get('/lista_reservas', 'ReservasController::index');

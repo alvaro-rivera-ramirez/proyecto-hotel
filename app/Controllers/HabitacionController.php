@@ -64,7 +64,7 @@ class HabitacionController extends Controller{
 
         $habitacion->insert($data);
 
-        return redirect()->to(base_url('nueva_habitacion'));
+        echo json_encode(['respuesta' => true,'mensaje' =>'Se ha actualizado la habitación correctamente']);
 
     }
 
@@ -106,13 +106,13 @@ class HabitacionController extends Controller{
 
         $habitacion->update($hab_id,$data);
 
-        return redirect()->route('lista-habitaciones');
+        echo json_encode(['respuesta' => true,'mensaje' =>'Se ha actualizado la habitación correctamente']);
 
 
     }
     public function borrar($id=null){
         $hab=new HabitacionModel();
         $hab->where('idHab',$id)->delete($id);
-        return redirect()->route('lista-habitaciones');
+        echo json_encode(['respuesta' => true]);
     }
 }
