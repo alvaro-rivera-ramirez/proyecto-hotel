@@ -33,7 +33,7 @@
                 </div>
 
                 <div class="container-fluid">
-                    <form action="<?= base_url('guardar_habitacion')?>" class="row g-3" method="POST">
+                    <form id="form_hab" class="row g-3" method="POST">
                         <fieldset>
                             <legend><i class="far fa-plus-square"></i> Información</legend>
                             <div class="container-fluid">
@@ -48,7 +48,7 @@
                                     <div class="col-12 col-md-4">
                                         <div class="form-group">
                                             <label for="precio_hab" class="bmd-label-floating">Precio</label>
-                                            <input type="text" disabled="" class="form-control" name="precio_hab" id="precio_hab">
+                                            <input type="text"  class="form-control" name="precio_hab" id="precio_hab">
                                         </div>
                                     </div>
                                     <div class="col-12 col-md-4">
@@ -70,7 +70,7 @@
                          <div class="d-flex justify-content-end mt-4">
                                 <button type="reset" class="btn-limpiar me-2"><i class="fa-solid fa-brush me-1"></i> Limpiar</button>
                             
-                            <button type="submit" class="btn-guardar" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                            <button type="submit" class="btn-guardar" id="new_hab">
                             <i class="fa-regular fa-floppy-disk me-1"></i> Guardar</button>
                         </div>
                         <!-----BOTONES----->
@@ -84,5 +84,64 @@
    </div>
 
    <?php include "include/script.php"?>
+   <script>
+        let boton_enviar = document.getElementById('new_hab');
+        let num_hab = document.getElementById('num_hab');
+        let precio_hab = document.getElementById('precio_hab');
+        let tipo_hab = document.getElementById('tipo_hab');
+        
+
+        boton_enviar.addEventListener('click', e => {
+            e.preventDefault();
+            if (num_hab.value === '' || num_hab.value === null || precio_hab.value === '' ||
+             precio_hab.value === null || tipo_hab.value === '' || tipo_hab.value === null) 
+            {
+                let timerInterval
+                Swal.fire({
+                    icon: 'warning',
+                    title: 'COMPLETE TODOS LOS CAMPOS REQUERIDOS POR FAVOR',
+                    timer: 1500,
+                })
+
+            } else {
+                Swal.fire({
+                    title: 'ESTÁ SEGURO DE REGISTRAR ESTA NUEVA HABITACIÓN?',
+                    text: "Está a punto de registrar una NUEVA habitación",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Sí, estoy seguro',
+                    cancelButtonText: 'Cancelar',
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        let form_upd = document.getElementById('form_hab');
+                        let data = new FormData(form_upd);
+
+                        fetch('<?= base_url('guardar_habitacion')?>', {
+                                method: 'POST',
+                                mode: 'no-cors',
+                                headers: {
+                                    "Content-Type": "application/json",
+                                    "X-Requested-With": "XMLHttpRequest"
+                                },
+                                body: data
+
+                            }).then(res => res.json()).then(res => {
+                            if (res['respuesta']) {
+                                Swal.fire(
+                                    'HABITACIÓN REGISTRADA EXITOSAMENTE',
+                                    res['mensaje'],
+                                    'success'
+                                ).then((value) => {
+                                    location.reload();
+                                });
+                            } 
+                        })
+                    }
+                })
+            }
+        })
+    </script>
 </body>
 </html>

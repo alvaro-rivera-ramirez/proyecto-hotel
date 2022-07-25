@@ -63,7 +63,7 @@
                          <div class="d-flex justify-content-end mt-4">
                                 <button type="reset" class="btn-limpiar me-2"><i class="fa-solid fa-brush me-1"></i> Limpiar</button>
                             
-                            <button type="submit" class="btn-guardar" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                            <button type="submit" class="btn-guardar" id="new_hab">
                             <i class="fa-regular fa-floppy-disk me-1"></i> Guardar</button>
                         </div>
                         <!-----BOTONES----->
@@ -76,5 +76,67 @@
    </div>
 
    <?php include "include/script.php"?>
+   <script>
+        let boton_enviar = document.getElementById('new_hab');
+        let dni = document.getElementById('cli_dni_reg');
+        let nombre = document.getElementById('cli_nombre_reg');
+        let paterno = document.getElementById('cli_apellidop_reg');
+        let materno = document.getElementById('cli_apellidom_reg');
+        let fono = document.getElementById('cli_telefono_reg');
+        let correo = document.getElementById('cli_email_reg');
+        
+
+        boton_enviar.addEventListener('click', e => {
+            e.preventDefault();
+            if (dni.value === '' || dni.value === null || nombre.value === '' || nombre.value === null || paterno.value === '' || paterno.value === null
+            || materno.value === '' || materno.value === null || fono.value === '' || fono.value === null || correo.value === '' || correo.value === null) 
+            {
+                let timerInterval
+                Swal.fire({
+                    icon: 'warning',
+                    title: 'COMPLETE TODOS LOS CAMPOS REQUERIDOS POR FAVOR',
+                    timer: 1500,
+                })
+
+            } else {
+                Swal.fire({
+                    title: 'ESTÁ SEGURO DE REGISTRAR ESTE NUEVO CLIENTE?',
+                    text: "Está a punto de registrar un NUEVO cliente",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Sí, estoy seguro',
+                    cancelButtonText: 'Cancelar',
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        let form_upd = document.getElementById('reg_clie');
+                        let data = new FormData(form_upd);
+
+                        fetch('<?= base_url('registrar_cliente') ?>', {
+                                method: 'POST',
+                                mode: 'no-cors',
+                                headers: {
+                                    "Content-Type": "application/json",
+                                    "X-Requested-With": "XMLHttpRequest"
+                                },
+                                body: data
+
+                            }).then(res => res.json()).then(res => {
+                            if (res['respuesta']) {
+                                Swal.fire(
+                                    'CLIENTE REGISTRADO EXITOSAMENTE',
+                                    res['mensaje'],
+                                    'success'
+                                ).then((value) => {
+                                    location.reload();
+                                });
+                            } 
+                        })
+                    }
+                })
+            }
+        })
+    </script>
 </body>
 </html>

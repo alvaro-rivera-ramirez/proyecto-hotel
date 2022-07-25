@@ -7,7 +7,7 @@
     <?php include "include/link.php" ?>
 </head>
 <body>
-    <?php print_r($reserva);?>
+    <!-- print_r($reserva);?> -->
    <div class="d-flex">
         <?php include "include/navLateral.php"?>     
        

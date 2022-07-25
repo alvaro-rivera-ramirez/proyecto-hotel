@@ -39,7 +39,7 @@
                         </div>
                         
                         <section class=" row cli-content">
-                        <form action="<?= base_url('registrar_cliente') ?>" class="row g-3" autocomplete="off" method="post">
+                        <form id="reg_clie" class="row g-3" autocomplete="off" method="post">
                              <legend><i class="far fa-address-card"></i> Información Personal</legend>
                              
                             <div class="container-fluid">
@@ -93,27 +93,9 @@
                               <div class="col-12 pt-4">
                                <div class="d-flex">
                                 <div class="w-100 d-flex justify-content-end">
-                                   <button type="button" class="btn-guardar" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                   <button type="button" class="btn-guardar"id="guardar">
                                       Guardar
-                                    </button>
-                                    <!--- modal de confirmación----->
-                                    <div class="m-confirmacion modal fade" tabindex="-1" id="exampleModal" aria-labelledby="exampleModalLabel" aria-hidden="true" >
-                                      <div class="modal-dialog">
-                                        <div class="modal-content">
-                                          <div class="modal-body">
-                                           <h5 class="modal-title mb-2" >Confirmación</h5>
-                                           <p class="mb-3"> ¿Estas seguro de guardar?</p>
-                                             <div class="d-flex justify-content-end">
-                                                <button type="submit" class="btn-guardar me-1">Guardar</button>
-                                                <button type="button" class="btn-cancelar" data-bs-dismiss="modal">Cerrar</button>
-                                             </div>
-                                          </div>
-                                        </div>
-                                      </div>
-                                    </div>
-                                    
-                                    <!--- modal ----->
-                                    <button type="reset" class="btn-cancelar ms-3">Cancelar</button>
+                                    </button>                                    
                                 </div>
                                </div>
                               </div>
@@ -125,5 +107,67 @@
         </div>
    </div>
     <?php include "include/script.php"?>
+    <script>
+        let boton_enviar = document.getElementById('guardar');
+        let dni = document.getElementById('cli_dni_reg');
+        let nombre = document.getElementById('cli_nombre_reg');
+        let paterno = document.getElementById('cli_apellidop_reg');
+        let materno = document.getElementById('cli_apellidom_reg');
+        let fono = document.getElementById('cli_telefono_reg');
+        let correo = document.getElementById('cli_email_reg');
+        
+
+        boton_enviar.addEventListener('click', e => {
+            e.preventDefault();
+            if (dni.value === '' || dni.value === null || nombre.value === '' || nombre.value === null || paterno.value === '' || paterno.value === null
+            || materno.value === '' || materno.value === null || fono.value === '' || fono.value === null || correo.value === '' || correo.value === null) 
+            {
+                let timerInterval
+                Swal.fire({
+                    icon: 'warning',
+                    title: 'COMPLETE TODOS LOS CAMPOS REQUERIDOS POR FAVOR',
+                    timer: 1500,
+                })
+
+            } else {
+                Swal.fire({
+                    title: 'ESTÁ SEGURO DE REGISTRAR ESTE NUEVO CLIENTE?',
+                    text: "Está a punto de registrar un NUEVO cliente",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Sí, estoy seguro',
+                    cancelButtonText: 'Cancelar',
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        let form_upd = document.getElementById('reg_clie');
+                        let data = new FormData(form_upd);
+
+                        fetch('<?= base_url('registrar_cliente') ?>', {
+                                method: 'POST',
+                                mode: 'no-cors',
+                                headers: {
+                                    "Content-Type": "application/json",
+                                    "X-Requested-With": "XMLHttpRequest"
+                                },
+                                body: data
+
+                            }).then(res => res.json()).then(res => {
+                            if (res['respuesta']) {
+                                Swal.fire(
+                                    'CLIENTE REGISTRADO EXITOSAMENTE',
+                                    res['mensaje'],
+                                    'success'
+                                ).then((value) => {
+                                    location.reload();
+                                });
+                            } 
+                        })
+                    }
+                })
+            }
+        })
+    </script>
 </body>
 </html>

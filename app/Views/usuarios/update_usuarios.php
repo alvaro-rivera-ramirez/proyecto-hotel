@@ -210,32 +210,9 @@
                             <div class="d-flex justify-content-end">
 
 
-                                <button type="submit" class="btn-guardar">
+                                <button type="submit" class="btn-guardar" id="act_usuario">
                                     <i class="fa-regular fa-floppy-disk me-1"></i> Guardar</button>
                             </div>
-
-
-                            <!---- confirmación--------->
-                            <!--- modal de confirmación----->
-                            <!-- <div class="m-confirmacion modal fade" tabindex="-1" id="exampleModal"
-                                aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                <div class="modal-dialog">
-                                    <div class="modal-content">
-                                        <div class="modal-body">
-                                            <h5 class="modal-title mb-2">Confirmación</h5>
-                                            <p class="mb-3"> ¿Estas seguro de guardar?</p>
-                                            <div class="d-flex justify-content-end">
-                                                <button type="submit" class="btn-guardar me-1">Guardar</button>
-                                                <button type="button" class="btn-cancelar"
-                                                    data-bs-dismiss="modal">Cerrar</button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div> -->
-
-                            <!--- modal ----->
-
                         </form>
                     </div>
                 </div>
@@ -248,40 +225,72 @@
     <?php include "include/script.php"?>
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script>
-        function logSubmit(e) {
+        let boton_enviar = document.getElementById('act_usuario');
+        let admin_clave = document.getElementById('admin_clave');
+        let admin_usuario = document.getElementById('admin_usuario');
 
-            event.preventDefault();
-            Swal.fire({
-                title: '¿Estás seguro que desea actualizar este registro?',
-                text: "Está a punto de actualizar este registro",
-                icon: 'warning',
-                showCancelButton: true,
-                confirmButtonColor: '#3085d6',
-                cancelButtonColor: '#d33',
-                confirmButtonText: 'Sí, estoy seguro',
-                cancelButtonText: 'Cancelar',
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    this.submit();
-                    Swal.fire(
-                        'Registro actualizado',
-                        'El registro ha sido eliminado',
-                        'success'
-                    )
-                } else {
-                    swal.fire(
-                        'No se ha actualizado el usuario',
-                        'Usted ha cancelado el proceso de actualización ',
-                        'error'
-                    )
-                }
-            })
 
-        }
+        boton_enviar.addEventListener('click', e => {
+            e.preventDefault();
+            if (admin_clave.value === '' || admin_clave.value === null || admin_usuario.value === '' ||
+                admin_usuario
+                .value === null) {
+                let timerInterval
+                Swal.fire({
+                    icon: 'warning',
+                    title: 'COMPLETE TODOS LOS CAMPOS REQUERIDOS POR FAVOR',
+                    timer: 1500,
+                })
 
-        const form = document.getElementById('upd_form');
-        form.addEventListener('submit', logSubmit);
+            } else {
+                Swal.fire({
+                    title: '¿Estás seguro que desea actualizar este usuario?',
+                    text: "Está a punto de actualizar este usuario",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Sí, estoy seguro',
+                    cancelButtonText: 'Cancelar',
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        let form_upd = document.getElementById('upd_form');
+                        let update = new FormData(form_upd);
+
+                        fetch('<?= base_url('actualizar_usuario ') ?>', {
+                                method: 'POST',
+                                mode: 'no-cors',
+                                headers: {
+                                    "Content-Type": "application/json",
+                                    "X-Requested-With": "XMLHttpRequest"
+                                },
+                                body: update
+
+                            }).then(res => res.json()).then(res => {
+                            console.log(res);
+                            console.log("prueb")
+                            if (res['respuesta']) {
+                                Swal.fire(
+                                    'Usuario actualizado!',
+                                    res['mensaje'],
+                                    'success'
+                                ).then((value) => {
+                                    location.reload();
+                                });
+                            } else {
+                                Swal.fire(
+                                    'Error!',
+                                    res['mensaje'],
+                                    'error'
+                                );
+                            }
+                        })
+                    }
+                })
+            }
+        })
     </script>
+    
 </body>
 
 </html>

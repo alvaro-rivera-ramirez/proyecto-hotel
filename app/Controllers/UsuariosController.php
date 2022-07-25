@@ -142,13 +142,15 @@ class UsuariosController extends Controller{
         $usuario_up=new UsuariosModel();
         $usuario_up->update($user_id,$data);
 
-        return redirect()->route('lista_usuarios')->with('msg','1');
+        // return redirect()->route('lista_usuarios')->with('msg','1');
+        echo json_encode(['respuesta' => true,'mensaje' =>'Se ha actualizado el usuario correctamente']);
     }
 
     public function borrar($id=null){
         $usuario=new UsuariosModel();
         $usuario->where('id',$id)->delete($id);
         return redirect()->route('lista_usuarios');
+        echo json_encode(['respuesta' => true,'mensaje' =>'Usuario eliminado con éxito']);
     }
     public function configurarPerfil(){
         return view('configuracion/perfil');

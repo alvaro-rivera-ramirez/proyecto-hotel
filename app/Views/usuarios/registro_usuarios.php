@@ -80,9 +80,8 @@
                                             </td>
                                             <td>
                                                 <a id="eli_usu" class="btn btn-danger"
-                                                    href=""
+                                                    href="<?=base_url('eliminar_usuario/'.$usuarios['id'])?>"
                                                     role="submit"><i class="fa-solid fa-trash-can"></i>
-                                                     <!-- base_url('eliminar_usuario/'.$usuarios['id'])  -->
                                                 </a>
                                             </td>
                                         </tr>
@@ -107,45 +106,10 @@
     <?php include "include/script.php"?>
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script type="text/javascript">
-        function logSubmit(e) {
+        // function logSubmit(e) {
 
-            e.preventDefault();
-            console.log("dentro");
-
-            Swal.fire({
-                title: '¿Estás seguro que desea eliminar este registro?',
-                text: "Está a punto de eliminar este registro",
-                icon: 'warning',
-                showCancelButton: true,
-                confirmButtonColor: '#3085d6',
-                cancelButtonColor: '#d33',
-                confirmButtonText: 'Sí, estoy seguro',
-                cancelButtonText: 'Cancelar',
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    this.click();
- 
-                    window.location.href = "<?= base_url('eliminar_usuario/'.$usuarios['id']) ?>";
-                    Swal.fire(
-                        'Registro eliminado',
-                        'El registro ha sido eliminado',
-                        'success'
-                    )
-                } else {
-                    swal.fire(
-                        'No se ha eliminado el usuario',
-                        'Usted ha cancelado el proceso de eliminación ',
-                        'error'
-                    )
-                }
-            })
-
-        }
-        console.log("fuera");
-        const form = document.getElementById('eli_usu');
-        form.addEventListener('click', logSubmit);
-
-        // function alert_eli() {
+        //     e.preventDefault();
+        //     console.log("dentro");
 
         //     Swal.fire({
         //         title: '¿Estás seguro que desea eliminar este registro?',
@@ -158,11 +122,9 @@
         //         cancelButtonText: 'Cancelar',
         //     }).then((result) => {
         //         if (result.isConfirmed) {
+        //             this.click();
 
-        //             const b = document.getElementById("eli_usu");
-        //             window.location.href = "";
-        //             // b.setAttribute("href","");
-        //             console.log("el usuario dio 2")
+        //             window.location.href = " base_url('eliminar_usuario/'.$usuarios['id']) ";
         //             Swal.fire(
         //                 'Registro eliminado',
         //                 'El registro ha sido eliminado',
@@ -178,6 +140,34 @@
         //     })
 
         // }
+        // console.log("fuera");
+        // const form = document.getElementById('eli_usu');
+        // form.addEventListener('click', logSubmit);
+    </script>
+
+    <script>
+        let a_eli = document.getElementById('eli_usu');
+
+        let admin_clave = document.getElementById('admin_clave');
+        let admin_usuario = document.getElementById('admin_usuario');
+
+
+        a_eli.addEventListener('click', e => {
+            e.preventDefault();
+
+            Swal.fire({
+                title: '¿Estás seguro que desea eliminar este registro?',
+                text: "Está a punto de eliminar este registro",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Sí, estoy seguro',
+                cancelButtonText: 'Cancelar',
+            }).then((result) => {
+                
+            })
+        })
     </script>
 </body>
 
