@@ -31,7 +31,7 @@
                                                 class="fas fa-plus fa-fw"></i> AGREGAR USUARIO</a></div>
                                     <div class="box-nav"> <a class="active" href="#"><i
                                                 class="fas fa-clipboard-list fa-fw"></i> LISTA DE USUARIOS</a> </div>
-                                    <div class="box-nav"> <a href="#"><i class="fa-solid fa-print"></i> IMPRIMIR</a>
+                                    <div class="box-nav"> <a href="http://localhost:8080/demo-pdf"><i class="fa-solid fa-print"></i> IMPRIMIR</a>
                                     </div>
                                     <div class="box-nav">
                                         <form class="d-flex">
@@ -79,10 +79,13 @@
                                                 </a>
                                             </td>
                                             <td>
-                                                <a id="eli_usu" class="btn btn-danger"
-                                                    href="<?=base_url('eliminar_usuario/'.$usuarios['id'])?>"
+                                                <!-- <a id="eli_usu" class="btn btn-danger"
+                                                    href=""
                                                     role="submit"><i class="fa-solid fa-trash-can"></i>
-                                                </a>
+                                                </a> -->
+                                                <button class="btn btn-danger"
+                                                    onclick="Eliminar(<?= $usuarios['id']?>)"><i
+                                                        class="fa-solid fa-trash-can"></i></button>
                                             </td>
                                         </tr>
                                         <?php endforeach;?>
@@ -105,69 +108,50 @@
 
     <?php include "include/script.php"?>
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script type="text/javascript">
-        // function logSubmit(e) {
-
-        //     e.preventDefault();
-        //     console.log("dentro");
-
-        //     Swal.fire({
-        //         title: '¿Estás seguro que desea eliminar este registro?',
-        //         text: "Está a punto de eliminar este registro",
-        //         icon: 'warning',
-        //         showCancelButton: true,
-        //         confirmButtonColor: '#3085d6',
-        //         cancelButtonColor: '#d33',
-        //         confirmButtonText: 'Sí, estoy seguro',
-        //         cancelButtonText: 'Cancelar',
-        //     }).then((result) => {
-        //         if (result.isConfirmed) {
-        //             this.click();
-
-        //             window.location.href = " base_url('eliminar_usuario/'.$usuarios['id']) ";
-        //             Swal.fire(
-        //                 'Registro eliminado',
-        //                 'El registro ha sido eliminado',
-        //                 'success'
-        //             )
-        //         } else {
-        //             swal.fire(
-        //                 'No se ha eliminado el usuario',
-        //                 'Usted ha cancelado el proceso de eliminación ',
-        //                 'error'
-        //             )
-        //         }
-        //     })
-
-        // }
-        // console.log("fuera");
-        // const form = document.getElementById('eli_usu');
-        // form.addEventListener('click', logSubmit);
-    </script>
-
     <script>
-        let a_eli = document.getElementById('eli_usu');
+        function Eliminar(id) {
 
-        let admin_clave = document.getElementById('admin_clave');
-        let admin_usuario = document.getElementById('admin_usuario');
-
-
-        a_eli.addEventListener('click', e => {
-            e.preventDefault();
-
+            console.log(id);
             Swal.fire({
-                title: '¿Estás seguro que desea eliminar este registro?',
+                title: '¿Está seguro de eliminar?',
                 text: "Está a punto de eliminar este registro",
                 icon: 'warning',
                 showCancelButton: true,
                 confirmButtonColor: '#3085d6',
                 cancelButtonColor: '#d33',
-                confirmButtonText: 'Sí, estoy seguro',
-                cancelButtonText: 'Cancelar',
+                confirmButtonText: 'Confirmar',
+                cancelButtonText: 'Cancelar'
             }).then((result) => {
-                
+                if (result.isConfirmed) {                    
+                    fetch('http://localhost/proyecto-hotel/public/eliminar_usuario/' + id  , {
+                            method: 'POST',
+                            mode: 'no-cors',
+                            headers: {
+                                "Content-Type": "application/json",
+                                "X-Requested-With": "XMLHttpRequest"
+                            },
+                            body: id
+
+                        }).then(res => res.json()).then(res => {
+                        if (res['respuesta']) {
+                            Swal.fire(
+                                'ELIMINADO!',
+                                'El registro fue eliminado exitosamente',
+                                'success'
+                            ).then((value) => {
+                                location.reload();
+                            });
+                        } else {
+                            Swal.fire(
+                                'Error!',
+                                res['mensaje'],
+                                'error'
+                            );
+                        }
+                    })                    
+                }
             })
-        })
+        }
     </script>
 </body>
 

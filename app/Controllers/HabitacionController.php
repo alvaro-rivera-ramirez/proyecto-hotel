@@ -1,12 +1,32 @@
 <?php 
 namespace App\Controllers;
 
+
 use CodeIgniter\Controller;
 use App\Models\HabitacionModel;
 use App\Models\TipoHabModel;
 use App\Models\UsuariosModel;
 use App\Models\EstadoHabitacion;
+use Dompdf\Dompdf;
+
 class HabitacionController extends Controller{
+
+    // GENERANDO PDF
+    
+    // public function demoPDF()
+    // {
+    //     $domPDF = new Dompdf();
+    //     $domPDF->loadHtml('<h1> HOLA </h1>');
+    //     $domPDF->setPaper('A4', 'portrait');
+    //     $domPDF->render();
+    //     $domPDF->stream();               
+    // }
+
+
+    // // FIN DE GENERAR PDF
+
+
+
     public function index(){
     
        $pager = service('pager');

@@ -49,6 +49,7 @@
                                                     value="<?= old('num_hab',$hab['numero']) ?>" name="num_hab"
                                                     id="num_hab" maxlength="4">
                                                 <p class="text-danger"><?= session('errors.num_hab')?></p>
+                                                <p class="d-none text-danger" id="validacion1" >Complete este campo por favor</p>
                                             </div>
                                         </div>
                                         <div class="col-12 col-md-4">
@@ -98,6 +99,7 @@
                                                 <input type="text" class="form-control" name="admin_usuario"
                                                     id="admin_usuario" value="<?= old('admin_usuario')?>" required>
                                                 <p class="text-danger"><?= session('errors.admin_usuario')?></p>
+                                                <p class="d-none text-danger" id="validacion2" >Complete este campo por favor</p>
                                             </div>
                                         </div>
                                         <div class="col-md-6">
@@ -107,6 +109,7 @@
                                                     value="<?= old('admin_clave')?>" name="admin_clave" id="admin_clave"
                                                     required>
                                                 <p class="text-danger"><?= session('errors.admin_clave')?></p>
+                                                <p class="d-none text-danger" id="validacion3" >Complete este campo por favor</p>
                                             </div>
                                         </div>
                                         <?php if(session('msg')): ?>
@@ -139,14 +142,15 @@
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script>
         let boton_enviar = document.getElementById('act_habitacion');
-        let admin_clave = document.getElementById('admin_clave');
-        let admin_usuario = document.getElementById('admin_usuario');
-
+        let val1 = document.getElementById('num_hab');
+        let val2 = document.getElementById('admin_usuario');
+        let val3 = document.getElementById('admin_clave');        
 
         boton_enviar.addEventListener('click', e => {
             e.preventDefault();
-            if (admin_clave.value === '' || admin_clave.value === null || admin_usuario.value === '' ||
-                admin_usuario.value === null) {
+            if (val1.value === '' || val1.value === null || val2.value === '' || val2.value === null || val3.value === '' ||
+                val3.value === null) 
+            {
                 let timerInterval
                 Swal.fire({
                     icon: 'warning',
@@ -154,7 +158,26 @@
                     timer: 1500,
                 })
 
-            } else {
+                if(val1.value === '' || val1.value === null)
+                {
+                    let error = document.getElementById('validacion1');
+                    error.classList.remove('d-none');
+                }
+
+                if(val2.value === '' || val2.value === null)
+                {
+                    let error = document.getElementById('validacion2');
+                    error.classList.remove('d-none');
+                }
+
+                if(val3.value === '' || val3.value === null)
+                {
+                    let error = document.getElementById('validacion3');
+                    error.classList.remove('d-none');
+                }
+
+            } 
+            else {
                 Swal.fire({
                     title: '¿Estás seguro que desea actualizar esta habitación?',
                     text: "Está a punto de actualizar esta habitación",

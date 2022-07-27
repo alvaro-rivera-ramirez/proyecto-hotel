@@ -36,7 +36,7 @@
                                                 class="fas fa-clipboard-list fa-fw"></i> LISTA DE HABITACIONES</a>
                                     </div>
                                     <!--<div class="box-nav"> <a href="#"><i class="fas fa-search fa-fw"></i> BUSCAR HABITACION</a> </div>-->
-                                    <div class="box-nav"> <a href="#"><i class="fa-solid fa-print"></i> IMPRIMIR</a>
+                                    <div class="box-nav"> <a href="http://localhost:8080/demo-pdf"><i class="fa-solid fa-print"></i> IMPRIMIR</a>
                                     </div>
                                     <div class="box-nav">
                                         <form class="d-flex">
@@ -52,6 +52,9 @@
 
 
                             <!-- TABLA RESPONSIVE -->
+
+                            <?php   ?>
+                            <!-- ob_start(); -->
 
                             <div class="table-responsive mt-2">
                                 <table class="table bg-white">
@@ -97,6 +100,9 @@
                                     </tbody>
                                 </table>
                             </div>
+
+                            <?php   ?> 
+                            <!-- $html = ob_get_clean(); -->
 
                             <p class="text-end">Mostrando Habitaciones 1 al 10 de un total de 15</p>
 
