@@ -49,6 +49,7 @@
                                             <label for="cli_dni_reg" class="bmd-label-floating">DNI</label>
                                             <input type="text" pattern="[0-9-]{1,27}" name="cli_dni_reg" id="cli_dni_reg" maxlength="27">
                                             <p><?= session('errors.cli_dni_reg')?></p>
+                                            <p class="d-none text-danger" id="validacion1" >Complete este campo por favor</p>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
@@ -56,6 +57,7 @@
                                             <label for="cli_nombre_reg" class="bmd-label-floating">Nombre</label>
                                             <input type="text" pattern="[a-zA-ZáéíóúÁÉÍÓÚñÑ ]{1,40}"  name="cli_nombre_reg" id="cli_nombre_reg" maxlength="40">
                                             <p><?= session('errors.cli_nombre_reg')?></p>
+                                            <p class="d-none text-danger" id="validacion2" >Complete este campo por favor</p>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
@@ -63,6 +65,7 @@
                                             <label for="cli_apellidop_reg" class="bmd-label-floating">Apellido Paterno</label>
                                             <input type="text" pattern="[a-zA-ZáéíóúÁÉÍÓÚñÑ ]{1,40}"  name="cli_apellidop_reg" id="cli_apellidop_reg" maxlength="40">
                                             <p><?= session('errors.cli_apellidop_reg')?></p>
+                                            <p class="d-none text-danger" id="validacion3" >Complete este campo por favor</p>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
@@ -70,6 +73,7 @@
                                             <label for="cli_apellidom_reg" class="bmd-label-floating">Apellido Materno</label>
                                             <input type="text" pattern="[a-zA-ZáéíóúÁÉÍÓÚñÑ ]{1,40}"  name="cli_apellidom_reg" id="cli_apellidom_reg" maxlength="40">
                                             <p><?= session('errors.cli_apellidom_reg')?></p>
+                                            <p class="d-none text-danger" id="validacion4" >Complete este campo por favor</p>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
@@ -77,6 +81,7 @@
                                             <label for="cli_telefono_reg" class="bmd-label-floating">Teléfono</label>
                                             <input type="text" name="cli_telefono_reg" id="cli_telefono_reg" maxlength="15">
                                             <p><?= session('errors.cli_telefono_reg')?></p>
+                                            <p class="d-none text-danger" id="validacion5" >Complete este campo por favor</p>
                                         </div>
                                     </div>
                                     
@@ -85,6 +90,7 @@
                                             <label for="cli_email_reg" class="form-label">Email</label>
                                             <input type="email" name="cli_email_reg" id="cli_email_reg">
                                             <p><?= session('errors.cli_email_reg')?></p>
+                                            <p class="d-none text-danger" id="validacion6" >Complete este campo por favor</p>
                                         </div>
                                       </div>
                                 </div>
@@ -109,18 +115,19 @@
     <?php include "include/script.php"?>
     <script>
         let boton_enviar = document.getElementById('guardar');
-        let dni = document.getElementById('cli_dni_reg');
-        let nombre = document.getElementById('cli_nombre_reg');
-        let paterno = document.getElementById('cli_apellidop_reg');
-        let materno = document.getElementById('cli_apellidom_reg');
-        let fono = document.getElementById('cli_telefono_reg');
-        let correo = document.getElementById('cli_email_reg');
+        let val1 = document.getElementById('cli_dni_reg');
+        let val2 = document.getElementById('cli_nombre_reg');
+        let val3 = document.getElementById('cli_apellidop_reg');
+        let val4 = document.getElementById('cli_apellidom_reg');
+        let val5 = document.getElementById('cli_telefono_reg');
+        let val6 = document.getElementById('cli_email_reg');
         
 
         boton_enviar.addEventListener('click', e => {
             e.preventDefault();
-            if (dni.value === '' || dni.value === null || nombre.value === '' || nombre.value === null || paterno.value === '' || paterno.value === null
-            || materno.value === '' || materno.value === null || fono.value === '' || fono.value === null || correo.value === '' || correo.value === null) 
+            if (val1.value === '' || val1.value === null || val2.value === '' || val2.value === null || val3.value === '' ||
+                val3.value === null || val4.value === '' || val4.value === null || val5.value === '' || val5.value === null ||
+                val6.value === '' || val6.value === null) 
             {
                 let timerInterval
                 Swal.fire({
@@ -128,8 +135,44 @@
                     title: 'COMPLETE TODOS LOS CAMPOS REQUERIDOS POR FAVOR',
                     timer: 1500,
                 })
+                if(val1.value === '' || val1.value === null)
+                {
+                    let error = document.getElementById('validacion1');
+                    error.classList.remove('d-none');
+                }
 
-            } else {
+                if(val2.value === '' || val2.value === null)
+                {
+                    let error = document.getElementById('validacion2');
+                    error.classList.remove('d-none');
+                }
+
+                if(val3.value === '' || val3.value === null)
+                {
+                    let error = document.getElementById('validacion3');
+                    error.classList.remove('d-none');
+                }
+
+                if(val4.value === '' || val4.value === null)
+                {
+                    let error = document.getElementById('validacion4');
+                    error.classList.remove('d-none');
+                }                
+
+                if(val5.value === '' || val5.value === null)
+                {
+                    let error = document.getElementById('validacion5');
+                    error.classList.remove('d-none');
+                }
+                
+                if(val6.value === '' || val6.value === null)
+                {
+                    let error = document.getElementById('validacion6');
+                    error.classList.remove('d-none');
+                }
+
+            } 
+            else {
                 Swal.fire({
                     title: 'ESTÁ SEGURO DE REGISTRAR ESTE NUEVO CLIENTE?',
                     text: "Está a punto de registrar un NUEVO cliente",

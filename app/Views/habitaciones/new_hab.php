@@ -43,12 +43,14 @@
                                             <label for="num_hab" class="bmd-label-floating">Numero</label>
                                             <input type="text" name="num_hab" id="num_hab" value="<?= old('num_hab')?>">
                                             <p class="text-danger"><?= session('errors.num_hab')?></p>
+                                            <p class="d-none text-danger" id="validacion1" >Complete este campo por favor</p>
                                         </div>
                                     </div>
                                     <div class="col-12 col-md-4">
                                         <div class="form-group">
                                             <label for="precio_hab" class="bmd-label-floating">Precio</label>
                                             <input type="text"  class="form-control" name="precio_hab" id="precio_hab">
+                                            <p class="d-none text-danger" id="validacion2" >Complete este campo por favor</p>
                                         </div>
                                     </div>
                                     <div class="col-12 col-md-4">
@@ -61,6 +63,7 @@
                                                 <?php endforeach; ?>
                                             </select>
                                             <p class="text-danger"><?= session('errors.tipo_hab')?></p>
+                                            <p class="d-none text-danger" id="validacion3" >Seleccione una opción por favor</p>
                                         </div>
                                     </div>
                                 </div>
@@ -86,15 +89,14 @@
    <?php include "include/script.php"?>
    <script>
         let boton_enviar = document.getElementById('new_hab');
-        let num_hab = document.getElementById('num_hab');
-        let precio_hab = document.getElementById('precio_hab');
-        let tipo_hab = document.getElementById('tipo_hab');
+        let val1 = document.getElementById('num_hab');
+        let val2 = document.getElementById('precio_hab');
+        let val3 = document.getElementById('tipo_hab');
         
 
         boton_enviar.addEventListener('click', e => {
             e.preventDefault();
-            if (num_hab.value === '' || num_hab.value === null || precio_hab.value === '' ||
-             precio_hab.value === null || tipo_hab.value === '' || tipo_hab.value === null) 
+            if (val1.value === '' || val1.value === null || val2.value === '' || val2.value === null || val3.value === null) 
             {
                 let timerInterval
                 Swal.fire({
@@ -102,6 +104,24 @@
                     title: 'COMPLETE TODOS LOS CAMPOS REQUERIDOS POR FAVOR',
                     timer: 1500,
                 })
+
+                if(val1.value === '' || val1.value === null)
+                {
+                    let error = document.getElementById('validacion1');
+                    error.classList.remove('d-none');
+                }
+
+                if(val2.value === '' || val2.value === null)
+                {
+                    let error = document.getElementById('validacion2');
+                    error.classList.remove('d-none');
+                }
+
+                if(val3.value === '' || val3.value === null)
+                {
+                    let error = document.getElementById('validacion3');
+                    error.classList.remove('d-none');
+                }
 
             } else {
                 Swal.fire({

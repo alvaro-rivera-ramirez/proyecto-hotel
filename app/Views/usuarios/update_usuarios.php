@@ -49,6 +49,7 @@
                                                 <input type="text" name="user_dni" id="user_dni"
                                                     value="<?= old('user_dni',$usuario['dni'])?>">
                                                 <p class="text-danger"><?= session('errors.user_dni')?></p>
+                                                <p class="d-none text-danger" id="validacion1" >Complete este campo por favor</p>
                                             </div>
                                         </div>
                                         <div class="col-md-6">
@@ -57,6 +58,7 @@
                                                 <input type="text" name="user_nombre" id="user_nombre"
                                                     value="<?= old('user_nombre',$usuario['nombre'])?>">
                                                 <p class="text-danger"><?= session('errors.user_nombre')?></p>
+                                                <p class="d-none text-danger" id="validacion2" >Complete este campo por favor</p>
                                             </div>
                                         </div>
                                         <div class="col-md-6">
@@ -65,6 +67,7 @@
                                                 <input type="text" name="user_apellido" id="user_apellido"
                                                     value="<?= old('user_apellido',$usuario['apellidoPaterno']." ".$usuario['apellidoMaterno'])?>">
                                                 <p class="text-danger"><?= session('errors.user_apellido')?></p>
+                                                <p class="d-none text-danger" id="validacion3" >Complete este campo por favor</p>
                                             </div>
                                         </div>
                                         <div class="col-md-6">
@@ -73,6 +76,7 @@
                                                 <input type="text" name="user_telefono" id="user_telefono"
                                                     value="<?= old('user_telefono',$usuario['telefono'])?>">
                                                 <p class="text-danger"><?= session('errors.user_telefono')?></p>
+                                                <p class="d-none text-danger" id="validacion4" >Complete este campo por favor</p>
                                             </div>
                                         </div>
                                     </div>
@@ -91,6 +95,7 @@
                                                     value="<?= old('user_usuario',$usuario['username'])?>"
                                                     maxlength="35">
                                                 <p class="text-danger"><?= session('errors.user_usuario')?></p>
+                                                <p class="d-none text-danger" id="validacion5" >Complete este campo por favor</p>
                                             </div>
                                         </div>
                                         <div class="col-md-6">
@@ -99,12 +104,13 @@
                                                 <input type="email" name="user_email" id="user_email"
                                                     value="<?= old('user_email',$usuario['email'])?>" maxlength="70">
                                                 <p class="text-danger"><?= session('errors.user_email')?></p>
+                                                <p class="d-none text-danger" id="validacion6" >Complete este campo por favor</p>
                                             </div>
                                         </div>
                                         <div class="col-md-12">
                                             <p>Estado de la cuenta <span class="badge bg-info">Activa</span></p>
                                             <div class="form-group">
-                                                <select class="form-control" name="user_activo">
+                                                <select class="form-control" name="user_activo" id="user_estado">
                                                     <option value="" selected="" disabled="">Seleccione una opción
                                                     </option>
                                                     <option value="1"
@@ -114,6 +120,8 @@
                                                         <?php if(old('user_activo',$usuario['activo'])=="0"):?> selected
                                                         <?php endif; ?>>Inactivo</option>
                                                 </select>
+                                                <p class="d-none text-danger" id="validacion7" >Seleccione una opción por favor</p>
+                                                
                                             </div>
                                         </div>
                                     </div>
@@ -131,6 +139,7 @@
                                                 <label for="user_clave_1" class="bmd-label-floating">Contraseña</label>
                                                 <input type="password" name="user_clave_1" id="user_clave_1">
                                                 <p class="text-danger"><?= session('errors.user_clave_1')?></p>
+                                                
                                             </div>
                                         </div>
                                         <div class="col-md-6">
@@ -138,6 +147,7 @@
                                                 <label for="user_clave_2" class="bmd-label-floating">Repetir
                                                     contraseña</label>
                                                 <input type="password" name="user_clave_2" id="user_clave_2">
+                                                
                                             </div>
                                         </div>
                                     </div>
@@ -158,7 +168,7 @@
 
                                         <div class="col-12">
                                             <div class="form-group">
-                                                <select name="user_privilegio" class="form-control">
+                                                <select name="user_privilegio" class="form-control" id="user_privilegio">
                                                     <option value="" selected="" disabled="">Seleccione una opción
                                                     </option>
                                                     <option value="1"
@@ -168,7 +178,8 @@
                                                         <?php if(old('user_privilegio',$usuario['idRol'])=="2"):?>
                                                         selected <?php endif; ?>>Recepcionista</option>
                                                 </select>
-                                                <p class="text-danger"><?= session('errors.user_privilegio')?></p>
+                                                <p class="text-danger"><?= session('errors.user_privilegio')?></p> 
+                                                <p class="d-none text-danger" id="validacion7" >Seleccione una opción por favor</p>                                               
                                             </div>
                                         </div>
                                     </div>
@@ -187,6 +198,7 @@
                                                 <input type="text" name="admin_usuario" id="admin_usuario"
                                                     value="<?= old('admin_usuario')?>" required="">
                                                 <p class="text-danger"><?= session('errors.admin_usuario')?> </p>
+                                                <p class="d-none text-danger" id="validacion9" >Complete este campo por favor</p>
                                             </div>
                                         </div>
                                         <div class="col-md-6">
@@ -194,6 +206,7 @@
                                                 <label for="admin_clave" class="bmd-label-floating">Contraseña</label>
                                                 <input type="password" name="admin_clave" id="admin_clave" required="">
                                                 <p class="text-danger"><?= session('errors.admin_clave')?> </p>
+                                                <p class="d-none text-danger" id="validacion10" >Complete este campo por favor</p>
                                             </div>
                                         </div>
                                         <?php if(session('msg')): ?>
@@ -226,21 +239,94 @@
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script>
         let boton_enviar = document.getElementById('act_usuario');
-        let admin_clave = document.getElementById('admin_clave');
-        let admin_usuario = document.getElementById('admin_usuario');
 
+        let val1 = document.getElementById('user_dni');
+        let val2 = document.getElementById('user_nombre');
+        let val3 = document.getElementById('user_apellido');
+        let val4 = document.getElementById('user_telefono');
+        let val5 = document.getElementById('user_usuario');
+        let val6 = document.getElementById('user_email');
+        let val7 = document.getElementById('user_estado');
+        let val8 = document.getElementById('user_privilegio');
+
+        let val9 = document.getElementById('admin_usuario');
+        let val10 = document.getElementById('admin_clave');
 
         boton_enviar.addEventListener('click', e => {
             e.preventDefault();
-            if (admin_clave.value === '' || admin_clave.value === null || admin_usuario.value === '' ||
-                admin_usuario
-                .value === null) {
+            if (val1.value === '' || val1.value === null || val2.value === '' || val2.value === null || val3.value === '' || val3.value === null
+            || val4.value === '' || val4.value === null || val5.value === '' || val5.value === null || val6.value === '' || val6.value === null
+            || val7.value === null || val7.value === null || val10.value === '' || val10.value === null) 
+            {
                 let timerInterval
                 Swal.fire({
                     icon: 'warning',
                     title: 'COMPLETE TODOS LOS CAMPOS REQUERIDOS POR FAVOR',
                     timer: 1500,
                 })
+                console.log("hola")
+                // COMPLETAR CAMPOS UNO POR UNO
+                if(val1.value === '' || val1.value === null)
+                {
+                    let error = document.getElementById('validacion1');
+                    error.classList.remove('d-none');
+                }
+
+                if(val2.value === '' || val2.value === null)
+                {
+                    let error = document.getElementById('validacion2');
+                    error.classList.remove('d-none');
+                }
+
+                if(val3.value === '' || val3.value === null)
+                {
+                    let error = document.getElementById('validacion3');
+                    error.classList.remove('d-none');
+                }
+
+                if(val4.value === '' || val4.value === null)
+                {
+                    let error = document.getElementById('validacion4');
+                    error.classList.remove('d-none');
+                }
+
+                if(val5.value === '' || val5.value === null)
+                {
+                    let error = document.getElementById('validacion5');
+                    error.classList.remove('d-none');
+                }
+
+                if(val6.value === '' || val6.value === null)
+                {
+                    let error = document.getElementById('validacion6');
+                    error.classList.remove('d-none');
+                }
+
+                if(val7.value === '' || val7.value === null)
+                {
+                    let error = document.getElementById('validacion7');
+                    error.classList.remove('d-none');
+                }
+
+                if(val8.value === '' || val8.value === null)
+                {
+                    let error = document.getElementById('validacion8');
+                    error.classList.remove('d-none');
+                }
+
+                if(val9.value === '' || val9.value === null)
+                {
+                    let error = document.getElementById('validacion9');
+                    error.classList.remove('d-none');
+                }
+
+                if(val10.value === '' || val10.value === null)
+                {
+                    let error = document.getElementById('validacion10');
+                    error.classList.remove('d-none');
+                }
+
+                // COMPLETAR CAMPOS UNO POR UNO FIIIIN
 
             } else {
                 Swal.fire({

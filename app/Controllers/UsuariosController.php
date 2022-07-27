@@ -73,7 +73,7 @@ class UsuariosController extends Controller{
         $usuario=new UsuariosModel();
         $usuario->insert($data);
 
-        return redirect()->to(base_url('nuevo_usuario'));
+        echo json_encode(['respuesta' => true,]);
     }
 
     public function actualizar(){
@@ -143,14 +143,13 @@ class UsuariosController extends Controller{
         $usuario_up->update($user_id,$data);
 
         // return redirect()->route('lista_usuarios')->with('msg','1');
-        echo json_encode(['respuesta' => true,'mensaje' =>'Se ha actualizado el usuario correctamente']);
+        echo json_encode(['respuesta' => true]);
     }
 
     public function borrar($id=null){
         $usuario=new UsuariosModel();
-        $usuario->where('id',$id)->delete($id);
-        return redirect()->route('lista_usuarios');
-        echo json_encode(['respuesta' => true,'mensaje' =>'Usuario eliminado con éxito']);
+        $usuario->where('id',$id)->delete($id);        
+        echo json_encode(['respuesta' => true]);
     }
     public function configurarPerfil(){
         return view('configuracion/perfil');

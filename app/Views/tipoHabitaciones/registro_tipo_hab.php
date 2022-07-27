@@ -29,7 +29,7 @@
                                 <div class="container-nav">
                                     <div class="box-nav"> <a href="#"><i class="fas fa-plus fa-fw"></i> NUEVO REGISTRO</a></div>
                                     <div class="box-nav"> <a class="active" href="#"><i class="fas fa-clipboard-list fa-fw"></i> LISTA TIPO HABITACIONES</a> </div>
-                                    <div class="box-nav"> <a href="#"><i class="fa-solid fa-print"></i> IMPRIMIR</a></div>
+                                    <div class="box-nav"> <a href="http://localhost:8080/demo-pdf"><i class="fa-solid fa-print"></i> IMPRIMIR</a></div>
                                     <div class="box-nav">
                                         <form class="d-flex">
                                         <input class="input-buscar me-2" type="search" placeholder="Buscar" aria-label="Search">
