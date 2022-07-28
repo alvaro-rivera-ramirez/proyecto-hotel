@@ -7,42 +7,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <?php include "include/link.php" ?>
     <style>
-    .detail {
-        padding: 8px 0px;
-        margin: 0;
-        justify-content: space-around;
-    }
-
-    .detail div {
-        padding: 0px 4px;
-    }
-
     .nh input:focus {
         box-shadow: none;
     }
 
-
     label {
         margin-top: 7px;
-    }
-
-    .btn-res {
-        padding: 3px 12px !important;
-        border: solid 1px #282727;
-        color: #282727;
-        width: 80% !important;
-        margin-bottom: 2px;
-        text-align: center !important;
-    }
-
-    .btn-res:hover {
-        background: #282727;
-        border: solid 1px #fff;
-        color: white;
-    }
-
-    .btn-res:focus {
-        box-shadow: none;
     }
 
     .puntero {
@@ -56,6 +26,9 @@
 </head>
 
 <body>
+    <?php $data=[ $habitaciones,$tipos];
+    echo json_encode($data);
+?>
     <div class="d-flex">
         <?php include "include/navLateral.php"?>
 
@@ -178,10 +151,9 @@
     let boton_enviar = document.getElementById('enviar_reserva');
     let id_cliente = '';
     let cont = 1;
-    mostrarTipoHab(Jtipo, 'idTipo', 'tipo', $tipo)
 
     //Mostrar el select TipoHabitacion y Habitacion
-    function mostrarTipoHab(datosJson, id, atributo, opcion) {
+    const mostrarTipoHab = (datosJson, id, atributo, opcion) => {
         let elementos = '<option selected> Seleccione una opción </option>'
         opcion.innerHTML = ''
         let tam = Object.keys(datosJson).length;
@@ -191,6 +163,7 @@
         opcion.innerHTML = elementos
     }
 
+    mostrarTipoHab(Jtipo, 'idTipo', 'tipo', $tipo)
     //Filtramos el selector de habitaciones
     const filtroHab = (e) => {
         let aux = e.getAttribute("id")
@@ -209,7 +182,8 @@
                 showCancelButton: true,
                 confirmButtonColor: '#3085d6',
                 cancelButtonColor: '#d33',
-                confirmButtonText: 'Guardar'
+                confirmButtonText: 'Guardar',
+                cancelButtonText: 'Cancelar'
             }).then((result) => {
                 if (result.isConfirmed) {
                     let form_r = document.getElementById('form_reserva');
@@ -313,7 +287,7 @@
         e.preventDefault();
         let form = document.getElementById('form_cliente');
         let dataCliente = new FormData(form);
-        fetch('<?= base_url('/buscar_dni') ?>', {
+        fetch('buscar_dni', {
             method: 'POST',
             mode: 'no-cors',
             headers: {

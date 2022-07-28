@@ -9,7 +9,7 @@ use App\Models\TipoHabModel;
 class ReservasController extends Controller{
     public function index(){
 
-        $pager = service('pager');
+        /*$pager = service('pager');
         $model = new ReservasModel();
 
         $data = [
@@ -17,9 +17,9 @@ class ReservasController extends Controller{
             ->join('usuarios as u', 'u.id = reserva.idUser')
             ->orderBy('idReserva','DESC')->paginate(10, 'group1'),
             'pager' => $model->pager
-        ];
+        ];*/
 
-        return view('reservas/registro_reservas',$data);
+        return view('reservas/registro_reservas');
     }
 
     public function reservar(){
@@ -76,5 +76,23 @@ class ReservasController extends Controller{
             }
         }
         return true;
+    }
+
+    public function listar(){
+        $reserva=new ReservasModel();
+        $datosR=$reserva->mostrarReserva();
+        echo json_encode($datosR);
+    }
+
+    public function listar_detalle(){
+        $id=file_get_contents("php://input");
+        $reserva=new ReservasModel();
+        $datosR=$reserva->mostrarDetalle($id);
+
+        foreach($datosR as $datos){
+            echo "<tr class='text-center'> <td>".$datos['idReserva']."</td> <td>".$datos['tipo']."</td> <td>".$datos['numero']."</td> <td>".$datos['fechaIni']."</td> <td>".$datos['fechaFin']."</td><td>".$datos['dias']."</td> <td>".$datos['precioD']."</td> <td>".$datos['precio']."</td> </tr>"; 
+        }
+        //echo json_encode($datosR);
+        //$idReserva=$_POST['']
     }
 }
