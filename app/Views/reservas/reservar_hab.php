@@ -164,8 +164,10 @@
     }
 
     mostrarTipoHab(Jtipo, 'idTipo', 'tipo', $tipo)
+
     //Filtramos el selector de habitaciones
     const filtroHab = (e) => {
+        console.log(e)
         let aux = e.getAttribute("id")
         let $habitacion = document.getElementById('Hab' + aux.charAt(aux.length - 1))
         let valor = e.value
@@ -297,11 +299,11 @@
             body: dataCliente
         }).then(datos => datos.json()).then(datosForm => {
             id_cliente = datosForm.idCliente;
-            document.getElementById('cli_nombre').setAttribute('value', datosForm.nombre);
-            document.getElementById('cli_apellido').setAttribute('value', datosForm.apellidoPaterno +
-                " " + ((datosForm.apellidoMaterno) ? datosForm.apellidoMaterno : ''));
-            document.getElementById('cli_telefono').setAttribute('value', datosForm.telefono);
-            document.getElementById('cli_email').setAttribute('value', datosForm.email);
+            document.getElementById('cli_nombre').setAttribute('value', datosForm.cliente.nombre);
+            document.getElementById('cli_apellido').setAttribute('value', datosForm.cliente.apellidoPaterno +
+                " " + ((datosForm.cliente.apellidoMaterno) ? datosForm.cliente.apellidoMaterno : ''));
+            document.getElementById('cli_telefono').setAttribute('value', datosForm.cliente.telefono);
+            document.getElementById('cli_email').setAttribute('value', datosForm.cliente.email);
             document.getElementById('cli_nombre').setAttribute('disabled', '');
             document.getElementById('cli_apellido').setAttribute('disabled', '');
             document.getElementById('cli_telefono').setAttribute('disabled', '');

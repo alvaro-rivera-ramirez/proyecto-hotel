@@ -190,8 +190,7 @@
                                                     <div class="row g-2">
                                                         <div class="col-md-4">
                                                             <label for="TipoHab1">Tipo habitación</label>
-                                                            <select id="TipoHab1" class="form-select" name="tipo[]"
-                                                                onchange="filtroHab(this)">
+                                                            <select id="TipoHab1" class="form-select tipo-filtro" name="tipo[]">
                                                             </select>
                                                         </div>
                                                         <div class="col-md-4">
@@ -249,8 +248,8 @@
     </div>
 
     <?php include "include/script.php"?>
-    <script src="js/reservas/ListarReservas.js"></script>
     <script src="js/reservas/reservar.js"></script>
+    <script src="js/reservas/ListarReservas.js"></script>
 
 </body>
 

@@ -17,8 +17,6 @@ document.getElementById('buscar').addEventListener('click', e => {
             if(datosForm.cliente === null){
                 document.getElementById('alerta-dni').innerHTML='No existe un cliente registrado con el dni';
             }else{
-                //console.log(datosForm.cliente == null)
-                //console.log(typeof datosForm.cliente)
                 id_cliente = datosForm.idCliente;
                 document.getElementById('cli_nombre').setAttribute('value', datosForm.cliente.nombre);
                 document.getElementById('cli_apellido').setAttribute('value', datosForm.cliente.apellidoPaterno +
@@ -39,13 +37,13 @@ document.getElementById('buscar').addEventListener('click', e => {
 })
 
 
-
+//let Jhabitacion=new Object();
 /*let Jhabitacion = $habitaciones;
 let Jtipo = $tipos;
 let $tipo = document.getElementById('TipoHab1');
 let boton_enviar = document.getElementById('enviar_reserva');
 let id_cliente = '';
-let cont = 1;
+let cont = 1; */
     
     //Mostrar el select TipoHabitacion y Habitacion
     const mostrarTipoHab = (datosJson, id, atributo, opcion) => {
@@ -58,9 +56,10 @@ let cont = 1;
         opcion.innerHTML = elementos
     }
     
-    mostrarTipoHab(Jtipo, 'idTipo', 'tipo', $tipo)
+    //mostrarTipoHab(Jtipo, 'idTipo', 'tipo', $tipo)
     //Filtramos el selector de habitaciones
-    const filtroHab = (e) => {
+    const filtroHab = (e,Jhabitacion) => {
+        //console.log(e.target)
         let aux = e.getAttribute("id")
         let $habitacion = document.getElementById('Hab' + aux.charAt(aux.length - 1))
         let valor = e.value
@@ -68,7 +67,7 @@ let cont = 1;
         mostrarTipoHab(habitacionFilter, 'idHab', 'numero', $habitacion)
     };
 
-    boton_enviar.addEventListener('click', e => {
+    /*boton_enviar.addEventListener('click', e => {
         e.preventDefault();
         if (id_cliente != '') {
             Swal.fire({

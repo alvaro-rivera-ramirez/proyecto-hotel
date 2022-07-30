@@ -115,4 +115,5 @@ class HabitacionController extends Controller{
         $hab->where('idHab',$id)->delete($id);
         return redirect()->route('lista-habitaciones');
     }
+
 }

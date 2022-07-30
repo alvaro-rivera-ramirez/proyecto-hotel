@@ -36,7 +36,7 @@ class ReservasModel extends Model{
     }
 
     public function mostrarDetalle($id=null){
-        $sql='SELECT dt.*,h.numero,t.tipo,t.precio as precioD FROM detalle_reserva dt,habitacion h,tipo_habitacion t WHERE dt.idHab=h.idHab AND h.idTipo=t.idTipo AND idReserva=? ';
+        $sql='SELECT dt.*,h.numero,t.idTipo,t.tipo,t.precio as precioD FROM detalle_reserva dt,habitacion h,tipo_habitacion t WHERE dt.idHab=h.idHab AND h.idTipo=t.idTipo AND idReserva=? ';
         $query=$this->db->query($sql, $id);
         return $query->getResultArray();
     }

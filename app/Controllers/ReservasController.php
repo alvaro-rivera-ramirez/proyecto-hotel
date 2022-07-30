@@ -85,14 +85,35 @@ class ReservasController extends Controller{
     }
 
     public function listar_detalle(){
-        $id=file_get_contents("php://input");
-        $reserva=new ReservasModel();
-        $datosR=$reserva->mostrarDetalle($id);
+        $dataJSON=file_get_contents("php://input");
+        
+        $data=json_decode($dataJSON);
 
-        foreach($datosR as $datos){
-            echo "<tr class='text-center'> <td>".$datos['idReserva']."</td> <td>".$datos['tipo']."</td> <td>".$datos['numero']."</td> <td>".$datos['fechaIni']."</td> <td>".$datos['fechaFin']."</td><td>".$datos['dias']."</td> <td>".$datos['precioD']."</td> <td>".$datos['precio']."</td> </tr>"; 
+        $reserva=new ReservasModel();
+        $datosR=$reserva->mostrarDetalle($data->id);
+
+        if($data->action=="listar"){
+            foreach($datosR as $datos){
+                echo "<tr class='text-center'> <td>".$datos['idReserva']."</td> <td>".$datos['tipo']."</td> <td>".$datos['numero']."</td> <td>".$datos['fechaIni']."</td> <td>".$datos['fechaFin']."</td><td>".$datos['dias']."</td> <td>".$datos['precioD']."</td> <td>".$datos['precio']."</td> </tr>"; 
+            }
+        }else{
+            echo json_encode($datosR);
         }
-        //echo json_encode($datosR);
         //$idReserva=$_POST['']
+        /*echo $data->action;
+        print_r($datosR);*/
+    }
+
+    public function getHabTipo(){
+        /*$dataJSON=file_get_contents("php://input");
+
+        $data=json_decode($dataJSON);*/
+        $habitacion=new HabitacionModel();
+        $habitaciones=$habitacion->getHabitaciones();
+        $tipos=$habitacion->getTipos();
+        return json_encode(['hab' => $habitaciones, 'tipos' => $tipos]);
+        /*$datos['habitaciones']=$habitacion->getHabitaciones();
+        $datos['tipos']=$habitacion->getTipos();
+        print_r($datos); */
     }
 }
