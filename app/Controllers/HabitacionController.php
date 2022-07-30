@@ -135,4 +135,5 @@ class HabitacionController extends Controller{
         $hab->where('idHab',$id)->delete($id);
         echo json_encode(['respuesta' => true]);
     }
+
 }

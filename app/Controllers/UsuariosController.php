@@ -33,7 +33,7 @@ class UsuariosController extends Controller{
     public function guardar(){
         $validation = service('validation');
         $validation->setRules([
-            'user_dni' => 'required|numeric|max_length[8]',
+            'user_dni' => 'required|numeric|max_length[8]|alpha_numeric',
             'user_nombre' => 'required|alpha_space',
             'user_apellido' => 'required|alpha_space',
             'user_telefono' => 'required|alpha_numeric',
