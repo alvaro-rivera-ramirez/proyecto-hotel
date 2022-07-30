@@ -37,12 +37,15 @@ class Login extends BaseController
             $session= session();
             $session->set($data);
 
-            return redirect()->to(base_url('/inicio'));   
+            echo json_encode(['respuesta' => true,'mensaje' =>'Inicio de sesión exitoso']);
+            // $cont = 1;
+            // echo json_encode(['logeo' => $cont]);
+            // $cont = $cont + 1;
         }else{
             if($usuario=="" || $password =="")
-                return redirect()->to(base_url('/'))->with('mensaje','1');  
+                echo json_encode(['respuesta' => true,'mensaje' =>'Complete todos los campos por favor']);
             else
-                return redirect()->to(base_url('/'))->with('mensaje','0');  
+                echo json_encode(['respuesta' => false,'mensaje' =>'Ocurrió un fallo, el usuario o contraseña ingresada no es válida']);
         }
     }
 

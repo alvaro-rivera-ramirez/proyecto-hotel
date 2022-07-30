@@ -27,7 +27,7 @@
               </div>
               <!-- action="" -->
               <!-- php echo base_url('login')  -->
-              <form id="formLoginG" method="POST" action="<?= base_url('login') ?>">
+              <form id="formLoginG" method="POST" action="">
                 <div class="form-input">
                   <label for="exampleInputEmail1" class="form-label">Usuario</label>
                   <input type="text" id="exampleInputEmail1" class="invalidos" name="usuario">
@@ -35,7 +35,7 @@
                 <div class="form-input ">
                   <div class="d-flex justify-content-between ">
                     <label for="exampleInputPassword1" class="form-label">Contraseña</label>
-                      <a href="#" class="login-recu" onclick="Forget()">Olvidate tu
+                    <a href="#" class="login-recu" onclick="Forget()">Olvidate tu
                       contraseña? </a>
 
                   </div>
@@ -44,7 +44,7 @@
                 </div>
 
                 <div class="login-button d-flex justify-content-end">
-                  <button type="submit" class="btn btn-primary">Ingresar</button>
+                  <button type="submit" class="btn btn-primary" id="ingresar">Ingresar</button>
                 </div>
               </form>
               <div id="caja"></div>
@@ -74,27 +74,54 @@
 
   <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   <script src="js/bootstrap.bundle.min.js"></script>
-  <script type="text/javascript">
-    let mensaje = '<?= session("mensaje")?>';
-    if (mensaje == '0') {
-      let timerInterval
-      Swal.fire({
-        icon: 'error',
-        title: 'Ocurrió un fallo, el usuario o contraseña ingresada no es válida',
-        timer: 1500,
-      })
+  <script>
+       let boton_enviar = document.getElementById('ingresar');
+    let admin_clave = document.getElementById('exampleInputEmail1');
+    let admin_usuario = document.getElementById('exampleInputPassword1');
+
+    boton_enviar.addEventListener('click', e => {
+      e.preventDefault();
+      if (admin_clave.value === '' || admin_clave.value === null || admin_usuario.value === '' ||
+        admin_usuario.value === null) {
+        let timerInterval
+        Swal.fire({
+          icon: 'warning',
+          title: 'COMPLETE TODOS LOS CAMPOS REQUERIDOS POR FAVOR',
+          timer: 1500,
+        })
+      } else {
+
+        let form_upd = document.getElementById('formLoginG');
+        let update = new FormData(form_upd);
+
+        fetch('<?= base_url('login') ?>', {
+            method: 'POST',
+            mode: 'no-cors',
+            headers: {
+              "Content-Type": "application/json",
+              "X-Requested-With": "XMLHttpRequest"
+            },
+            body: update
+
+          }).then(res => res.json()).then(res => {
+          console.log(res);
+          console.log("prueb")
+          if (res['respuesta']) {            
+            location.reload();            
+          } else {
+            Swal.fire(
+              'Error!',
+              res['mensaje'],
+              'error'
+            );
+          }
+        })
+      }
+
     }
-    if (mensaje == '1') {
-      let timerInterval
-      Swal.fire({
-        icon: 'warning',
-        title: 'COMPLETE TODOS LOS CAMPOS POR FAVOR',
-        timer: 1500,
-      })
-    }
+    )
   </script>
-  <script src="js/Login.js"></script> 
-  <!-- <script src="js\Loginquery.js"></script> -->
+  <script src="js/Login.js"></script>
 
 </body>
 

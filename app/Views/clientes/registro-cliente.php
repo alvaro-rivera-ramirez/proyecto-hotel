@@ -31,7 +31,7 @@
                                 <div class="container-nav">
                                     <div class="box-nav"> <a href="<?= base_url('nuevo_cliente')?>"><i class="fas fa-plus fa-fw"></i> AGREGAR CLIENTE</a></div>
                                     <div class="box-nav"> <a class="active" href="#"><i class="fas fa-clipboard-list fa-fw"></i> LISTA DE CLIENTES</a> </div>
-                                    <div class="box-nav"> <a href="#"><i class="fa-solid fa-print"></i> IMPRIMIR</a></div>
+                                    <div class="box-nav"> <a href="http://localhost:8080/demo-pdf"><i class="fa-solid fa-print"></i> IMPRIMIR</a></div>
                                     <div class="box-nav">
                                         <form class="d-flex" id="form" method="POST" action="<?= base_url('lista-clientes')?>">
                                         <input class="input-buscar me-2" type="text" id="query" name="query" placeholder="Buscar" aria-label="text">

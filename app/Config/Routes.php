@@ -73,7 +73,7 @@ $routes->get('nueva_habitacion', 'HabitacionController::crear');
 $routes->post('guardar_habitacion', 'HabitacionController::guardar');
 $routes->post('actualizar_habitacion', 'HabitacionController::actualizar');
 $routes->get('editar_habitacion/(:num)', 'HabitacionController::editar/$1');
-$routes->get('eliminar_habitacion/(:num)', 'HabitacionController::borrar/$1');
+$routes->post('eliminar_habitacion/(:num)', 'HabitacionController::borrar/$1');
 
 $routes->get('/lista-tipohab', 'TipoHabController::index');
 $routes->get('/lista_reservas', 'ReservasController::index');
@@ -88,5 +88,8 @@ $routes->get('editar_usuario/(:num)', 'UsuariosController::editar/$1');
 $routes->get('nuevo_usuario', 'UsuariosController::crear');
 $routes->post('guardar_usuario', 'UsuariosController::guardar');
 $routes->post('actualizar_usuario', 'UsuariosController::actualizar');
-$routes->get('eliminar_usuario/(:num)', 'UsuariosController::borrar/$1');
+$routes->post('eliminar_usuario/(:num)', 'UsuariosController::borrar/$1');
+$routes->get('recuperar_password', 'UsuariosController::recuperarPassword');
+
+$routes->get('demo-pdf', 'PdfController::demoPDF');
 

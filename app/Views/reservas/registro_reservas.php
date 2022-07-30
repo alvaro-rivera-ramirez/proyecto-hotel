@@ -26,9 +26,9 @@
 </head>
 
 <body>
+
     <div class="d-flex">
         <?php include "include/navLateral.php"?>
-
         <div class="w-100" style="background-color: #F1F3F5">
             <?php include "include/navBar.php"?>
 
@@ -45,13 +45,13 @@
                             <!-- MENU DE OPCIONES-->
                             <div class="container-fluid">
                                 <div class="container-nav">
+
                                     <div class="box-nav"> <a href="<?= base_url('reservar')?>"><i
                                                 class="fas fa-plus fa-fw"></i> AGREGAR
                                             RESERVA</a></div>
                                     <div class="box-nav"> <a class="active" href="#"><i
                                                 class="fas fa-clipboard-list fa-fw"></i> LISTA DE REGISTROS</a> </div>
-                                    <div class="box-nav"> <a href="#"><i class="fa-solid fa-print"></i> IMPRIMIR</a>
-                                    </div>
+                                    <div class="box-nav"> <a href="http://localhost:8080/demo-pdf"><i class="fa-solid fa-print"></i> IMPRIMIR</a></div>
                                     <div class="box-nav">
                                         <form class="d-flex">
                                             <input class="input-buscar me-2" type="search" placeholder="Buscar"

@@ -3,39 +3,80 @@
 <head>
     <meta charset="UTF-8">
     <title>Hotel</title>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <?php include "include/link.php" ?>
     <style>
-       .centrar {
-  text-align: center;
-  border: 2px solid black;
-  margin: 20px;
-  background: lightblue;
-}
-.cuadro{
-    text-align: left;
-    float:left;
-    width: 450px;
-    margin: 40px;
-}
-.d{
-    text-align: center;
-    clear: both;
-}
-.mb-3{
-    margin: 40px;
-}
-.izquierda{
-    text-align: center;
-    width: 400px;
-    float:right;
-    border: 2px solid black;
-    margin: 80px 50px;
-    background: violet;
-}
+        .centrar {
+            text-align: center;
+            font-family: 'IBM Plex Sans';
+            font-style: normal;
+            font-weight: 600;
+            font-size: 20px;
+            color: #000000;
 
+            margin: 20px;
+            height: 75px;
+            border: 2px;
+            border-radius: 8px;
+        }
+        .cuadro{
+            text-align: left;
+            float:left;
+            width: 450px;
+            margin: 40px;
+        }
+        .d{
+            text-align: center;
+            clear: both;
+        }
+        .mb-3{
+            margin: 40px;
+        }
+        .izquierda{
+            box-sizing: border-box;
+            
+            width: 467px;
+            height: 278px;
+            border: 2px solid #C83D3D;
+            border-radius: 8px;
+
+            text-align: center;
+            float:right;
+            margin: 80px 50px;
+            background: #FF4A4A;
+            color: white;
+            font-size: 21px;
+        }
+        .bolded{
+            font-weight: bold;
+        }
+        .textoad{
+            position: relative;
+            width: 321px;
+            height: 190px;
+            font-family: 'IBM Plex Sans';
+            font-style: normal;
+            font-weight: 600;
+            font-size: 34px;
+            line-height: 31px;
+            display: flex;
+            align-items: center;
+            text-align: center;
+
+            color: #FFFFFF;
+        }
+        .btn-res{
+            border: solid 1px #B38741;
+            background: #B38741;
+        }
+        .btn-cas{
+            border: solid 1px #940D05;
+            background: #940D05;
+        }
     </style>
 </head>
+
 <body>
    <div class="d-flex">
         <?php include "include/navLateral.php"?>     
@@ -54,34 +95,35 @@
                    
                     <div class="cuadro">
                         <div class="mb-3">
-                            <label for="exampleFormControlInput1" class="form-label">contraseña Actual</label>
+                            <label for="exampleFormControlInput1" class="form-label"><span class="bolded"><font color="black">Contraseña  Actual</font></span></label>
                             <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com">
                         </div>
                         
                         <div class="mb-3">
-                            <label for="exampleFormControlInput1" class="form-label">Nueva contraseña</label>
+                            <label for="exampleFormControlInput1" class="form-label"><span class="bolded"><font color="black">Nueva  Contraseña</font></span></label>
                             <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com">
                         </div> 
                         
                         <div class="mb-3">
-                            <label for="exampleFormControlInput1" class="form-label">Repetir contraseña</label>
+                            <label for="exampleFormControlInput1" class="form-label"><span class="bolded"><font color="black">Repetir  Contraseña</font></span></label>
                             <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com">
                         </div>
                     </div>
             
                     
                         <div class="izquierda">
-                            <h4>Se recomienda tener en cuenta usar una 
-                             contraseña facil de recordar
-                                 y dificil de descifrar 
-                             para evitar posibles inconvenientes 
-                             y/o posibles ataques maliciosos.</h4>
+                            <span class="bolded"><br>IMPORTANTE<br></span>
+                            <textoad>Se recomienda tener en<br>
+                            cuenta usar una contraseña<br>
+                            facil de recordar y dificil de<br>
+                            descifrar para evitar posibles<br>
+                            inconvenientes y/o posibles ataques<br>
+                            maliciosos.</textoad>
                         </div> 
        
                        <div class="d">
-                            <button type="button" class="btn btn-info">Limpiar</button>
-                            <button class="btn btn-success me-md-2" type="button">Guardar</button>
-                            <button class="btn btn-danger" type="button">Cancelar</button>
+                            <button class="btn btn-res" type="button" style="color:white;"><i class="fa-solid fa-floppy-disk"></i>Guardar</button>
+                            <button class="btn btn-cas" type="button" style="color:white;"><i class="fa-solid fa-ban"></i>Cancelar</button>
                         </div>
             </div>
 
