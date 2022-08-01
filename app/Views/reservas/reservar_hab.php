@@ -298,12 +298,12 @@
             },
             body: dataCliente
         }).then(datos => datos.json()).then(datosForm => {
-            id_cliente = datosForm.idCliente;
+            id_cliente = datosForm.cliente.idCliente;
             document.getElementById('cli_nombre').setAttribute('value', datosForm.cliente.nombre);
             document.getElementById('cli_apellido').setAttribute('value', datosForm.cliente.apellidoPaterno +
                 " " + ((datosForm.cliente.apellidoMaterno) ? datosForm.cliente.apellidoMaterno : ''));
             document.getElementById('cli_telefono').setAttribute('value', datosForm.cliente.telefono);
-            document.getElementById('cli_email').setAttribute('value', datosForm.cliente.email);
+            document.getElementById('cli_email').setAttribute('value', (datosForm.cliente.email) ? datosForm.cliente.email:'');
             document.getElementById('cli_nombre').setAttribute('disabled', '');
             document.getElementById('cli_apellido').setAttribute('disabled', '');
             document.getElementById('cli_telefono').setAttribute('disabled', '');

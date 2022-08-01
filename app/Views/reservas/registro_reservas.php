@@ -51,12 +51,12 @@
                                             RESERVA</a></div>
                                     <div class="box-nav"> <a class="active" href="#"><i
                                                 class="fas fa-clipboard-list fa-fw"></i> LISTA DE REGISTROS</a> </div>
-                                    <div class="box-nav"> <a href="http://localhost:8080/demo-pdf"><i class="fa-solid fa-print"></i> IMPRIMIR</a></div>
+                                    <div class="box-nav"> <a href="<?= base_url('demo-pdf') ?>"><i class="fa-solid fa-print"></i> IMPRIMIR</a></div>
                                     <div class="box-nav">
-                                        <form class="d-flex">
+                                        <form class="d-flex" id="form_busca_reserva">
                                             <input class="input-buscar me-2" type="search" placeholder="Buscar"
-                                                aria-label="text">
-                                            <button class="btn-buscar btn btn-dark" type="submit"><i
+                                                aria-label="text" id="dato_buscar">
+                                            <button class="btn-buscar btn btn-dark" type="submit" id="buscar_r"><i
                                                     class="fas fa-search"></i></button>
                                         </form>
                                     </div>

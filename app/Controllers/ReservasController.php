@@ -79,8 +79,14 @@ class ReservasController extends Controller{
     }
 
     public function listar(){
+        $dato=file_get_contents("php://input");
         $reserva=new ReservasModel();
-        $datosR=$reserva->mostrarReserva();
+
+        if(!empty($dato)){
+            $datosR=$reserva->mostrarBusqueda($dato);
+        }else{
+            $datosR=$reserva->mostrarReserva();
+        }
         echo json_encode($datosR);
     }
 

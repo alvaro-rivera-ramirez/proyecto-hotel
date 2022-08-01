@@ -1,11 +1,17 @@
-const listarR = () =>{
+/* listar reserva
+    el argumento dato puede ser vacio o tener un valor
+    si dato = '' entonces muestra todas las reservas
+    caso contrario muestra las reservas que coinciden con el dato
+*/
+const listarR = (dato) =>{
     fetch( 'listar_reserva', {
         method: 'POST',
         mode: 'no-cors',
         headers: {
             "Content-Type": "application/json",
             "X-Requested-With": "XMLHttpRequest"
-        }
+        },
+        body: dato
     }).then(response => response.json()).then( datosR=> {
         console.log(datosR)
         let lista='';
@@ -15,6 +21,15 @@ const listarR = () =>{
         resultado.innerHTML=lista;
     })
 }
+
+//buscar reserva por dni, nombre y apellidos del cliente
+document.getElementById('buscar_r').addEventListener('click', e=>{
+    e.preventDefault();
+    let dato=document.getElementById('dato_buscar').value;
+    console.log(dato)
+    listarR(dato);
+})
+
 
 const listarDetalle =(id) =>{
     
