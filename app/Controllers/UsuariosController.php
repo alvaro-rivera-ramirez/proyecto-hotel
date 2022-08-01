@@ -151,12 +151,95 @@ class UsuariosController extends Controller{
         $usuario->where('id',$id)->delete($id);        
         echo json_encode(['respuesta' => true]);
     }
+
     public function configurarPerfil(){
-        return view('configuracion/perfil');
+        $usuario=new UsuariosModel();
+        $usser_id=session('id');
+
+        $datos['usuario']=$usuario->obtenerDatos($usser_id);
+        return view('configuracion/perfil',$datos);
+    }
+
+    public function editarPerfil(){
+        //id del usuario a editar
+        $user_id=$this->request->getPost('user_id');
+
+        $admin_id=session('id');
+        $usuario=new UsuariosModel();
+        $admin=$usuario->obtenerDatos($admin_id);
+
+        //Validamos las entradas del formulario
+        $validation = service('validation');
+        $validation->setRules([
+            'per_nombre' => 'required|alpha_space',
+            'per_apellido' => 'required|alpha_space',
+            'per_telefono' => 'required|alpha_numeric',
+            'per_username' =>  'required|alpha_numeric|is_unique[usuarios.username,usuarios.id,'.$user_id.']',
+            'per_email' => 'required|valid_email|is_unique[usuarios.email,usuarios.id,'.$user_id.']'
+        ]);
+
+        if(!$validation->withRequest($this->request)->run()){
+            //dd($validation->getErrors());
+            return redirect()->to(base_url('perfil'))->withInput()->with('errors',$validation->getErrors());
+        }
+
+        $username=$this->request->getPost('per_username');
+        $nombre=$this->request->getPost('per_nombre');
+        $apellidos=explode(" ",$this->request->getPost('per_apellido'));
+        if(!(count($apellidos)>1)){
+            $apellidos[1]="";
+        }
+        $telefono=$this->request->getPost('per_telefono');
+        $email=$this->request->getPost('per_email');
+        $data=[
+            'username' => $username,
+            'nombre' => $nombre,
+            'apellidoPaterno' => $apellidos[0],
+            'apellidoMaterno' => $apellidos[1],
+            'telefono' => $telefono,
+            'email' => $email
+        ];
+
+        $usuario_up=new UsuariosModel();
+        $usuario_up->update($user_id,$data);
+
+        echo json_encode(['respuesta' => true]);
     }
 
     public function configurarPassword(){
         return view('configuracion/cambiarPassword');
+    }
+    public function editarPassword(){
+        
+        /*//Validamos las entradas del formulario
+        $validation = service('validation');
+        $validation->setRules([
+            'user_clave_1' => 'permit_empty|matches[user_clave_2]|min_length[5]|max_length[8]',
+            'admin_clave' => 'required|min_length[5]|max_length[8]'
+        ]);
+
+        if(!$validation->withRequest($this->request)->run()){
+            //dd($validation->getErrors());
+            return redirect()->to(base_url('actualizarPassword'))->withInput()->with('errors',$validation->getErrors());
+        }*/
+        //-----------------------------------
+        
+        $admin_id=session('id');
+        $usuario=new UsuariosModel();
+        $admin=$usuario->obtenerDatos($admin_id);
+        $admin_pass=$this->request->getPost('admin_clave');
+
+        $password=PASSWORD_HASH($this->request->getPost('user_clave_1'),PASSWORD_DEFAULT);
+        $data=['pass' => $password];
+
+        if(!PASSWORD_VERIFY($admin_pass,$admin['pass'])){
+            echo json_encode(['respuesta' => false]);
+        }else{
+            $usuario_up=new UsuariosModel();
+            $usuario_up->update($admin_id,$data);
+            echo json_encode(['respuesta' => true]);
+        }
+        
     }
 
     public function recuperarPassword(){
