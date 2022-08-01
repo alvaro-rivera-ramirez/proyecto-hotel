@@ -59,7 +59,9 @@ if (is_file(APPPATH . 'Config/' . ENVIRONMENT . '/Routes.php')) {
 $routes->get('/inicio', 'Inicio::index');
 $routes->post('/login', 'Login::login');
 $routes->get('perfil', 'UsuariosController::configurarPerfil');
+$routes->post('ed_perfil', 'UsuariosController::editarPerfil');
 $routes->get('actualizarPassword', 'UsuariosController::configurarPassword');
+$routes->post('ed_Password', 'UsuariosController::editarPassword');
 $routes->get('salir', 'Inicio::salir');
 $routes->get('reservar', 'ReservasController::reservar');
 $routes->post('guardar_reserva', 'ReservasController::guardar');
