@@ -27,11 +27,9 @@
                             <!-- MENU DE OPCIONES-->
                             <div class="container-fluid">
                                 <div class="container-nav">
-                                    <div class="box-nav"> <a href="<?= base_url('nuevo_usuario')?>"><i
-                                                class="fas fa-plus fa-fw"></i> AGREGAR USUARIO</a></div>
-                                    <div class="box-nav"> <a class="active" href="#"><i
-                                                class="fas fa-clipboard-list fa-fw"></i> LISTA DE USUARIOS</a> </div>
-                                    <div class="box-nav"> <a href="http://localhost:8080/demo-pdf"><i class="fa-solid fa-print"></i> IMPRIMIR</a>
+                                    <div class="box-nav"> <a href="<?= base_url('nuevo_usuario')?>"><i class="fas fa-plus fa-fw"></i> AGREGAR USUARIO</a></div>
+                                    <div class="box-nav"> <a class="active" href="#"><i class="fas fa-clipboard-list fa-fw"></i> LISTA DE USUARIOS</a> </div>
+                                    <div class="box-nav"> <a href="<?= base_url('demo-pdf')?>"><i class="fa-solid fa-print"></i> IMPRIMIR</a>
                                     </div>
                                     <div class="box-nav">
                                         <form class="d-flex">
@@ -123,7 +121,7 @@
                 cancelButtonText: 'Cancelar'
             }).then((result) => {
                 if (result.isConfirmed) {                    
-                    fetch('http://localhost/proyecto-hotel/public/eliminar_usuario/' + id  , {
+                    fetch('eliminar_usuario/' + id  , {
                             method: 'POST',
                             mode: 'no-cors',
                             headers: {

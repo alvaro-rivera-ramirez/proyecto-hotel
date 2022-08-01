@@ -58,5 +58,6 @@ class PdfController extends Controller{
         $domPDF->setPaper('A4', 'portrait');
         $domPDF->render();
         $domPDF->stream("reporte.pdf",array('Attachment' => false));               
+        //$domPDF->stream("reporte.pdf");               
     }
 }
