@@ -29,31 +29,34 @@
                             
 
                         <div class="col-md-12">
-                                <div class="form-group">
+                                <div class="form-group" id="grupo__admin_clave">
                                     <label for="admin_clave" class="bmd-label-floating">Contraseña</label>
                                     <input type="password" name="admin_clave" id="admin_clave" required="">
-                                    <p class="text-danger"><?= session('errors.admin_clave')?> </p>
-                                    <small class="d-none text-danger" id="validacion1" >Complete este campo por favor</small>
+                                    <p class="formulario__input-error">La contraseña tiene que ser de 4 a 12 dígitos y sin espacio.</p>
                                 </div>
                             </div>
 
                             <div class="col-md-12">
-                                <div class="form-group">
+                                <div class="form-group" id="grupo__user_clave_1">
                                     <label for="user_clave_1" class="bmd-label-floating">Nueva Contraseña</label>
                                     <input type="password" name="user_clave_1" id="user_clave_1">
-                                    <small class="d-none text-danger" id="validacion2" >Complete este campo por favor</small>
-                                    <small class="d-none text-danger" id="validacion4" >Tiene que ser más de 5 caracteres.</small>                      
+                                    <p class="formulario__input-error">La contraseña tiene que ser de 4 a 12 dígitos y sin espacio.</p>                     
                                 </div>
                             </div>
                             <div class="col-md-12">
-                                <div class="form-group">
+                                <div class="form-group" id="grupo__user_clave_2">
                                     <label for="user_clave_2" class="bmd-label-floating">Confirmar contraseña</label>
                                     <input type="password" name="user_clave_2" id="user_clave_2">
-                                    <small class="d-none text-danger" id="validacion3" >El campo no coincide con el anterior.</small>
+                                    <p class="formulario__input-error">Ambas contraseñas deben ser iguales.</p>
                                                         
                                 </div>
                             </div>
+                            <div class="col-md-12 mt-2" >
+                                    <p class="d-none text-danger" id="msg_error">Por favor rellenar el formulario correctamente</p>
+                                </div>
                         </div>
+
+                        
 
                         <div class="col-lg-6 text-center">
                                 <span class="bolded "><br>IMPORTANTE<br></span>
@@ -86,51 +89,68 @@
    <?php include "include/script.php"?>
 
     <script>
-        let boton_enviar = document.getElementById('btn_guardar');
+        const formulario =document.getElementById('upd_form');
+        const inputs = document.querySelectorAll('#upd_form input');
 
-        let val1 = document.getElementById('admin_clave');
-        let clave1 = document.getElementById('user_clave_1');
-        let clave2 = document.getElementById('user_clave_2');
+        const expresiones = {
+            password: /^.{4,12}$/, // 4 a 12 digitos.
+        }
         
-        boton_enviar.addEventListener('click', e => {
-            e.preventDefault();console.log(clave1.value.length);
-            if (val1.value === '' || val1.value === null || clave1.value === ''|| clave1.value === null ) 
-            {
-                let timerInterval
-                Swal.fire({
-                    icon: 'warning',
-                    title: 'COMPLETE LOS CAMPOS REQUERIDOS POR FAVOR',
-                    timer: 1500,
-                })
-                // COMPLETAR CAMPOS UNO POR UNO
-                if(val1.value === '' || val1.value === null)
-                {
-                    let error = document.getElementById('validacion1');
-                    error.classList.remove('d-none');
-                }
-                if(clave1.value === '' || clave1.value === null)
-                {
-                    let error = document.getElementById('validacion2');
-                    error.classList.remove('d-none');
-                }
+        const campos = {
+            admin_clave: false,
+            user_clave_1: false,
+        }
 
-                // COMPLETAR CAMPOS UNO POR UNO FIIIIN
+        const validarFormulario = (e) => {
+        switch (e.target.name) {
+            case "admin_clave":
+                validarCampo(expresiones.password, e.target, 'admin_clave');
+            break;
+            case "user_clave_1":
+                validarCampo(expresiones.password, e.target, 'user_clave_1');
+                validarPassword2();
+            break;
+            case "user_clave_2":
+                validarPassword2();
+            break;
+        }
+        }
 
+        const validarCampo = (expresion, input, campo) => {
+            var noValido = / /;
+            if(expresion.test(input.value) && !noValido.test(input.value)){
+                document.querySelector(`#grupo__${campo} .formulario__input-error`).classList.remove('formulario__input-error-activo');
+                campos[campo] = true;
+            } else {
+                document.querySelector(`#grupo__${campo} .formulario__input-error`).classList.add('formulario__input-error-activo');
+                campos[campo] = false;
             }
-            
-            else if(clave1.value != clave2.value){
-                let error = document.getElementById('validacion3');
-                error.classList.remove('d-none');
-                document.getElementById('validacion1').classList.add('d-none');
-                document.getElementById('validacion2').classList.add('d-none');
-            }else if(clave1.value.length <=5 ){
-                let error = document.getElementById('validacion4');
-                error.classList.remove('d-none');
+        }
+
+        const validarPassword2 = () => {
+            const inputPassword1 = document.getElementById('user_clave_1');
+            const inputPassword2 = document.getElementById('user_clave_2');
+
+            if(inputPassword1.value !== inputPassword2.value){
+                document.querySelector(`#grupo__user_clave_2 .formulario__input-error`).classList.add('formulario__input-error-activo');
+                campos['user_clave_1'] = false;
+            } else {
+                document.querySelector(`#grupo__user_clave_2 .formulario__input-error`).classList.remove('formulario__input-error-activo');
+                campos['user_clave_1'] = true;
             }
-             else {
-                if(clave1.value == clave2.value){
-                    document.getElementById('validacion3').classList.add('d-none');
-                }
+        }
+
+        inputs.forEach((input) => {
+            input.addEventListener('keyup', validarFormulario);
+            input.addEventListener('blur', validarFormulario);
+        });
+
+        let boton_enviar = document.getElementById('btn_guardar');
+        
+        boton_enviar.addEventListener('click', e =>{
+            e.preventDefault();
+            if(campos.admin_clave && campos.user_clave_1){
+                document.getElementById('msg_error').classList.add('d-none');
                 Swal.fire({
                     title: '¿Estás seguro que desea cambiar tu contraseña?',
                     text: "Está a punto de cambiar tu contraseña",
@@ -155,7 +175,6 @@
                                 
                             }).then(res => res.json()).then(res => {
                                 console.log(res);
-                                console.log("prueb")
                             if (res['respuesta']) {
                                 Swal.fire(
                                     'Contraseña actualizada!',
@@ -174,8 +193,19 @@
                         })
                     }
                 })
+            }else{
+                document.getElementById('msg_error').classList.remove('d-none');
+                let timerInterval
+                    Swal.fire({
+                        icon: 'warning',
+                        title: 'COMPLETE TODOS LOS CAMPOS REQUERIDOS POR FAVOR',
+                        timer: 1500,
+                    })
             }
-        })
+        });
+        //---------------------
+        
+      
     </script>
 </body>
 </html>

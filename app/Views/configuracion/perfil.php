@@ -51,49 +51,54 @@
                             <input type="hidden" name="user_id" value="<?= $usuario['id']?>">
                             <div class="row g-3 mt-2">
                                 <div class="col-lg-8 row pt-3"> 
-                                <div class="col-md-6">
+                                <div class="col-md-6" id="grupo__per_nombre">
                                         <label for="per_nombre" class="bmd-label-floating">Nombres</label>
                                         <input type="text" name="per_nombre" id="per_nombre"
                                                 value="<?= old('per_nombre',$usuario['nombre'])?>">
-                                            <p class="text-danger"><?= session('errors.per_nombre')?></p>
-                                            <p class="d-none text-danger" id="validacion1" >Complete este campo por favor</p>
+                                            <p class="formulario__input-error text-danger">El usuario tiene que ser de 4 a 16 dígitos y solo puede contener numeros, letras y guion bajo.</p>
+                                            
                                     
                                 </div>
 
-                                <div class="col-md-6">
-                                    <label for="per_apellidop" class="bmd-label-floating">Apellidos</label>
+                                <div class="col-md-6" id="grupo__per_apellido">
+                                    <label for="per_apellido" class="bmd-label-floating">Apellidos</label>
                                     <input type="text" name="per_apellido" id="per_apellido"
                                                     value="<?= old('per_apellido',$usuario['apellidoPaterno']." ".$usuario['apellidoMaterno'])?>">
-                                                <p class="text-danger"><?= session('errors.per_apellido')?></p>
-                                                <p class="d-none text-danger" id="validacion2" >Complete este campo por favor</p>
+                                                    <p class="formulario__input-error text-danger">El usuario tiene que ser de 4 a 16 dígitos y solo puede contener numeros, letras y guion bajo.</p>
+                                                
                                 </div>
                                 
-                                <div class="col-md-12">
+                                <div class="col-md-12" id="grupo__per_email">
                                     <label for="per_email" class="bmd-label-floating">Email</label>
                                     <input type="email" name="per_email" id="per_email"
                                                     value="<?= old('per_email',$usuario['email'])?>" maxlength="70">
                                                 <p class="text-danger"><?= session('errors.per_email')?></p>
-                                                <p class="d-none text-danger" id="validacion3" >Complete este campo por favor</p>
+                                                <p class="formulario__input-error">El correo solo puede contener letras, numeros, puntos, guiones y guion bajo.</p>
+                                                
                                             
                                 </div>
 
-                                <div class="col-md-6">
+                                <div class="col-md-6" id="grupo__per_telefono">
                                     <label for="per_telefono" class="bmd-label-floating">Teléfono</label>
                                     <input type="text" name="per_telefono" id="per_telefono"
                                                     value="<?= old('per_telefono',$usuario['telefono'])?>">
-                                                <p class="text-danger"><?= session('errors.per_telefono')?></p>
-                                                <p class="d-none text-danger" id="validacion4" >Complete este campo por favor</p>
+                                                    <p class="formulario__input-error">El telefono solo puede contener numeros y el maximo son 14 dígitos.</p>
+                                                
                                            
                                 </div>
 
-                                <div class="col-md-6">
+                                <div class="col-md-6" id="grupo__per_username">
                                     <label for="per_username" class="bmd-label-floating">Username</label>
                                     <input type="text" name="per_username" id="per_username"
                                                     value="<?= old('per_username',$usuario['username'])?>"
                                                     maxlength="35">
                                                 <p class="text-danger"><?= session('errors.per_username')?></p>
-                                                <p class="d-none text-danger" id="validacion5" >Complete este campo por favor</p>
+                                                <p class="formulario__input-error text-danger">El usuario tiene que ser de 4 a 16 dígitos y solo puede contener numeros, letras y guion bajo.</p>
                                 </div>
+                                <div class="col-md-12 mt-2" >
+                                    <p class="d-none text-danger" id="msg_error">Por favor rellenar el formulario correctamente</p>
+                                </div>
+
                                 </div>
                             </div>
                             <?php if(session('msg')): ?>
@@ -105,7 +110,7 @@
                                         <?php endif; ?>
 
                             <!------botones----------->
-                            <div class="col-12 mt-4">
+                            <div class="col-12 mt-2">
                                     <button type="submit" class="btn-guardar" id="btn_guardar">
                                     <i class="fa-regular fa-floppy-disk me-1"></i> Guardar</button>
                             </div>
@@ -119,62 +124,68 @@
     </div>
     <?php include "include/script.php"?>
     <script>
+    
+    const formulario =document.getElementById('upd_form');
+    const inputs = document.querySelectorAll('#upd_form input');
+
+    const expresiones = {
+	usuario: /^[a-zA-Z0-9\_\-]{4,16}$/, // Letras, numeros, guion y guion_bajo
+	nombre: /^[a-zA-ZÀ-ÿ\s]{1,40}$/, // Letras y espacios, pueden llevar acentos.
+	password: /^.{4,12}$/, // 4 a 12 digitos.
+	correo: /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/,
+	telefono: /^\d{7,14}$/ // 7 a 14 numeros.
+    }
+
+    const campos = {
+        per_username: true,
+        per_nombre: true,
+        per_apellido: true,
+        per_email: true,
+        per_telefono: true
+    }
+
+    const validarFormulario = (e) => {
+        switch (e.target.name) {
+            case "per_nombre":
+                validarCampo(expresiones.nombre, e.target, 'per_nombre');
+            break;
+            case "per_apellido":
+                validarCampo(expresiones.nombre, e.target, 'per_apellido');
+            break;
+            case "per_email":
+                validarCampo(expresiones.correo, e.target, 'per_email');
+            break;
+            case "per_telefono":
+                validarCampo(expresiones.telefono, e.target, 'per_telefono');
+            break;
+            case "per_username":
+                validarCampo(expresiones.usuario, e.target, 'per_username');
+            break;
+        }
+    }
+
+    const validarCampo = (expresion, input, campo) => {
+        if(expresion.test(input.value)){
+            document.querySelector(`#grupo__${campo} .formulario__input-error`).classList.remove('formulario__input-error-activo');
+            campos[campo] = true;
+        } else {
+            document.querySelector(`#grupo__${campo} .formulario__input-error`).classList.add('formulario__input-error-activo');
+            campos[campo] = false;
+        }
+    }
+
+    inputs.forEach((input) => {
+	    input.addEventListener('keyup', validarFormulario);
+        input.addEventListener('blur', validarFormulario);
+    });
 
     let boton_enviar = document.getElementById('btn_guardar');
 
-    let val1 = document.getElementById('per_nombre');
-    let val2 = document.getElementById('per_apellido');
-    let val3 = document.getElementById('per_email');
-    let val4 = document.getElementById('per_telefono');
-    let val5 = document.getElementById('per_username');
-    
-    boton_enviar.addEventListener('click', e => {
-            e.preventDefault();
-            if (val1.value === '' || val1.value === null || val2.value === '' || val2.value === null || val3.value === '' || val3.value === null
-            || val4.value === '' || val4.value === null || val5.value === '' || val5.value === null ) 
-            {
-                let timerInterval
-                Swal.fire({
-                    icon: 'warning',
-                    title: 'COMPLETE TODOS LOS CAMPOS REQUERIDOS POR FAVOR',
-                    timer: 1500,
-                })
-                console.log("siuuu")
-                // COMPLETAR CAMPOS UNO POR UNO
-                if(val1.value === '' || val1.value === null)
-                {
-                    let error = document.getElementById('validacion1');
-                    error.classList.remove('d-none');
-                }
-
-                if(val2.value === '' || val2.value === null)
-                {
-                    let error = document.getElementById('validacion2');
-                    error.classList.remove('d-none');
-                }
-
-                if(val3.value === '' || val3.value === null)
-                {
-                    let error = document.getElementById('validacion3');
-                    error.classList.remove('d-none');
-                }
-
-                if(val4.value === '' || val4.value === null)
-                {
-                    let error = document.getElementById('validacion4');
-                    error.classList.remove('d-none');
-                }
-
-                if(val5.value === '' || val5.value === null)
-                {
-                    let error = document.getElementById('validacion5');
-                    error.classList.remove('d-none');
-                }
-
-                // COMPLETAR CAMPOS UNO POR UNO FIIIIN
-
-            } else {
-                Swal.fire({
+    boton_enviar.addEventListener('click', e =>{
+        e.preventDefault();
+        if(campos.per_username && campos.per_apellido && campos.per_email && campos.per_telefono && campos.per_username){
+            document.getElementById('msg_error').classList.add('d-none');
+            Swal.fire({
                     title: '¿Estás seguro que desea actualizar?',
                     text: "Está a punto de actualizar tu perfil",
                     icon: 'warning',
@@ -198,7 +209,7 @@
                                 body: update
 
                             }).then(res => res.json())
-                            .then(res => { console.log(res);
+                            .then(res => { console.log(res['errors']);
                             if (res['respuesta']) {
                                 Swal.fire(
                                     'Perfil actualizado!',
@@ -213,12 +224,26 @@
                                     res['mensaje'],
                                     'error'
                                 );
+                                
+
                             }
                         })
                     }
                 })
-            }
-        })
+        }else{
+            document.getElementById('msg_error').classList.remove('d-none');
+            let timerInterval
+                Swal.fire({
+                    icon: 'warning',
+                    title: 'COMPLETE TODOS LOS CAMPOS REQUERIDOS POR FAVOR',
+                    timer: 1500,
+                })
+        }
+    });
+
+    //-------------------------------------------------------------------
+
+    
 
     </script>
 </body>

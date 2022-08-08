@@ -292,3 +292,13 @@ a:hover, a{
     border-radius: 5px;
     background-color: #999999 !important;
 }
+
+/*form input */
+.formulario__input-error{
+    font-size: 10px;
+    display: none;
+    color: red;
+}
+.formulario__input-error-activo{
+    display: block;
+}
