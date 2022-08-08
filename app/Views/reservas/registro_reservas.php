@@ -51,7 +51,8 @@
                                             RESERVA</a></div>
                                     <div class="box-nav"> <a class="active" href="#"><i
                                                 class="fas fa-clipboard-list fa-fw"></i> LISTA DE REGISTROS</a> </div>
-                                    <div class="box-nav"> <a href="<?= base_url('demo-pdf') ?>"><i class="fa-solid fa-print"></i> IMPRIMIR</a></div>
+                                    <div class="box-nav"> <a href="<?= base_url('demo-pdf') ?>"><i
+                                                class="fa-solid fa-print"></i> IMPRIMIR</a></div>
                                     <div class="box-nav">
                                         <form class="d-flex" id="form_busca_reserva">
                                             <input class="input-buscar me-2" type="search" placeholder="Buscar"
@@ -76,6 +77,7 @@
                                             <th>Fecha</th>
                                             <th>Detalles</th>
                                             <th>Monto Total</th>
+                                            <th>Estado de Reserva</th>
                                             <th>Estado</th>
                                             <th>Editar</th>
                                             <th>Eliminar</th>
@@ -173,21 +175,42 @@
                                                         class="form-control">
                                                 </div>
                                             </div>
-
-                                            <form id="form_reserva" method='POST'>
-                                                <div class="row g-2" id="detalleH">
-                                                    <h4 class="pt-4"><i class="far fa-address-card"></i> Datos de
-                                                        Alojamiento</h4>
-                                                    <div class="col-md-12">
-                                                        <label for="cant-hab">Número Habitaciones</label>
-                                                        <div class="input-group">
-                                                            <input type="text" id="cant-hab" class="form-control"
-                                                                value="1" name="cant-hab" disabled>
-                                                            <button class="btn-buscar btn btn-dark" id="agregarH"><i
-                                                                    class="fa-solid fa-plus"></i></button>
-                                                        </div>
+                                            <div class="row g-2">
+                                                <h4 class="pt-4"><i class="far fa-address-card"></i> Datos de
+                                                    Alojamiento</h4>
+                                                <div class="col-md-12">
+                                                    <label for="cant-hab">Número Habitaciones</label>
+                                                    <div class="input-group">
+                                                        <input type="text" id="cant-hab" class="form-control" value="0"
+                                                            name="cant-hab" disabled>
+                                                        <button class="btn-buscar btn btn-dark" id="agregarH"
+                                                            disabled><i class="fa-solid fa-plus"></i></button>
                                                     </div>
-                                                    <div class="row g-2">
+                                                </div>
+                                                <div class="row g-2">
+                                                    <div class="col-md-4">
+                                                        <label for="estadoR">Estado de Reserva</label>
+                                                        <select id="estadoR" class="form-select" name="estadoR">
+                                                            <!-- <option selected disabled> Seleccione una opción </option> -->
+                                                            <option value="1"> En espera </option>
+                                                            <option value="2"> En reserva </option>
+                                                            <option value="3"> Finalizado </option>
+                                                            <option value="4"> Cancelado </option>
+                                                        </select>
+                                                    </div>
+                                                    <div class="col-md-4">
+                                                        <label for="estadoP">Estado de Pago</label>
+                                                        <select id="estadoP" class="form-select" name="estadoP">
+                                                            <!-- <option selected> Seleccione una opción </option> -->
+                                                            <option value="1"> Pendiente </option>
+                                                            <option value="2"> Pagado </option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <form id="form_reserva" class="row g-2" method='POST'>
+                                                <div class="row g-2" id="detalleH">
+                                                    <!-- <div class="row g-2">
                                                         <div class="col-md-4">
                                                             <label for="TipoHab1">Tipo habitación</label>
                                                             <select id="TipoHab1" class="form-select tipo-filtro" name="tipo[]">
@@ -226,7 +249,7 @@
                                                             <input placeholder="00,00" type="text" class="form-control"
                                                                 id="costo1" disabled readonly>
                                                         </div>
-                                                    </div>
+                                                    </div> -->
                                                 </div>
                                             </form>
 
@@ -234,7 +257,8 @@
                                         <div class="modal-footer">
                                             <button type="button" class="btn btn-secondary"
                                                 data-bs-dismiss="modal">Cerrar</button>
-                                            <button type="button" class="btn btn-primary">Actualizar</button>
+                                            <button type="button" class="btn btn-primary"
+                                                id="actualizar_reserva">Actualizar</button>
                                         </div>
                                     </div>
                                 </div>
@@ -248,8 +272,10 @@
     </div>
 
     <?php include "include/script.php"?>
-    <script src="js/reservas/reservar.js"></script>
     <script src="js/reservas/ListarReservas.js"></script>
+    <script src="js/reservas/filtroHab.js"></script>
+    <script src="js/reservas/cliente.js"></script>
+    <script src="js/reservas/editarReserva.js"></script>
 
 </body>
 
