@@ -173,14 +173,14 @@ class UsuariosController extends Controller{
         $validation->setRules([
             'per_nombre' => 'required|alpha_space',
             'per_apellido' => 'required|alpha_space',
-            'per_telefono' => 'required|alpha_numeric',
+            'per_telefono' => 'required|alpha_numeric|min_length[9]|max_length[11]',
             'per_username' =>  'required|alpha_numeric|is_unique[usuarios.username,usuarios.id,'.$user_id.']',
             'per_email' => 'required|valid_email|is_unique[usuarios.email,usuarios.id,'.$user_id.']'
         ]);
 
         if(!$validation->withRequest($this->request)->run()){
             //dd($validation->getErrors());
-            return redirect()->to(base_url('perfil'))->withInput()->with('errors',$validation->getErrors());
+            return json_encode(['resp' => false,'errors' => $validation->getErrors()]);
         }
 
         $username=$this->request->getPost('per_username');
@@ -211,18 +211,17 @@ class UsuariosController extends Controller{
     }
     public function editarPassword(){
         
-        /*//Validamos las entradas del formulario
+        //Validamos las entradas del formulario
         $validation = service('validation');
         $validation->setRules([
-            'user_clave_1' => 'permit_empty|matches[user_clave_2]|min_length[5]|max_length[8]',
-            'admin_clave' => 'required|min_length[5]|max_length[8]'
+            'user_clave_1' => 'trim|permit_empty|matches[user_clave_2]|min_length[4]|max_length[12]',
+            'admin_clave' => 'trim|required|min_length[4]|max_length[12]'
         ]);
 
         if(!$validation->withRequest($this->request)->run()){
             //dd($validation->getErrors());
-            return redirect()->to(base_url('actualizarPassword'))->withInput()->with('errors',$validation->getErrors());
-        }*/
-        //-----------------------------------
+            return json_encode(['resp' => false,'errors' => $validation->getErrors()]);
+        }
         
         $admin_id=session('id');
         $usuario=new UsuariosModel();
