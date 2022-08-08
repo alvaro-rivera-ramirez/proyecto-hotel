@@ -44,7 +44,6 @@
                     <section>
                         <div class="row g-2" id="datosCliente">
                             <h4 class="pt-4"><i class="far fa-address-card"></i> Información Cliente</h4>
-                            <div class="" role="alert" id="alerta_dni"> </div>
                             <form class="col-md-4" id="form_cliente" method='POST'>
                                 <label for="cli_dni" class="bmd-label-floating">DNI</label>
                                 <div class="nh input-group ">
@@ -53,6 +52,7 @@
                                     <button class="btn-buscar btn btn-dark" type="submit" id="buscar"><i
                                             class="fas fa-search"></i></button>
                                 </div>
+                                <span class="text-danger" id="alerta-dni"></span>
                             </form>
                             <div class="col-md-4">
                                 <label for="cli_nombre" class="bmd-label-floating">Nombre</label>
@@ -75,9 +75,9 @@
                         </div>
 
                         <form id="form_reserva" method='POST'>
-                            <div class="row g-2" id="detalle">
+                            <div class="row g-2">
                                 <h4 class="pt-4"><i class="far fa-address-card"></i> Datos de Alojamiento</h4>
-                                <div class="col-md-12">
+                                <div class="col-md-4">
                                     <label for="cant-hab">Número Habitaciones</label>
                                     <div class="input-group">
                                         <input type="text" id="cant-hab" class="form-control" value="1" name="cant-hab"
@@ -86,11 +86,30 @@
                                                 class="fa-solid fa-plus"></i></button>
                                     </div>
                                 </div>
+                                <div class="col-md-4">
+                                    <label for="estadoR">Estado de Reserva</label>
+                                    <select id="estadoR" class="form-select" name="estadoR">
+                                        <option selected disabled> Seleccione una opción </option>
+                                        <option value="1"> En espera </option>
+                                        <option value="2"> En reserva </option>
+                                        <option value="3"> Finalizado </option>
+                                        <option value="4"> Cancelado </option>
+                                    </select>
+                                </div>
+                                <div class="col-md-4">
+                                    <label for="estadoP">Estado de Pago</label>
+                                    <select id="estadoP" class="form-select" name="estadoP">
+                                        <option selected disabled> Seleccione una opción </option>
+                                        <option value="1"> Pendiente </option>
+                                        <option value="2"> Pagado </option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="row g-2" id="detalleH">
                                 <div class="row g-2">
                                     <div class="col-md-4">
                                         <label for="TipoHab1">Tipo habitación</label>
-                                        <select id="TipoHab1" class="form-select" name="tipo[]"
-                                            onchange="filtroHab(this)">
+                                        <select id="TipoHab1" class="form-select tipo-filtro" name="tipo[]">
                                         </select>
                                     </div>
                                     <div class="col-md-4">
@@ -104,8 +123,8 @@
                                         <input type="text" id="Num1" class="form-control" disabled readonly>
                                     </div>
                                     <div class="col-md-1 d-flex align-items-end justify-content-center">
-                                        <button class="btn btn-dark puntero ocultar" type="button"
-                                            onclick="eliminar(this)"><i class="fa-solid fa-trash-can"></i>
+                                        <button class="btn btn-dark ocultar eliminar_hab" type="button"><i
+                                                class="fa-solid fa-trash-can"></i>
                                         </button>
                                     </div>
                                     <div class="col-md-4">
@@ -144,9 +163,11 @@
         </div>
     </div>
     <?php include "include/script.php"?>
-    <script>
-    let Jhabitacion = <?= json_encode($habitaciones);?>;
-    let Jtipo = <?= json_encode($tipos);?>;
+    <script src="js/reservas/cliente.js"></script>
+    <script src="js/reservas/filtroHab.js"></script>
+    <script src="js/reservas/reservar.js"></script>
+    <!-- <script>
+
     let $tipo = document.getElementById('TipoHab1');
     let boton_enviar = document.getElementById('enviar_reserva');
     let id_cliente = '';
@@ -196,7 +217,7 @@
                     for (const value of reserva.values()) {
                         console.log(value);
                     }
-                    fetch('<?= base_url('guardar_reserva') ?>', {
+                    fetch('guardar_reserva', {
                         method: 'POST',
                         mode: 'no-cors',
                         headers: {
@@ -312,7 +333,7 @@
 
         })
     })
-    </script>
+    </script> -->
 </body>
 
 </html>
