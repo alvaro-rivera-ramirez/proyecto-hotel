@@ -127,7 +127,7 @@
             e.preventDefault();
             if (val1.value === '' || val1.value === null || val2.value === '' || val2.value === null || val3.value === '' ||
                 val3.value === null || val4.value === '' || val4.value === null || val5.value === '' || val5.value === null ||
-                val6.value === '' || val6.value === null) 
+                val6.value === '' || val6.value === null)   
             {
                 let timerInterval
                 Swal.fire({

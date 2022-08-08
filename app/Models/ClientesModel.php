@@ -7,7 +7,14 @@ class ClientesModel extends Model{
     protected $table      = 'cliente';
     // Uncomment below if you want add primary key
     protected $primaryKey = 'idCliente';
+    protected $useTimestamps= true;
+    protected $useSoftDeletes = true;
+    protected $dateFormat= 'datetime';
+    protected $createdField  = 'created_at';
+    protected $updatedField  = 'updated_at';
+    protected $deletedField  = 'deleted_at';
     protected $allowedFields=['dni','nombre','apellidoPaterno','apellidoMaterno','telefono','email'];
+    
     public function obtenerCliente($data){
         $cliente=$this->db->table('cliente as c');
         $cliente->select('c.dni, c.nombre');
@@ -16,20 +23,15 @@ class ClientesModel extends Model{
     }
     
     public function getClientes(){
-        $consulta=$this->db->table($this->table);
-        return $consulta->get()->getResultArray();
+        $consulta=$this->db->query("SELECT * FROM cliente WHERE deleted_at IS NULL");
+        return $consulta->getResultArray();
     }
 
-    public function buscar($query)
-    {
-        $this->db->like('dni', $query);
-        $this->db->get('cliente');
-
-        if($query->num_rows()>0){
-            return $query;
-        }else{
-            return false;
-        }
+    public function obtenerDatos($idCliente){
+        $cliente=$this->db->table('cliente as c');
+        $cliente->select('c.*');
+        $cliente->where('c.idCliente',$idCliente);
+        return $cliente->get()->getRowArray();
     }
 
     public function buscarCliente($dni){
@@ -38,5 +40,4 @@ class ClientesModel extends Model{
         $cliente->where('dni',$dni);
         return $cliente->get()->getRowArray();
     }
-
 }

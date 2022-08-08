@@ -73,15 +73,16 @@
                                             <td><?= $clientes['telefono'] ?></td>
                                             <td><?= $clientes['email'] ?></td>
                                             <td>
-                                                <a class="btn btn-success" href="#" role="button">
-                                                <i class="fa-solid fa-pen-to-square"></i>
+                                                <a class="btn btn-success"
+                                                    href="<?= base_url('editar_cliente/'.$clientes['idCliente'])?>"
+                                                    role="button">
+                                                    <i class="fa-solid fa-pen-to-square"></i>
                                                 </a>
                                             </td>
                                             <td>
-                                                <form action="">
-                                                    <button class="btn btn-danger" type="button"><i class="fa-solid fa-trash-can"></i>
-                                                    </button>
-                                                </form>
+                                                <button class="btn btn-danger"
+                                                    onclick="Eliminar(<?= $clientes['idCliente']?>)"><i
+                                                        class="fa-solid fa-trash-can"></i></button>
                                             </td>
                                         </tr>
                                 <?php endforeach;?>  
@@ -100,12 +101,58 @@
                   </div>
                       
                       <!----->
-                  </div>
+                </div>
                   
             </div>
         </div>
    </div>
 
    <?php include "include/script.php"?>
+   <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+        function Eliminar(idCliente) {
+
+            console.log(idCliente);
+            Swal.fire({
+                title: '¿Está seguro de eliminar?',
+                text: "Está a punto de eliminar este registro",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Confirmar',
+                cancelButtonText: 'Cancelar'
+            }).then((result) => {
+                if (result.isConfirmed) {                    
+                    fetch('http://localhost/proyecto-hotel/public/eliminar_cliente/' + idCliente  , {
+                            method: 'POST',
+                            mode: 'no-cors',
+                            headers: {
+                                "Content-Type": "application/json",
+                                "X-Requested-With": "XMLHttpRequest"
+                            },
+                            body: idCliente
+
+                        }).then(res => res.json()).then(res => {
+                        if (res['respuesta']) {
+                            Swal.fire(
+                                'ELIMINADO!',
+                                'El registro fue eliminado exitosamente',
+                                'success'
+                            ).then((value) => {
+                                location.reload();
+                            });
+                        } else {
+                            Swal.fire(
+                                'Error!',
+                                res['mensaje'],
+                                'error'
+                            );
+                        }
+                    })                    
+                }
+            })
+        }
+    </script>
 </body>
 </html>

@@ -27,7 +27,8 @@
                         
                             <div class="container-fluid">
                                 <div class="container-nav">
-                                    <div class="box-nav"> <a href="#"><i class="fas fa-plus fa-fw"></i> NUEVO REGISTRO</a></div>
+                                <div class="box-nav"> <a href="<?= base_url('nuevo_tipohab')?>"><i
+                                                class="fas fa-plus fa-fw"></i> NUEVO REGISTRO</a></div>
                                     <div class="box-nav"> <a class="active" href="#"><i class="fas fa-clipboard-list fa-fw"></i> LISTA TIPO HABITACIONES</a> </div>
                                     <div class="box-nav"> <a href="http://localhost:8080/demo-pdf"><i class="fa-solid fa-print"></i> IMPRIMIR</a></div>
                                     <div class="box-nav">
@@ -51,6 +52,7 @@
                                         <th>Tipo<th>
                                         <th>Precio</th>
                                         <th>Caracteristicas</th>
+                                        <th>+ info</th>
                                         <th>Editar</th>
                                         <th>Eliminar</th>
                                     </tr>
@@ -62,17 +64,19 @@
                                         <td><?= $tipos['idTipo'] ?></td>
                                         <th><?= $tipos['tipo'] ?><th>
                                         <td>S/. <?= $tipos['precio'] ?></td>
-                                        <td>TV con Cable, Cama de plaza y media, Baño Privado</td>
+                                        <td><?= $tipos['descripcion'] ?></td>
+                                        <td><button class="btn-buscar btn btn-dark" type="submit"><i class="fas fa-info"></i></button></td>
                                         <td>
-                                            <a class="btn btn-success" href="#" role="button">
-                                            <i class="fa-solid fa-pen-to-square"></i>
-                                            </a>
+                                                <a class="btn btn-success"
+                                                    href="<?= base_url('editar_tipohab/'.$tipos['idTipo']) ?>"
+                                                    role="button">
+                                                    <i class="fa-solid fa-pen-to-square"></i>
+                                                </a>
                                         </td>
                                         <td>
-                                            <form action="">
-                                                <button class="btn btn-danger" type="button"><i class="fa-solid fa-trash-can"></i>
-                                                </button>
-                                            </form>
+                                                <button class="btn btn-danger"
+                                                    onclick="Eliminar(<?= $tipos['idTipo'] ?>)"><i
+                                                        class="fa-solid fa-trash-can"></i></button>
                                         </td>
                                     </tr>
                                 <?php endforeach;?>
@@ -92,5 +96,50 @@
    </div>
 
    <?php include "include/script.php"?>
+   <script>
+        function Eliminar(idTipo) {
+
+            console.log(idTipo);
+            Swal.fire({
+                title: '¿Está seguro de eliminar?',
+                text: "Está a punto de eliminar este registro",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Confirmar',
+                cancelButtonText: 'Cancelar'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    fetch('http://localhost/proyecto-hotel/public/eliminar_tipohab/' + idTipo  , {
+                            method: 'POST',
+                            mode: 'no-cors',
+                            headers: {
+                                "Content-Type": "application/json",
+                                "X-Requested-With": "XMLHttpRequest"
+                            },
+                            body: idTipo
+
+                        }).then(res => res.json()).then(res => {
+                        if (res['respuesta']) {
+                            Swal.fire(
+                                'ELIMINADO!',
+                                'El registro fue eliminado exitosamente',
+                                'success'
+                            ).then((value) => {
+                                location.reload();
+                            });
+                        } else {
+                            Swal.fire(
+                                'Error!',
+                                res['mensaje'],
+                                'error'
+                            );
+                        }
+                    })                    
+                }
+            })
+        }
+    </script>
 </body>
 </html>
