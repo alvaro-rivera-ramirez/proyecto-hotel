@@ -27,12 +27,12 @@ class ClientesController extends Controller{
     public function registrar(){
         $validation = service('validation');
         $validation->setRules([
-            'cli_dni_reg' => 'required|numeric|max_length[8]',
+            'cli_dni_reg' => 'required|numeric|min_length[8]|max_length[8]',
             'cli_nombre_reg' => 'required|alpha_space',
             'cli_apellidop_reg' => 'required|alpha_space',
             'cli_apellidom_reg' => 'required|alpha_numeric',
             'cli_telefono_reg' =>  'required|alpha_numeric',
-            'cli_email_reg' => 'required|valid_email|is_unique[cliente.email]',
+            'cli_email_reg' => 'permit_empty|max_length[50]',
         ]);
 
         if(!$validation->withRequest($this->request)->run()){
@@ -57,25 +57,6 @@ class ClientesController extends Controller{
         $cliente=new ClientesModel();
         $cliente->insert($data);
         echo json_encode(['respuesta' => true,'mensaje' =>'Cliente registrado exitosamente']);
-    }
-
-    public function buscar(){
-        $data = array(); 
-        $query = $this->input->get('query', TRUE);
-
-        if($query){
-            $result = $this->ClientesModel()->buscar(trim($query));
-            if($query != false){
-                $data = array('result'=> $result);
-            }else{
-                $data = array('result'=> '');
-            }
-        
-        $this->load->view('clientes/registro-cliente',$data);
-
-
-        }
-
     }
 
     public function buscardni(){
@@ -110,5 +91,69 @@ class ClientesController extends Controller{
         return json_encode(['resp' => true,'cliente' => $data]);
     }
 
+    public function editar($idCliente=null){
+        $cliente=new ClientesModel();
+        $datos['cliente']=$cliente->obtenerDatos($idCliente);
+        return view('clientes/update_cliente',$datos);
+        }
+    
+        public function actualizarCli(){
+        //id del cliente a editar
+        $cliente_id=$this->request->getPost('cliente_id');
+        $admin_id=session('id');
+    
+        $usuario=new UsuariosModel();
+        $admin=$usuario->obtenerDatos($admin_id);
+        
+        //Validamos las entradas del formulario
+        $validation = service('validation');
+        $validation->setRules([
+            'cliente_dni' => 'required|is_unique[cliente.dni,cliente.idCliente,'.$cliente_id.']|numeric|min_length[8]|max_length[8]',
+            'cliente_nombre' => 'required|alpha_space',
+            'cliente_apellidop' => 'required|alpha_space',
+            'cliente_apellidom' => 'required|alpha_space',
+            'cliente_telefono' =>  'required|alpha_numeric',
+            'cliente_email' => 'permit_empty|max_length[50]',
+            'admin_usuario' => 'required|alpha_numeric',
+            'admin_clave' => 'required|min_length[5]|max_length[8]'
+        ]);
+    
+        if(!$validation->withRequest($this->request)->run()){
+            return redirect()->to(base_url('editar_cliente/'.$cliente_id))->withInput()->with('errors',$validation->getErrors());
+        }
+    
+        $admin_usuario=$this->request->getPost('admin_usuario');
+        $admin_pass=$this->request->getPost('admin_clave');
+        if($admin['username']!=$admin_usuario || !PASSWORD_VERIFY($admin_pass,$admin['pass'])){
+            return redirect()->to(base_url('editar_cliente/'.$cliente_id))->withInput()->with('msg','Usuario y/o Password Incorrectos'); 
+        }
+    
+        $dni=$this->request->getPost('cliente_dni');
+        $nombre=$this->request->getPost('cliente_nombre');
+        $apellidoPaterno=$this->request->getPost('cliente_apellidop');
+        $apellidoMaterno=$this->request->getPost('cliente_apellidom');
+        $telefono=$this->request->getPost('cliente_telefono');
+        $email=$this->request->getPost('cliente_email');
+           $data=[
+            'dni' => $dni,
+            'nombre' => $nombre,
+            'apellidoPaterno' => $apellidoPaterno,
+            'apellidoMaterno' => $apellidoMaterno,
+            'telefono' => $telefono,
+            'email' => $email
+        ];
+        $cliente=new ClientesModel();
+        $cliente->update($cliente_id,$data);
+    
+        echo json_encode(['respuesta' => true]);
+        //return redirect()->route('lista-clientes');
+        }
+    
+        public function borrar($idCliente=null){
+            $cliente=new ClientesModel();
+            $cliente->where('idCliente',$idCliente)->delete($idCliente);        
+            echo json_encode(['respuesta' => true]);
+        }
+    
 }
 

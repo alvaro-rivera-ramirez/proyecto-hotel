@@ -79,11 +79,20 @@ $routes->post('eliminar_habitacion/(:num)', 'HabitacionController::borrar/$1');
 
 $routes->get('/lista-tipohab', 'TipoHabController::index');
 $routes->get('/lista_reservas', 'ReservasController::index');
+$routes->get('nuevo_tipohab', 'TipoHabController::crear');
+$routes->post('guardar_tipohab', 'TipoHabController::guardar');
+$routes->post('actualizar_tipohab', 'TipoHabController::actualizar');
+$routes->get('editar_tipohab/(:num)', 'TipoHabController::editar/$1');
+$routes->post('eliminar_tipohab/(:num)', 'TipoHabController::borrar/$1');
 
 $routes->get('/lista-clientes', 'ClientesController::index');
 $routes->get('nuevo_cliente', 'ClientesController::crear_cli');
 $routes->post('registrar_cliente', 'ClientesController::registrar');
 $routes->post('buscar_dni', 'ClientesController::buscardni');
+$routes->get('editar_cliente/(:num)', 'ClientesController::editar/$1');
+$routes->post('actualizar-cliente', 'ClientesController::actualizarCli');
+$routes->post('eliminar_cliente/(:num)', 'ClientesController::borrar/$1');
+
 
 $routes->get('/lista_usuarios', 'UsuariosController::index');
 $routes->get('editar_usuario/(:num)', 'UsuariosController::editar/$1');
