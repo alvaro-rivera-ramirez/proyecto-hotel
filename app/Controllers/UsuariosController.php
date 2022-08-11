@@ -5,18 +5,8 @@ use CodeIgniter\Controller;
 use App\Models\UsuariosModel;
 class UsuariosController extends Controller{
     public function index(){
-        //$usuario=new UsuariosModel();
-        //$datosUsuario['usuario']=$usuario->getUsuarios();
-
-        $msg = session('msg');
-        $pager = service('pager');
-        $model = new UsuariosModel();
-
-        $data = [
-            'usuario' => $model->paginate(8, 'group1'),
-            'pager' => $model->pager
-        ];
-
+        $usuario=new UsuariosModel();
+        $data['usuario']=$usuario->getUsuarios();
         return view('usuarios/registro_usuarios',$data);
     }
 

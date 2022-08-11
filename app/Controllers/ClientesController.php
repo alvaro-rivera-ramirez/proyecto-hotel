@@ -6,16 +6,8 @@ use App\Models\ClientesModel;
 
 class ClientesController extends Controller{
     public function index(){
-        //$cliente=new ClientesModel();
-        //$datosCli['cliente']=$cliente->getClientes();
-
-        $pager = service('pager');
-        $model = new ClientesModel();
-
-        $data = [
-            'cliente' => $model->paginate(8, 'group1'),
-            'pager' => $model->pager
-        ];
+        $cliente=new ClientesModel();
+        $data['cliente']=$cliente->getClientes();
 
         return view("clientes/registro-cliente",$data);
     }
