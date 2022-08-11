@@ -50,16 +50,16 @@
                         <div id="flush-collapseTwo" class="accordion-collapse collapse" aria-labelledby="flush-headingTwo" data-bs-parent="#accordionFlushExample">
                           <div class="sub-menu">
                             
-                             <a href="#" class="d-block">
+                             <a href="<?= base_url('reporte-diario')?>" class="d-block">
                               <i class="fa-solid fa-calendar-day"></i>
                                 Dia</a>
-                              <a href="#" class="d-block">
+                              <a href="<?= base_url('reporte-mes')?>" class="d-block">
                               <i class="fa-solid fa-calendar-days"></i>
                               Mes</a>
-                              <a href="#" class="d-block">
+                              <a href="<?= base_url('reporte-cliente')?>" class="d-block">
                               <i class="fa-solid fa-users"></i>
                               Clientes</a>
-                              <a href="#" class="d-block">
+                              <a href="<?= base_url('reporte-habitacion')?>" class="d-block">
                               <i class="fa-solid fa-hotel"></i>
                               Habitaciones</a>
                             </div>

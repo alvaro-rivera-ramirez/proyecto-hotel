@@ -147,12 +147,49 @@ const editarReserva =async (dni,id,idEstadoR,idEstadoP) =>{
         estadoR=document.getElementById('estadoR')
         estadoP=document.getElementById('estadoP')
         console.log(estadoR.value,estadoP.value)
-        if(estadoR.value==3 && estadoP.value==1){
-            Swal.fire(
-                'Error!',
-                'No puede finalizar la reserva si no a marcado como pagado',
-                'error'
-            );
+        if(estadoR.value==3){
+            if(estadoP.value==2){
+                Swal.fire({
+                    title: '¿Estas seguro de finalizar la reserva?',
+                    text: "Ya no podra realizar cambios en esta reserva",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Si, Finalizar',
+                    cancelButtonText: 'Cerrar'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        fetch('actualizar_reserva', {
+                            method: 'POST',
+                            mode: 'no-cors',
+                            headers: {
+                                "Content-Type": "application/json",
+                                "X-Requested-With": "XMLHttpRequest"
+                            },
+                            body: JSON.stringify({idReserva:id,idEstadoR:estadoR.value})
+                        }).then(res => res.json()).then(res => {
+                            if(res['resp']){
+                                Swal.fire(
+                                'Reserva Terminada!',
+                                'Haz finalizado la reserva.',
+                                'success'
+                                ).then((value) =>{
+                                    location.reload();
+                                    }
+                                )
+                            }
+                                
+                        })
+                    }
+                })
+            }else{
+                Swal.fire(
+                    'Error!',
+                    'No puede finalizar la reserva si no a marcado como pagado',
+                    'error'
+                );
+            }
         }else{
             if(estadoR.value==4){
                 Swal.fire({

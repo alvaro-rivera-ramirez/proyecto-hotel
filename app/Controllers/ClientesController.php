@@ -3,6 +3,7 @@ namespace App\Controllers;
 
 use CodeIgniter\Controller;
 use App\Models\ClientesModel;
+use App\Models\UsuariosModel;
 
 class ClientesController extends Controller{
     public function index(){
@@ -102,8 +103,8 @@ class ClientesController extends Controller{
         $validation->setRules([
             'cliente_dni' => 'required|is_unique[cliente.dni,cliente.idCliente,'.$cliente_id.']|numeric|min_length[8]|max_length[8]',
             'cliente_nombre' => 'required|alpha_space',
-            'cliente_apellidop' => 'required|alpha_space',
-            'cliente_apellidom' => 'required|alpha_space',
+            'cliente_apellidop' => 'permit_empty|alpha_space',
+            'cliente_apellidom' => 'permit_empty|alpha_space',
             'cliente_telefono' =>  'required|alpha_numeric',
             'cliente_email' => 'permit_empty|max_length[50]',
             'admin_usuario' => 'required|alpha_numeric',
@@ -111,7 +112,8 @@ class ClientesController extends Controller{
         ]);
     
         if(!$validation->withRequest($this->request)->run()){
-            return redirect()->to(base_url('editar_cliente/'.$cliente_id))->withInput()->with('errors',$validation->getErrors());
+            return json_encode(['respuesta' => false]);
+            // return redirect()->to(base_url('editar_cliente/'.$cliente_id))->withInput()->with('errors',$validation->getErrors());
         }
     
         $admin_usuario=$this->request->getPost('admin_usuario');

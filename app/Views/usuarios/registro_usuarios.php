@@ -77,10 +77,6 @@
                                                 </a>
                                             </td>
                                             <td>
-                                                <!-- <a id="eli_usu" class="btn btn-danger"
-                                                    href=""
-                                                    role="submit"><i class="fa-solid fa-trash-can"></i>
-                                                </a> -->
                                                 <button class="btn btn-danger"
                                                     onclick="Eliminar(<?= $usuarios['id']?>)"><i
                                                         class="fa-solid fa-trash-can"></i></button>
@@ -105,7 +101,6 @@
     </div>
 
     <?php include "include/script.php"?>
-    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script>
         function Eliminar(id) {
 

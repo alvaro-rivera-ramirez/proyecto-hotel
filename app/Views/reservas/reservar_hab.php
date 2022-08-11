@@ -26,9 +26,6 @@
 </head>
 
 <body>
-    <?php $data=[ $habitaciones,$tipos];
-    echo json_encode($data);
-?>
     <div class="d-flex">
         <?php include "include/navLateral.php"?>
 
@@ -92,8 +89,6 @@
                                         <option selected disabled> Seleccione una opción </option>
                                         <option value="1"> En espera </option>
                                         <option value="2"> En reserva </option>
-                                        <option value="3"> Finalizado </option>
-                                        <option value="4"> Cancelado </option>
                                     </select>
                                 </div>
                                 <div class="col-md-4">

@@ -94,7 +94,7 @@
         let form_upd = document.getElementById('formLoginG');
         let update = new FormData(form_upd);
 
-        fetch('<?= base_url('login') ?>', {
+        fetch('login', {
             method: 'POST',
             mode: 'no-cors',
             headers: {
@@ -104,8 +104,6 @@
             body: update
 
           }).then(res => res.json()).then(res => {
-          console.log(res);
-          console.log("prueb")
           if (res['respuesta']) {            
             location.reload();            
           } else {
