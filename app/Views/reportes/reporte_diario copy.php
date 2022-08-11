@@ -4,6 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Hotel</title>
+    <link rel="stylesheet" href="css/styleReporte.css" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <?php include "include/link.php" ?>
 </head>
@@ -16,56 +17,37 @@
             <?php include "include/navBar.php"?>
 
             <!-- Contenido -->
+
             <div class="ps-2 pt-3 content-body">
 
                 <!-- Contenedor de Registros -->
-
-                <div class="content p-4" style="background: white;">
-                    <!---->
-                    <!-- Contenedor de Registros -->
-
+                <div class="content p-5" style="background: white;">
+                
                     <div>
                         <section>
                             <h3 class="pb-3">Reportes / Diario</h3>
-                            <div class="row">
-
-                                <div class="col">
-                                    <div class="card text-white bg-dark mt-3" style="width: 18rem;">
-                                        <div class="card-body">
-                                            <h5 class="card-title" id="tit">Reporte diario</h5>
-                                            <h5 class="card-subtitle mb-2" id="se">Fecha</h5>
-                                            <p class="card-text" id="se">25/02/2022</p>
-                                            <h5 class="card-subtitle mb-2" id="tr">Total</h5>
-                                            <p class="card-text" id="tr">S/.480</p>
-                                        </div>
-                                    </div>
-    
-                                </div>
-                                <div class="col">
-                                    <div class="card text-white bg-dark mt-3" style="width: 18rem;">
-                                        <div class="card-body">
-                                        <img src="..." class="card-img-top" alt="...">
-                                        </div>
-                                    </div>
-                                </div>
+                            <div class="largecontent">
+                                <h5 class="texto" id="tit">Reporte diario</h5>
+                                <h5 class="texto" id="se">Fecha</h5>
+                                <h6 class="texto" id="se">25/02/2022</h6>
+                                <h5 class="texto" id="tr">Total</h5>
+                                <h6 class="texto" id="tr">S/.480</h6>
                             </div>
                             <!-- MENU DE OPCIONES-->
-                            <div class="container-fluid mt-4">
+                            <div class="container-fluid">
                                 <div class="container-nav">
-                                    <div class="box-nav"> <a href="#"><i class="fas fa-search fa-fw"></i> Buscar</a>
+                                    <div class="box-nav"> <a href="#"><i class="fas fa-search fa-fw"></i> Buscar</a></div>
+                                    <div class="box-nav"> <a href="#"><i class="fas fa-filter fa-fw"></i></i> Filtro</a>
                                     </div>
-                                    <div class="box-nav"> <a href="#"><i class="fas fa-filter fa-fw"></i></i> Fecha</a>
-                                    </div>
-                                    <div class="box-nav"> <a href="#"><i class="fa-solid fa-print"></i> Imprimir</a>
-                                    </div>
+                                    <div class="box-nav"> <a href="#"><i class="fa-solid fa-print"></i> Imprimir</a></div>
                                 </div>
                             </div>
-
+    
                             <!-- TABLE RESPONSIVE-->
-                            <div class="table-responsive mt-1">
+                            <div class="table-responsive mt-2">
                                 <table class="table bg-white">
                                     <thead class="bg-dark text-light">
-                                        <tr class="text-wrap">
+                                        <tr class="text-center">
                                             <th>Nro</th>
                                             <th>Habitacion</th>
                                             <th>Tipo</th>
@@ -76,7 +58,7 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr class="text-wrap">
+                                        <tr class="text-center">
                                             <td>1</td>
                                             <td>101</td>
                                             <td>Simple</td>
@@ -85,7 +67,7 @@
                                             <td>10:40:05</td>
                                             <td>14:40:15</td>
                                         </tr>
-                                        <tr class="text-wrap">
+                                        <tr class="text-center">
                                             <td>2</td>
                                             <td>102</td>
                                             <td>Doble</td>
@@ -94,7 +76,7 @@
                                             <td>10:40:05</td>
                                             <td>14:40:15</td>
                                         </tr>
-                                        <tr class="text-wrap">
+                                        <tr class="text-center">
                                             <td>3</td>
                                             <td>104</td>
                                             <td>Simple</td>
@@ -103,7 +85,16 @@
                                             <td>10:40:05</td>
                                             <td>14:40:15</td>
                                         </tr>
-                                        <tr class="text-wrap">
+                                        <tr class="text-center">
+                                            <td>4</td>
+                                            <td>106</td>
+                                            <td>Simple</td>
+                                            <td>Richard Smit</td>
+                                            <td>S/.80</td>
+                                            <td>10:40:05</td>
+                                            <td>14:40:15</td>
+                                        </tr>
+                                        <tr class="text-center">
                                             <td>5</td>
                                             <td>110</td>
                                             <td>Doble</td>
@@ -130,9 +121,7 @@
                             </nav>
                         </section>
                     </div>
-                    <!----->
                 </div>
-
             </div>
         </div>
     </div>

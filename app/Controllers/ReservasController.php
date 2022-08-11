@@ -77,7 +77,12 @@ class ReservasController extends Controller{
             $dias= $fecha2->diff($fecha1)->format('%d');
             $precio=$tipoHab->obtener_precio($tipo[$i],$dias);
             $detalleR->agregar_detalle($id_reserva,$hab[$i],$fechaI[$i],$fechaF[$i],$dias,$precio);
-            $habitacion->update($hab[$i],['idEstado' =>3]);
+            $fechaActual = date('Y-m-d', time());
+            if($fechaActual<$fecha1){
+                $habitacion->update($hab[$i],['idEstado' =>2]);
+            }else{
+                $habitacion->update($hab[$i],['idEstado' =>3]);
+            }
         }
         echo json_encode(['respuesta' => true,'mensaje' =>'Se registro la(s) reserva(s) correctamente']);
     }

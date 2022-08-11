@@ -200,6 +200,8 @@ class UsuariosController extends Controller{
             'email' => $email
         ];
 
+        //Actualizamos la variable de sesion nombre
+        $_SESSION['nombre']= $nombre;
         $usuario_up=new UsuariosModel();
         $usuario_up->update($user_id,$data);
 

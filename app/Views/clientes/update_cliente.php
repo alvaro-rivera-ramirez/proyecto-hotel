@@ -172,8 +172,7 @@
 
         boton_enviar.addEventListener('click', e => {
             e.preventDefault();
-            if (val1.value === '' || val1.value === null || val2.value === '' || val2.value === null || val3.value === '' || val3.value === null
-            || val4.value === '' || val4.value === null || val5.value === '' || val5.value === null || 
+            if (val1.value === '' || val1.value === null || val2.value === '' || val2.value === null || val5.value === '' || val5.value === null 
             || val7.value === '' || val7.value === null || val8.value === '' || val8.value === null) 
             {
                 let timerInterval
@@ -195,17 +194,24 @@
                     error.classList.remove('d-none');
                 }
 
-                if(val3.value === '' || val3.value === null)
+                if(val3.value === '' || val4.value === '')
                 {
-                    let error = document.getElementById('validacion3');
-                    error.classList.remove('d-none');
+                    if(val3.value ==='' && val4.value !=''){
+                        let error = document.getElementById('validacion3');
+                        error.classList.remove('d-none');
+
+                    }
+                    if(val4.value ==='' && val3.value !=''){
+                        let error2 = document.getElementById('validacion4');
+                        error2.classList.remove('d-none');
+                    }
                 }
 
-                if(val4.value === '' || val4.value === null)
-                {
-                    let error = document.getElementById('validacion4');
-                    error.classList.remove('d-none');
-                }
+                // if(val4.value === '' || val4.value === null)
+                // {
+                //     let error = document.getElementById('validacion4');
+                //     error.classList.remove('d-none');
+                // }
 
                 if(val5.value === '' || val5.value === null)
                 {

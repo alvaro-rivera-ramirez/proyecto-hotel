@@ -23,7 +23,7 @@ class Filters extends BaseConfig
         'honeypot'      => Honeypot::class,
         'invalidchars'  => InvalidChars::class,
         'secureheaders' => SecureHeaders::class,
-        'SessionAdmin'  => \App\Filters\SessionAdmin::class
+        'auth'  => \App\Filters\Auth::class
     ];
 
     /**
@@ -70,10 +70,10 @@ class Filters extends BaseConfig
      * @var array
      */
     public $filters = [
-        "SessionAdmin" =>[
-            "before" =>[
-                "inicio","lista-clientes","lista-habitaciones","lista_usuarios","nuevo_usuario","lista_reservas","registrar_cliente","lista-tipohab"
-            ]
+        "auth" =>[
+            // "before" =>[
+            //     // "inicio","lista-clientes","lista-habitaciones","lista_usuarios","nuevo_usuario","lista_reservas","registrar_cliente","lista-tipohab"
+            // ]
         ]
 
     ];

@@ -15,7 +15,7 @@ class TipoHabController extends Controller{
         $model = new TipoHabModel();
 
         $data = [
-            'tipo' => $model->paginate(3, 'group1'),
+            'tipo' => $model->paginate(2, 'group1'),
             'pager' => $model->pager
         ];
             

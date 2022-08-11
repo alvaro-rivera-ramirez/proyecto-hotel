@@ -39,6 +39,18 @@ const agregarHab = (detalleHab,cont,Jtipo) => {
     mostrarTipoHab(Jtipo, 'idTipo', 'tipo', document.getElementById('TipoHab' + cont))
 }
 
+const agregarFecha = (fechaI,fechaF) =>{
+    let fecha = new Date();
+    let mes = fecha.getMonth()+1;
+    let dia = fecha.getDate();
+    let anio = fecha.getFullYear();
+    if(dia<10)
+        dia='0'+dia;
+    if(mes<10)
+    mes='0'+mes
+  fechaI.value=anio+"-"+mes+"-"+dia;
+  fechaF.value=anio+"-"+mes+"-"+dia;
+}
 const reservar = async() =>{
     let Jhabitacion;
     let Jtipos;
@@ -55,6 +67,7 @@ const reservar = async() =>{
     });
     console.log(Jhabitacion,Jtipos);
 
+    agregarFecha(document.getElementById('fechaI1'),document.getElementById('fechaF1'))
     document.getElementById('buscar').addEventListener('click', e=>{
         e.preventDefault()
         buscarDNI(idCliente)
@@ -63,7 +76,7 @@ const reservar = async() =>{
     agregar.addEventListener('click',e =>{
         e.preventDefault();
         agregarHab(detalleHab,++cont,Jtipos);
-        console.log(cont)
+        agregarFecha(document.getElementById('fechaI'+cont),document.getElementById('fechaF'+cont))
         cont_hab.value=cont;
     })
 

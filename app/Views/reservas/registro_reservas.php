@@ -51,7 +51,7 @@
                                             RESERVA</a></div>
                                     <div class="box-nav"> <a class="active" href="#"><i
                                                 class="fas fa-clipboard-list fa-fw"></i> LISTA DE REGISTROS</a> </div>
-                                    <div class="box-nav"> <a href="<?= base_url('demo-pdf') ?>"><i
+                                    <div class="box-nav"> <a href="<?= base_url('demo-pdf') ?>" target="_blank"><i
                                                 class="fa-solid fa-print"></i> IMPRIMIR</a></div>
                                     <div class="box-nav">
                                         <form class="d-flex" id="form_busca_reserva">
@@ -88,6 +88,21 @@
 
                                     </tbody>
                                 </table>
+                                <nav aria-label="...">
+                                    <ul class="pagination">
+                                        <li class="page-item disabled">
+                                            <span class="page-link">Previous</span>
+                                        </li>
+                                        <li class="page-item"><a class="page-link" href="#">1</a></li>
+                                        <li class="page-item active" aria-current="page">
+                                            <span class="page-link">2</span>
+                                        </li>
+                                        <li class="page-item"><a class="page-link" href="#">3</a></li>
+                                        <li class="page-item">
+                                            <a class="page-link" href="#">Next</a>
+                                        </li>
+                                    </ul>
+                                </nav>
                             </div>
                             <p class="text-end">Mostrando Empleados 1 al 10 de un total de 27</p>
                             <!---- navegacion de pag ------>
@@ -210,46 +225,7 @@
                                             </div>
                                             <form id="form_reserva" class="row g-2" method='POST'>
                                                 <div class="row g-2" id="detalleH">
-                                                    <!-- <div class="row g-2">
-                                                        <div class="col-md-4">
-                                                            <label for="TipoHab1">Tipo habitación</label>
-                                                            <select id="TipoHab1" class="form-select tipo-filtro" name="tipo[]">
-                                                            </select>
-                                                        </div>
-                                                        <div class="col-md-4">
-                                                            <label for="Hab1">Habitación</label>
-                                                            <select id="Hab1" class="form-select" name="hab[]">
-                                                                <option selected> Seleccione una opción </option>
-                                                            </select>
-                                                        </div>
-                                                        <div class="col-md-3">
-                                                            <label for="Num1">Noches</label>
-                                                            <input type="text" id="Num1" class="form-control" disabled
-                                                                readonly>
-                                                        </div>
-                                                        <div
-                                                            class="col-md-1 d-flex align-items-end justify-content-center">
-                                                            <button class="btn btn-dark puntero ocultar" type="button"
-                                                                onclick="eliminar(this)"><i
-                                                                    class="fa-solid fa-trash-can"></i>
-                                                            </button>
-                                                        </div>
-                                                        <div class="col-md-4">
-                                                            <label for="fechaI1">Fecha Ingreso</label>
-                                                            <input type="date" id="fechaI1" class="form-control"
-                                                                name="fechaI[]">
-                                                        </div>
-                                                        <div class="col-md-4">
-                                                            <label for="fechaF1">Fecha Salida</label>
-                                                            <input type="date" id="fechaF1" class="form-control"
-                                                                name="fechaF[]">
-                                                        </div>
-                                                        <div class="col-md-3 input-costo">
-                                                            <label for="costo1">Costo (S/.)</label>
-                                                            <input placeholder="00,00" type="text" class="form-control"
-                                                                id="costo1" disabled readonly>
-                                                        </div>
-                                                    </div> -->
+
                                                 </div>
                                             </form>
 
