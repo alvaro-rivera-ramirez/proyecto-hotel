@@ -102,13 +102,14 @@
                             </div>
                             <p class="text-end">Mostrando Empleados 1 al 10 de un total de 27</p>
 
-                            <?= $pager->links('group1','botts_pagination'); ?>
-
-
-                        </section>
-                    </div>
-
-                    <!----->
+                            
+                            <?php include "../app/Views/pagination/view_pag.php"?>
+                            
+                            
+                        </section>  
+                  </div>
+                      
+                      <!----->
                 </div>
 
             </div>

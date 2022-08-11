@@ -110,8 +110,7 @@
 
                             <!---- navegacion de pag ------>
 
-                            <?= $pager->links('group1','botts_pagination'); ?>
-
+                            <?php include "../app/Views/pagination/view_pag.php"?>
                         </section>
                     </div>
 
@@ -121,7 +120,11 @@
     </div>
 
     <?php include "include/script.php"?>
+    
     <script>
+        
+
+        
         function Eliminar(id) {
 
             console.log(id);

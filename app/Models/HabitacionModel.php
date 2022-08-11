@@ -16,7 +16,10 @@ class HabitacionModel extends Model{
     protected $allowedFields=['numero','idTipo','idEstado'];
 
     public function getAll(){
-        $user=$this->db->table($this->table);
+        $user=$this->db->table('habitacion as h');
+        $user->join('tipo_habitacion', 'tipo_habitacion.idTipo = h.idTipo');
+        $user->join('estado_hab', 'estado_hab.idEstado = h.idEstado');
+        $user->orderBy('idHab','ASC');
         return $user->get()->getResultArray();
     }
 

@@ -14,10 +14,8 @@ class TipoHabController extends Controller{
 
         $model = new TipoHabModel();
 
-        $data = [
-            'tipo' => $model->paginate(2, 'group1'),
-            'pager' => $model->pager
-        ];
+        $data['tipo'] = $model->getTipoHab();
+
             
         return view("tipoHabitaciones/registro_tipo_hab",$data);
     }

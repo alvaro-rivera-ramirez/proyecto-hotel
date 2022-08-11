@@ -86,7 +86,7 @@
                             </div>
                             
                             <!---<p class="text-end">1-6 de 6</p> --->
-                            <?= $pager->links('group1','botts_pagination'); ?>
+                            <?php include "../app/Views/pagination/view_pag.php"?>
                             
                         </section>  
                   </div>

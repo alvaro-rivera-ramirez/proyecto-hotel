@@ -105,6 +105,9 @@
                                 </nav>
                             </div>
                             <p class="text-end">Mostrando Empleados 1 al 10 de un total de 27</p>
+
+                            <?php include "../app/Views/pagination/view_pag.php"?>
+                            
                             <!---- navegacion de pag ------>
                             <div class="modal fade" id="detalle_reserva" tabindex="-1"
                                 aria-labelledby="exampleModalLabel" aria-hidden="true">
