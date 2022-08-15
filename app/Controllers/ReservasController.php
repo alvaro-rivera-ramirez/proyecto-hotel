@@ -10,16 +10,6 @@ use App\Models\TipoHabModel;
 class ReservasController extends Controller{
     public function index(){
 
-        /*$pager = service('pager');
-        $model = new ReservasModel();
-
-        $data = [
-            'reserva' => $model->select('reserva.idReserva,reserva.idCliente,reserva.idUser,DATE_FORMAT(reserva.created_at, "%Y-%m-%d") as fecha,c.dni,concat(c.nombre," ",c.apellidoPaterno," ",c.apellidoMaterno) as nombreC,u.nombre as nombreU')->join('cliente as c', 'c.idCliente = reserva.idCliente')
-            ->join('usuarios as u', 'u.id = reserva.idUser')
-            ->orderBy('idReserva','DESC')->paginate(10, 'group1'),
-            'pager' => $model->pager
-        ];*/
-
         return view('reservas/registro_reservas');
     }
 
@@ -78,7 +68,7 @@ class ReservasController extends Controller{
             $precio=$tipoHab->obtener_precio($tipo[$i],$dias);
             $detalleR->agregar_detalle($id_reserva,$hab[$i],$fechaI[$i],$fechaF[$i],$dias,$precio);
             $fechaActual = date('Y-m-d', time());
-            if($fechaActual<$fecha1){
+            if($fechaActual<$fechaI[$i]){
                 $habitacion->update($hab[$i],['idEstado' =>2]);
             }else{
                 $habitacion->update($hab[$i],['idEstado' =>3]);
@@ -214,7 +204,7 @@ class ReservasController extends Controller{
                 //$habitacion->update($hab[$i],['idEstado' =>3]);
             }
             $reserva=new ReservasModel();
-            $reserva->update($idReserva, ['idEstadoR' => $idEstadoR,'idEstadoP' => $idEstadoP]);
+            $reserva->update($idReserva, ['idCliente' => $idCliente,'idEstadoR' => $idEstadoR,'idEstadoP' => $idEstadoP]);
             return json_encode(['resp' => true]);
         }else{
             //Estado de reserva

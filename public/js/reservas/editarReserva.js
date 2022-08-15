@@ -143,7 +143,7 @@ const editarReserva =async (dni,id,idEstadoR,idEstadoP) =>{
 
     //actualizar reserva
     document.getElementById('actualizar_reserva').addEventListener('click', e => {
-        //console.log(idDetalles);
+        
         estadoR=document.getElementById('estadoR')
         estadoP=document.getElementById('estadoP')
         console.log(estadoR.value,estadoP.value)
@@ -244,9 +244,9 @@ const editarReserva =async (dni,id,idEstadoR,idEstadoP) =>{
                         reserva.append("idCliente", idCliente.idC);
                         reserva.append("idEstadoR", estadoR.value);
                         reserva.append("idEstadoP", estadoP.value);
-                        // for (const value of reserva.values()) {
-                        //     console.log(value);
-                        // }
+                        for (const value of reserva.values()) {
+                           console.log(value);
+                        }
                         fetch('actualizar_reserva', {
                             method: 'POST',
                             mode: 'no-cors',

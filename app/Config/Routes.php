@@ -108,6 +108,10 @@ $routes->get('demo-pdf', 'PdfController::demoPDF');
 
 //reportes
 $routes->get('reporte-diario', 'ReportesController::reporteDiario');
+$routes->post('ganancia_diario', 'ReportesController::gananciaD');
+$routes->post('reservas_dia', 'ReportesController::listaReporteDia');
+$routes->post('cantidad_mes', 'ReportesController::reservasMes');
+$routes->post('clientes_reservas', 'ReportesController::clientesReservas');
 $routes->get('reporte-mes', 'ReportesController::reporteMes');
 $routes->get('reporte-cliente', 'ReportesController::reporteCliente');
 $routes->get('reporte-habitacion', 'ReportesController::reporteHabitacion');
