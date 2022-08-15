@@ -1,145 +1,150 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <title>Hotel</title>
-    <link rel="stylesheet" href="css/styleReporte.css" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <?php include "include/link.php" ?>
 </head>
-<body>  
-   <div class="d-flex">
-        <?php include "include/navLateral.php"?>     
-       
+
+<body>
+    <?php 
+    $d = new DateTime( '2010-01' );
+    $d->modify( 'last month' );
+    echo $d->format('Y-m');
+    //echo date( "Y-m", strtotime( "2009-01 -1 month" ) ); // PHP:  2009-03-03
+    ?>
+    <div class="d-flex">
+        <?php include "include/navLateral.php"?>
+
         <div class="w-100" style="background-color: #F1F3F5">
             <?php include "include/navBar.php"?>
 
             <!-- Contenido -->
 
             <div class="ps-2 pt-3 content-body">
-                
+
                 <!-- Contenedor de Registros -->
-                  
-                    <div class="container-fluid" >
+                <div class="content p-4" style="background: white;">
+                    <div>
                         <section>
-                            <img src="Imagenes/cuadro.png" class="graf">  
                             <h3 class="pb-3">Reportes / Clientes</h3>
-                            <div class="content"> 
-                                <h4 class="texto">Total de clientes</h4>
-                                <h4 class="texto">50</h4>
-                            </div>
-                            <div class="content"> 
-                                <h4 class="texto">Nuevos clientes</h4>
-                                <h4 class="texto">05</h4>
-                            </div>
-                            <div class="largecontent"> 
-                                <h5 class="texto" id="tit">Reporte del mes</h5>
-                                <h5 class="texto" id="pr">Mes</h5>
-                                <h6 class="texto" id="pr">Febrero</h6>
-                                <h5 class="texto" id="se">Fecha</h5>
-                                <h6 class="texto" id="se">25/02/2022</h6>
-                                <h5 class="texto" id="tr">Nro. visitas</h5>
-                                <h6 class="texto" id="tr">120</h6>
-                            </div>
-                        <!-- MENU DE OPCIONES-->
-                            <div class="container-fluid">
-                                <div class="container-nav">
-                                    <div class="box-nav"> <a href="#"><i class="fas fa-search fa-fw"></i> Buscar</a></div>
-                                    <div class="box-nav"> <a href="#"><i class="fas fa-calendar fa-fw"></i></i> Fecha</a></div>
-                                    <div class="box-nav"> <a href="#"><i class="fas fa-filter fa-fw"></i></i> Filtro</a></div>
-                                    <div class="box-nav"> <a href="#"><i class="fa-solid fa-print"></i> Imprimir</a></div>
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <div class="row">
+                                        <div class="col-lg-6">
+                                            <div class="card text-white bg-dark mt-3">
+                                                <div class="card-body text-center">
+                                                    <h5 class="card-title">Total de Clientes</h5>
+                                                    <p class="card-text" id="tClientes">150</p>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <div class="card text-white bg-dark mt-3">
+                                                <div class="card-body text-center">
+                                                    <h5 class="card-title">Nuevos Clientes</h5>
+                                                    <p class="card-text" id="nClientes">20</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-12">
+                                            <div class="card text-dark bg-light mt-3">
+                                                <div class="card-body">
+                                                    <h5 class="card-title">Reporte del Mes</h5>
+                                                    <p class="card-subtitle mb-2 mt-2">Fecha Emisión</p>
+                                                    <p class="card-text" id="fechaCard">20-02-2022</p>
+                                                    <p class="card-subtitle mb-2 mt-2">Mes</p>
+                                                    <p class="card-text" id="mesCard">Febrero</p>
+                                                    <p class="card-subtitle mb-2 mt-2">Total de visitas</p>
+                                                    <p class="card-text" id="reservasCard">100</p>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
                                 </div>
-                                
+                                <div class="col-lg-6">
+                                    <div class="row">
+                                        <div class="col-12">
+                                            <canvas id="myChart" width="500" height="250"></canvas>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
-                            
-                        <!-- TABLE RESPONSIVE-->
-                            <div class="table-responsive">
-                            <table class="table bg-white">
-                                <thead class="bg-dark text-light">
-                                    <tr class="text-center">
-                                        <th>N°</th>
-                                        <th>DNI</th>
-                                        <th>Nombre</th>
-                                        <th>Apellidos</th>
-                                        <th>Telefono</th>
-                                        <th>Ciudad</th>
-                                        <th>Correo</th>
-                                        <th>Nro. Visitas</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                <tr class="text-center">
-                                        <td>1</td>
-                                        <td>72371390</td>
-                                        <td>Yvan</td>
-                                        <td>Mamani</td>
-                                        <td>958132757</td>
-                                        <td>Tacna</td>
-                                        <td>yolmh@gmail.com</td>
-                                        <td>10</td>
-                                    </tr>
-                                    <tr class="text-center">
-                                        <td>2</td>
-                                        <td>72371390</td>
-                                        <td>Yvan</td>
-                                        <td>Mamani</td>
-                                        <td>958132757</td>
-                                        <td>Tacna</td>
-                                        <td>yolmh@gmail.com</td>
-                                        <td>9</td>
-                                    </tr>
-                                    <tr class="text-center">
-                                        <td>3</td>
-                                        <td>72371390</td>
-                                        <td>Yvan</td>
-                                        <td>Mamani</td>
-                                        <td>958132757</td>
-                                        <td>Tacna</td>
-                                        <td>yolmh@gmail.com</td>
-                                        <td>8</td>
-                                    </tr>
-                                    <tr class="text-center">
-                                        <td>4</td>
-                                        <td>72371390</td>
-                                        <td>Yvan</td>
-                                        <td>Mamani</td>
-                                        <td>958132757</td>
-                                        <td>Tacna</td>
-                                        <td>yolmh@gmail.com</td>
-                                        <td>7</td>
-                                    </tr>
-                                    <tr class="text-center">
-                                        <td>5</td>
-                                        <td>72371390</td>
-                                        <td>Yvan</td>
-                                        <td>Mamani</td>
-                                        <td>958132757</td>
-                                        <td>Tacna</td>
-                                        <td>yolmh@gmail.com</td>
-                                        <td>6</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                            <p class="text-end">Mostrando Empleados 1 al 10 de un total de 27</p>
-                            <nav aria-label="Page navigation example">
-                                <ul class="pagination justify-content-center">
-                                    <li class="page-item disabled">
-                                        <a class="page-link" href="#" tabindex="-1">Previous</a>
-                                    </li>
-                                    <li class="page-item"><a class="page-link" href="#">1</a></li>
-                                    <li class="page-item"><a class="page-link" href="#">2</a></li>
-                                    <li class="page-item"><a class="page-link" href="#">3</a></li>
-                                    <li class="page-item"><a class="page-link" href="#">Next</a>
-                                    </li>
-                                </ul>
-                            </nav>
-                        </section>  
+
+                            <!-- MENU DE OPCIONES-->
+                            <div class="container-fluid mt-4">
+                                <div class="row">
+                                    <div class="col-3">
+                                        <div class="nh input-group ">
+                                            <input type="search" class="form-control" placeholder="Buscar"
+                                                id="dato_buscar">
+                                            <button class="btn-buscar btn btn-dark" id="buscar_reserva"><i
+                                                    class="fas fa-search"></i></button>
+                                        </div>
+                                    </div>
+                                    <div class="col-3">
+                                        <select id="mesR" class="form-select">
+                                            <option value="1">Enero</option>
+                                            <option value="2">Febrero</option>
+                                            <option value="3">Marzo</option>
+                                            <option value="4">Abril</option>
+                                            <option value="5">Mayo</option>
+                                            <option value="6">Junio</option>
+                                            <option value="7">Julio</option>
+                                            <option value="8">Agosto</option>
+                                            <option value="9">Setiembre</option>
+                                            <option value="10">Octubre</option>
+                                            <option value="11">Noviembre</option>
+                                            <option value="12">Diciembre</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-3">
+                                        <select id="anioR" class="form-select">
+                                            <option value="2022">2022</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-3 align-self-center">
+                                        <a href="<?= base_url('demo-pdf') ?>" target="_blank"><i
+                                                class="fa-solid fa-print"></i> IMPRIMIR</a>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <!-- TABLE RESPONSIVE-->
+                            <div class="table-responsive mt-3">
+                                <table class="table table-striped">
+                                    <thead class="bg-dark text-light">
+                                        <tr class="text-wrap">
+                                            <th>ID</th>
+                                            <th>DNI</th>
+                                            <th>Cliente</th>
+                                            <th>Fecha</th>
+                                            <th>Detalle</th>
+                                            <th>Total</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="resultado">
+
+                                    </tbody>
+                                </table>
+                            </div>
+                            <p class="text-end">Mostrando 1 al 10 de un total de 27</p>
+                            <?php include "../app/Views/pagination/view_pag.php"?>
+                        </section>
+                    </div>
+
                 </div>
             </div>
         </div>
-   </div>
+    </div>
 
-   <?php include "include/script.php"?>
+    <?php include "include/script.php"?>
+    <script src="js/reportes/reporteCliente.js"></script>
 </body>
+
 </html>
