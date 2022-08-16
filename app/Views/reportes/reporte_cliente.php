@@ -9,12 +9,6 @@
 </head>
 
 <body>
-    <?php 
-    $d = new DateTime( '2010-01' );
-    $d->modify( 'last month' );
-    echo $d->format('Y-m');
-    //echo date( "Y-m", strtotime( "2009-01 -1 month" ) ); // PHP:  2009-03-03
-    ?>
     <div class="d-flex">
         <?php include "include/navLateral.php"?>
 
@@ -34,7 +28,7 @@
                                 <div class="col-lg-6">
                                     <div class="row">
                                         <div class="col-lg-6">
-                                            <div class="card text-white bg-dark mt-3">
+                                            <div class="card text-dark bg-light mt-3">
                                                 <div class="card-body text-center">
                                                     <h5 class="card-title">Total de Clientes</h5>
                                                     <p class="card-text" id="tClientes">150</p>
@@ -43,7 +37,7 @@
 
                                         </div>
                                         <div class="col-lg-6">
-                                            <div class="card text-white bg-dark mt-3">
+                                            <div class="card text-dark bg-light mt-3">
                                                 <div class="card-body text-center">
                                                     <h5 class="card-title">Nuevos Clientes</h5>
                                                     <p class="card-text" id="nClientes">20</p>
@@ -122,10 +116,11 @@
                                         <tr class="text-wrap">
                                             <th>ID</th>
                                             <th>DNI</th>
-                                            <th>Cliente</th>
+                                            <th>Nombre Completo</th>
                                             <th>Fecha</th>
                                             <th>Detalle</th>
-                                            <th>Total</th>
+                                            <th>Gasto Total</th>
+                                            <th>Cantidad de Reservas</th>
                                         </tr>
                                     </thead>
                                     <tbody id="resultado">

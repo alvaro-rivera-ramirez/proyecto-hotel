@@ -40,4 +40,9 @@ class ClientesModel extends Model{
         $cliente->where('dni',$dni);
         return $cliente->get()->getRowArray();
     }
+
+    public function datosGenerales($fecha=null){
+        $consulta=$this->db->query('SELECT COUNT(*) as cantidad FROM cliente UNION ALL SELECT COUNT(*) as cantidad FROM cliente WHERE DATE_FORMAT(cliente.created_at, "%Y-%m")=?',$fecha);
+        return $consulta->getResultArray();
+    }
 }

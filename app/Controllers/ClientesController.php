@@ -88,7 +88,7 @@ class ClientesController extends Controller{
         $cliente=new ClientesModel();
         $datos['cliente']=$cliente->obtenerDatos($idCliente);
         return view('clientes/update_cliente',$datos);
-        }
+    }
     
         public function actualizarCli(){
         //id del cliente a editar

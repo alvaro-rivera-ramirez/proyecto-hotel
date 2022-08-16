@@ -3,6 +3,7 @@ namespace App\Controllers;
 
 use CodeIgniter\Controller;
 use App\Models\ReservasModel;
+use App\Models\ClientesModel;
 class ReportesController extends Controller{
 
     public function reporteDiario(){
@@ -47,6 +48,22 @@ class ReportesController extends Controller{
         $lista=$reporte->mostrarReporteDia($dato);
         echo json_encode($lista);
     }
+
+    public function listaReporteMes(){
+        $dato=json_decode(file_get_contents("php://input"));
+        $dato->mes=($dato->mes<10)?'0'.$dato->mes:$dato->mes;
+        $reporte=new ReservasModel();
+        $lista=$reporte->mostrarReporteMes($dato);
+        echo json_encode($lista);
+    }
+    
+    public function resumenCliente(){
+        $fechaActual = date("Y-m");
+        $cliente=new ClientesModel();
+        $datos=$cliente->datosGenerales($fechaActual);
+        echo json_encode($datos);
+    }
+
     public function reporteMes(){
         return view('reportes/reporte_mes');
     }

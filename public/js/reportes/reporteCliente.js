@@ -28,7 +28,7 @@ const actualizarCardMes = (mesValor) =>{
     if(dia<10)
         dia='0'+dia;
     if(mes<10)
-    mes='0'+mes;
+        mes='0'+mes;
 
     let mesCard=document.getElementById('mesCard');
     let fechaCard=document.getElementById('fechaCard');
@@ -45,6 +45,19 @@ const actualizarCardMes = (mesValor) =>{
 
 }
 
+const actualizarCardCliente = async()=>{
+    const peticion=await fetch('resumen-cliente',{
+        method:'GET',
+        mode:'no-cors',
+        headers:{
+            "Content-Type": "application/json",
+            "X-Requested-With": "XMLHttpRequest",
+        },
+    })
+    const datos=await peticion.json();
+    tClientes.innerHTML=datos[0].cantidad;
+    nClientes.innerHTML=datos[1].cantidad;
+}
 const listarReporte = (mes,anio,dato) =>{
     fetch('clientes_reservas', {
         method: 'POST',
@@ -55,9 +68,10 @@ const listarReporte = (mes,anio,dato) =>{
         },
         body: JSON.stringify({"mes":mes,"anio":anio,"dato":dato})
     }).then(response => response.json()).then( datos=> {
+        console.log(datos)
         let lista='';
         for(let i=0;i<datos.length;i++){
-            lista+=`<tr class="text-wrap"> <td>${datos[i].idReserva}</td> <td>${datos[i].dni}</td> <td>${datos[i].nombreC}</td> <td>${datos[i].fecha}</td><td> <button type="button" class="btn detalleR"><i class="fa-solid fa-circle-info"></i></button> </td> <td>${datos[i].precioT}</td></tr>`      
+            lista+=`<tr class="text-wrap"> <td>${datos[i].idCliente}</td> <td>${datos[i].dni}</td> <td>${datos[i].nombreC}</td> <td>${datos[i].fecha}</td><td> <button type="button" class="btn detalleR"><i class="fa-solid fa-circle-info"></i></button> </td> <td>${datos[i].gastoT}</td><td>${datos[i].cantidad}</td></tr>`      
         }
         resultado.innerHTML=lista;
     })
@@ -66,7 +80,7 @@ const listarReporte = (mes,anio,dato) =>{
 document.getElementById('buscar_reserva').addEventListener('click', e=>{
     e.preventDefault();
     let dato=document.getElementById('dato_buscar').value;
-    listarReporte(fechaR.value,dato);
+    listarReporte(mesR.value,anioR.value,dato);
     //console.log(fechaR.value,dato);
 })
 
@@ -89,7 +103,7 @@ const actualizarChart = async (myChart,mes,anio,totalCard) =>{
     myChart.update();
     actualizarCardMes(mes)
     totalCard.innerHTML=reportes[4].cantidad;
-    // listarReporte(fecha,'');
+    listarReporte(mes,anio,'');
 }
 const reporteCliente = async() =>{
     let mesReporte=document.querySelector('#mesR');
@@ -160,11 +174,12 @@ const reporteCliente = async() =>{
     const myChart = new Chart(ctx,
         config
         );
-    // listarReporte(fechaReporte.value,'');
+    listarReporte(mesR.value,anioR.value,'');
     mesReporte.addEventListener('change', e => {
-        //actualizarChart(myChart,e.target.value,fechaCard,totalCard)
         actualizarChart(myChart,e.target.value,anioR.value,totalCard)
     });
     
 }
 reporteCliente();
+
+actualizarCardCliente();
