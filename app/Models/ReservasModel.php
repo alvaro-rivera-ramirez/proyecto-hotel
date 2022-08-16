@@ -88,19 +88,21 @@ class ReservasModel extends Model{
     public function mostrarReporteMes($dato=null){
         if(empty($dato->dato)){
             $pQuery = $this->db->prepare(static function ($db) {
-                $sql = 'SELECT r.idReserva,r.idCliente,DATE_FORMAT(r.created_at, "%Y-%m-%d") as fecha,c.dni,concat(c.nombre," ",c.apellidoPaterno," ",if(c.apellidoMaterno IS NULL,"",c.apellidoMaterno)) as nombreC, SUM(dt.precio) as precioT FROM reserva r,cliente c, detalle_reserva dt WHERE r.idCliente=c.idCliente AND r.idReserva=dt.idReserva AND r.deleted_at IS NULL GROUP BY r.idReserva HAVING fecha=? ORDER BY r.idReserva DESC';
+                $sql = 'SELECT c.idCliente,c.dni,r.nombreC, r.fecha,SUM(r.costoT) as gastoT,COUNT(c.idCliente) as cantidad FROM cliente c,(SELECT r.idReserva,r.idCliente,DATE_FORMAT(r.created_at, "%Y-%m") as fecha,c.dni,concat(c.nombre," ",c.apellidoPaterno," ",if(c.apellidoMaterno IS NULL,"",c.apellidoMaterno)) as nombreC,SUM(dt.precio) as costoT FROM reserva r,cliente c,detalle_reserva dt WHERE 
+                r.idCliente=c.idCliente AND r.idReserva=dt.idReserva AND r.idEstadoR=3 AND r.deleted_at IS NULL GROUP BY r.idReserva HAVING fecha=?) as r WHERE c.idCliente=r.idCliente GROUP BY c.idCliente ORDER BY cantidad DESC';
             
                 return (new Query($db))->setQuery($sql);
             });
-            return $pQuery->execute($dato->fecha)->getResultArray();
+            return $pQuery->execute($dato->anio.'-'.$dato->mes)->getResultArray();
         }else{
             $pQuery = $this->db->prepare(static function ($db) {
-                $sql = 'SELECT r.idReserva,r.idCliente,DATE_FORMAT(r.created_at, "%Y-%m-%d") as fecha,c.dni,concat(c.nombre," ",c.apellidoPaterno," ",if(c.apellidoMaterno IS NULL,"",c.apellidoMaterno)) as nombreC, SUM(dt.precio) as precioT FROM reserva r,cliente c,detalle_reserva dt WHERE r.idCliente=c.idCliente AND r.idReserva=dt.idReserva AND r.deleted_at IS NULL GROUP BY r.idReserva HAVING fecha=? AND nombreC like ? OR c.dni like ? ORDER BY r.idReserva DESC';
+                $sql = 'SELECT c.idCliente,c.dni,r.nombreC, r.fecha,SUM(r.costoT) as gastoT,COUNT(c.idCliente) as cantidad FROM cliente c,(SELECT r.idReserva,r.idCliente,DATE_FORMAT(r.created_at, "%Y-%m") as fecha,c.dni,concat(c.nombre," ",c.apellidoPaterno," ",if(c.apellidoMaterno IS NULL,"",c.apellidoMaterno)) as nombreC,SUM(dt.precio) as costoT FROM reserva r,cliente c,detalle_reserva dt WHERE 
+                r.idCliente=c.idCliente AND r.idReserva=dt.idReserva AND r.idEstadoR=3 AND r.deleted_at IS NULL GROUP BY r.idReserva HAVING fecha=?) as r WHERE c.idCliente=r.idCliente GROUP BY c.idCliente HAVING nombreC like ? OR c.dni like ? ORDER BY cantidad DESC';
             
                 return (new Query($db))->setQuery($sql);
             });
             $datoB = "%$dato->dato%";
-            return $pQuery->execute($dato->fecha,$datoB,$datoB)->getResultArray();
+            return $pQuery->execute($dato->anio.'-'.$dato->mes,$datoB,$datoB)->getResultArray();
         }
     }
 }
