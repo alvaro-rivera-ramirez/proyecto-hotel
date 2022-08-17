@@ -29,7 +29,7 @@ class HabitacionController extends Controller{
 
     public function index(){
     
-       $pager = service('pager');
+    //    $pager = service('pager');
        $model = new HabitacionModel();
 
        /*$data = [
@@ -135,5 +135,22 @@ class HabitacionController extends Controller{
         $hab->where('idHab',$id)->delete($id);
         echo json_encode(['respuesta' => true]);
     }
+
+
+
+    public function imprimir(){
+    
+        $model = new HabitacionModel();
+        $data['habitacion']=$model->getAll();
+        //var_dump($model->getAll());
+
+        return view("pdf/pdf_hab",$data);
+     }
+
+
+
+
+
+
 
 }

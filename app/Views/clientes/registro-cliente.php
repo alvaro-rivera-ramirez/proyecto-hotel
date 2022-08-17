@@ -35,7 +35,7 @@
                                                 class="fas fa-plus fa-fw"></i> AGREGAR CLIENTE</a></div>
                                     <div class="box-nav"> <a class="active" href="#"><i
                                                 class="fas fa-clipboard-list fa-fw"></i> LISTA DE CLIENTES</a> </div>
-                                    <div class="box-nav"> <a href="http://localhost:8080/demo-pdf"><i
+                                    <div class="box-nav"> <a href="<?= base_url('imprimir_clientes')?>"><i
                                                 class="fa-solid fa-print"></i> IMPRIMIR</a></div>
                                     <div class="box-nav">
                                         <form class="d-flex" id="form" method="POST"

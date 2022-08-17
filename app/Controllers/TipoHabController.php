@@ -108,4 +108,14 @@ class TipoHabController extends Controller{
         echo json_encode(['respuesta' => true]);
     }
 
+    public function imprimir(){
+        
+        $model = new TipoHabModel();
+
+        $data['tipo'] = $model->getTipoHab();
+
+            
+        return view("pdf/pdf_tipHab",$data);
+    }
+
 }

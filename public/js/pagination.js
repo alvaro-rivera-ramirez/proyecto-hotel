@@ -40,7 +40,6 @@ function buttonGenerator(limit){
             li.appendChild(a);
             a.innerText =i;
             ul.insertBefore(li, ul.querySelector('.next'));
-            console.log('ala');
             a.onclick = e=>{
                 let x = e.target.getAttribute('data-page');
                 tbody.innerHTML = '';
