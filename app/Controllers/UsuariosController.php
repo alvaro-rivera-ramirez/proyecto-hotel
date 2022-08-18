@@ -236,4 +236,11 @@ class UsuariosController extends Controller{
     public function recuperarPassword(){
         return view('configuracion/recuperarPassword');
     }
+
+
+    public function imprimir(){
+        $usuario=new UsuariosModel();
+        $data['usuario']=$usuario->getUsuarios();
+        return view('usuarios/registro_usuarios',$data);
+    }
 }

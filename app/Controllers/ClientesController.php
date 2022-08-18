@@ -149,5 +149,13 @@ class ClientesController extends Controller{
             echo json_encode(['respuesta' => true]);
         }
     
+
+        public function imprimir(){
+            $cliente=new ClientesModel();
+            $data['cliente']=$cliente->getClientes();
+    
+            return view("pdf/pdf_clie",$data);
+        }
+
 }
 

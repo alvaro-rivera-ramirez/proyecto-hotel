@@ -118,4 +118,11 @@ $routes->get('reporte-cliente', 'ReportesController::reporteCliente');
 $routes->get('reporte-habitacion', 'ReportesController::reporteHabitacion');
 
 
+//PDF
+
+$routes->get('/imprimir_hab', 'HabitacionController::imprimir');
+$routes->get('/imprimir_tipohab', 'TipoHabController::imprimir');
+$routes->get('/imprimir_usuarios', 'UsuariosController::imprimir');
+$routes->get('/imprimir_clientes', 'ClientesController::imprimir');
+
 

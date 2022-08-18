@@ -6,6 +6,10 @@
     <title>Hotel</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <?php include "include/link.php" ?>
+    <script src="../html2pdf.js-master/dist/html2pdf.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.4/jspdf.min.js"></script>
+    <script src="js/PDF.js"></script>
+
 </head>
 
 <body>
@@ -36,7 +40,7 @@
                                                 class="fas fa-clipboard-list fa-fw"></i> LISTA DE HABITACIONES</a>
                                     </div>
                                     <!--<div class="box-nav"> <a href="#"><i class="fas fa-search fa-fw"></i> BUSCAR HABITACION</a> </div>-->
-                                    <div class="box-nav"> <a href="http://localhost:8080/demo-pdf"><i class="fa-solid fa-print"></i> IMPRIMIR</a>
+                                    <div class="box-nav"> <a href="<?= base_url('imprimir_hab')?>"><i class="fa-solid fa-print"></i> IMPRIMIR</a>
                                     </div>
                                     <div class="box-nav">
                                         <form class="d-flex">
@@ -56,9 +60,9 @@
                             <?php   ?>
                             <!-- ob_start(); -->
 
-                            <div class="table-responsive mt-2">
-                                <table class="table bg-white">
-                                    <thead class="bg-dark text-light">
+                            <div class="table-responsive mt-2" id="TablaHabitaciones">
+                                <table class="table bg-white" >
+                                    <thead class="bg-dark text-light" >
                                         <tr class="text-center">
                                             <th>N°</th>
                                             <th>Numero</th>
