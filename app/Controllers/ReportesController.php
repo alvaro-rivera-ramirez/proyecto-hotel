@@ -27,13 +27,13 @@ class ReportesController extends Controller{
 
     public function reservasMes(){
         $mesActual=json_decode(file_get_contents("php://input"));
-        $mes=($mesActual->mes<10)?'0'.$mesActual->mes:$mesActual->mes;
-        $fechaReporte=$mesActual->anio.'-'.$mes;
+        // $mes=($mesActual->mes<10)?'0'.$mesActual->mes:$mesActual->mes;
+        // $fechaReporte=$mesActual->anio.'-'.$mes;
 
         $reporte=new ReservasModel();
-        $fechaLimite=date("Y-m",strtotime($fechaReporte."- 5 month"));
+        $fechaLimite=date("Y-m",strtotime($mesActual->mes."- 5 month"));
         $reporteT=[];
-        while($fechaLimite<$fechaReporte){
+        while($fechaLimite<$mesActual->mes){
             $fechaLimite=date("Y-m",strtotime($fechaLimite."+ 1 month")); 
             $cantidad=$reporte->cantidadReservasMes($fechaLimite);
             array_push($reporteT,['mes' => $fechaLimite, 'cantidad' => $cantidad['Total']]);
@@ -51,7 +51,7 @@ class ReportesController extends Controller{
 
     public function listaReporteMes(){
         $dato=json_decode(file_get_contents("php://input"));
-        $dato->mes=($dato->mes<10)?'0'.$dato->mes:$dato->mes;
+        // $dato->mes=($dato->mes<10)?'0'.$dato->mes:$dato->mes;
         $reporte=new ReservasModel();
         $lista=$reporte->mostrarReporteMes($dato);
         echo json_encode($lista);

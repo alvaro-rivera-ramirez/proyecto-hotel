@@ -76,30 +76,12 @@
                                         <div class="nh input-group ">
                                             <input type="search" class="form-control" placeholder="Buscar"
                                                 id="dato_buscar">
-                                            <button class="btn-buscar btn btn-dark" id="buscar_reserva"><i
-                                                    class="fas fa-search"></i></button>
+                                                <button class="btn-buscar btn btn-dark" id="buscar_reserva"><i
+                                                class="fas fa-search"></i></button>
+                                            </div>
                                         </div>
-                                    </div>
                                     <div class="col-3">
-                                        <select id="mesR" class="form-select">
-                                            <option value="1">Enero</option>
-                                            <option value="2">Febrero</option>
-                                            <option value="3">Marzo</option>
-                                            <option value="4">Abril</option>
-                                            <option value="5">Mayo</option>
-                                            <option value="6">Junio</option>
-                                            <option value="7">Julio</option>
-                                            <option value="8">Agosto</option>
-                                            <option value="9">Setiembre</option>
-                                            <option value="10">Octubre</option>
-                                            <option value="11">Noviembre</option>
-                                            <option value="12">Diciembre</option>
-                                        </select>
-                                    </div>
-                                    <div class="col-3">
-                                        <select id="anioR" class="form-select">
-                                            <option value="2022">2022</option>
-                                        </select>
+                                        <input type="month" name="" id="mesR" class="form-control">
                                     </div>
                                     <div class="col-3 align-self-center">
                                         <a href="<?= base_url('demo-pdf') ?>" target="_blank"><i

@@ -54,7 +54,7 @@ class ReservasModel extends Model{
     }
     
     public function gananciaDia($fecha=null){
-        $sql='SELECT ifnull(sum(dt.precio),0) as Total FROM reserva r INNER JOIN detalle_reserva dt ON r.idReserva=dt.idReserva WHERE DATE_FORMAT(r.created_at, "%Y-%m-%d")=? AND r.deleted_at IS NULL';
+        $sql='SELECT ifnull(sum(dt.precio),0) as Total FROM reserva r INNER JOIN detalle_reserva dt ON r.idReserva=dt.idReserva WHERE DATE_FORMAT(r.created_at, "%Y-%m-%d")=? AND r.deleted_at IS NULL AND r.idEstadoR=3';
         
         $query=$this->db->query($sql, $fecha);
         return $query->getRowArray();
@@ -69,14 +69,14 @@ class ReservasModel extends Model{
     public function mostrarReporteDia($dato=null){
         if(empty($dato->dato)){
             $pQuery = $this->db->prepare(static function ($db) {
-                $sql = 'SELECT r.idReserva,r.idCliente,DATE_FORMAT(r.created_at, "%Y-%m-%d") as fecha,c.dni,concat(c.nombre," ",c.apellidoPaterno," ",if(c.apellidoMaterno IS NULL,"",c.apellidoMaterno)) as nombreC, SUM(dt.precio) as precioT FROM reserva r,cliente c, detalle_reserva dt WHERE r.idCliente=c.idCliente AND r.idReserva=dt.idReserva AND r.deleted_at IS NULL GROUP BY r.idReserva HAVING fecha=? ORDER BY r.idReserva DESC';
+                $sql = 'SELECT r.idReserva,r.idCliente,DATE_FORMAT(r.created_at, "%Y-%m-%d") as fecha,c.dni,concat(c.nombre," ",c.apellidoPaterno," ",if(c.apellidoMaterno IS NULL,"",c.apellidoMaterno)) as nombreC, SUM(dt.precio) as precioT FROM reserva r,cliente c, detalle_reserva dt WHERE r.idCliente=c.idCliente AND r.idReserva=dt.idReserva AND r.idEstadoR=3 AND r.deleted_at IS NULL GROUP BY r.idReserva HAVING fecha=? ORDER BY r.idReserva DESC';
             
                 return (new Query($db))->setQuery($sql);
             });
             return $pQuery->execute($dato->fecha)->getResultArray();
         }else{
             $pQuery = $this->db->prepare(static function ($db) {
-                $sql = 'SELECT r.idReserva,r.idCliente,DATE_FORMAT(r.created_at, "%Y-%m-%d") as fecha,c.dni,concat(c.nombre," ",c.apellidoPaterno," ",if(c.apellidoMaterno IS NULL,"",c.apellidoMaterno)) as nombreC, SUM(dt.precio) as precioT FROM reserva r,cliente c,detalle_reserva dt WHERE r.idCliente=c.idCliente AND r.idReserva=dt.idReserva AND r.deleted_at IS NULL GROUP BY r.idReserva HAVING fecha=? AND nombreC like ? OR c.dni like ? ORDER BY r.idReserva DESC';
+                $sql = 'SELECT r.idReserva,r.idCliente,DATE_FORMAT(r.created_at, "%Y-%m-%d") as fecha,c.dni,concat(c.nombre," ",c.apellidoPaterno," ",if(c.apellidoMaterno IS NULL,"",c.apellidoMaterno)) as nombreC, SUM(dt.precio) as precioT FROM reserva r,cliente c,detalle_reserva dt WHERE r.idCliente=c.idCliente AND r.idReserva=dt.idReserva AND r.idEstadoR=3 AND r.deleted_at IS NULL GROUP BY r.idReserva HAVING fecha=? AND nombreC like ? OR c.dni like ? ORDER BY r.idReserva DESC';
             
                 return (new Query($db))->setQuery($sql);
             });
@@ -93,7 +93,7 @@ class ReservasModel extends Model{
             
                 return (new Query($db))->setQuery($sql);
             });
-            return $pQuery->execute($dato->anio.'-'.$dato->mes)->getResultArray();
+            return $pQuery->execute($dato->mes)->getResultArray();
         }else{
             $pQuery = $this->db->prepare(static function ($db) {
                 $sql = 'SELECT c.idCliente,c.dni,r.nombreC, r.fecha,SUM(r.costoT) as gastoT,COUNT(c.idCliente) as cantidad FROM cliente c,(SELECT r.idReserva,r.idCliente,DATE_FORMAT(r.created_at, "%Y-%m") as fecha,c.dni,concat(c.nombre," ",c.apellidoPaterno," ",if(c.apellidoMaterno IS NULL,"",c.apellidoMaterno)) as nombreC,SUM(dt.precio) as costoT FROM reserva r,cliente c,detalle_reserva dt WHERE 
@@ -102,7 +102,7 @@ class ReservasModel extends Model{
                 return (new Query($db))->setQuery($sql);
             });
             $datoB = "%$dato->dato%";
-            return $pQuery->execute($dato->anio.'-'.$dato->mes,$datoB,$datoB)->getResultArray();
+            return $pQuery->execute($dato->mes,$datoB,$datoB)->getResultArray();
         }
     }
 }

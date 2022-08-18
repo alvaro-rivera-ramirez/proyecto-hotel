@@ -6,7 +6,7 @@ const reservasMes = async(mes,anio) =>{
             "Content-Type": "application/json",
             "X-Requested-With": "XMLHttpRequest",
         },
-        body: JSON.stringify({"mes":mes,"anio":anio})
+        body: JSON.stringify({"mes":mes})
     })
     const datos=await peticion.json();
     return datos;
@@ -14,9 +14,12 @@ const reservasMes = async(mes,anio) =>{
 const agregarMes = (mesR) =>{
     let fecha = new Date();
     let mes = fecha.getMonth()+1;
-    // console.log(mesR)
-    let optionMes=mesR.querySelector('option[value="'+mes+'"]');
-    optionMes.setAttribute('selected',true);
+    let anio = fecha.getFullYear();
+
+    if(mes<10)
+        mes='0'+mes;
+
+    mesR.value=anio+'-'+mes;
 }
 
 const actualizarCardMes = (mesValor) =>{
@@ -31,9 +34,15 @@ const actualizarCardMes = (mesValor) =>{
         mes='0'+mes;
 
     let mesCard=document.getElementById('mesCard');
+    mesAux=mesValor.substring(mesValor.length-1, mesValor.length);
+    if(mesAux[0]=='0'){
+        mesAux=mesAux[mesAux.length-1];
+    }
+
+
     let fechaCard=document.getElementById('fechaCard');
     const meses = ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"];
-    let numeroMes = parseInt(mesValor);
+    let numeroMes = parseInt(mesAux);
     if(!isNaN(numeroMes) && numeroMes >= 1  && numeroMes <= 12 ) {
         mesCard.innerHTML = meses[numeroMes - 1];
     }else{
@@ -41,6 +50,7 @@ const actualizarCardMes = (mesValor) =>{
             mesCard.innerHTML = meses[mes - 1];
         }
     }
+
     fechaCard.innerHTML=anio+"-"+mes+"-"+dia;
 
 }
@@ -58,7 +68,7 @@ const actualizarCardCliente = async()=>{
     tClientes.innerHTML=datos[0].cantidad;
     nClientes.innerHTML=datos[1].cantidad;
 }
-const listarReporte = (mes,anio,dato) =>{
+const listarReporte = (mes,dato) =>{
     fetch('clientes_reservas', {
         method: 'POST',
         mode: 'no-cors',
@@ -66,7 +76,7 @@ const listarReporte = (mes,anio,dato) =>{
             "Content-Type": "application/json",
             "X-Requested-With": "XMLHttpRequest"
         },
-        body: JSON.stringify({"mes":mes,"anio":anio,"dato":dato})
+        body: JSON.stringify({"mes":mes,"dato":dato})
     }).then(response => response.json()).then( datos=> {
         console.log(datos)
         let lista='';
@@ -80,13 +90,12 @@ const listarReporte = (mes,anio,dato) =>{
 document.getElementById('buscar_reserva').addEventListener('click', e=>{
     e.preventDefault();
     let dato=document.getElementById('dato_buscar').value;
-    listarReporte(mesR.value,anioR.value,dato);
-    //console.log(fechaR.value,dato);
+    listarReporte(mesR.value,dato);
 })
 
-const actualizarChart = async (myChart,mes,anio,totalCard) =>{
+const actualizarChart = async (myChart,mes,totalCard) =>{
     let reportes={};
-    await reservasMes(mes,anio).then((dato) =>{
+    await reservasMes(mes).then((dato) =>{
         reportes=dato;
     });
 
@@ -103,21 +112,17 @@ const actualizarChart = async (myChart,mes,anio,totalCard) =>{
     myChart.update();
     actualizarCardMes(mes)
     totalCard.innerHTML=reportes[4].cantidad;
-    listarReporte(mes,anio,'');
+    listarReporte(mes,'');
 }
 const reporteCliente = async() =>{
     let mesReporte=document.querySelector('#mesR');
-    let cardMes=document.querySelector('#cardMes');
-    // let mesCard=document.getElementById('mesCard');
-    // let fechaCard=document.getElementById('fechaCard');
+
     let totalCard=document.getElementById('reservasCard');
     let reportes={};
     agregarMes(mesReporte);
     actualizarCardMes(mesReporte.value);
-    //agregarFecha(fechaReporte);
-    // fechaCard.innerHTML=fechaReporte.value;
 
-    await reservasMes(mesR.value,anioR.value).then((dato) =>{
+    await reservasMes(mesR.value).then((dato) =>{
         reportes=dato;
     });
     
@@ -174,9 +179,9 @@ const reporteCliente = async() =>{
     const myChart = new Chart(ctx,
         config
         );
-    listarReporte(mesR.value,anioR.value,'');
+    listarReporte(mesR.value,'');
     mesReporte.addEventListener('change', e => {
-        actualizarChart(myChart,e.target.value,anioR.value,totalCard)
+        actualizarChart(myChart,e.target.value,totalCard)
     });
     
 }

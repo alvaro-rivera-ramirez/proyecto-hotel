@@ -23,14 +23,14 @@ class ClientesController extends Controller{
             'cli_dni_reg' => 'required|numeric|min_length[8]|max_length[8]',
             'cli_nombre_reg' => 'required|alpha_space',
             'cli_apellidop_reg' => 'required|alpha_space',
-            'cli_apellidom_reg' => 'required|alpha_numeric',
+            'cli_apellidom_reg' => 'permit_empty|alpha_numeric',
             'cli_telefono_reg' =>  'required|alpha_numeric',
             'cli_email_reg' => 'permit_empty|max_length[50]',
         ]);
 
         if(!$validation->withRequest($this->request)->run()){
             //dd($validation->getErrors());
-            return redirect()->to(base_url('nuevo_cliente'))->withInput()->with('errors',$validation->getErrors());
+            return json_encode(['respuesta' => true,'errors' => $validation->getErrors()]);
         }
 
         $dni=$this->request->getPost('cli_dni_reg');
