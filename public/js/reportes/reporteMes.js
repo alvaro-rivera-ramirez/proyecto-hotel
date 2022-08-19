@@ -1,5 +1,5 @@
-const reservasMes = async(mes,anio) =>{
-    const peticion=await fetch('cantidad_mes',{
+const gananciaMes = async(mes,anio) =>{
+    const peticion=await fetch('ganancia_mes',{
         method:'POST',
         mode:'no-cors',
         headers:{
@@ -9,6 +9,7 @@ const reservasMes = async(mes,anio) =>{
         body: JSON.stringify({"mes":mes})
     })
     const datos=await peticion.json();
+
     return datos;
 }
 const agregarMes = (mesR) =>{
@@ -21,7 +22,6 @@ const agregarMes = (mesR) =>{
 
     mesR.value=anio+'-'+mes;
 }
-
 const actualizarCardMes = (mesValor) =>{
     let fecha = new Date();
     let mes = fecha.getMonth()+1;
@@ -55,21 +55,8 @@ const actualizarCardMes = (mesValor) =>{
 
 }
 
-const actualizarCardCliente = async()=>{
-    const peticion=await fetch('resumen-cliente',{
-        method:'GET',
-        mode:'no-cors',
-        headers:{
-            "Content-Type": "application/json",
-            "X-Requested-With": "XMLHttpRequest",
-        },
-    })
-    const datos=await peticion.json();
-    tClientes.innerHTML=datos[0].cantidad;
-    nClientes.innerHTML=datos[1].cantidad;
-}
 const listarReporte = (mes,dato) =>{
-    fetch('clientes_reservas', {
+    fetch('reservas_mes', {
         method: 'POST',
         mode: 'no-cors',
         headers: {
@@ -78,14 +65,15 @@ const listarReporte = (mes,dato) =>{
         },
         body: JSON.stringify({"mes":mes,"dato":dato})
     }).then(response => response.json()).then( datos=> {
-        console.log(datos)
         let lista='';
+        console.log(datos);
         for(let i=0;i<datos.length;i++){
-            lista+=`<tr class="text-wrap"> <td>${datos[i].idCliente}</td> <td>${datos[i].dni}</td> <td>${datos[i].nombreC}</td> <td>${datos[i].fecha}</td><td> <button type="button" class="btn detalleR"><i class="fa-solid fa-circle-info"></i></button> </td> <td>${datos[i].gastoT}</td><td>${datos[i].cantidad}</td></tr>`      
+            lista+=`<tr class="text-wrap"> <td>${datos[i].idReserva}</td> <td>${datos[i].dni}</td> <td>${datos[i].nombreC}</td> <td>${datos[i].fechas}</td><td> <button type="button" class="btn detalleR"><i class="fa-solid fa-circle-info"></i></button> </td> <td>${datos[i].precioT}</td></tr>`      
         }
         resultado.innerHTML=lista;
     })
 }
+
 
 document.getElementById('buscar_reserva').addEventListener('click', e=>{
     e.preventDefault();
@@ -95,49 +83,49 @@ document.getElementById('buscar_reserva').addEventListener('click', e=>{
 
 const actualizarChart = async (myChart,mes,totalCard) =>{
     let reportes={};
-    await reservasMes(mes).then((dato) =>{
+    await gananciaMes(mes).then((dato) =>{
         reportes=dato;
     });
 
     let dates=reportes.map(function(obj) {
         return obj.mes;
     });
-    let cantidad=reportes.map(function(obj){
-        return obj.cantidad;
+    let ganancia=reportes.map(function(obj){
+        return obj.ganancia;
     });
-    console.log(dates,cantidad);
+
     myChart.config.data.labels=dates;
-    myChart.config.data.datasets[0].data=cantidad;
+    myChart.config.data.datasets[0].data=ganancia;
 
     myChart.update();
     actualizarCardMes(mes)
-    totalCard.innerHTML=reportes[4].cantidad;
+    totalCard.innerHTML=reportes[4].ganancia;
     listarReporte(mes,'');
 }
-const reporteCliente = async() =>{
+const reporteDiario = async() =>{
     let mesReporte=document.querySelector('#mesR');
+    let totalCard=document.getElementById('gTotal');
 
-    let totalCard=document.getElementById('reservasCard');
     let reportes={};
     agregarMes(mesReporte);
     actualizarCardMes(mesReporte.value);
-
-    await reservasMes(mesR.value).then((dato) =>{
+    
+    await gananciaMes(mesR.value).then((dato) =>{
         reportes=dato;
     });
     
-    totalCard.innerHTML=reportes[4].cantidad;
+    totalCard.innerHTML=reportes[4].ganancia;
     let dates=reportes.map(function(obj) {
         return obj.mes;
     });
-    let cantidad=reportes.map(function(obj){
-        return obj.cantidad;
+    let ganancias=reportes.map(function(obj){
+        return obj.ganancia;
     });
     const data={
         labels: dates,
         datasets: [{
-            label: 'Cantidad',
-            data: cantidad,
+            label: 'S/. Ganancias',
+            data: ganancias,
             backgroundColor: [
                 'rgba(255, 99, 132, 0.2)',
                 'rgba(54, 162, 235, 0.2)',
@@ -181,10 +169,8 @@ const reporteCliente = async() =>{
         );
     listarReporte(mesR.value,'');
     mesReporte.addEventListener('change', e => {
-        actualizarChart(myChart,e.target.value,totalCard)
+        actualizarChart(myChart,e.target.value,totalCard);
     });
     
 }
-reporteCliente();
-
-actualizarCardCliente();
+reporteDiario();

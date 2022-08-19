@@ -114,6 +114,8 @@ $routes->post('cantidad_mes', 'ReportesController::reservasMes');
 $routes->post('clientes_reservas', 'ReportesController::listaReporteMes');
 $routes->get('resumen-cliente', 'ReportesController::resumenCliente');
 $routes->get('reporte-mes', 'ReportesController::reporteMes');
+$routes->post('ganancia_mes', 'ReportesController::gananciaM');
+$routes->post('reservas_mes', 'ReportesController::listaReporteMesFull');
 $routes->get('reporte-cliente', 'ReportesController::reporteCliente');
 $routes->get('reporte-habitacion', 'ReportesController::reporteHabitacion');
 
