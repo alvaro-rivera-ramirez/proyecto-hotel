@@ -4,13 +4,10 @@ namespace App\Controllers;
 use CodeIgniter\Controller;
 use App\Models\TipoHabModel;
 use App\Models\UsuariosModel;
+use App\Libraries\Pdf;
 
 class TipoHabController extends Controller{
     public function index(){
-        //$tipo=new TipoHabModel();
-        //$datosTip['tipo']=$tipo->getTipoHab();
-
-        $pager = service('pager');
 
         $model = new TipoHabModel();
 
@@ -112,10 +109,37 @@ class TipoHabController extends Controller{
         
         $model = new TipoHabModel();
 
-        $data['tipo'] = $model->getTipoHab();
+        $data = $model->getTipoHab();
 
             
-        return view("pdf/pdf_tipHab",$data);
+        // Creación del objeto de la clase heredada
+        $pdf = new PDF("Reporte de Tipos de Habitación");
+        $pdf->AliasNbPages();
+        $pdf->AddPage();//añade l apagina / en blanco
+        $pdf->SetMargins(10,10,10);
+        $pdf->SetAutoPageBreak(true,20);//salto de pagina automatico
+        $pdf->SetX(15);
+        $pdf->SetFont('Helvetica','B',15);
+        $pdf->Cell(7,8,'N','B',0,'C',0);
+        $pdf->Cell(20,8,'Tipo','B',0,'C',0);
+        $pdf->Cell(20,8,'Precio','B',0,'C',0);
+        $pdf->Cell(130,8,utf8_decode('Características'),'B',1,'C',0);
+
+        $pdf->SetFillColor(241, 240, 238);//color de fondo rgb
+        $pdf->SetDrawColor(61, 61, 61);//color de linea  rgb
+
+        $pdf->SetFont('Arial','',12);
+        foreach($data as $tipos){
+            $pdf->Ln(0.6);
+            $pdf->setX(15);
+            $pdf->Cell(7,8,$tipos['idTipo'],'B',0,'C',1);
+            $pdf->Cell(20,8,$tipos['tipo'],'B',0,'C',1);
+            $pdf->Cell(20,8,$tipos['precio'] ,'B',0,'C',1);
+            $pdf->Cell(130,8,utf8_decode($tipos['descripcion']),'B',1,'C',1);
+        }
+    
+        $this->response->setHeader('Content-Type','application/pdf');
+        $pdf->Output();
     }
 
 }

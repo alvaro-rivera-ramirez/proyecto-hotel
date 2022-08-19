@@ -3,6 +3,8 @@ namespace App\Controllers;
 
 use CodeIgniter\Controller;
 use App\Models\UsuariosModel;
+use App\Libraries\Pdf;
+
 class UsuariosController extends Controller{
     public function index(){
         $usuario=new UsuariosModel();
@@ -240,7 +242,36 @@ class UsuariosController extends Controller{
 
     public function imprimir(){
         $usuario=new UsuariosModel();
-        $data['usuario']=$usuario->getUsuarios();
-        return view('usuarios/registro_usuarios',$data);
+        $data=$usuario->getUsuarios();
+        $pdf = new Pdf("Reporte de Usuarios");
+        //hacemos una instancia de la clase
+        $pdf->AliasNbPages();
+        $pdf->AddPage();//añade l apagina / en blanco
+        $pdf->SetMargins(10,10,10);
+        $pdf->SetAutoPageBreak(true,20);//salto de pagina automatico
+        $pdf->SetX(15);
+        $pdf->SetFont('Helvetica','B',15);
+        $pdf->Cell(7,8,'N','B',0,'C',0);
+        $pdf->Cell(30,8,'DNI','B',0,'C',0);
+        $pdf->Cell(70,8,utf8_decode('Nombre completo'),'B',0,'C',0);
+        $pdf->Cell(20,8,utf8_decode('Teléfono'),'B',0,'C',0);
+    
+        $pdf->Cell(60,8,utf8_decode('Correo'),'B',1,'C',0);
+
+        $pdf->SetFillColor(241, 240, 238);//color de fondo rgb
+        $pdf->SetDrawColor(61, 61, 61);//color de linea  rgb
+
+        $pdf->SetFont('Arial','',11);
+        foreach($data as $usuarios){        
+            $pdf->Ln(0.6);
+            $pdf->setX(15);
+            $pdf->Cell(7,8,$usuarios['id'],'B',0,'C',0);
+            $pdf->Cell(30,8,$usuarios['dni'],'B',0,'C',0);
+            $pdf->Cell(70,8,utf8_decode($usuarios['nombre']." ".$usuarios['apellidoPaterno']." ".$usuarios  ['apellidoMaterno']),'B',0,'C',0);
+            $pdf->Cell(20,8,utf8_decode($usuarios['telefono']),'B',0,'C',0);        
+            $pdf->Cell(60,8,utf8_decode($usuarios['email']),'B',1,'C',0);
+        }
+        $this->response->setHeader('Content-Type','application/pdf');
+        $pdf->Output();
     }
 }

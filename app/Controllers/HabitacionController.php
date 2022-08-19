@@ -7,37 +7,15 @@ use App\Models\HabitacionModel;
 use App\Models\TipoHabModel;
 use App\Models\UsuariosModel;
 use App\Models\EstadoHabitacion;
-use Dompdf\Dompdf;
+use App\Libraries\Pdf;
 
 class HabitacionController extends Controller{
-
-    // GENERANDO PDF
-    
-    // public function demoPDF()
-    // {
-    //     $domPDF = new Dompdf();
-    //     $domPDF->loadHtml('<h1> HOLA </h1>');
-    //     $domPDF->setPaper('A4', 'portrait');
-    //     $domPDF->render();
-    //     $domPDF->stream();               
-    // }
-
-
-    // // FIN DE GENERAR PDF
-
-
 
     public function index(){
     
     //    $pager = service('pager');
        $model = new HabitacionModel();
 
-       /*$data = [
-           'habitacion' => $model->join('tipo_habitacion', 'tipo_habitacion.idTipo = habitacion.idTipo')
-           ->join('estado_hab', 'estado_hab.idEstado = habitacion.idEstado')
-           ->orderBy('idHab','ASC')->paginate(8, 'group1'),
-           'pager' => $model->pager
-       ];*/
        $data['habitacion']=$model->getAll();
        //var_dump($model->getAll());
 
@@ -141,16 +119,43 @@ class HabitacionController extends Controller{
     public function imprimir(){
     
         $model = new HabitacionModel();
-        $data['habitacion']=$model->getAll();
+        $data=$model->getAll();
         //var_dump($model->getAll());
 
-        return view("pdf/pdf_hab",$data);
+        // Creación del objeto de la clase heredada
+        $pdf = new PDF("Reporte de Habitaciones");
+        $pdf->AliasNbPages();
+        $pdf->AddPage();//añade l apagina / en blanco
+        $pdf->SetMargins(10,10,10);
+        $pdf->SetAutoPageBreak(true,20);//salto de pagina automatico
+        $pdf->SetX(15);
+        $pdf->SetFont('Helvetica','B',15);
+        $pdf->Cell(7,8,'N','B',0,'C',0);
+        $pdf->Cell(33,8,utf8_decode('Número'),'B',0,'C',0);
+        $pdf->Cell(20,8,'Tipo','B',0,'C',0);
+        $pdf->Cell(20,8,'Precio','B',0,'C',0);
+        $pdf->Cell(50,8,utf8_decode('Características'),'B',0,'C',0);
+        $pdf->Cell(50,8,'Estado','B',1,'C',0);
+
+        $pdf->SetFillColor(241, 240, 238);//color de fondo rgb
+        $pdf->SetDrawColor(61, 61, 61);//color de linea  rgb
+
+        $pdf->SetFont('Arial','',12);
+
+        foreach($data as $habitaciones){
+            $pdf->Ln(0.6);
+            $pdf->setX(15);
+            $pdf->Cell(7,8,$habitaciones['idHab'],'B',0,'C',1);
+            $pdf->Cell(33,8,$habitaciones['numero'],'B',0,'C',1);
+            $pdf->Cell(20,8,$habitaciones['tipo'],'B',0,'C',1);
+            $pdf->Cell(20,8,$habitaciones['precio'],'B',0,'C',1);
+            $pdf->Cell(50,8,utf8_decode('TV con Cable'),'B',0,'C',1);
+            $pdf->Cell(50,8,$habitaciones['estado'],'B',1,'C',1);
+        }
+        $this->response->setHeader('Content-Type','application/pdf');
+    // cell(ancho, largo, contenido,borde?, salto de linea?)
+
+        $pdf->Output();
      }
-
-
-
-
-
-
 
 }

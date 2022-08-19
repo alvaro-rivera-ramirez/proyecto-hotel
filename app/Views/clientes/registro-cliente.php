@@ -35,8 +35,7 @@
                                                 class="fas fa-plus fa-fw"></i> AGREGAR CLIENTE</a></div>
                                     <div class="box-nav"> <a class="active" href="#"><i
                                                 class="fas fa-clipboard-list fa-fw"></i> LISTA DE CLIENTES</a> </div>
-                                    <div class="box-nav"> <a href="<?= base_url('imprimir_clientes')?>"><i
-                                                class="fa-solid fa-print"></i> IMPRIMIR</a></div>
+                                    <div class="box-nav"> <a href="<?= base_url('imprimir_clientes')?>" target="_blank"><i class="fa-solid fa-print"></i> IMPRIMIR</a></div>
                                     <div class="box-nav">
                                         <form class="d-flex" id="form" method="POST"
                                             action="<?= base_url('lista-clientes')?>">
@@ -102,14 +101,14 @@
                             </div>
                             <p class="text-end">Mostrando Empleados 1 al 10 de un total de 27</p>
 
-                            
+
                             <?php include "../app/Views/pagination/view_pag.php"?>
-                            
-                            
-                        </section>  
-                  </div>
-                      
-                      <!----->
+
+
+                        </section>
+                    </div>
+
+                    <!----->
                 </div>
 
             </div>
