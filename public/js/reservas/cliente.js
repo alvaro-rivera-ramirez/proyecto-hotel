@@ -27,6 +27,7 @@ const buscarDNI =(id)=>{
                     document.getElementById('cli_email').setAttribute('disabled', '');
                 }   
             }else{
+                console.log(datosForm.errors)
                 document.getElementById('alerta-dni').innerHTML=datosForm.errors.cli_dni;
             }
     

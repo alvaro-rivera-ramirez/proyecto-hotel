@@ -5,7 +5,9 @@ use CodeIgniter\Controller;
 use App\Models\ReservasModel;
 use App\Models\DetalleReservaModel;
 use App\Models\HabitacionModel;
+use App\Models\UsuariosModel;
 use App\Models\TipoHabModel;
+use App\Libraries\ReservaPdf;
 
 class ReservasController extends Controller{
     public function index(){
@@ -129,6 +131,7 @@ class ReservasController extends Controller{
             $validation->setRules(
                 [ //validación
                     'idCliente' => [
+                        'label'  => 'idCliente',
                         'rules' => 'required|is_not_unique[cliente.idCliente]'
                     ],
                     'idReserva' => [
@@ -216,5 +219,52 @@ class ReservasController extends Controller{
 
             return json_encode(['resp' => true]);
         }
+    }
+
+    public function imprimir_boleta($id){
+        $pdf=new ReservaPdf("Boleta Electrónica");
+
+//         //Contenido
+//         //hacemos una instancia de la clase
+//         //$pdf->Cell(7,8,$id,'B',0,'C',0);
+//         $pdf->SetFont('Arial','B',16);
+// // Move to 8 cm to the right
+// $pdf->Cell(80);
+// // Texto centrado en una celda con cuadro 20*10 mm y salto de línea
+// $pdf->Cell(20,10,$id,1,1,'C');
+//         $this->response->setHeader('Content-Type','application/pdf');
+//         $pdf->Output();
+$usuario=new UsuariosModel();
+$data=$usuario->getUsuarios();
+//hacemos una instancia de la clase
+$pdf->AliasNbPages();
+$pdf->AddPage();//añade l apagina / en blanco
+$pdf->SetMargins(10,10,10);
+$pdf->SetAutoPageBreak(true,20);//salto de pagina automatico
+$pdf->SetX(15);
+$pdf->SetFont('Helvetica','B',15);
+$pdf->Cell(7,8,'N','B',0,'C',0);
+$pdf->Cell(30,8,'DNI','B',0,'C',0);
+$pdf->Cell(70,8,utf8_decode('Nombre completo'),'B',0,'C',0);
+$pdf->Cell(20,8,utf8_decode('Teléfono'),'B',0,'C',0);
+
+$pdf->Cell(60,8,utf8_decode('Correo'),'B',1,'C',0);
+
+$pdf->SetFillColor(241, 240, 238);//color de fondo rgb
+$pdf->SetDrawColor(61, 61, 61);//color de linea  rgb
+
+$pdf->SetFont('Arial','',11);
+foreach($data as $usuarios){        
+    $pdf->Ln(0.6);
+    $pdf->setX(15);
+    $pdf->Cell(7,8,$id,'B',0,'C',0);
+    $pdf->Cell(30,8,$usuarios['dni'],'B',0,'C',0);
+    $pdf->Cell(70,8,utf8_decode($usuarios['nombre']." ".$usuarios['apellidoPaterno']." ".$usuarios  ['apellidoMaterno']),'B',0,'C',0);
+    $pdf->Cell(20,8,utf8_decode($usuarios['telefono']),'B',0,'C',0);        
+    $pdf->Cell(60,8,utf8_decode($usuarios['email']),'B',1,'C',0);
+}
+$this->response->setHeader('Content-Type','application/pdf');
+$pdf->Output();
+
     }
 }

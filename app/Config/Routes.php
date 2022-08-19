@@ -56,7 +56,7 @@ if (is_file(APPPATH . 'Config/' . ENVIRONMENT . '/Routes.php')) {
 }
 
 //ruta  --> 
-$routes->get('/inicio', 'Inicio::index',['filter' => 'auth:Administrador,Recepcionista']);
+$routes->get('/inicio', 'Inicio::index',['filter' => 'auth']);
 $routes->post('/login', 'Login::login');
 $routes->get('perfil', 'UsuariosController::configurarPerfil');
 $routes->post('ed_perfil', 'UsuariosController::editarPerfil');
@@ -122,9 +122,11 @@ $routes->get('reporte-habitacion', 'ReportesController::reporteHabitacion');
 
 //PDF
 
-$routes->get('/imprimir_hab', 'HabitacionController::imprimir');
-$routes->get('/imprimir_tipohab', 'TipoHabController::imprimir');
-$routes->get('/imprimir_usuarios', 'UsuariosController::imprimir');
-$routes->get('/imprimir_clientes', 'ClientesController::imprimir');
+$routes->get('/imprimir_hab', 'HabitacionController::imprimir',['filter' => 'auth']);
+$routes->get('/imprimir_tipohab', 'TipoHabController::imprimir',['filter' => 'auth']);
+$routes->get('/imprimir_usuarios', 'UsuariosController::imprimir',['filter' => 'auth:Administrador']);
+$routes->get('/imprimir_clientes', 'ClientesController::imprimir',['filter' => 'auth:Administrador']);
+$routes->get('/imprimir_boleta/(:num)', 'ReservasController::imprimir_boleta/$1',['filter' => 'auth']);
+//$routes->post('imprimir_boleta', 'ReservasController::imprimir_boleta',['filter' => 'auth']);
 
 

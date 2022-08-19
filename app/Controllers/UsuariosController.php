@@ -36,7 +36,7 @@ class UsuariosController extends Controller{
         ]);
 
         if(!$validation->withRequest($this->request)->run()){
-            return redirect()->to(base_url('nuevo_usuario'))->withInput()->with('errors',$validation->getErrors());
+            return json_encode(['respuesta' => false, 'errors' => $validation->getErrors()]);
         }
 
         $password=PASSWORD_HASH($this->request->getPost('user_clave_1'),PASSWORD_DEFAULT);
@@ -65,7 +65,7 @@ class UsuariosController extends Controller{
         $usuario=new UsuariosModel();
         $usuario->insert($data);
 
-        echo json_encode(['respuesta' => true,]);
+        return json_encode(['respuesta' => true]);
     }
 
     public function actualizar(){
@@ -95,7 +95,7 @@ class UsuariosController extends Controller{
 
         if(!$validation->withRequest($this->request)->run()){
             //dd($validation->getErrors());
-            return redirect()->to(base_url('editar_usuario/'.$user_id))->withInput()->with('errors',$validation->getErrors());
+            return json_encode(['respuesta' => false, 'errors' => $validation->getErrors()]);
         }
 
         $admin_usuario=$this->request->getPost('admin_usuario');
@@ -135,7 +135,7 @@ class UsuariosController extends Controller{
         $usuario_up->update($user_id,$data);
 
         // return redirect()->route('lista_usuarios')->with('msg','1');
-        echo json_encode(['respuesta' => true]);
+        return json_encode(['respuesta' => true]);
     }
 
     public function borrar($id=null){
@@ -197,7 +197,7 @@ class UsuariosController extends Controller{
         $usuario_up=new UsuariosModel();
         $usuario_up->update($user_id,$data);
 
-        echo json_encode(['respuesta' => true]);
+        return json_encode(['respuesta' => true]);
     }
 
     public function configurarPassword(){

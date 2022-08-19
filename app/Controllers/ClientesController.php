@@ -30,8 +30,7 @@ class ClientesController extends Controller{
         ]);
 
         if(!$validation->withRequest($this->request)->run()){
-            //dd($validation->getErrors());
-            return json_encode(['respuesta' => true,'errors' => $validation->getErrors()]);
+            return json_encode(['respuesta' => false,'errors' => $validation->getErrors()]);
         }
 
         $dni=$this->request->getPost('cli_dni_reg');
@@ -50,7 +49,7 @@ class ClientesController extends Controller{
         ];
         $cliente=new ClientesModel();
         $cliente->insert($data);
-        echo json_encode(['respuesta' => true,'mensaje' =>'Cliente registrado exitosamente']);
+        return json_encode(['respuesta' => true,'mensaje' =>'Cliente registrado exitosamente']);
     }
 
     public function buscardni(){
@@ -59,16 +58,17 @@ class ClientesController extends Controller{
             $validation = service('validation');
             $validation->setRules(
                 [ //validación
-                    'cli_dni' => 'required|numeric|min_length[8]|max_length[8]'
-                ],
-                [ //mensajes de error
-                    'cli_dni' => 
-                    [
-                        'required' => 'Complete este campo',
-                        'numeric' => 'Complete este campo con números',
-                        'min_length' => 'Debe tener {param} digitos',
-                        'max_length' => 'Debe tener {param} digitos'
-                    ],
+                    'cli_dni' => [
+                        'label' => 'cliente_dni',
+                        'rules' => 'required|numeric|min_length[8]|max_length[8]',
+                        'errors' => [
+                            'required' => 'Complete este campo',
+                            'numeric' => 'Complete este campo con números',
+                            'min_length' => 'Debe tener {param} digitos',
+                            'max_length' => 'Debe tener {param} digitos'
+                        ],
+                    ]
+
                 ]);
             if(!$validation->withRequest($this->request)->run()){
                     //dd($validation->getErrors());
