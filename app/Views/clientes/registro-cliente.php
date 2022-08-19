@@ -132,7 +132,7 @@
             cancelButtonText: 'Cancelar'
         }).then((result) => {
             if (result.isConfirmed) {
-                fetch('http://localhost/proyecto-hotel/public/eliminar_cliente/' + idCliente, {
+                fetch('eliminar_cliente/' + idCliente, {
                     method: 'POST',
                     mode: 'no-cors',
                     headers: {

@@ -36,6 +36,7 @@ class ReservasModel extends Model{
         return $query->getResultArray();
     }
 
+    //Buscar Reserva por dni y nombre
     public function mostrarBusqueda($dato){
         $pQuery = $this->db->prepare(static function ($db) {
             $sql = "SELECT r.idReserva,r.idCliente,r.idUser,DATE_FORMAT(r.created_at, '%Y-%m-%d') as fecha,c.dni,concat(c.nombre,' ',c.apellidoPaterno,' ',if(c.apellidoMaterno IS NULL,'',c.apellidoMaterno)) as nombreC,u.nombre as nombreU, SUM(dt.precio) as precioT,er.*,ep.* FROM reserva r,cliente c,usuarios u,detalle_reserva dt, estado_reserva er,estado_pago ep WHERE 
@@ -47,6 +48,19 @@ class ReservasModel extends Model{
         return $pQuery->execute($datoB,$datoB)->getResultArray();
     }
 
+
+    //Buscar Reserva por id
+    public function busquedaReserva($dato){
+        $pQuery = $this->db->prepare(static function ($db) {
+            $sql = "SELECT r.idReserva,r.idCliente,r.idUser,DATE_FORMAT(r.created_at, '%Y-%m-%d') as fecha,c.dni,concat(c.nombre,' ',c.apellidoPaterno,' ',if(c.apellidoMaterno IS NULL,'',c.apellidoMaterno)) as nombreC,u.nombre as nombreU, SUM(dt.precio) as precioT,er.*,ep.* FROM reserva r,cliente c,usuarios u,detalle_reserva dt, estado_reserva er,estado_pago ep WHERE 
+            r.idCliente=c.idCliente AND r.idUser=u.id AND r.idReserva=dt.idReserva AND r.idEstadoR=er.idEstadoR AND r.idEstadoP=ep.idEstadoP AND r.deleted_at IS NULL AND r.idReserva=? GROUP BY r.idReserva ORDER BY r.idReserva DESC";
+        
+            return (new Query($db))->setQuery($sql);
+        });
+        return $pQuery->execute($dato)->getResultArray();
+    }
+
+    //Buscar detalle de reserva por id
     public function mostrarDetalle($id=null){
         $sql='SELECT dt.*,h.numero,t.idTipo,t.tipo,t.precio as precioD FROM detalle_reserva dt,habitacion h,tipo_habitacion t WHERE dt.idHab=h.idHab AND h.idTipo=t.idTipo AND idReserva=? ';
         $query=$this->db->query($sql, $id);

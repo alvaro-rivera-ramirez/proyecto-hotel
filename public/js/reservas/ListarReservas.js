@@ -4,7 +4,7 @@
     caso contrario muestra las reservas que coinciden con el dato
 */
 const listarR = (dato) =>{
-    fetch( 'listar_reserva', {
+    fetch('listar_reserva', {
         method: 'POST',
         mode: 'no-cors',
         headers: {
@@ -16,7 +16,7 @@ const listarR = (dato) =>{
         console.log(datosR)
         let lista='';
         for(let i=0;i<datosR.length;i++){
-            lista+='<tr class="text-center"> <td>'+datosR[i].idReserva+'</td> <td>'+datosR[i].dni+'</td> <td>'+datosR[i].nombreC+'</td> <td>'+datosR[i].nombreU+'</td> <td>'+datosR[i].fecha+'</td><td> <button type="button" class="btn detalleR" onclick="listarDetalle('+datosR[i].idReserva+')"><i class="fa-solid fa-circle-info"></i></button> </td> <td>'+datosR[i].precioT+'</td> <td>'+datosR[i].estadoReserva+'</td><td>'+datosR[i].estadoPago+'</td> <td> <a class="btn btn-success" onclick="editarReserva('+datosR[i].dni+','+datosR[i].idReserva+','+datosR[i].idEstadoR+','+datosR[i].idEstadoP+')" role="button"> <i class="fa-solid fa-pen-to-square"></i> </a> </td> <td> <a class="btn btn-danger" type="button"><i class="fa-solid fa-trash-can"></i> </a> </td> </tr>'       
+            lista+='<tr class="text-center"> <td>'+datosR[i].idReserva+'</td> <td>'+datosR[i].dni+'</td> <td>'+datosR[i].nombreC+'</td> <td>'+datosR[i].nombreU+'</td> <td>'+datosR[i].fecha+'</td><td> <button type="button" class="btn detalleR" onclick="listarDetalle('+datosR[i].idReserva+')"><i class="fa-solid fa-circle-info"></i></button> </td> <td>'+datosR[i].precioT+'</td> <td>'+datosR[i].estadoReserva+'</td><td>'+datosR[i].estadoPago+'</td> <td> <a type="button" class="btn btn-warning gpdf" href="http://localhost/proyecto-hotel/public/imprimir_boleta/'+datosR[i].idReserva+'"><i class="fa-solid fa-file-pdf gpdf"></i></a></td><td> <a class="btn btn-success" onclick="editarReserva('+datosR[i].dni+','+datosR[i].idReserva+','+datosR[i].idEstadoR+','+datosR[i].idEstadoP+')" role="button"> <i class="fa-solid fa-pen-to-square"></i> </a> </td> <td> <a class="btn btn-danger" type="button"><i class="fa-solid fa-trash-can"></i> </a> </td> </tr>'       
         }
         resultado.innerHTML=lista;
     })

@@ -13,9 +13,11 @@ class Auth implements FilterInterface
         if(!session('usuario')){
             return redirect()->to(base_url('/'));
         }
-
-        if(!in_array(session('rol'),$arguments)){
-            throw \CodeIgniter\Exceptions\PageNotFoundException::forPageNotFound();
+        
+        if($arguments){
+            if(!in_array(session('rol'),$arguments)){
+                throw \CodeIgniter\Exceptions\PageNotFoundException::forPageNotFound();
+            }
         }
     }
 

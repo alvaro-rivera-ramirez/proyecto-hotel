@@ -79,6 +79,7 @@
                                             <th>Monto Total</th>
                                             <th>Estado de Reserva</th>
                                             <th>Estado</th>
+                                            <th>Ver</th>
                                             <th>Editar</th>
                                             <th>Eliminar</th>
                                         </tr>
@@ -251,6 +252,7 @@
     </div>
 
     <?php include "include/script.php"?>
+    <script src="js/reservas/pdfReserva.js"></script>
     <script src="js/reservas/ListarReservas.js"></script>
     <script src="js/reservas/filtroHab.js"></script>
     <script src="js/reservas/cliente.js"></script>
