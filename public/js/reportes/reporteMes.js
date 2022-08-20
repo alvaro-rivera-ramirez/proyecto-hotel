@@ -65,12 +65,13 @@ const listarReporte = (mes,dato) =>{
         },
         body: JSON.stringify({"mes":mes,"dato":dato})
     }).then(response => response.json()).then( datos=> {
-        let lista='';
+        /* let lista='';
         console.log(datos);
         for(let i=0;i<datos.length;i++){
             lista+=`<tr class="text-wrap"> <td>${datos[i].idReserva}</td> <td>${datos[i].dni}</td> <td>${datos[i].nombreC}</td> <td>${datos[i].fechas}</td><td> <button type="button" class="btn detalleR"><i class="fa-solid fa-circle-info"></i></button> </td> <td>${datos[i].precioT}</td></tr>`      
         }
-        resultado.innerHTML=lista;
+        resultado.innerHTML=lista; */
+        pag(datos,"reporteMes");
     })
 }
 
@@ -79,6 +80,7 @@ document.getElementById('buscar_reserva').addEventListener('click', e=>{
     e.preventDefault();
     let dato=document.getElementById('dato_buscar').value;
     listarReporte(mesR.value,dato);
+    resetpag();
 })
 
 const actualizarChart = async (myChart,mes,totalCard) =>{
