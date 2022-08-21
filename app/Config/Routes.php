@@ -74,6 +74,7 @@ $routes->post('actualizar_reserva', 'ReservasController::actualizar');
 
 
 $routes->get('/lista-habitaciones', 'HabitacionController::index',['filter' => 'auth:Administrador,Recepcionista']);
+$routes->post('listar_habitaciones', 'HabitacionController::listar');
 $routes->get('nueva_habitacion', 'HabitacionController::crear',['filter' => 'auth:Administrador']);
 $routes->post('guardar_habitacion', 'HabitacionController::guardar');
 $routes->post('actualizar_habitacion', 'HabitacionController::actualizar');
@@ -81,6 +82,7 @@ $routes->get('editar_habitacion/(:num)', 'HabitacionController::editar/$1',['fil
 $routes->post('eliminar_habitacion/(:num)', 'HabitacionController::borrar/$1');
 
 $routes->get('/lista-tipohab', 'TipoHabController::index',['filter' => 'auth:Administrador,Recepcionista']);
+$routes->post('listar_tipohab', 'TipoHabController::listar');
 $routes->get('nuevo_tipohab', 'TipoHabController::crear',['filter' => 'auth:Administrador,Recepcionista']);
 $routes->post('guardar_tipohab', 'TipoHabController::guardar');
 $routes->post('actualizar_tipohab', 'TipoHabController::actualizar');
@@ -88,6 +90,7 @@ $routes->get('editar_tipohab/(:num)', 'TipoHabController::editar/$1',['filter' =
 $routes->post('eliminar_tipohab/(:num)', 'TipoHabController::borrar/$1');
 
 $routes->get('/lista-clientes', 'ClientesController::index',['filter' => 'auth:Administrador,Recepcionista']);
+$routes->post('/listar_clientes', 'ClientesController::listar');
 $routes->get('nuevo_cliente', 'ClientesController::crear_cli',['filter' => 'auth:Administrador,Recepcionista']);
 $routes->post('registrar_cliente', 'ClientesController::registrar',['filter' => 'auth:Administrador,Recepcionista']);
 $routes->post('buscar_dni', 'ClientesController::buscardni');
@@ -95,8 +98,9 @@ $routes->get('editar_cliente/(:num)', 'ClientesController::editar/$1',['filter' 
 $routes->post('actualizar-cliente', 'ClientesController::actualizarCli');
 $routes->post('eliminar_cliente/(:num)', 'ClientesController::borrar/$1');
 
-
+//RUTAS DE USUARIOS
 $routes->get('/lista_usuarios', 'UsuariosController::index',['filter' => 'auth:Administrador,Recepcionista']);
+$routes->post('/listar_usuarios', 'UsuariosController::listar');
 $routes->get('editar_usuario/(:num)', 'UsuariosController::editar/$1',['filter' => 'auth:Administrador']);
 $routes->get('nuevo_usuario', 'UsuariosController::crear',['filter' => 'auth:Administrador']);
 $routes->post('guardar_usuario', 'UsuariosController::guardar');

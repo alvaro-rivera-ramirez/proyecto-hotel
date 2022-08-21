@@ -7,11 +7,15 @@ use App\Libraries\Pdf;
 
 class UsuariosController extends Controller{
     public function index(){
-        $usuario=new UsuariosModel();
-        $data['usuario']=$usuario->getUsuarios();
-        return view('usuarios/registro_usuarios',$data);
+        return view('usuarios/registro_usuarios');
     }
 
+    public function listar(){
+        $dato=file_get_contents("php://input");
+        $usuario=new UsuariosModel();
+        $lista=$usuario->getUsuarios($dato);
+        echo json_encode($lista);
+    }
     public function crear(){
         return view('usuarios/new_usuarios');
     }
@@ -267,7 +271,7 @@ class UsuariosController extends Controller{
             $pdf->setX(15);
             $pdf->Cell(7,8,$usuarios['id'],'B',0,'C',0);
             $pdf->Cell(30,8,$usuarios['dni'],'B',0,'C',0);
-            $pdf->Cell(70,8,utf8_decode($usuarios['nombre']." ".$usuarios['apellidoPaterno']." ".$usuarios  ['apellidoMaterno']),'B',0,'C',0);
+            $pdf->Cell(70,8,utf8_decode($usuarios['nombreC']),'B',0,'C',0);
             $pdf->Cell(20,8,utf8_decode($usuarios['telefono']),'B',0,'C',0);        
             $pdf->Cell(60,8,utf8_decode($usuarios['email']),'B',1,'C',0);
         }

@@ -67,7 +67,7 @@
 
                             <!-- TABLE RESPONSIVE-->
                             <div class="table-responsive mt-2">
-                                <table class="table bg-white">
+                                <table class="table table-striped">
                                     <thead class="bg-dark text-light">
                                         <tr class="text-center">
                                             <th>N°</th>
@@ -84,26 +84,11 @@
                                             <th>Eliminar</th>
                                         </tr>
                                     </thead>
-                                    <tbody id="resultado">
+                                    <tbody id="lista">
 
 
                                     </tbody>
                                 </table>
-                                <nav aria-label="...">
-                                    <ul class="pagination">
-                                        <li class="page-item disabled">
-                                            <span class="page-link">Previous</span>
-                                        </li>
-                                        <li class="page-item"><a class="page-link" href="#">1</a></li>
-                                        <li class="page-item active" aria-current="page">
-                                            <span class="page-link">2</span>
-                                        </li>
-                                        <li class="page-item"><a class="page-link" href="#">3</a></li>
-                                        <li class="page-item">
-                                            <a class="page-link" href="#">Next</a>
-                                        </li>
-                                    </ul>
-                                </nav>
                             </div>
                             <p class="text-end">Mostrando Empleados 1 al 10 de un total de 27</p>
 

@@ -15,6 +15,7 @@ class UsuariosModel extends Model{
     protected $deletedField  = 'deleted_at';
 
     protected $allowedFields=['username','pass','dni','nombre','apellidoPaterno','apellidoMaterno','telefono','email','idRol','activo'];
+    //obtener usuarios por nombre de usuario
     public function obtenerUsuario($data){
         $user=$this->db->table('usuarios as u');
         $user->select('u.id,u.username, u.pass, u.nombre,u.activo, roles.cargo');
@@ -22,7 +23,7 @@ class UsuariosModel extends Model{
         $user->where($data);
         return $user->get()->getResultArray();
     }
-
+    //obtener usuario por el id
     public function obtenerDatos($id){
         $user=$this->db->table('usuarios as u');
         $user->select('u.*, r.cargo');
@@ -30,9 +31,22 @@ class UsuariosModel extends Model{
         $user->where('u.id',$id);
         return $user->get()->getRowArray();
     }
-    public function getUsuarios(){
-        $consulta=$this->db->query("SELECT * FROM usuarios WHERE deleted_at IS NULL");
-        return $consulta->getResultArray();
+
+    //obtener todos los usuarios o buscar por dni o nombre
+    public function getUsuarios($dato=null){
+        if(!empty($dato)){
+            $user=$this->db->table('usuarios as u');
+            $user->select("u.id,u.dni,concat(u.nombre,' ',u.apellidoPaterno,' ',if(u.apellidoMaterno IS NULL,'',u.apellidoMaterno)) as nombreC,u.telefono,u.email,u.username,u.activo");
+            $user->where("u.deleted_at IS NULL");
+            $user->havingLike('u.dni', $dato);
+            $user->orHavingLike('nombreC',$dato);
+            return $user->get()->getResultArray();
+        }else{
+            $user=$this->db->table('usuarios as u');
+            $user->select("u.id,u.dni,concat(u.nombre,' ',u.apellidoPaterno,' ',if(u.apellidoMaterno IS NULL,'',u.apellidoMaterno)) as nombreC,u.telefono,u.email,u.username,u.activo");
+            $user->where("u.deleted_at IS NULL");
+            return $user->get()->getResultArray();
+        }
     }
 
 }

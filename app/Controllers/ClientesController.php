@@ -14,6 +14,12 @@ class ClientesController extends Controller{
         return view("clientes/registro-cliente",$data);
     }
 
+    public function listar(){
+        $dato=file_get_contents("php://input");
+        $cliente=new ClientesModel();
+        $lista=$cliente->getClientes($dato);
+        echo json_encode($lista);
+    }
     public function crear_cli(){
         return view('clientes/registrar_cliente');
     }
@@ -180,7 +186,7 @@ class ClientesController extends Controller{
             $pdf->setX(15);
             $pdf->Cell(7,8,$clientes['idCliente'],'B',0,'C',0);
             $pdf->Cell(30,8,$clientes['dni'],'B',0,'C',0);
-            $pdf->Cell(70,8,utf8_decode($clientes['nombre']." ".$clientes['apellidoPaterno']." ".$clientes  ['apellidoMaterno']),'B',0,'C',0);
+            $pdf->Cell(70,8,utf8_decode($clientes['nombreC']),'B',0,'C',0);
             $pdf->Cell(20,8,utf8_decode($clientes['telefono']),'B',0,'C',0);        
             $pdf->Cell(60,8,utf8_decode($clientes['email']),'B',1,'C',0);
 

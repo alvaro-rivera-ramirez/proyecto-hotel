@@ -15,9 +15,13 @@ class TipoHabModel extends Model{
     protected $deletedField  = 'deleted_at';
     protected $allowedFields=['tipo','precio','descripcion'];
 
-    public function getTipoHab(){
-        $query=$this->db->table($this->table);
-        return $query->get()->getResultArray();
+    public function getTipoHab($dato=null){
+        $tipo=$this->db->table('tipo_habitacion as th');
+        $tipo->where("th.deleted_at IS NULL");
+        if(!empty($dato)){   
+            $tipo->like('th.tipo',$dato);
+        }
+        return $tipo->get()->getResultArray();
     }
 
     public function getTipo(){
