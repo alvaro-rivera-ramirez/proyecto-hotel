@@ -25,7 +25,7 @@
                         <section>
                             <h3 class="pb-3">Reportes / Clientes</h3>
                             <div class="row">
-                                <div class="col-lg-6">
+                                <div class="col-lg-5">
                                     <div class="row">
                                         <div class="col-lg-6">
                                             <div class="card text-dark bg-light mt-3">
@@ -60,7 +60,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-lg-6">
+                                <div class="col-lg-7">
                                     <div class="row">
                                         <div class="col-12">
                                             <canvas id="myChart" width="500" height="250"></canvas>
@@ -105,7 +105,7 @@
                                             <th>Cantidad de Reservas</th>
                                         </tr>
                                     </thead>
-                                    <tbody id="resultado">
+                                    <tbody id="lista">
 
                                     </tbody>
                                 </table>

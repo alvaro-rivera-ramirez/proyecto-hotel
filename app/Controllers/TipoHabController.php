@@ -17,6 +17,13 @@ class TipoHabController extends Controller{
         return view("tipoHabitaciones/registro_tipo_hab",$data);
     }
 
+    public function listar(){
+        $dato=file_get_contents("php://input");
+        $tipoH=new TipoHabModel();
+        $lista=$tipoH->getTipoHab($dato);
+        echo json_encode($lista);
+    }
+
     public function crear(){
         return view('tipoHabitaciones/new_tipo_hab');
     }

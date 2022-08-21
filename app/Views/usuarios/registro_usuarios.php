@@ -34,8 +34,8 @@
                                     <div class="box-nav">
                                         <form class="d-flex">
                                             <input class="input-buscar me-2" type="search" placeholder="Buscar"
-                                                aria-label="Search">
-                                            <button class="btn-buscar btn btn-dark" type="submit"><i
+                                                aria-label="Search" id="datoBuscar">
+                                            <button class="btn-buscar btn btn-dark" id="buscar_u"><i
                                                     class="fas fa-search"></i></button>
                                         </form>
                                     </div>
@@ -45,13 +45,12 @@
 
                             <!-- TABLE RESPONSIVE-->
                             <div class="table-responsive mt-2">
-                                <table class="table bg-white">
+                                <table class="table table-striped">
                                     <thead class="bg-dark text-light">
                                         <tr class="text-center">
                                             <th>N°</th>
                                             <th>DNI</th>
-                                            <th>Nombre</th>
-                                            <th>Apellidos</th>
+                                            <th>Nombre Completo</th>
                                             <th>Telefono</th>
                                             <th>Correo</th>
                                             <th>Username</th>
@@ -59,30 +58,8 @@
                                             <th>Eliminar</th>
                                         </tr>
                                     </thead>
-                                    <tbody>
-                                        <?php foreach($usuario as $usuarios) :?>
-                                        <tr class="text-center">
-                                            <td><?= $usuarios['id']?></td>
-                                            <td><?= $usuarios['dni']?></td>
-                                            <td><?= $usuarios['nombre']?></td>
-                                            <td><?= $usuarios['apellidoPaterno']." ".$usuarios['apellidoMaterno']?></td>
-                                            <td><?= $usuarios['telefono']?></td>
-                                            <td><?= $usuarios['email']?></td>
-                                            <td><?= $usuarios['username']?></td>
-                                            <td>
-                                                <a class="btn btn-success"
-                                                    href="<?= base_url('editar_usuario/'.$usuarios['id'])?>"
-                                                    role="button">
-                                                    <i class="fa-solid fa-pen-to-square"></i>
-                                                </a>
-                                            </td>
-                                            <td>
-                                                <button class="btn btn-danger"
-                                                    onclick="Eliminar(<?= $usuarios['id']?>)"><i
-                                                        class="fa-solid fa-trash-can"></i></button>
-                                            </td>
-                                        </tr>
-                                        <?php endforeach;?>
+                                    <tbody id="lista">
+                                        
                                     </tbody>
                                 </table>
                             </div>
@@ -101,51 +78,8 @@
     </div>
 
     <?php include "include/script.php"?>
-    <script>
-        function Eliminar(id) {
-
-            console.log(id);
-            Swal.fire({
-                title: '¿Está seguro de eliminar?',
-                text: "Está a punto de eliminar este registro",
-                icon: 'warning',
-                showCancelButton: true,
-                confirmButtonColor: '#3085d6',
-                cancelButtonColor: '#d33',
-                confirmButtonText: 'Confirmar',
-                cancelButtonText: 'Cancelar'
-            }).then((result) => {
-                if (result.isConfirmed) {                    
-                    fetch('eliminar_usuario/' + id  , {
-                            method: 'POST',
-                            mode: 'no-cors',
-                            headers: {
-                                "Content-Type": "application/json",
-                                "X-Requested-With": "XMLHttpRequest"
-                            },
-                            body: id
-
-                        }).then(res => res.json()).then(res => {
-                        if (res['respuesta']) {
-                            Swal.fire(
-                                'ELIMINADO!',
-                                'El registro fue eliminado exitosamente',
-                                'success'
-                            ).then((value) => {
-                                location.reload();
-                            });
-                        } else {
-                            Swal.fire(
-                                'Error!',
-                                res['mensaje'],
-                                'error'
-                            );
-                        }
-                    })                    
-                }
-            })
-        }
-    </script>
+    <script src="js/usuarios/listarUsuarios.js"></script>
+    <script src="js/usuarios/eliminar.js"></script>
 </body>
 
 </html>

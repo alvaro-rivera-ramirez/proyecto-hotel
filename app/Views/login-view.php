@@ -75,7 +75,7 @@
   <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   <script src="js/bootstrap.bundle.min.js"></script>
   <script>
-       let boton_enviar = document.getElementById('ingresar');
+    let boton_enviar = document.getElementById('ingresar');
     let admin_clave = document.getElementById('exampleInputEmail1');
     let admin_usuario = document.getElementById('exampleInputPassword1');
 
