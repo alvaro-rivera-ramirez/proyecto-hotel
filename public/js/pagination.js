@@ -1,4 +1,3 @@
-//paginacion
 let tbody =document.querySelector('tbody');
 let tr = tbody.getElementsByTagName('tr');
 let ul = document.querySelector('.pagination');
@@ -9,7 +8,7 @@ for(let i=0;i<tr.length;i++){
 }
 
 let limit=6;
-
+console.log(tr);
 tbody.innerHTML='';
 for(let i=0; i<limit; i++){
     if(i<arrayTr.length){
@@ -85,5 +84,6 @@ function buttonGenerator(limit){
     document.getElementById('first').onclick = nextElement;
     document.getElementById('last').onclick = nextElement;
 }
+
 
 //--------------

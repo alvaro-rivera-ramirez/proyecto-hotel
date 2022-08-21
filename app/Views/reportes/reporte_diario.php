@@ -49,7 +49,7 @@
                                 <div class="row">
                                     <div class="col-3">
                                         <div class="nh input-group ">
-                                            <input type="text" class="form-control" placeholder="Buscar" id="dato_buscar">
+                                            <input type="search" class="form-control" placeholder="Buscar" id="dato_buscar">
                                             <button class="btn-buscar btn btn-dark" id="buscar_reserva"><i
                                                     class="fas fa-search"></i></button>
                                         </div>
