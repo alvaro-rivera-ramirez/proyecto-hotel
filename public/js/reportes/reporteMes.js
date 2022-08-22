@@ -55,6 +55,12 @@ const actualizarCardMes = (mesValor) =>{
 
 }
 
+
+const imprimir =(e)=>{
+    let enlace=e;
+    enlace.setAttribute('href','http://localhost/proyecto-hotel/public/imprimirpdfMes?dato='+dato_buscar.value+'&fecha='+mesR.value);
+}
+
 const listarReporte = async(mes,dato) =>{
     await fetch('reservas_mes', {
         method: 'POST',

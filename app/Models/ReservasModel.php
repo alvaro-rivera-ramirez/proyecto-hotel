@@ -99,7 +99,7 @@ class ReservasModel extends Model{
         $query=$this->db->query($sql, $fecha);
         return $query->getRowArray();
     }
-    public function mostrarReporteDia($dato=null){
+    public function mostrarReporteDia($dato=null){//dia
         if(empty($dato->dato)){
             $pQuery = $this->db->prepare(static function ($db) {
                 $sql = 'SELECT r.idReserva,r.idCliente,DATE_FORMAT(r.created_at, "%Y-%m-%d") as fecha,c.dni,concat(c.nombre," ",c.apellidoPaterno," ",if(c.apellidoMaterno IS NULL,"",c.apellidoMaterno)) as nombreC, SUM(dt.precio) as precioT FROM reserva r,cliente c, detalle_reserva dt WHERE r.idCliente=c.idCliente AND r.idReserva=dt.idReserva AND r.idEstadoR=3 AND r.deleted_at IS NULL GROUP BY r.idReserva HAVING fecha=? ORDER BY r.idReserva DESC';

@@ -119,7 +119,7 @@
     }
     )
   </script>
-  <script src="js/Login.js"></script>
+  <script src="js/Correo.js"></script>
 
 </body>
 
