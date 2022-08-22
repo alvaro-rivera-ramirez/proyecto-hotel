@@ -1,4 +1,15 @@
-const reservasMes = async(mes,anio) =>{
+/**
+ * Método para eliminar el div contenedor del input
+ * @param {this} e 
+ */
+const imprimir =(e)=>{
+
+    let enlace=e;
+    enlace.setAttribute('href','http://localhost/proyecto-hotel/public/imprimirpdfCliente?dato='+dato_buscar.value+'&fecha='+mesR.value);
+    // console.log('http://localhost/proyecto-hotel/public/imprimirpdfCliente/'+dato_buscar.value+'/'+mesR.value);
+}
+
+const reservasMes = async(mes) =>{
     const peticion=await fetch('cantidad_mes',{
         method:'POST',
         mode:'no-cors',

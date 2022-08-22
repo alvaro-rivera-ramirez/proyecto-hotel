@@ -1,12 +1,12 @@
-const reservasMesHabitacion = async(mes,anio) =>{
-    const peticion=await fetch('cantidad_mes_habitacion',{
+const gananciaTiposHab = async(mes) =>{
+    const peticion=await fetch('ganancia_tipohab',{
         method:'POST',
         mode:'no-cors',
         headers:{
             "Content-Type": "application/json",
             "X-Requested-With": "XMLHttpRequest",
         },
-        body: JSON.stringify({"mes":mes})
+        body: mes
     })
     const datos=await peticion.json();
     return datos;
@@ -34,7 +34,8 @@ const actualizarCardMes = (mesValor) =>{
         mes='0'+mes;
 
     let mesCard=document.getElementById('mesCard');
-    mesAux=mesValor.substring(mesValor.length-1, mesValor.length);
+    mesAux=mesValor.substring(mesValor.length-2, mesValor.length);
+    console.log(mes)
     if(mesAux[0]=='0'){
         mesAux=mesAux[mesAux.length-1];
     }
@@ -55,21 +56,8 @@ const actualizarCardMes = (mesValor) =>{
 
 }
 
-const actualizarCardHabitacion = async()=>{
-    const peticion=await fetch('resumen-habitacion',{
-        method:'GET',
-        mode:'no-cors',
-        headers:{
-            "Content-Type": "application/json",
-            "X-Requested-With": "XMLHttpRequest",
-        },
-    })
-    const datos=await peticion.json();
-    tClientes.innerHTML=datos[0].cantidad;
-    nClientes.innerHTML=datos[1].cantidad;
-}
-const listarReporte = (mes,dato) =>{
-    fetch('habitaciones_reservas', {
+const listarReporte = async(mes,dato) =>{
+    await fetch('habitaciones_reservas', {
         method: 'POST',
         mode: 'no-cors',
         headers: {
@@ -79,65 +67,86 @@ const listarReporte = (mes,dato) =>{
         body: JSON.stringify({"mes":mes,"dato":dato})
     }).then(response => response.json()).then( datos=> {
         console.log(datos)
-        let lista='';
+        let filas='';
         for(let i=0;i<datos.length;i++){
-            lista+=`<tr class="text-wrap"> <td>${datos[i].idHab}</td> <td>${datos[i].numero}</td> <td>${datos[i].tipo}</td> <td>${datos[i].fecha}</td><td> <button type="button" class="btn detalleR"><i class="fa-solid fa-circle-info"></i></button> </td> <td>${datos[i].racaudacionT}</td><td>${datos[i].cantidad}</td></tr>`      
+            filas+=`<tr class="text-center"> <td>${datos[i].idHab}</td> <td>${datos[i].numero}</td> <td>${datos[i].tipo}</td> <td>${datos[i].fecha}</td><td> <button type="button" class="btn detalleR" onclick="listarReservasHab(${datos[i].idHab},'${datos[i].fecha}')"><i class="fa-solid fa-circle-info"></i></button> </td> <td>${datos[i].Total}</td><td>${datos[i].cantidad}</td></tr>`      
         }
-        resultado.innerHTML=lista;
+        lista.innerHTML=filas;
     })
 }
 
-document.getElementById('buscar_reserva').addEventListener('click', e=>{
+document.getElementById('buscar_hab').addEventListener('click',async (e)=>{
     e.preventDefault();
     let dato=document.getElementById('dato_buscar').value;
-    listarReporte(mesR.value,dato);
+    await listarReporte(mesR.value,dato);
+    arrayTr=[];
+    generarPaginas();
+    paginacion();
+    buttonGenerator();
 })
-
+//Actualizar grafico de barras
 const actualizarChart = async (myChart,mes,totalCard) =>{
     let reportes={};
-    await reservasMes(mes).then((dato) =>{
+
+    await gananciaTiposHab(mesR.value).then((dato) =>{
         reportes=dato;
     });
+    console.log(reportes)
 
     let dates=reportes.map(function(obj) {
-        return obj.mes;
+        return obj.tipo;
     });
     let cantidad=reportes.map(function(obj){
-        return obj.cantidad;
+        return obj.ganancia;
     });
 
-    //La data ingresada sera solo de 1 mes
+    let montoT=0;
+
+    for(let can of cantidad){
+        montoT+=parseFloat(can);
+    }
+   totalCard.innerHTML=montoT;
+
     myChart.config.data.labels=dates;
     myChart.config.data.datasets[0].data=cantidad;
 
-    //Aqui deberia visualizar solo 1 mes
     myChart.update();
     actualizarCardMes(mes)
-    totalCard.innerHTML=reportes[0].cantidad;
-    listarReporte(mes,'');
+    await listarReporte(mes,'');
+    arrayTr=[];
+    generarPaginas();
+    paginacion();
+    buttonGenerator();
 }
-const reporteHabitacion = async() =>{
+const reporteHabitaciones = async() =>{
     let mesReporte=document.querySelector('#mesR');
 
-    let totalCard=document.getElementById('reservasCard');
+    let totalCard=document.getElementById('totalCard');
     let reportes={};
     agregarMes(mesReporte);
     actualizarCardMes(mesReporte.value);
 
-    await reservasMes(mesR.value).then((dato) =>{
+    await gananciaTiposHab(mesR.value).then((dato) =>{
         reportes=dato;
     });
-    
-    totalCard.innerHTML=reportes[0].cantidad;
+    console.log(reportes)
     let dates=reportes.map(function(obj) {
-        return obj.mes;
+        return obj.tipo;
     });
     let cantidad=reportes.map(function(obj){
-        return obj.cantidad;
+        return obj.ganancia;
     });
+    console.log(cantidad)
+    let montoT=0;
+
+    for(let can of cantidad){
+        montoT+=parseFloat(can);
+    }
+   totalCard.innerHTML=montoT;
     const data={
         labels: dates,
         datasets: [{
+            label: 'S/. Ganancia',
             data: cantidad,
             backgroundColor: [
                 'rgba(255, 99, 132, 0.2)',
@@ -156,41 +165,37 @@ const reporteHabitacion = async() =>{
                 'rgba(255, 159, 64, 1)'
             ],
             borderWidth: 1
-        }],
-
-        labels: [
-            'Red',
-            'Yellow',
-            'Blue',
-            'Orange',
-            'Purple',
-            'Green'
-        ]
+        }]
     };
     
     const config={
-        type: 'doughnut',
+        type: 'bar',
         data,
         options: {
             plugins: {
                 title: {
                     display: true,
-                    text: 'Cantidad de Ganancia por Mes'
+                    text: '(S/.) Ganancias por Tipo de Habitacion'
                 }
             },
-            
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
         }
     }
     const ctx = document.getElementById('myChart');
     const myChart = new Chart(ctx,
         config
         );
-    listarReporte(mesR.value,'');
+    await listarReporte(mesR.value,'');
+    paginacion();
+    buttonGenerator();
     mesReporte.addEventListener('change', e => {
         actualizarChart(myChart,e.target.value,totalCard)
     });
     
 }
-reporteHabitacion();
-
-actualizarCardHabitacion();
+reporteHabitaciones();
+// actualizarCardCliente();

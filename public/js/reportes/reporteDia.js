@@ -124,6 +124,12 @@ const reporteDiario = async() =>{
         type: 'bar',
         data,
         options: {
+            plugins: {
+                title: {
+                    display: true,
+                    text: '(S/.) Ganancias por Día'
+                }
+            },
             scales: {
                 y: {
                     beginAtZero: true
