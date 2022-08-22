@@ -106,7 +106,7 @@ class ReservasModel extends Model{
         }
     }
 
-    public function gananciaMes($fecha=null){
+    public function gananciaMesHabitacion($fecha=null){
         $sql='SELECT ifnull(sum(dt.precio),0) as Total FROM reserva r INNER JOIN detalle_reserva dt ON r.idReserva=dt.idReserva WHERE DATE_FORMAT(r.created_at, "%Y-%m")=? AND r.deleted_at IS NULL AND r.idEstadoR=3';
         
         $query=$this->db->query($sql, $fecha);

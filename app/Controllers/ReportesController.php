@@ -91,6 +91,21 @@ class ReportesController extends Controller{
         echo json_encode($reporteT);
     }
 
+    public function gananciaMHabitacion(){
+        $fechaActual=file_get_contents("php://input");
+        $reporte=new ReservasModel();
+        $fecha=date("Y-m",strtotime($fechaActual));
+        $fechas=[];
+        $reporteT=[];
+        while($fecha<$fechaActual){
+            $fecha=date("Y-m",strtotime($fecha)); 
+            $ganancia=$reporte->gananciaMesHabitacion($fecha);
+            array_push($reporteT,['fecha' => $fecha, 'ganancia' => $ganancia['Total']]);
+            
+        }
+        echo json_encode($reporteT);
+    }
+
     public function listaReporteMesHabitacion(){
         $dato=json_decode(file_get_contents("php://input"));
         // $dato->mes=($dato->mes<10)?'0'.$dato->mes:$dato->mes;
