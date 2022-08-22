@@ -11,6 +11,7 @@ const reservasMes = async(mes,anio) =>{
     const datos=await peticion.json();
     return datos;
 }
+
 const agregarMes = (mesR) =>{
     let fecha = new Date();
     let mes = fecha.getMonth()+1;
@@ -68,6 +69,14 @@ const actualizarCardCliente = async()=>{
     tClientes.innerHTML=datos[0].cantidad;
     nClientes.innerHTML=datos[1].cantidad;
 }
+
+
+const imprimir =(e)=>{
+
+    let enlace=e;
+    enlace.setAttribute('href','http://localhost/proyecto-hotel/public/imprimirpdfCliente?dato='+dato_buscar.value+'&fecha='+mesR.value);
+}
+
 const listarReporte = (mes,dato) =>{
     fetch('clientes_reservas', {
         method: 'POST',
@@ -86,6 +95,7 @@ const listarReporte = (mes,dato) =>{
         resultado.innerHTML=lista;
     })
 }
+
 
 document.getElementById('buscar_reserva').addEventListener('click', e=>{
     e.preventDefault();
@@ -188,3 +198,15 @@ const reporteCliente = async() =>{
 reporteCliente();
 
 actualizarCardCliente();
+
+
+// window.jsPDF = window.jspdf.jsPDF;
+
+//     const doc = new jsPDF();
+
+//     doc.autoTable({
+//         html: '#tablaPDF',
+//     });
+//     function downloadPdf() {
+//         doc.save('table.pdf');
+//     }    

@@ -24,6 +24,13 @@ const agregarFecha = (fechaR) =>{
     fechaR.value=anio+"-"+mes+"-"+dia;
 }
 
+const imprimir =(e)=>{
+
+    let enlace=e;
+    enlace.setAttribute('href','http://localhost/proyecto-hotel/public/imprimirpdfDia?dato='+dato_buscar.value+'&fecha='+fechaR.value);
+}
+
+
 const listarReporte = (fecha,dato) =>{
     fetch('reservas_dia', {
         method: 'POST',

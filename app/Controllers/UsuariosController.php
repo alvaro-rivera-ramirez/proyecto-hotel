@@ -274,4 +274,9 @@ class UsuariosController extends Controller{
         $this->response->setHeader('Content-Type','application/pdf');
         $pdf->Output();
     }
+
+
+
+    
+
 }

@@ -57,7 +57,7 @@
                                         <input type="date" id="fechaR" class="form-control" name="fechaR">
                                     </div>
                                     <div class="col-3 align-self-center">
-                                        <a href="<?= base_url('demo-pdf') ?>" target="_blank"><i
+                                        <a class="pdfCliente" href="#" onclick="imprimir(this)" role="button"><i
                                                 class="fa-solid fa-print"></i> IMPRIMIR</a>
                                     </div>
                                 </div>
