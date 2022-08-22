@@ -43,6 +43,7 @@ class HabitacionController extends Controller{
         $validation = service('validation');
         $validation->setRules([ 
             'num_hab' => 'required|is_unique[habitacion.numero]|numeric|min_length[3]|max_length[4]',
+            'precio_hab' => 'numeric|min_length[3]|max_length[4]',
             'tipo_hab' => 'required|is_not_unique[tipo_habitacion.idTipo]'
         ]);
 

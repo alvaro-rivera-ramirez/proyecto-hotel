@@ -19,11 +19,11 @@ return [
     'invalidTemplate' => '{0} is not a valid Validation template.',
 
     // Rule Messages
-    'alpha'                 => 'The {field} field may only contain alphabetical characters.',
+    'alpha'                 => 'El campo solo debe contener caracteres alfabéticos.',
     'alpha_dash'            => 'The {field} field may only contain alphanumeric, underscore, and dash characters.',
     'alpha_numeric'         => 'El campo soolo debe contener caracteres alfanuméricos.',
     'alpha_numeric_punct'   => 'The {field} field may contain only alphanumeric characters, spaces, and  ~ ! # $ % & * - _ + = | : . characters.',
-    'alpha_numeric_space'   => 'The {field} field may only contain alphanumeric and space characters.',
+    'alpha_numeric_space'   => 'El campo solo debe contener caracteres alfanuméricos y espacios.',
     'alpha_space'           => 'El campo solo debe contener caracteres alfabéticos y espacios.',
     'decimal'               => 'The {field} field must contain a decimal number.',
     'differs'               => 'The {field} field must differ from the {param} field.',

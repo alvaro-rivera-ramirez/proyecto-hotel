@@ -1,7 +1,7 @@
 <?php 
 namespace App\Libraries;
 use FPDF;
-class Pdf extends FPDF
+class PDF extends FPDF
 {
     protected $nombreReporte;
     function __construct($nombre) {

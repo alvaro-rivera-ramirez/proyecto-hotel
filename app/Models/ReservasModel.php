@@ -67,7 +67,7 @@ class ReservasModel extends Model{
         
             return (new Query($db))->setQuery($sql);
         });
-        return $pQuery->execute($dato)->getResultArray();
+        return $pQuery->execute($dato)->getRowArray();
     }
 
     //Buscar detalle de reserva por id
