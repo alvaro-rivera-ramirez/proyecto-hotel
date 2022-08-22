@@ -5,18 +5,21 @@ const agregarHab = (detalleHab,cont,Jtipo) => {
         hab.setAttribute('class', 'row g-2')
         hab.innerHTML = `<div class="col-md-4">
                                         <label for="TipoHab${cont}">Tipo habitación</label>
-                                        <select id="TipoHab${cont}" class="form-select tipo-filtro" name="tipo[]">
+                                        <select id="TipoHab${cont}" class="form-select tipo-filtro" name="tipo[]" class="validar" require>
                                         </select>
+                                        <p class="d-none text-danger validacion"></p>
                                     </div>
                                     <div class="col-md-4">
                                         <label for="Hab${cont}">Habitación</label>
-                                        <select id="Hab${cont}" class="form-select" name="hab[]">
+                                        <select id="Hab${cont}" class="form-select" name="hab[]" class="validar" require>
                                         <option selected> Seleccione una opción </option>  
                                         </select>
+                                        <p class="d-none text-danger validacion"></p>
                                     </div>
                                     <div class="col-md-3">
                                         <label for="Num${cont}">Noches</label>
-                                        <input type="text" id="Num${cont}" class="form-control" disabled readonly>
+                                        <input type="text" id="Num${cont}" class="form-control" disabled readonly class="validar" require>
+                                        <p class="d-none text-danger validacion"></p>
                                     </div>      
                                     <div class="col-md-auto d-flex align-items-end justify-content-center">
                                     <button class="btn btn-dark eliminar_hab" type="button"><i class="fa-solid fa-trash-can"></i>
@@ -24,16 +27,19 @@ const agregarHab = (detalleHab,cont,Jtipo) => {
                                     </div>  
                                     <div class="col-md-4">
                                         <label for="fechaI${cont}">Fecha Ingreso</label>
-                                        <input type="date" id="fechaI${cont}" class="form-control" name="fechaI[]">
+                                        <input type="date" id="fechaI${cont}" class="form-control" name="fechaI[]" class="validar" require>
+                                        <p class="d-none text-danger validacion"></p>
                                     </div>
                                     <div class="col-md-4">
                                         <label for="fechaF${cont}">Fecha Salida</label>
-                                        <input type="date" id="fechaF${cont}" class="form-control" name="fechaF[]">
+                                        <input type="date" id="fechaF${cont}" class="form-control" name="fechaF[]" class="validar" require>
+                                        <p class="d-none text-danger validacion"></p>
                                     </div>
                                     <div class="col-md-3 input-costo">
                                         <label for="costo${cont}">Costo (S/.)</label>
                                         <input placeholder="00,00" type="text" class="form-control" id="costo${cont}" disabled
-                                        readonly>
+                                        readonly class="validar" require>
+                                        <p class="d-none text-danger validacion"></p>
                                     </div>`
     
     detalleHab.appendChild(hab);
@@ -124,7 +130,37 @@ const reservar = async() =>{
 
     boton_enviar.addEventListener('click', e => {
         e.preventDefault();
-        if (idCliente.idC != '') {
+        let mensajes=document.querySelectorAll('.validacion');
+        mensajes.forEach(function(item) {
+            if(!item.classList.contains('d-none')){
+                item.innerHTML='';
+                item.classList.add('d-none');
+            }
+        });
+        let inputs=document.querySelectorAll('.validar')
+        let (idCliente.idC)=false
+        inputs.forEach(function(item) {
+            let div=item.parentNode;
+            let msg=div.children[(div.children.length)-1]
+            if(!item.value){
+                console.log(item.value)
+                msg.innerHTML='Complete este campo';
+                msg.classList.remove('d-none');
+                (idCliente.idC)=true;
+            }
+            //else{
+            //     msg.innerHTML='';
+            //     msg.classList.add('d-none');
+            //     vacio=false;
+            // }
+        });
+        if(idCliente.idC){
+            console.log(2)
+            Swal.fire({
+                icon: 'warning',
+                title: 'COMPLETE TODOS LOS CAMPOS REQUERIDOS'
+            })
+        }else{
             Swal.fire({
                 title: '¿Estas seguro de registrar la reserva?',
                 icon: 'warning',
@@ -153,26 +189,38 @@ const reservar = async() =>{
                     }).then(res => res.json()).then(res => {
                         if (res['respuesta']) {
                             Swal.fire(
-                                'Good job!',
-                                res['mensaje'],
+                                'RESERVA HECHA EXITOSAMENTE!',
+                                '',
                                 'success'
                             ).then((value) => {
                                 location.reload();
                             });
                         } else {
-                            Swal.fire(
-                                'Error!',
-                                res['mensaje'],
-                                'error'
-                            );
+                            Swal.fire({
+                                icon: 'error',
+                                title: 'Oops...',
+                                text: 'Revisa que los campos sean correctos!',
+                            })
+                            let errores=res['errors'];
+                            console.log(errores)
+                            console.log(Object.keys(errores).length)
+                            console.log(document.querySelectorAll('.validacion'))
+                            Object.keys(errores).forEach(key => {
+                                let input=document.getElementById(key);
+                                let div=input.parentNode;
+                                let msg=div.children[(div.children.length)-1]
+                                msg.innerHTML=errores[key];
+                                msg.classList.remove('d-none');
+                                //console.log(errores[key])
+                            });
                         }
                     })
                 }
             })
-        } else {
-            let alerta = document.getElementById('alerta-dni')
-            alerta.innerHTML = 'Debe colocar el dni del cliente';
-        }
+        } // else {
+        //     let alerta = document.getElementById('alerta-dni')
+        //     alerta.innerHTML = 'Debe colocar el dni del cliente';
+        // }
     })
 }
 reservar();

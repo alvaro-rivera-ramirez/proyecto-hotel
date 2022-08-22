@@ -38,7 +38,7 @@ class ReservasController extends Controller{
                 ]);
             if(!$validation->withRequest($this->request)->run()){
                     //dd($validation->getErrors());
-                return json_encode(['respuesta' => false,'errors' => $validation->getErrors(),'mensaje' =>'No se pudo realizar la reserva, verifique que los campos sean correctos']);
+                    return json_encode(['respuesta' => false,'errors' => $validation->getErrors()]);
             }
         
         $idCliente= $_POST['idCliente'];
