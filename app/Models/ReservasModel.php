@@ -48,7 +48,17 @@ class ReservasModel extends Model{
         return $pQuery->execute($datoB,$datoB)->getResultArray();
     }
 
-
+    //Mostrar reserva por id cliente y fecha
+    public function obtenerReservas($dato=null){
+        $pQuery = $this->db->prepare(static function ($db) {
+            $sql = "SELECT r.idReserva,r.idCliente,DATE_FORMAT(r.created_at, '%Y-%m') as fecha,u.nombre as nombreU, SUM(dt.precio) as precioT FROM reserva r,detalle_reserva dt,usuarios u WHERE 
+            r.idReserva=dt.idReserva AND r.idUser=u.id AND r.deleted_at IS NULL AND r.idCliente=? AND r.idEstadoR=3 GROUP BY r.idReserva HAVING fecha=? ORDER BY r.idReserva DESC";
+        
+            return (new Query($db))->setQuery($sql);
+        });
+        //$datoB = "$dato->fecha";
+        return $pQuery->execute($dato->id,$dato->fecha)->getResultArray();
+    }
     //Buscar Reserva por id
     public function busquedaReserva($dato){
         $pQuery = $this->db->prepare(static function ($db) {
