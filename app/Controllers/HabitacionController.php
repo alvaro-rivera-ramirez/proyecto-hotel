@@ -48,7 +48,7 @@ class HabitacionController extends Controller{
 
         if(!$validation->withRequest($this->request)->run()){
             //dd($validation->getErrors());
-            return redirect()->to(base_url('nueva_habitacion'))->withInput()->with('errors',$validation->getErrors());
+            return json_encode(['respuesta' => false,'errors' => $validation->getErrors()]);
         }
 
         $data=[
@@ -84,13 +84,13 @@ class HabitacionController extends Controller{
         ]);
 
         if(!$validation->withRequest($this->request)->run()){
-            return redirect()->to(base_url('editar_habitacion/'.$hab_id))->withInput()->with('errors',$validation->getErrors());
+            return json_encode(['respuesta' => false,'errors' => $validation->getErrors()]);
         }
 
         $admin_usuario=$this->request->getPost('admin_usuario');
         $admin_pass=$this->request->getPost('admin_clave');
         if($admin['username']!=$admin_usuario || !PASSWORD_VERIFY($admin_pass,$admin['pass'])){
-            return redirect()->to(base_url('editar_habitacion/'.$hab_id))->withInput()->with('msg','Usuario y/o Password Incorrectos'); 
+            return json_encode(['respuesta' => false, 'errors' => ['datosAdmin' =>'Usuario y/o Password Incorrectos']]); 
         }
 
         $data=[
