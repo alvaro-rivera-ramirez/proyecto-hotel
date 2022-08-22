@@ -99,7 +99,7 @@ class ReportesController extends Controller{
         $reporteT=[];
         while($fecha<$fechaActual){
             $fecha=date("Y-m",strtotime($fecha)); 
-            $ganancia=$reporte->gananciaMesHabitacion($fecha);
+            $ganancia=$reporte->gananciaMesHab($fecha);
             array_push($reporteT,['fecha' => $fecha, 'ganancia' => $ganancia['Total']]);
             
         }
