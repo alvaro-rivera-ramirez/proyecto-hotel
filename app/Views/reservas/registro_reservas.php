@@ -67,7 +67,7 @@
 
                             <!-- TABLE RESPONSIVE-->
                             <div class="table-responsive mt-2">
-                                <table class="table bg-white">
+                                <table class="table table-striped">
                                     <thead class="bg-dark text-light">
                                         <tr class="text-center">
                                             <th>N°</th>
@@ -84,8 +84,7 @@
                                             <th>Eliminar</th>
                                         </tr>
                                     </thead>
-                                    <tbody id="resultado">
-                                        
+                                    <tbody id="lista">
 
                                     </tbody>
                                 </table>
@@ -238,6 +237,7 @@
 
     <?php include "include/script.php"?>
     <script src="js/reservas/pdfReserva.js"></script>
+    <script src="js/reservas/eliminarReserva.js"></script>
     <script src="js/reservas/ListarReservas.js"></script>
     <script src="js/reservas/filtroHab.js"></script>
     <script src="js/reservas/cliente.js"></script>

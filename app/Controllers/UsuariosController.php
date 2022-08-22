@@ -7,11 +7,15 @@ use App\Libraries\Pdf;
 
 class UsuariosController extends Controller{
     public function index(){
-        $usuario=new UsuariosModel();
-        $data['usuario']=$usuario->getUsuarios();
-        return view('usuarios/registro_usuarios',$data);
+        return view('usuarios/registro_usuarios');
     }
 
+    public function listar(){
+        $dato=file_get_contents("php://input");
+        $usuario=new UsuariosModel();
+        $lista=$usuario->getUsuarios($dato);
+        echo json_encode($lista);
+    }
     public function crear(){
         return view('usuarios/new_usuarios');
     }
@@ -25,14 +29,26 @@ class UsuariosController extends Controller{
     public function guardar(){
         $validation = service('validation');
         $validation->setRules([
-            'user_dni' => 'required|numeric|max_length[8]|alpha_numeric',
+            'user_dni' => 'required|numeric|max_length[8]',
             'user_nombre' => 'required|alpha_space',
             'user_apellido' => 'required|alpha_space',
             'user_telefono' => 'required|alpha_numeric',
             'user_usuario' =>  'required|alpha_numeric|is_unique[usuarios.username]',
             'user_email' => 'required|valid_email|is_unique[usuarios.email]',
             'user_clave_1' => 'required|matches[user_clave_2]|min_length[5]|max_length[8]',
+            'user_clave_2' => 'required|matches[user_clave_1]|min_length[5]|max_length[8]',
             'user_privilegio' => 'required|is_not_unique[roles.idRol]'
+        ],
+        [
+            'user_usuario' =>[
+                'is_unique' => 'El nombre de usuario ya existe'
+            ],
+            'user_clave_1' => [
+                'matches' => 'Las contraseñas no coinciden'
+            ],
+            'user_clave_2' => [
+                'matches' => 'Las contraseñas no coinciden'
+            ]
         ]);
 
         if(!$validation->withRequest($this->request)->run()){
@@ -83,15 +99,28 @@ class UsuariosController extends Controller{
             'user_dni' => 'required|numeric|is_unique[usuarios.dni,usuarios.id,'.$user_id.']|max_length[8]',
             'user_nombre' => 'required|alpha_space',
             'user_apellido' => 'required|alpha_space',
-            'user_telefono' => 'required|alpha_numeric',
+            'user_telefono' => 'required|numeric|min_length[9]|max_length[12]',
             'user_usuario' =>  'required|alpha_numeric|is_unique[usuarios.username,usuarios.id,'.$user_id.']',
             'user_email' => 'required|valid_email|is_unique[usuarios.email,usuarios.id,'.$user_id.']',
             'user_clave_1' => 'permit_empty|matches[user_clave_2]|min_length[5]|max_length[8]',
+            'user_clave_2' => 'permit_empty|matches[user_clave_1]|min_length[5]|max_length[8]',
             'user_activo' => 'required|is_not_unique[usuarios.activo]',
             'user_privilegio' => 'required|is_not_unique[roles.idRol]',
             'admin_usuario' =>  'required|alpha_numeric',
             'admin_clave' => 'required|min_length[5]|max_length[8]'
-        ]);
+        ],
+        [
+            'user_usuario' =>[
+                'is_unique' => 'El nombre de usuario ya existe'
+            ],
+            'user_clave_1' => [
+                'matches' => 'Las contraseñas no coinciden'
+            ],
+            'user_clave_2' => [
+                'matches' => 'Las contraseñas no coinciden'
+            ]
+        ]
+        );
 
         if(!$validation->withRequest($this->request)->run()){
             //dd($validation->getErrors());
@@ -101,7 +130,7 @@ class UsuariosController extends Controller{
         $admin_usuario=$this->request->getPost('admin_usuario');
         $admin_pass=$this->request->getPost('admin_clave');
         if($admin['username']!=$admin_usuario || !PASSWORD_VERIFY($admin_pass,$admin['pass'])){
-            return redirect()->to(base_url('editar_usuario/'.$user_id))->withInput()->with('msg','Usuario y/o Password Incorrectos'); 
+            return json_encode(['respuesta' => false, 'errors' => ['datosAdmin' =>'Usuario y/o Password Incorrectos']]); 
         }
 
         $username=$this->request->getPost('user_usuario');
@@ -267,7 +296,7 @@ class UsuariosController extends Controller{
             $pdf->setX(15);
             $pdf->Cell(7,8,$usuarios['id'],'B',0,'C',0);
             $pdf->Cell(30,8,$usuarios['dni'],'B',0,'C',0);
-            $pdf->Cell(70,8,utf8_decode($usuarios['nombre']." ".$usuarios['apellidoPaterno']." ".$usuarios  ['apellidoMaterno']),'B',0,'C',0);
+            $pdf->Cell(70,8,utf8_decode($usuarios['nombreC']),'B',0,'C',0);
             $pdf->Cell(20,8,utf8_decode($usuarios['telefono']),'B',0,'C',0);        
             $pdf->Cell(60,8,utf8_decode($usuarios['email']),'B',1,'C',0);
         }

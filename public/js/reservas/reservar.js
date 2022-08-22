@@ -1,3 +1,5 @@
+
+
 const agregarHab = (detalleHab,cont,Jtipo) => {
     let hab = document.createElement('div');
         hab.setAttribute('class', 'row g-2')
@@ -67,12 +69,35 @@ const reservar = async() =>{
     });
     console.log(Jhabitacion,Jtipos);
 
-    agregarFecha(document.getElementById('fechaI1'),document.getElementById('fechaF1'))
+    agregarFecha(document.getElementById('fechaI1'),document.getElementById('fechaF1'));
     document.getElementById('buscar').addEventListener('click', e=>{
         e.preventDefault()
         buscarDNI(idCliente)
     });
     mostrarTipoHab(Jtipos, 'idTipo', 'tipo', document.getElementById('TipoHab' + cont))
+    //-----------
+    function getParameterByName(name) {
+        name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+        var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+        results = regex.exec(location.search);
+        return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+    }
+    
+    let idtipo=getParameterByName('idTipo');
+    if(idtipo){
+        let selecttipo=document.querySelector('#TipoHab1');
+        let opcionT=selecttipo.querySelector('option[value="'+idtipo+'"]');
+        opcionT.setAttribute('selected', true);
+
+        filtroHab(selecttipo,Jhabitacion);
+        let idH=getParameterByName('id');
+        let selecthab=document.querySelector('#Hab1');
+        let opcion=selecthab.querySelector('option[value="'+idH+'"]');
+        opcion.setAttribute('selected',true);
+        console.log("idtipo");
+    }
+    //tipo
+    //-----------
     agregar.addEventListener('click',e =>{
         e.preventDefault();
         agregarHab(detalleHab,++cont,Jtipos);
@@ -85,12 +110,18 @@ const reservar = async() =>{
             filtroHab(e.target,Jhabitacion);
         }
     })
+
+    
+
     detalleHab.addEventListener('click', (e) =>{
         if(e.target.classList.contains('eliminar_hab')){
             console.log(e.target)
             cont=eliminar(e.target,detalleHab);
         }
     })
+
+    
+
     boton_enviar.addEventListener('click', e => {
         e.preventDefault();
         if (idCliente.idC != '') {

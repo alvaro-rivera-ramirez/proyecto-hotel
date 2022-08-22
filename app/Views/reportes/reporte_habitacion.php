@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Hotel</title>
-    <link rel="stylesheet" href="css/styleReporte.css" />
+    <!--<link rel="stylesheet" href="css/styleReporte.css" />-->
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <?php include "include/link.php" ?>
 </head>
@@ -19,132 +19,123 @@
             <div class="ps-2 pt-3 content-body">
                 
                 <!-- Contenedor de Registros -->
-                  
-                    <div class="container-fluid" >
-                        <section>
-                            <img src="Imagenes/cuadro.png" class="graf">  
+                <div class="content p-4" style="background: white;">
+                    <div>
+                        <section>  
                             <h3 class="pb-3">Reportes / Habitaciones</h3>
-                            <div class="largecontent2"> 
-                                <h7 class="texto" id="tit">Reporte del mes</h7>
-                                <h7 class="texto" id="pr">Año</h7>
-                                <h8 class="texto" id="pr">2002</h8>
-                                <h7 class="texto" id="se">Mes</h7>
-                                <h8 class="texto" id="se">Febrero</h8>
-                                <h7 class="texto" id="tr">Fecha</h7>
-                                <h8 class="texto" id="tr">25/02/2022</h8>
-                                <h7 class="texto" id="qr">Tipo Hab.</h7>
-                                <h8 class="texto" id="qr">Variado</h8>
-                                <h7 class="texto" id="qt">Total</h7>
-                                <h8 class="texto" id="qt">S/.3800</h8>
-                            </div>
-                        <!-- MENU DE OPCIONES-->
-                            <div class="container-fluid">
-                                <div class="container-nav">
-                                    <div class="box-nav"> <a href="#"><i class="fas fa-search fa-fw"></i> Buscar</a></div>
-                                    <div class="box-nav"> <a href="#"><i class="fas fa-calendar fa-fw"></i></i> Fecha</a></div>
-                                    <div class="box-nav"> <a href="#"><i class="fas fa-filter fa-fw"></i></i> Filtro</a></div>
-                                    <div class="box-nav"> <a href="#"><i class="fa-solid fa-print"></i> Imprimir</a></div>
+                            <div class="row">
+                                <div class="col-lg-5">
+                                    <div class="row">
+                                        <div class="col-lg-12">
+                                            <div class="card text-dark bg-light mt-3">
+                                                <div class="card-body">
+                                                    <h5 class="card-title">Reporte del Mes</h5>
+                                                    <p class="card-subtitle mb-2 mt-2">Fecha Emisión</p>
+                                                    <p class="card-text" id="fechaCard">20-02-2022</p>
+                                                    <p class="card-subtitle m b-2 mt-2">Mes</p>
+                                                    <p class="card-text" id="mesCard">Febrero</p>
+                                                    <p class="card-subtitle mb-2 mt-2">Total</p>
+                                                    <p class="card-text" id="totalCard"></p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
-                                
+                                <div class="col-lg-7">
+                                    <div class="row">
+                                        <div class="col-12">
+                                            <canvas id="myChart" width="500" height="250"></canvas>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- MENU DE OPCIONES-->
+                            <div class="container-fluid mt-4">
+                                <div class="row">
+                                    <div class="col-3">
+                                        <div class="nh input-group ">
+                                            <input type="search" class="form-control" placeholder="Buscar"
+                                                id="dato_buscar">
+                                                <button class="btn-buscar btn btn-dark" id="buscar_hab"><i
+                                                class="fas fa-search"></i></button>
+                                            </div>
+                                        </div>
+                                    <div class="col-3">
+                                        <input type="month" name="" id="mesR" class="form-control">
+                                    </div>
+                                    <div class="col-3 align-self-center">
+                                        <a href="<?= base_url('demo-pdf') ?>" target="_blank"><i
+                                            class="fa-solid fa-print"></i> IMPRIMIR</a>
+                                    </div>
+                                </div>
                             </div>
                             
-                        <!-- TABLE RESPONSIVE-->
-                            <div class="table-responsive">
-                            <table class="table bg-white">
-                                <thead class="bg-dark text-light">
-                                    <tr class="text-center">
-                                        <th>N°</th>
-                                        <th>Habitación</th>
-                                        <th>Ubicación</th>
-                                        <th>Tipo</th>
-                                        <th>Recaudación</th>
-                                        <th>N° Solicitud</th>
-                                        <th>Operacion</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                <tr class="text-center">
-                                        <td>1</td>
-                                        <td>101</td>
-                                        <td>Primer Piso</td>
-                                        <td>Simple</td>
-                                        <td>S/. 480</td>
-                                        <td>4</td>
-                                        <td>
-                                            <button type="button" class="btn btn-warning"><i class="fa-solid fa-chart-simple"></i></button>
-                                            <button type="button" class="btn btn-success"><span class="fa-solid fa-note"></span></button>
-                                        </td>
-                                    </tr>
-                                    <tr class="text-center">
-                                        <td>2</td>
-                                        <td>102</td>
-                                        <td>Primer Piso</td>
-                                        <td>Simple</td>
-                                        <td>S/. 480</td>
-                                        <td>5</td>
-                                        <td>
-                                            <button type="button" class="btn btn-warning"><i class="fa-solid fa-chart-simple"></i></button>
-                                            <button type="button" class="btn btn-success"><span class="fa-solid fa-note"></span></button>
-                                        </td>
-                                    </tr>
-                                    <tr class="text-center">
-                                        <td>3</td>
-                                        <td>103</td>
-                                        <td>Segundo Piso</td>
-                                        <td>Simple</td>
-                                        <td>S/. 480</td>
-                                        <td>2</td>
-                                        <td>
-                                            <button type="button" class="btn btn-warning"><i class="fa-solid fa-chart-simple"></i></button>
-                                            <button type="button" class="btn btn-success"><span class="fa-solid fa-note"></span></button>
-                                        </td>
-                                    </tr>
-                                    <tr class="text-center">
-                                        <td>4</td>
-                                        <td>104</td>
-                                        <td>Segundo Piso</td>
-                                        <td>Simple</td>
-                                        <td>S/. 480</td>
-                                        <td>3</td>
-                                        <td>
-                                            <button type="button" class="btn btn-warning"><i class="fa-solid fa-chart-simple"></i></button>
-                                            <button type="button" class="btn btn-success"><span class="fa-solid fa-note"></span></button>
-                                        </td>
-                                    </tr>
-                                    <tr class="text-center">
-                                        <td>5</td>
-                                        <td>105</td>
-                                        <td>Tercer Piso</td>
-                                        <td>Simple</td>
-                                        <td>S/. 480</td>
-                                        <td>1</td>
-                                        <td>
-                                            <button type="button" class="btn btn-warning"><i class="fa-solid fa-chart-simple"></i></button>
-                                            <button type="button" class="btn btn-success"><span class="fa-solid fa-note"></span></button>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                            <p class="text-end">Mostrando Empleados 1 al 10 de un total de 27</p>
-                            <nav aria-label="Page navigation example">
-                                <ul class="pagination justify-content-center">
-                                    <li class="page-item disabled">
-                                        <a class="page-link" href="#" tabindex="-1">Previous</a>
-                                    </li>
-                                    <li class="page-item"><a class="page-link" href="#">1</a></li>
-                                    <li class="page-item"><a class="page-link" href="#">2</a></li>
-                                    <li class="page-item"><a class="page-link" href="#">3</a></li>
-                                    <li class="page-item"><a class="page-link" href="#">Next</a>
-                                    </li>
-                                </ul>
-                            </nav>
+                            <!-- TABLE RESPONSIVE-->
+                            <div class="table-responsive mt-3">
+                                <table class="table table-striped">
+                                    <thead class="bg-dark text-light">
+                                        <tr class="text-center">
+                                            <th>N°</th>
+                                            <th>Habitación</th>
+                                            <th>Tipo</th>
+                                            <th>Fecha</th>
+                                            <th>Detalle</th>
+                                            <th>Recaudación Total</th>
+                                            <th>Cantidad de Reservas</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="lista">
+                                
+                                    </tbody>
+                                </table>
+                            </div>
+                            <?php include "../app/Views/pagination/view_pag.php"?>
+
+                            <div class="modal fade" id="detalle_reserva" tabindex="-1"
+                                aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog modal-lg">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalLabel">Detalle de Reserva</h5>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <div class="table-responsive mt-2">
+                                                <table class="table table-striped">
+                                                    <thead class="bg-dark text-light">
+                                                        <tr class="text-center">
+                                                            <<th>Id. Reserva</th>
+                                                            <th>Numero Hab.</th>
+                                                            <th>Fecha Reserva</th>
+                                                            <th>Fecha Entrada</th>
+                                                            <th>Fecha Salida</th>
+                                                            <th>Noches</th>
+                                                            <th>Precio</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody id="detalle">
+
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                            <button type="button" class="btn btn-secondary"
+                                                data-bs-dismiss="modal">Cerrar</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </section>  
+                    </div>
+
                 </div>
             </div>
         </div>
    </div>
 
    <?php include "include/script.php"?>
+   <script src="js/reportes/mostrarModal.js"></script>
+   <script src="js/reportes/reporteHabitacion.js"></script>
 </body>
 </html>

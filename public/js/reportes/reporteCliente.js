@@ -1,4 +1,15 @@
-const reservasMes = async(mes,anio) =>{
+/**
+ * Método para eliminar el div contenedor del input
+ * @param {this} e 
+ */
+const imprimir =(e)=>{
+
+    let enlace=e;
+    enlace.setAttribute('href','http://localhost/proyecto-hotel/public/imprimirpdfCliente?dato='+dato_buscar.value+'&fecha='+mesR.value);
+    // console.log('http://localhost/proyecto-hotel/public/imprimirpdfCliente/'+dato_buscar.value+'/'+mesR.value);
+}
+
+const reservasMes = async(mes) =>{
     const peticion=await fetch('cantidad_mes',{
         method:'POST',
         mode:'no-cors',
@@ -71,14 +82,16 @@ const actualizarCardCliente = async()=>{
 }
 
 
+
 const imprimir =(e)=>{
 
     let enlace=e;
     enlace.setAttribute('href','http://localhost/proyecto-hotel/public/imprimirpdfCliente?dato='+dato_buscar.value+'&fecha='+mesR.value);
 }
 
-const listarReporte = (mes,dato) =>{
-    fetch('clientes_reservas', {
+const listarReporte = async(mes,dato) =>{
+    await fetch('clientes_reservas', {
+
         method: 'POST',
         mode: 'no-cors',
         headers: {
@@ -88,21 +101,25 @@ const listarReporte = (mes,dato) =>{
         body: JSON.stringify({"mes":mes,"dato":dato})
     }).then(response => response.json()).then( datos=> {
         console.log(datos)
-        let lista='';
+        let filas='';
         for(let i=0;i<datos.length;i++){
-            lista+=`<tr class="text-wrap"> <td>${datos[i].idCliente}</td> <td>${datos[i].dni}</td> <td>${datos[i].nombreC}</td> <td>${datos[i].fecha}</td><td> <button type="button" class="btn detalleR"><i class="fa-solid fa-circle-info"></i></button> </td> <td>${datos[i].gastoT}</td><td>${datos[i].cantidad}</td></tr>`      
+            filas+=`<tr class="text-wrap"> <td>${datos[i].idCliente}</td> <td>${datos[i].dni}</td> <td>${datos[i].nombreC}</td> <td>${datos[i].fecha}</td><td> <button type="button" class="btn detalleR" onclick="listarReservas(${datos[i].idCliente},'${datos[i].fecha}')"><i class="fa-solid fa-circle-info"></i></button> </td> <td>${datos[i].gastoT}</td><td>${datos[i].cantidad}</td></tr>`      
         }
-        resultado.innerHTML=lista;
+        lista.innerHTML=filas;
     })
 }
 
 
-document.getElementById('buscar_reserva').addEventListener('click', e=>{
+document.getElementById('buscar_reserva').addEventListener('click',async (e)=>{
     e.preventDefault();
     let dato=document.getElementById('dato_buscar').value;
-    listarReporte(mesR.value,dato);
+    await listarReporte(mesR.value,dato);
+    arrayTr=[];
+    generarPaginas();
+    paginacion();
+    buttonGenerator();
 })
-
+//Actualizar grafico de barras
 const actualizarChart = async (myChart,mes,totalCard) =>{
     let reportes={};
     await reservasMes(mes).then((dato) =>{
@@ -115,14 +132,20 @@ const actualizarChart = async (myChart,mes,totalCard) =>{
     let cantidad=reportes.map(function(obj){
         return obj.cantidad;
     });
-    console.log(dates,cantidad);
+
+    console.log(reportes)
+
     myChart.config.data.labels=dates;
     myChart.config.data.datasets[0].data=cantidad;
 
     myChart.update();
     actualizarCardMes(mes)
     totalCard.innerHTML=reportes[4].cantidad;
-    listarReporte(mes,'');
+    await listarReporte(mes,'');
+    arrayTr=[];
+    generarPaginas();
+    paginacion();
+    buttonGenerator();
 }
 const reporteCliente = async() =>{
     let mesReporte=document.querySelector('#mesR');
@@ -189,24 +212,14 @@ const reporteCliente = async() =>{
     const myChart = new Chart(ctx,
         config
         );
-    listarReporte(mesR.value,'');
+    await listarReporte(mesR.value,'');
+    paginacion();
+    buttonGenerator();
     mesReporte.addEventListener('change', e => {
         actualizarChart(myChart,e.target.value,totalCard)
     });
     
 }
 reporteCliente();
-
 actualizarCardCliente();
 
-
-// window.jsPDF = window.jspdf.jsPDF;
-
-//     const doc = new jsPDF();
-
-//     doc.autoTable({
-//         html: '#tablaPDF',
-//     });
-//     function downloadPdf() {
-//         doc.save('table.pdf');
-//     }    

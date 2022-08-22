@@ -17,6 +17,13 @@ class TipoHabController extends Controller{
         return view("tipoHabitaciones/registro_tipo_hab",$data);
     }
 
+    public function listar(){
+        $dato=file_get_contents("php://input");
+        $tipoH=new TipoHabModel();
+        $lista=$tipoH->getTipoHab($dato);
+        echo json_encode($lista);
+    }
+
     public function crear(){
         return view('tipoHabitaciones/new_tipo_hab');
     }
@@ -25,14 +32,14 @@ class TipoHabController extends Controller{
 
         $validation = service('validation');
         $validation->setRules([ 
-            'tipo_hab' => 'required|is_not_unique[tipo_habitacion.idTipo]',
-            'precio_tipohab' => 'required|is_unique[tipo_habitacion.precio]|numeric|min_length[1]|max_length[4]',
+            'tipo_hab' => 'required|is_unique[tipo_habitacion.idTipo]',
+            'precio_tipohab' => 'required|is_not_unique[tipo_habitacion.precio]|numeric|min_length[1]|max_length[4]',
             'descripcion_hab' => 'required|alpha_space'
         ]);
 
         if(!$validation->withRequest($this->request)->run()){
             //dd($validation->getErrors());
-            return redirect()->to(base_url('nuevo_tipohab'))->withInput()->with('errors',$validation->getErrors());
+            return json_encode(['respuesta' => false,'errors' => $validation->getErrors()]);
         }
 
         $tipo=$this->request->getPost('tipo_hab');
@@ -67,7 +74,7 @@ class TipoHabController extends Controller{
 
         $validation = service('validation');
         $validation->setRules([ 
-            //'tipo_hab' => 'required|is_not_unique[tipo_habitacion.idTipo]',
+            'tipo_hab' => 'required|is_not_unique[tipo_habitacion.idTipo]',
             'precio_tipohab' => 'required|is_unique[tipo_habitacion.precio]|numeric|min_length[1]|max_length[4]',
             'descripcion_hab' => 'required|alpha_space',
             'admin_usuario' => 'required|alpha_numeric',
@@ -75,16 +82,16 @@ class TipoHabController extends Controller{
         ]);
 
         if(!$validation->withRequest($this->request)->run()){
-            return redirect()->to(base_url('editar_tipohab/'.$tipohab_id))->withInput()->with('errors',$validation->getErrors());
+            return json_encode(['respuesta' => false,'errors' => $validation->getErrors()]);
         }
 
         $admin_usuario=$this->request->getPost('admin_usuario');
         $admin_pass=$this->request->getPost('admin_clave');
         if($admin['username']!=$admin_usuario || !PASSWORD_VERIFY($admin_pass,$admin['pass'])){
-            return redirect()->to(base_url('editar_tipohab/'.$tipohab_id))->withInput()->with('msg','Usuario y/o Password Incorrectos'); 
+            return json_encode(['respuesta' => false, 'errors' => ['datosAdmin' =>'Usuario y/o Password Incorrectos']]);
         }
 
-        //$tipo=$this->request->getPost('tipo_hab');
+        $tipo=$this->request->getPost('tipo_hab');
         $precio=$this->request->getPost('precio_tipohab');
         $descripcion=$this->request->getPost('descripcion_hab');
 

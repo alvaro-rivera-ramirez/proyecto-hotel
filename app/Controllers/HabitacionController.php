@@ -12,16 +12,15 @@ use App\Libraries\Pdf;
 class HabitacionController extends Controller{
 
     public function index(){
-    
-    //    $pager = service('pager');
-       $model = new HabitacionModel();
-
-       $data['habitacion']=$model->getAll();
-       //var_dump($model->getAll());
-
-       return view("habitaciones/registro_hab",$data);
+       return view("habitaciones/registro_hab");
     }
 
+    public function listar(){
+        $dato=file_get_contents("php://input");
+        $hab=new HabitacionModel();
+        $lista=$hab->getHab($dato);
+        echo json_encode($lista);
+    }
     public function crear(){
         $tipoHab=new TipoHabModel();
         $datos['tipo']=$tipoHab->getTipo();
@@ -49,7 +48,7 @@ class HabitacionController extends Controller{
 
         if(!$validation->withRequest($this->request)->run()){
             //dd($validation->getErrors());
-            return redirect()->to(base_url('nueva_habitacion'))->withInput()->with('errors',$validation->getErrors());
+            return json_encode(['respuesta' => false,'errors' => $validation->getErrors()]);
         }
 
         $data=[
@@ -85,13 +84,13 @@ class HabitacionController extends Controller{
         ]);
 
         if(!$validation->withRequest($this->request)->run()){
-            return redirect()->to(base_url('editar_habitacion/'.$hab_id))->withInput()->with('errors',$validation->getErrors());
+            return json_encode(['respuesta' => false,'errors' => $validation->getErrors()]);
         }
 
         $admin_usuario=$this->request->getPost('admin_usuario');
         $admin_pass=$this->request->getPost('admin_clave');
         if($admin['username']!=$admin_usuario || !PASSWORD_VERIFY($admin_pass,$admin['pass'])){
-            return redirect()->to(base_url('editar_habitacion/'.$hab_id))->withInput()->with('msg','Usuario y/o Password Incorrectos'); 
+            return json_encode(['respuesta' => false, 'errors' => ['datosAdmin' =>'Usuario y/o Password Incorrectos']]); 
         }
 
         $data=[
@@ -119,7 +118,7 @@ class HabitacionController extends Controller{
     public function imprimir(){
     
         $model = new HabitacionModel();
-        $data=$model->getAll();
+        $data=$model->getHab();
         //var_dump($model->getAll());
 
         // Creación del objeto de la clase heredada
@@ -145,12 +144,12 @@ class HabitacionController extends Controller{
         foreach($data as $habitaciones){
             $pdf->Ln(0.6);
             $pdf->setX(15);
-            $pdf->Cell(7,8,$habitaciones['idHab'],'B',0,'C',1);
-            $pdf->Cell(33,8,$habitaciones['numero'],'B',0,'C',1);
-            $pdf->Cell(20,8,$habitaciones['tipo'],'B',0,'C',1);
-            $pdf->Cell(20,8,$habitaciones['precio'],'B',0,'C',1);
-            $pdf->Cell(50,8,utf8_decode('TV con Cable'),'B',0,'C',1);
-            $pdf->Cell(50,8,$habitaciones['estado'],'B',1,'C',1);
+            $pdf->Cell(7,8,$habitaciones['idHab'],'B',0,'C',0);
+            $pdf->Cell(33,8,$habitaciones['numero'],'B',0,'C',0);
+            $pdf->Cell(20,8,$habitaciones['tipo'],'B',0,'C',0);
+            $pdf->Cell(20,8,$habitaciones['precio'],'B',0,'C',0);
+            $pdf->Cell(50,8,utf8_decode('TV con Cable'),'B',0,'C',0);
+            $pdf->Cell(50,8,$habitaciones['estado'],'B',1,'C',0);
         }
         $this->response->setHeader('Content-Type','application/pdf');
     // cell(ancho, largo, contenido,borde?, salto de linea?)

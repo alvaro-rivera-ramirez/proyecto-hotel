@@ -26,12 +26,22 @@ class ReportesController extends Controller{
         }
         echo json_encode($reporteT);
     }
+    
+    public function listaReporteDia(){
+        $dato=json_decode(file_get_contents("php://input"));
+        $reporte=new ReservasModel();
+        $lista=$reporte->mostrarReporteDia($dato);
+        echo json_encode($lista);
+    }
+
+    //Reporte de Clientes
+    public function reporteCliente(){
+        return view('reportes/reporte_cliente');
+    }
+    
 
     public function reservasMes(){
         $mesActual=json_decode(file_get_contents("php://input"));
-        // $mes=($mesActual->mes<10)?'0'.$mesActual->mes:$mesActual->mes;
-        // $fechaReporte=$mesActual->anio.'-'.$mes;
-
         $reporte=new ReservasModel();
         $fechaLimite=date("Y-m",strtotime($mesActual->mes."- 5 month"));
         $reporteT=[];
@@ -44,6 +54,7 @@ class ReportesController extends Controller{
         echo json_encode($reporteT);
     }
     
+
     public function listaReporteDia(){
         $dato=json_decode(file_get_contents("php://input"));
         $reporte=new ReservasModel();
@@ -51,7 +62,7 @@ class ReportesController extends Controller{
         echo json_encode($lista);
     }
 
-    public function listaReporteMes(){//esto
+    public function listaReporteMes(){
         $dato=json_decode(file_get_contents("php://input"));
         // $dato->mes=($dato->mes<10)?'0'.$dato->mes:$dato->mes;
         $reporte=new ReservasModel();
@@ -67,6 +78,8 @@ class ReportesController extends Controller{
         $datos=$cliente->datosGenerales($fechaActual);
         echo json_encode($datos);
     }
+
+
     /*reporte de mes */
     public function reporteMes(){
         return view('reportes/reporte_mes');
@@ -84,7 +97,6 @@ class ReportesController extends Controller{
             
         }
         echo json_encode($reporteT);
-
     }
     public function listaReporteMesFull(){
         $dato=json_decode(file_get_contents("php://input"));
@@ -93,10 +105,9 @@ class ReportesController extends Controller{
         echo json_encode($lista);
     }
     /*----------------*/
-    public function reporteCliente(){
-        return view('reportes/reporte_cliente');
-    }
-    
+
+
+    /* Reporte Habitacion*/
     public function reporteHabitacion(){
         return view('reportes/reporte_habitacion');
     }
@@ -341,6 +352,34 @@ class ReportesController extends Controller{
         
         $this->response->setHeader('Content-Type','application/pdf');
         $pdf->Output();     
+    }
+    public function gananciaTipoHab(){
+        $mes=file_get_contents("php://input");
+        $reporte=new ReservasModel();
+        $reporteT=$reporte->gananciaMesHab($mes);
+        echo json_encode($reporteT);
+    }
+    public function listaReporteMesHabitacion(){
+        $dato=json_decode(file_get_contents("php://input"));
+        $reporte=new ReservasModel();
+        $lista=$reporte->mostrarReporteMesHabitacion($dato);
+        echo json_encode($lista);
+    }
+
+    public function listarDetalleHab(){
+        $data=json_decode(file_get_contents("php://input"));
+        $reserva=new ReservasModel();
+        $lista=$reserva->mostrarReservasHab($data);
+        echo json_encode($lista);
+    }
+    
+    public function imprimirReporteCliente(){
+        $datoB=$_GET['dato'];
+        $fecha=$_GET['fecha'];
+        $dato=(Object)(['dato' => $datoB,'mes' =>$fecha]);
+        $reporte=new ReservasModel();
+        $lista=$reporte->mostrarReporteMes($dato);
+        echo json_encode($lista);
     }
 
 }

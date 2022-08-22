@@ -30,9 +30,8 @@ const imprimir =(e)=>{
     enlace.setAttribute('href','http://localhost/proyecto-hotel/public/imprimirpdfDia?dato='+dato_buscar.value+'&fecha='+fechaR.value);
 }
 
-
-const listarReporte = (fecha,dato) =>{
-    fetch('reservas_dia', {
+const listarReporte = async(fecha,dato) =>{
+    await fetch('reservas_dia', {
         method: 'POST',
         mode: 'no-cors',
         headers: {
@@ -41,19 +40,22 @@ const listarReporte = (fecha,dato) =>{
         },
         body: JSON.stringify({"fecha":fecha,"dato":dato})
     }).then(response => response.json()).then( datos=> {
-        let lista='';
+        let filas='';
         for(let i=0;i<datos.length;i++){
-            lista+=`<tr class="text-wrap"> <td>${datos[i].idReserva}</td> <td>${datos[i].dni}</td> <td>${datos[i].nombreC}</td> <td>${datos[i].fecha}</td><td> <button type="button" class="btn detalleR"><i class="fa-solid fa-circle-info"></i></button> </td> <td>${datos[i].precioT}</td></tr>`      
+            filas+=`<tr class="text-wrap"> <td>${datos[i].idReserva}</td> <td>${datos[i].dni}</td> <td>${datos[i].nombreC}</td> <td>${datos[i].fecha}</td><td> <button type="button" class="btn detalleR" onclick="listarDetalle(${datos[i].idReserva})"><i class="fa-solid fa-circle-info"></i></button> </td> <td>${datos[i].precioT}</td></tr>`      
         }
-        resultado.innerHTML=lista;
+        lista.innerHTML=filas;
     })
 }
 
-document.getElementById('buscar_reserva').addEventListener('click', e=>{
+document.getElementById('buscar_reserva').addEventListener('click', async (e)=>{
     e.preventDefault();
     let dato=document.getElementById('dato_buscar').value;
-    listarReporte(fechaR.value,dato);
-    //console.log(fechaR.value,dato);
+    await listarReporte(fechaR.value,dato);
+    arrayTr=[];
+    generarPaginas();
+    paginacion();
+    buttonGenerator();
 })
 
 const actualizarChart = async (myChart,fecha,fechaCard,totalCard) =>{
@@ -75,7 +77,11 @@ const actualizarChart = async (myChart,fecha,fechaCard,totalCard) =>{
     myChart.update();
     fechaCard.innerHTML=fecha;
     totalCard.innerHTML=reportes[4].ganancia;
-    listarReporte(fecha,'');
+    await listarReporte(fecha,'');
+    arrayTr=[];
+    generarPaginas();
+    paginacion();
+    buttonGenerator();
 }
 const reporteDiario = async() =>{
     let fechaReporte=document.getElementById('fechaR');
@@ -124,6 +130,12 @@ const reporteDiario = async() =>{
         type: 'bar',
         data,
         options: {
+            plugins: {
+                title: {
+                    display: true,
+                    text: '(S/.) Ganancias por Día'
+                }
+            },
             scales: {
                 y: {
                     beginAtZero: true
@@ -135,7 +147,9 @@ const reporteDiario = async() =>{
     const myChart = new Chart(ctx,
         config
         );
-    listarReporte(fechaReporte.value,'');
+    await listarReporte(fechaReporte.value,'');
+    paginacion();
+    buttonGenerator();
     fechaReporte.addEventListener('change', e => {
         actualizarChart(myChart,e.target.value,fechaCard,totalCard)
     });

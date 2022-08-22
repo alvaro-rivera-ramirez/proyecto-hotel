@@ -1,4 +1,4 @@
-<nav class="foot-nav" aria-label="Page navigation example" aria-label="Page navigation">
+<nav class="foot-nav" aria-label="Page navigation example" aria-label="Page navigation" id="pagina">
     <ul  class="pagination justify-content-center">
         <li class="page-item">
             <a class="page-link" href="#" id="first">

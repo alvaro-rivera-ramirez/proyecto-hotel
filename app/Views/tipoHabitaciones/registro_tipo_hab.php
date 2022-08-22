@@ -33,8 +33,8 @@
                                     <div class="box-nav"> <a href="<?= base_url('imprimir_tipohab')?>" target="_blank"><i class="fa-solid fa-print"></i> IMPRIMIR</a></div>
                                     <div class="box-nav">
                                         <form class="d-flex">
-                                        <input class="input-buscar me-2" type="search" placeholder="Buscar" aria-label="Search">
-                                        <button class="btn-buscar btn btn-dark" type="submit"><i class="fas fa-search"></i></button>
+                                        <input class="input-buscar me-2" type="search" placeholder="Buscar" aria-label="Search" id="datoBuscar">
+                                        <button class="btn-buscar btn btn-dark" type="submit" id="buscar_th"><i class="fas fa-search"></i></button>
                                         </form>
                                     </div>
                                 </div>
@@ -45,47 +45,22 @@
                             <!-- TABLA RESPONSIVE -->
                            
                             <div class="table-responsive mt-2">
-                            <table class="table bg-white">
+                            <table class="table table-striped">
                                 <thead class="bg-dark text-light">
                                     <tr class="text-center">
                                         <th>N°</th>
-                                        <th>Tipo<th>
+                                        <th>Tipo</th>
                                         <th>Precio</th>
-                                        <th>Caracteristicas</th>
-                                        <th>+ info</th>
                                         <th>Editar</th>
                                         <th>Eliminar</th>
                                     </tr>
                                 </thead>
-                                <tbody>
-
-                                <?php foreach($tipo as $tipos):?>
-                                    <tr class="text-center">
-                                        <td><?= $tipos['idTipo'] ?></td>
-                                        <th><?= $tipos['tipo'] ?><th>
-                                        <td>S/. <?= $tipos['precio'] ?></td>
-                                        <td><?= $tipos['descripcion'] ?></td>
-                                        <td><button class="btn-buscar btn btn-dark" type="submit"><i class="fas fa-info"></i></button></td>
-                                        <td>
-                                                <a class="btn btn-success"
-                                                    href="<?= base_url('editar_tipohab/'.$tipos['idTipo']) ?>"
-                                                    role="button">
-                                                    <i class="fa-solid fa-pen-to-square"></i>
-                                                </a>
-                                        </td>
-                                        <td>
-                                                <button class="btn btn-danger"
-                                                    onclick="Eliminar(<?= $tipos['idTipo'] ?>)"><i
-                                                        class="fa-solid fa-trash-can"></i></button>
-                                        </td>
-                                    </tr>
-                                <?php endforeach;?>
-                                    
+                                <tbody id="lista">
+    
                                 </tbody>
                             </table>
                             </div>
                             
-                            <!---<p class="text-end">1-6 de 6</p> --->
                             <?php include "../app/Views/pagination/view_pag.php"?>
                             
                         </section>  
@@ -96,50 +71,7 @@
    </div>
 
    <?php include "include/script.php"?>
-   <script>
-        function Eliminar(idTipo) {
-
-            console.log(idTipo);
-            Swal.fire({
-                title: '¿Está seguro de eliminar?',
-                text: "Está a punto de eliminar este registro",
-                icon: 'warning',
-                showCancelButton: true,
-                confirmButtonColor: '#3085d6',
-                cancelButtonColor: '#d33',
-                confirmButtonText: 'Confirmar',
-                cancelButtonText: 'Cancelar'
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    fetch('http://localhost/proyecto-hotel/public/eliminar_tipohab/' + idTipo  , {
-                            method: 'POST',
-                            mode: 'no-cors',
-                            headers: {
-                                "Content-Type": "application/json",
-                                "X-Requested-With": "XMLHttpRequest"
-                            },
-                            body: idTipo
-
-                        }).then(res => res.json()).then(res => {
-                        if (res['respuesta']) {
-                            Swal.fire(
-                                'ELIMINADO!',
-                                'El registro fue eliminado exitosamente',
-                                'success'
-                            ).then((value) => {
-                                location.reload();
-                            });
-                        } else {
-                            Swal.fire(
-                                'Error!',
-                                res['mensaje'],
-                                'error'
-                            );
-                        }
-                    })                    
-                }
-            })
-        }
-    </script>
+    <script src="js/tiposHabitacion/listarTipoH.js"></script>
+    <script src="js/tiposHabitacion/eliminarTipoH.js"></script>
 </body>
 </html>
