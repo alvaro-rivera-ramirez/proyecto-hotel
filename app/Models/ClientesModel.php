@@ -22,9 +22,20 @@ class ClientesModel extends Model{
         return $cliente->get()->getResultArray();
     }
     
-    public function getClientes(){
-        $consulta=$this->db->query("SELECT * FROM cliente WHERE deleted_at IS NULL");
-        return $consulta->getResultArray();
+    public function getClientes($dato=null){
+        if(!empty($dato)){
+            $cliente=$this->db->table('cliente as c');
+            $cliente->select("c.idCliente,c.dni,concat(c.nombre,' ',c.apellidoPaterno,' ',if(c.apellidoMaterno IS NULL,'',c.apellidoMaterno)) as nombreC,c.telefono,c.email");
+            $cliente->where("c.deleted_at IS NULL");
+            $cliente->havingLike('c.dni', $dato);
+            $cliente->orHavingLike('nombreC',$dato);
+            return $cliente->get()->getResultArray();
+        }else{
+            $cliente=$this->db->table('cliente as c');
+            $cliente->select("c.idCliente,c.dni,concat(c.nombre,' ',c.apellidoPaterno,' ',if(c.apellidoMaterno IS NULL,'',c.apellidoMaterno)) as nombreC,c.telefono,c.email");
+            $cliente->where("c.deleted_at IS NULL");
+            return $cliente->get()->getResultArray();
+        }
     }
 
     public function obtenerDatos($idCliente){

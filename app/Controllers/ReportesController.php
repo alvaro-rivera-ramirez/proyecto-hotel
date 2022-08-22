@@ -63,11 +63,32 @@ class ReportesController extends Controller{
         $datos=$cliente->datosGenerales($fechaActual);
         echo json_encode($datos);
     }
-
+    /*reporte de mes */
     public function reporteMes(){
         return view('reportes/reporte_mes');
     }
-    
+
+    public function gananciaM(){
+        $mesActual=json_decode(file_get_contents("php://input"));
+        $reporte=new ReservasModel();
+        $fechaLimite=date("Y-m",strtotime($mesActual->mes."- 5 month"));
+        $reporteT=[];
+        while($fechaLimite<$mesActual->mes){
+            $fechaLimite=date("Y-m",strtotime($fechaLimite."+ 1 month")); 
+            $ganancia=$reporte->gananciaMes($fechaLimite);
+            array_push($reporteT,['mes' => $fechaLimite, 'ganancia' => $ganancia['Total']]);
+            
+        }
+        echo json_encode($reporteT);
+
+    }
+    public function listaReporteMesFull(){
+        $dato=json_decode(file_get_contents("php://input"));
+        $reporte=new ReservasModel();
+        $lista=$reporte->mostrarReporteMesF($dato);
+        echo json_encode($lista);
+    }
+    /*----------------*/
     public function reporteCliente(){
         return view('reportes/reporte_cliente');
     }

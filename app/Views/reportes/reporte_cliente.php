@@ -25,7 +25,7 @@
                         <section>
                             <h3 class="pb-3">Reportes / Clientes</h3>
                             <div class="row">
-                                <div class="col-lg-6">
+                                <div class="col-lg-5">
                                     <div class="row">
                                         <div class="col-lg-6">
                                             <div class="card text-dark bg-light mt-3">
@@ -60,7 +60,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-lg-6">
+                                <div class="col-lg-7">
                                     <div class="row">
                                         <div class="col-12">
                                             <canvas id="myChart" width="500" height="250"></canvas>
@@ -105,13 +105,44 @@
                                             <th>Cantidad de Reservas</th>
                                         </tr>
                                     </thead>
-                                    <tbody id="resultado">
+                                    <tbody id="lista">
 
                                     </tbody>
                                 </table>
                             </div>
                             <p class="text-end">Mostrando 1 al 10 de un total de 27</p>
                             <?php include "../app/Views/pagination/view_pag.php"?>
+                            <div class="modal fade" id="detalle_reserva" tabindex="-1"
+                                aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog modal-lg">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalLabel">Detalle de Reserva</h5>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <div class="table-responsive mt-2">
+                                                <table class="table table-striped">
+                                                    <thead class="bg-dark text-light">
+                                                        <tr class="text-center">
+                                                            <th>Id. Reserva</th>
+                                                            <th>Registrado por</th>
+                                                            <th>Fecha</th>
+                                                            <th>Total</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody id="detalle">
+
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                            <button type="button" class="btn btn-secondary"
+                                                data-bs-dismiss="modal">Cerrar</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </section>
                     </div>
 
@@ -121,6 +152,7 @@
     </div>
 
     <?php include "include/script.php"?>
+    <script src="js/reportes/mostrarModal.js"></script>
     <script src="js/reportes/reporteCliente.js"></script>
 </body>
 

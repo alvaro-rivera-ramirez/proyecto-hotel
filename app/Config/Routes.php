@@ -56,7 +56,7 @@ if (is_file(APPPATH . 'Config/' . ENVIRONMENT . '/Routes.php')) {
 }
 
 //ruta  --> 
-$routes->get('/inicio', 'Inicio::index',['filter' => 'auth:Administrador,Recepcionista']);
+$routes->get('/inicio', 'Inicio::index',['filter' => 'auth']);
 $routes->post('/login', 'Login::login');
 $routes->get('perfil', 'UsuariosController::configurarPerfil');
 $routes->post('ed_perfil', 'UsuariosController::editarPerfil');
@@ -68,12 +68,15 @@ $routes->get('reservar', 'ReservasController::reservar');
 $routes->post('guardar_reserva', 'ReservasController::guardar');
 $routes->get('/lista_reservas', 'ReservasController::index');
 $routes->post('listar_reserva', 'ReservasController::listar');
+$routes->post('obtener_reservas', 'ReservasController::listar_reservas');
 $routes->post('listar_detalle', 'ReservasController::listar_detalle');
 $routes->post('listar_hab_tipo', 'ReservasController::getHabTipo');
 $routes->post('actualizar_reserva', 'ReservasController::actualizar');
+$routes->post('eliminar_reserva', 'ReservasController::borrar',['filter' => 'auth:Administrador']);
 
-
+//rutas de habitaciones
 $routes->get('/lista-habitaciones', 'HabitacionController::index',['filter' => 'auth:Administrador,Recepcionista']);
+$routes->post('listar_habitaciones', 'HabitacionController::listar');
 $routes->get('nueva_habitacion', 'HabitacionController::crear',['filter' => 'auth:Administrador']);
 $routes->post('guardar_habitacion', 'HabitacionController::guardar');
 $routes->post('actualizar_habitacion', 'HabitacionController::actualizar');
@@ -81,6 +84,7 @@ $routes->get('editar_habitacion/(:num)', 'HabitacionController::editar/$1',['fil
 $routes->post('eliminar_habitacion/(:num)', 'HabitacionController::borrar/$1');
 
 $routes->get('/lista-tipohab', 'TipoHabController::index',['filter' => 'auth:Administrador,Recepcionista']);
+$routes->post('listar_tipohab', 'TipoHabController::listar');
 $routes->get('nuevo_tipohab', 'TipoHabController::crear',['filter' => 'auth:Administrador,Recepcionista']);
 $routes->post('guardar_tipohab', 'TipoHabController::guardar');
 $routes->post('actualizar_tipohab', 'TipoHabController::actualizar');
@@ -88,20 +92,22 @@ $routes->get('editar_tipohab/(:num)', 'TipoHabController::editar/$1',['filter' =
 $routes->post('eliminar_tipohab/(:num)', 'TipoHabController::borrar/$1');
 
 $routes->get('/lista-clientes', 'ClientesController::index',['filter' => 'auth:Administrador,Recepcionista']);
+$routes->post('/listar_clientes', 'ClientesController::listar');
 $routes->get('nuevo_cliente', 'ClientesController::crear_cli',['filter' => 'auth:Administrador,Recepcionista']);
 $routes->post('registrar_cliente', 'ClientesController::registrar',['filter' => 'auth:Administrador,Recepcionista']);
 $routes->post('buscar_dni', 'ClientesController::buscardni');
 $routes->get('editar_cliente/(:num)', 'ClientesController::editar/$1',['filter' => 'auth:Administrador,Recepcionista']);
-$routes->post('actualizar-cliente', 'ClientesController::actualizarCli');
+$routes->post('actualizar_cliente', 'ClientesController::actualizarCli');
 $routes->post('eliminar_cliente/(:num)', 'ClientesController::borrar/$1');
 
-
+//RUTAS DE USUARIOS
 $routes->get('/lista_usuarios', 'UsuariosController::index',['filter' => 'auth:Administrador,Recepcionista']);
+$routes->post('/listar_usuarios', 'UsuariosController::listar');
 $routes->get('editar_usuario/(:num)', 'UsuariosController::editar/$1',['filter' => 'auth:Administrador']);
 $routes->get('nuevo_usuario', 'UsuariosController::crear',['filter' => 'auth:Administrador']);
 $routes->post('guardar_usuario', 'UsuariosController::guardar');
 $routes->post('actualizar_usuario', 'UsuariosController::actualizar');
-$routes->post('eliminar_usuario/(:num)', 'UsuariosController::borrar/$1',['filter' => 'auth:Administrador']);
+$routes->get('eliminar_usuario/(:num)', 'UsuariosController::borrar/$1',['filter' => 'auth:Administrador']);
 $routes->get('recuperar_password', 'UsuariosController::recuperarPassword');
 
 $routes->get('demo-pdf', 'PdfController::demoPDF');
@@ -115,7 +121,20 @@ $routes->post('cantidad_mes', 'ReportesController::reservasMes');
 $routes->post('clientes_reservas', 'ReportesController::listaReporteMes');
 $routes->get('resumen-cliente', 'ReportesController::resumenCliente');
 $routes->get('reporte-mes', 'ReportesController::reporteMes');
+$routes->post('ganancia_mes', 'ReportesController::gananciaM');
+$routes->post('reservas_mes', 'ReportesController::listaReporteMesFull');
 $routes->get('reporte-cliente', 'ReportesController::reporteCliente');
+
+
+//PDF
+
+$routes->get('/imprimir_hab', 'HabitacionController::imprimir',['filter' => 'auth']);
+$routes->get('/imprimir_tipohab', 'TipoHabController::imprimir',['filter' => 'auth']);
+$routes->get('/imprimir_usuarios', 'UsuariosController::imprimir',['filter' => 'auth:Administrador']);
+$routes->get('/imprimir_clientes', 'ClientesController::imprimir',['filter' => 'auth:Administrador']);
+$routes->get('/imprimir_boleta/(:num)', 'ReservasController::imprimir_boleta/$1',['filter' => 'auth']);
+//$routes->post('imprimir_boleta', 'ReservasController::imprimir_boleta',['filter' => 'auth']);
+
 
 $routes->get('reporte-habitacion', 'ReportesController::reporteHabitacion');
 $routes->post('habitaciones_reservas', 'ReportesController::listaReporteMesHabitacion');
