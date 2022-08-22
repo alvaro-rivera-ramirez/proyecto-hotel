@@ -105,4 +105,35 @@ class ReservasModel extends Model{
             return $pQuery->execute($dato->mes,$datoB,$datoB)->getResultArray();
         }
     }
+
+    public function gananciaMes($fecha=null){
+        $sql='SELECT ifnull(sum(dt.precio),0) as Total FROM reserva r INNER JOIN detalle_reserva dt ON r.idReserva=dt.idReserva WHERE DATE_FORMAT(r.created_at, "%Y-%m")=? AND r.deleted_at IS NULL AND r.idEstadoR=3';
+        
+        $query=$this->db->query($sql, $fecha);
+        return $query->getRowArray();
+    }
+
+    public function mostrarReporteMesHabitacion($dato=null){
+        if(empty($dato->dato)){
+            $pQuery = $this->db->prepare(static function ($db) {
+                $sql = 'SELECT h.idHab,h.numero,th.tipo, r.fecha,SUM(r.costoT) as recaudacionT,COUNT(h.idHab) as cantidad FROM habitacion h, tipo_habitacion th, detalle_reserva dt, cliente c,(SELECT r.idReserva,DATE_FORMAT(r.created_at, "%Y-%m") as fecha,h.numero, th.tipo, SUM(dt.precio) as costoT FROM
+                detalle_reserva dt, habitacion h, reserva r, tipo_habitacion th WHERE dt.idHab=h.idHab AND r.idReserva=dt.idReserva AND r.idEstadoR=3 AND r.idEstadoP=2 AND r.deleted_at IS NULL GROUP BY r.idReserva HAVING fecha=?) as r WHERE h.idTipo=th.idTipo GROUP BY th.idTipo ORDER BY `cantidad` DESC';
+            
+                return (new Query($db))->setQuery($sql);
+            });
+            return $pQuery->execute($dato->mes)->getResultArray();
+        }else{
+            $pQuery = $this->db->prepare(static function ($db) {
+                $sql = 'SELECT h.idHab,h.numero,th.tipo, r.fecha,SUM(r.costoT) as recaudacionT,COUNT(h.idHab) as cantidad FROM habitacion h, tipo_habitacion th, detalle_reserva dt, cliente c,(SELECT r.idReserva,DATE_FORMAT(r.created_at, "%Y-%m") as fecha,h.numero, th.tipo, SUM(dt.precio) as costoT FROM 
+                detalle_reserva dt, habitacion h, reserva r, tipo_habitacion th WHERE dt.idHab=h.idHab AND r.idReserva=dt.idReserva AND r.idEstadoR=3 AND r.idEstadoP=2 AND r.deleted_at IS NULL GROUP BY r.idReserva HAVING fecha=?) as r WHERE h.idTipo=th.idTipo GROUP BY th.idTipo HAVING th.tipo like ? OR h.numero like ? ORDER BY `cantidad` DESC';
+            
+                return (new Query($db))->setQuery($sql);
+            });
+            $datoB = "%$dato->dato%";
+            return $pQuery->execute($dato->mes,$datoB,$datoB)->getResultArray();
+        }
+    }
+
+    
+
 }

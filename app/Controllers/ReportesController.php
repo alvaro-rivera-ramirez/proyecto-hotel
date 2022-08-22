@@ -76,4 +76,26 @@ class ReportesController extends Controller{
         return view('reportes/reporte_habitacion');
     }
 
+    public function gananciaM(){
+        $fechaActual=file_get_contents("php://input");
+        $reporte=new ReservasModel();
+        $fecha=date("Y-m",strtotime($fechaActual));
+        $fechas=[];
+        $reporteT=[];
+        while($fecha<$fechaActual){
+            $fecha=date("Y-m",strtotime($fecha)); 
+            $ganancia=$reporte->gananciaMes($fecha);
+            array_push($reporteT,['fecha' => $fecha, 'ganancia' => $ganancia['Total']]);
+            
+        }
+        echo json_encode($reporteT);
+    }
+
+    public function listaReporteMesHabitacion(){
+        $dato=json_decode(file_get_contents("php://input"));
+        // $dato->mes=($dato->mes<10)?'0'.$dato->mes:$dato->mes;
+        $reporte=new ReservasModel();
+        $lista=$reporte->mostrarReporteMesHabitacion($dato);
+        echo json_encode($lista);
+    }
 }
