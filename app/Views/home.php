@@ -58,22 +58,30 @@
                                     <?php switch($habitaciones['idEstado']):
                                          case 1:  ?>
                                             <div class="d-block box-libre">
-                                        <?php break; ?>
+                                            <a href="<?= base_url('reservar'.'?id='.$habitaciones['idHab'].'&idTipo='.$habitaciones['idTipo']) ?>">
+                                            
+                                            <?php break; ?>
                                         <?php case 2: ?>
                                             <div class="d-block box-reserva">
+                                            <a href="#">
                                         <?php break;?>
                                         <?php case 3: ?>
                                             <div class="d-block box-ocupado">
+                                            <a href="http://localhost/proyecto-hotel/public/editar_habitacion/<?= $habitaciones['idHab']?>">
                                         <?php break;?>
                                         <?php case 4: ?>
                                             <div class="d-block box-clean">
+                                            <a href="http://localhost/proyecto-hotel/public/editar_habitacion/<?= $habitaciones['idHab']?>">
                                         <?php break;?>
                                         <?php case 5: ?>
                                             <div class="d-block box-disabled">
+                                            <a href="http://localhost/proyecto-hotel/public/editar_habitacion/<?= $habitaciones['idHab']?>">
                                         <?php break;?>
                                     <?php endswitch;?>
+
                                             
-                                            <a href="<?= base_url('reservar'.'?id='.$habitaciones['idHab'].'&idTipo='.$habitaciones['idTipo']) ?>">
+                                          <a href="<?= base_url('reservar'.'?id='.$habitaciones['idHab'].'&idTipo='.$habitaciones['idTipo']) ?>">
+
                                             <mark><?= $habitaciones['numero'];?></mark>
                                             <p><?= $habitaciones['tipo'];?></p>
                                             <img src="Imagenes/cama.png" width="40px">

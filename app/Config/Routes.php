@@ -65,6 +65,7 @@ $routes->post('ed_Password', 'UsuariosController::editarPassword');
 $routes->get('salir', 'Inicio::salir');
 
 $routes->get('reservar', 'ReservasController::reservar');
+//$routes->get('reservar/(:num)', 'ReservasController::reservarHab/$1',['filter' => 'auth:Administrador,Recepcionista']);
 $routes->post('guardar_reserva', 'ReservasController::guardar');
 $routes->get('/lista_reservas', 'ReservasController::index');
 $routes->post('listar_reserva', 'ReservasController::listar');
