@@ -169,6 +169,7 @@ class UsuariosController extends Controller{
 
     public function borrar($id=null){
         $usuario=new UsuariosModel();
+        $usuario->update($id,['activo' => 0]);        
         $usuario->where('id',$id)->delete($id);        
         echo json_encode(['respuesta' => true]);
     }

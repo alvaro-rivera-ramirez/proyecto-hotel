@@ -237,6 +237,10 @@ class ReservasController extends Controller{
         $reserva->where('idReserva',$id)->delete($id);        
         return json_encode(['respuesta' => true]);
     }
+
+    public function imprimir(){
+        
+    }
     public function imprimir_boleta($id){
         $reserva=new ReservasModel();
         $boleta=$reserva->busquedaReserva($id);
