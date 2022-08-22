@@ -45,43 +45,40 @@
                                             <div class="form-group">
                                                 <input type="hidden" name="id_hab" value="<?= $hab['idHab']?>">
                                                 <label for="num_hab" class="bmd-label-floating">Numero</label>
-                                                <input type="text" class="form-control"
-                                                    value="<?= old('num_hab',$hab['numero']) ?>" name="num_hab"
-                                                    id="num_hab" maxlength="4" class="validar" require>
-                                                <p class="text-danger"><?= session('errors.num_hab')?></p>
+                                                <input type="text" class="form-control validar"
+                                                    value="<?= $hab['numero'] ?>" name="num_hab"
+                                                    id="num_hab" maxlength="4">
                                                 <p class="d-none text-danger validacion"></p>
                                             </div>
                                         </div>
                                         <div class="col-12 col-md-4">
                                             <div class="form-group">
                                                 <label for="tipo_hab" class="bmd-label-floating">Tipo Habitación</label>
-                                                <select class="form-control" name="tipo_hab" id="tipo_hab" class="validar" require>
+                                                <select class="form-control validar" name="tipo_hab" id="tipo_hab">
                                                     <option value="" selected="" disabled="">Seleccione una opción
                                                     </option>
                                                     <?php foreach($tipo as $tipos):?>
                                                     <option value="<?= $tipos['idTipo'] ?>"
-                                                        <?php if(old('tipo_hab',$hab['idTipo'])==$tipos['idTipo']):?>selected
+                                                        <?php if($hab['idTipo']==$tipos['idTipo']):?>selected
                                                         <?php endif;?>> <?= $tipos['tipo'].' - '.$tipos['precio'] ?>
                                                     </option>
                                                     <?php endforeach; ?>
                                                 </select>
-                                                <p class="text-danger"><?= session('errors.tipo_hab')?></p>
                                                 <p class="d-none text-danger validacion"></p>
                                             </div>
                                         </div>
                                         <div class="col-12 col-md-4">
                                             <div class="form-group">
                                                 <label for="estado_hab" class="bmd-label-floating">Estado</label>
-                                                <select class="form-control" name="estado_hab" id="estado_hab" class="validar" require>
-                                                    <option value="" selected="" disabled="">Seleccione una opción
+                                                <select class="form-control validar" name="estado_hab" id="estado_hab">
+                                                    <option value="" disabled="">Seleccione una opción
                                                     </option>
                                                     <?php foreach($estado as $estados):?>
                                                     <option value="<?= $estados['idEstado'] ?>"
-                                                        <?php if(old('estado_hab',$hab['idEstado'])==$estados['idEstado']):?>selected
+                                                        <?php if($hab['idEstado']==$estados['idEstado']):?>selected
                                                         <?php endif;?>> <?= $estados['estado'] ?></option>
                                                     <?php endforeach; ?>
                                                 </select>
-                                                <p class="text-danger"><?= session('errors.estado_hab')?></p>
                                                 <p class="d-none text-danger validacion"></p>
                                             </div>
                                         </div>
@@ -134,91 +131,6 @@
     <?php include "include/script.php"?>
     <script src="<?= base_url('js/habitaciones/editarHabitacion.js') ?>"></script>
     
-    <script>
-        // let boton_enviar = document.getElementById('act_habitacion');
-        // let val1 = document.getElementById('num_hab');
-        // let val2 = document.getElementById('admin_usuario');
-        // let val3 = document.getElementById('admin_clave');        
-
-        // boton_enviar.addEventListener('click', e => {
-        //     e.preventDefault();
-        //     if (val1.value === '' || val1.value === null || val2.value === '' || val2.value === null || val3.value === '' ||
-        //         val3.value === null) 
-        //     {
-        //         let timerInterval
-        //         Swal.fire({
-        //             icon: 'warning',
-        //             title: 'COMPLETE TODOS LOS CAMPOS REQUERIDOS POR FAVOR',
-        //             timer: 1500,
-        //         })
-
-        //         if(val1.value === '' || val1.value === null)
-        //         {
-        //             let error = document.getElementById('validacion1');
-        //             error.classList.remove('d-none');
-        //         }
-
-        //         if(val2.value === '' || val2.value === null)
-        //         {
-        //             let error = document.getElementById('validacion2');
-        //             error.classList.remove('d-none');
-        //         }
-
-        //         if(val3.value === '' || val3.value === null)
-        //         {
-        //             let error = document.getElementById('validacion3');
-        //             error.classList.remove('d-none');
-        //         }
-
-        //     } 
-        //     else {
-        //         Swal.fire({
-        //             title: '¿Estás seguro que desea actualizar esta habitación?',
-        //             text: "Está a punto de actualizar esta habitación",
-        //             icon: 'warning',
-        //             showCancelButton: true,
-        //             confirmButtonColor: '#3085d6',
-        //             cancelButtonColor: '#d33',
-        //             confirmButtonText: 'Sí, estoy seguro',
-        //             cancelButtonText: 'Cancelar',
-        //         }).then((result) => {
-        //             if (result.isConfirmed) {
-        //                 let form_upd = document.getElementById('upd_hab');
-        //                 let update = new FormData(form_upd);
-
-        //                 fetch('actualizar_habitacion', {
-        //                         method: 'POST',
-        //                         mode: 'no-cors',
-        //                         headers: {
-        //                             "Content-Type": "application/json",
-        //                             "X-Requested-With": "XMLHttpRequest"
-        //                         },
-        //                         body: update
-
-        //                     }).then(res => res.json()).then(res => {
-        //                     console.log(res);
-        //                     console.log("prueb")
-        //                     if (res['respuesta']) {
-        //                         Swal.fire(
-        //                             'Habitación actualizada!',
-        //                             res['mensaje'],
-        //                             'success'
-        //                         ).then((value) => {
-        //                             location.reload();
-        //                         });
-        //                     } else {
-        //                         Swal.fire(
-        //                             'Error!',
-        //                             res['mensaje'],
-        //                             'error'
-        //                         );
-        //                     }
-        //                 })
-        //             }
-        //         })
-        //     }
-        // })
-    </script>
 </body>
 
 </html>

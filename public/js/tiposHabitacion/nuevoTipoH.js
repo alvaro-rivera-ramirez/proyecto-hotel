@@ -43,13 +43,6 @@ const agregarTipoH=()=>{
                 if (result.isConfirmed) {
                     let form_upd = document.getElementById('form_tipohab');
                     let data = new FormData(form_upd);
-                    // let mensajes=document.querySelectorAll('.validacion');
-                    // mensajes.forEach(function(item) {
-                    //     if(!item.classList.contains('d-none')){
-                    //         item.innerHTML='';
-                    //         item.classList.add('d-none');
-                    //     }
-                    // });
                     fetch('guardar_tipohab', {
                         method: 'POST',
                         mode: 'no-cors',
@@ -62,7 +55,7 @@ const agregarTipoH=()=>{
                     }).then(res => res.json()).then(res => {
                         if (res['respuesta']) {
                             Swal.fire(
-                                'HABITACION REGISTRADA EXITOSAMENTE',
+                                'TIPO DE HABITACION REGISTRADA EXITOSAMENTE',
                                 '',
                                 'success'
                             ).then((value) => {

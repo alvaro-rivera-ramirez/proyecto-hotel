@@ -58,16 +58,16 @@ if (is_file(APPPATH . 'Config/' . ENVIRONMENT . '/Routes.php')) {
 //ruta  --> 
 $routes->get('/inicio', 'Inicio::index',['filter' => 'auth']);
 $routes->post('/login', 'Login::login');
-$routes->get('perfil', 'UsuariosController::configurarPerfil');
+$routes->get('perfil', 'UsuariosController::configurarPerfil',['filter' => 'auth']);
 $routes->post('ed_perfil', 'UsuariosController::editarPerfil');
-$routes->get('actualizarPassword', 'UsuariosController::configurarPassword');
+$routes->get('actualizarPassword', 'UsuariosController::configurarPassword',['filter' => 'auth']);
 $routes->post('ed_Password', 'UsuariosController::editarPassword');
 $routes->get('salir', 'Inicio::salir');
 
-$routes->get('reservar', 'ReservasController::reservar');
+$routes->get('reservar', 'ReservasController::reservar',['filter' => 'auth']);
 //$routes->get('reservar/(:num)', 'ReservasController::reservarHab/$1',['filter' => 'auth:Administrador,Recepcionista']);
 $routes->post('guardar_reserva', 'ReservasController::guardar');
-$routes->get('/lista_reservas', 'ReservasController::index');
+$routes->get('/lista_reservas', 'ReservasController::index',['filter' => 'auth']);
 $routes->post('listar_reserva', 'ReservasController::listar');
 $routes->post('obtener_reservas', 'ReservasController::listar_reservas');
 $routes->post('listar_detalle', 'ReservasController::listar_detalle');
@@ -95,7 +95,7 @@ $routes->post('eliminar_tipohab/(:num)', 'TipoHabController::borrar/$1');
 $routes->get('/lista-clientes', 'ClientesController::index',['filter' => 'auth:Administrador,Recepcionista']);
 $routes->post('/listar_clientes', 'ClientesController::listar');
 $routes->get('nuevo_cliente', 'ClientesController::crear_cli',['filter' => 'auth:Administrador,Recepcionista']);
-$routes->post('registrar_cliente', 'ClientesController::registrar',['filter' => 'auth:Administrador,Recepcionista']);
+$routes->post('registrar_cliente', 'ClientesController::registrar',['filter' => 'auth']);
 $routes->post('buscar_dni', 'ClientesController::buscardni');
 $routes->get('editar_cliente/(:num)', 'ClientesController::editar/$1',['filter' => 'auth:Administrador,Recepcionista']);
 $routes->post('actualizar_cliente', 'ClientesController::actualizarCli');
@@ -115,19 +115,19 @@ $routes->get('recuperar_password', 'UsuariosController::recuperarPassword');
 $routes->get('demo-pdf', 'PdfController::demoPDF');
 
 //reportes del dia
-$routes->get('reporte-diario', 'ReportesController::reporteDiario');
+$routes->get('reporte-diario', 'ReportesController::reporteDiario',['filter' => 'auth']);
 $routes->post('ganancia_diario', 'ReportesController::gananciaD');
 $routes->post('reservas_dia', 'ReportesController::listaReporteDia');
 
 //reportes del cliente
-$routes->get('reporte-cliente', 'ReportesController::reporteCliente');
+$routes->get('reporte-cliente', 'ReportesController::reporteCliente',['filter' => 'auth:Administrador']);
 $routes->post('cantidad_mes', 'ReportesController::reservasMes');
 $routes->post('clientes_reservas', 'ReportesController::listaReporteMes');
-$routes->get('resumen-cliente', 'ReportesController::resumenCliente');
+$routes->get('resumen-cliente', 'ReportesController::resumenCliente',['filter' => 'auth']);
 
 
 //reportes del mes
-$routes->get('reporte-mes', 'ReportesController::reporteMes');
+$routes->get('reporte-mes', 'ReportesController::reporteMes',['filter' => 'auth']);
 $routes->post('ganancia_mes', 'ReportesController::gananciaM');
 $routes->post('reservas_mes', 'ReportesController::listaReporteMesFull');
 
@@ -154,7 +154,7 @@ $routes->get('imprimirpdfDia', 'ReportesController::PDF_dia',['filter' => 'auth'
 
 
 //Reporte de Habitacion
-$routes->get('reporte-habitacion', 'ReportesController::reporteHabitacion');
+$routes->get('reporte-habitacion', 'ReportesController::reporteHabitacion',['filter' => 'auth']);
 $routes->post('ganancia_tipohab', 'ReportesController::gananciaTipoHab');
 $routes->post('habitaciones_reservas', 'ReportesController::listaReporteMesHabitacion');
 $routes->post('obtener_reservas_hab', 'ReportesController::listarDetalleHab');

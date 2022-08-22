@@ -41,29 +41,27 @@
                                     <div class="col-12 col-md-4">
                                         <div class="form-group">
                                             <label for="num_hab" class="bmd-label-floating">Numero</label>
-                                            <input type="text" name="num_hab" id="num_hab" value="<?= old('num_hab')?>" class="validar" require>
-                                            <p class="text-danger"><?= session('errors.num_hab')?></p>
+                                            <input type="text" name="num_hab" id="num_hab" class="validar">
                                             <p class="d-none text-danger validacion" ></p>
                                         </div>
                                     </div>
                                     <div class="col-12 col-md-4">
                                         <div class="form-group">
                                             <label for="precio_hab" class="bmd-label-floating">Precio</label>
-                                            <input type="number"  class="form-control" name="precio_hab" id="precio_hab" class="validar" require>
-                                            <p class="d-none text-danger validacion" ></p>
+                                            <input type="text"  class="form-control validar" name="precio_hab" id="precio_hab">
+                                            <p class="d-none text-danger validacion"></p>
                                         </div>
                                     </div>
                                     <div class="col-12 col-md-4">
                                         <div class="form-group">
                                             <label for="tipo_hab" class="bmd-label-floating">Tipo Habitación</label>
-                                            <select name="tipo_hab" id="tipo_hab" class="form-control" class="validar" require>
+                                            <select name="tipo_hab" id="tipo_hab" class="form-control validar">
                                                 <option value="" selected="" disabled="">Seleccione una opción</option>
                                                 <?php foreach($tipo as $tipos):?>
-                                                <option value="<?= $tipos['idTipo'] ?>" <?php if(old('tipo_hab')==$tipos['idTipo']):?>selected <?php endif;?>> <?= $tipos['tipo'] ?></option>
+                                                <option value="<?= $tipos['idTipo'] ?>"> <?= $tipos['tipo'] ?></option>
                                                 <?php endforeach; ?>
                                             </select>
-                                            <p class="text-danger"><?= session('errors.tipo_hab')?></p>
-                                            <p class="d-none text-danger validacion" ></p>
+                                            <p class="d-none text-danger validacion"></p>
                                         </div>
                                     </div>
                                 </div>

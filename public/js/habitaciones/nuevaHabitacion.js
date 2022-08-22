@@ -43,13 +43,6 @@ const agregarHabitacion=()=>{
                 if (result.isConfirmed) {
                     let form_upd = document.getElementById('form_hab');
                     let data = new FormData(form_upd);
-                    // let mensajes=document.querySelectorAll('.validacion');
-                    // mensajes.forEach(function(item) {
-                    //     if(!item.classList.contains('d-none')){
-                    //         item.innerHTML='';
-                    //         item.classList.add('d-none');
-                    //     }
-                    // });
                     fetch('guardar_habitacion', {
                         method: 'POST',
                         mode: 'no-cors',
@@ -84,7 +77,6 @@ const agregarHabitacion=()=>{
                                 let msg=div.children[(div.children.length)-1]
                                 msg.innerHTML=errores[key];
                                 msg.classList.remove('d-none');
-                                //console.log(errores[key])
                             });
                         }
                     })

@@ -238,49 +238,74 @@ class ReservasController extends Controller{
         return json_encode(['respuesta' => true]);
     }
     public function imprimir_boleta($id){
-        $pdf=new ReservaPdf("Boleta Electrónica");
+        $reserva=new ReservasModel();
+        $boleta=$reserva->busquedaReserva($id);
 
-//         //Contenido
-//         //hacemos una instancia de la clase
-//         //$pdf->Cell(7,8,$id,'B',0,'C',0);
-//         $pdf->SetFont('Arial','B',16);
-// // Move to 8 cm to the right
-// $pdf->Cell(80);
-// // Texto centrado en una celda con cuadro 20*10 mm y salto de línea
-// $pdf->Cell(20,10,$id,1,1,'C');
-//         $this->response->setHeader('Content-Type','application/pdf');
-//         $pdf->Output();
-$usuario=new UsuariosModel();
-$data=$usuario->getUsuarios();
-//hacemos una instancia de la clase
-$pdf->AliasNbPages();
-$pdf->AddPage();//añade l apagina / en blanco
-$pdf->SetMargins(10,10,10);
-$pdf->SetAutoPageBreak(true,20);//salto de pagina automatico
-$pdf->SetX(15);
-$pdf->SetFont('Helvetica','B',15);
-$pdf->Cell(7,8,'N','B',0,'C',0);
-$pdf->Cell(30,8,'DNI','B',0,'C',0);
-$pdf->Cell(70,8,utf8_decode('Nombre completo'),'B',0,'C',0);
-$pdf->Cell(20,8,utf8_decode('Teléfono'),'B',0,'C',0);
+        $detalle=$reserva->mostrarDetalle($id);
+        //echo json_encode($boleta);
 
-$pdf->Cell(60,8,utf8_decode('Correo'),'B',1,'C',0);
-
-$pdf->SetFillColor(241, 240, 238);//color de fondo rgb
-$pdf->SetDrawColor(61, 61, 61);//color de linea  rgb
-
-$pdf->SetFont('Arial','',11);
-foreach($data as $usuarios){        
-    $pdf->Ln(0.6);
-    $pdf->setX(15);
-    $pdf->Cell(7,8,$id,'B',0,'C',0);
-    $pdf->Cell(30,8,$usuarios['dni'],'B',0,'C',0);
-    $pdf->Cell(70,8,utf8_decode($usuarios['nombre']." ".$usuarios['apellidoPaterno']." ".$usuarios  ['apellidoMaterno']),'B',0,'C',0);
-    $pdf->Cell(20,8,utf8_decode($usuarios['telefono']),'B',0,'C',0);        
-    $pdf->Cell(60,8,utf8_decode($usuarios['email']),'B',1,'C',0);
-}
-$this->response->setHeader('Content-Type','application/pdf');
-$pdf->Output();
-
+        // Creación del objeto de la clase heredada
+        $pdf = new ReservaPdf();
+        $pdf->AliasNbPages();
+        $pdf->AddPage();
+        
+        //cuadros iniciales con los datos de la empresa y del cliente
+        $pdf->SetFont('Arial','B',12);
+        $pdf->Cell(95,10,'HOTEL MONTEREAL',0,0,'',0);
+        $pdf->SetFillColor(192);
+        $pdf->RoundedRect(105,60, 92, 20, 2, '1234', 'D'); // POS x , POS y , ancho , alto , radio del borde , numero de las esquinas , FD para color Default = D
+        $pdf->Cell(25,10,utf8_decode('  Señor(a): '),'',0,'',0);
+        $pdf->SetFont('Arial','',12);
+        // $pdf->Cell(12,10,$row['nombre'],'',0,'',0);
+        $pdf->Cell(55,10,$boleta['nombreC'],'',0,'',0);
+        $pdf->Ln(10.2);
+        $pdf->Cell(95,10,'Telefono: 945758412',0,0,'',0);
+        $pdf->SetFont('Arial','B',12);
+        $pdf->Cell(25,10,'  DNI:','',0,'',0);
+        $pdf->SetFont('Arial','',12);
+        $pdf->Cell(67,10,$boleta['dni'],'',0,'',0);
+        $pdf->Ln(20);
+        //encabezado de la tabla
+        $pdf->RoundedRect(10,90.25,187,50, 2, '1234', 'D');
+        $pdf->SetFillColor(125,205,255);
+        $pdf->SetFont('Arial','B',11);
+        $pdf->Cell(15,10,'ID','B',0,'C',0);
+        $pdf->Cell(35,10,'Habitacion','B',0,'C',0);
+        $pdf->Cell(35,10,'Fecha de Inicio','B',0,'',0);
+        $pdf->Cell(40,10,'Fecha de Fin','B',0,'',0);
+        $pdf->Cell(40,10,'Precio/N','B',0,'',0);
+        $pdf->Cell(22,10,'Precio','B',0,'',0);
+        $pdf->Ln(10.2);
+        
+        foreach($detalle as $detalles){
+            $pdf->SetFont('Arial','',11);
+            $pdf->Cell(15,10,$detalles['idDetalle'],'',0,'C',1);
+            $pdf->Cell(35,10,$detalles['numero'],'',0,'C',1);
+            $pdf->Cell(35,10,$detalles['fechaIni'],'',0,'C',1);
+            $pdf->Cell(40,10,$detalles['fechaFin'],'',0,'',1);
+            $pdf->Cell(40,10,$detalles['precioD'],'',0,'',1);
+            $pdf->Cell(22,10,$detalles['precio'],'',0,'',1);
+            $pdf->Ln(10.2);
+        }
+        
+        $pdf->SetFont('Arial','',10);
+        $pdf->Cell(145,7,'SUB. TOTAL','',0,'R',0);
+        $pdf->Cell(20,7,'S/','',0,'C',0);
+        $pdf->Cell(22,7,$boleta['precioT']*(82/100),'',0,'',0);
+        $pdf->Ln(7);
+        $pdf->Cell(145,7,'I.G.V.','',0,'R',0);
+        $pdf->Cell(20,7,'S/','',0,'C',0);
+        $pdf->Cell(22,7,$boleta['precioT']*(18/100),'',0,'',0);
+        $pdf->Ln(7);
+        $pdf->SetFont('Arial','B',10);
+        $pdf->Cell(145,7,'TOTAL','',0,'R',0);
+        $pdf->Cell(20,7,'S/','',0,'C',0);
+        $pdf->Cell(22,7,$boleta['precioT'],'',0,'',0);
+        
+        $pdf->Ln(20);
+        $pdf->RoundedRect(10,145,187,20, 2, '1234', 'D');
+        $pdf->Cell(187,15,'OBSERVACIONES:',0,'');
+        $this->response->setHeader('Content-Type','application/pdf');
+        $pdf->Output();
     }
 }

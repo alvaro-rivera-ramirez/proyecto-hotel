@@ -32,9 +32,9 @@ class TipoHabController extends Controller{
 
         $validation = service('validation');
         $validation->setRules([ 
-            'tipo_hab' => 'required|is_unique[tipo_habitacion.idTipo]',
-            'precio_tipohab' => 'required|is_not_unique[tipo_habitacion.precio]|numeric|min_length[1]|max_length[4]',
-            'descripcion_hab' => 'required|alpha_space'
+            'tipo_hab' => 'required|alpha|is_unique[tipo_habitacion.tipo]',
+            'precio_tipohab' => 'required|numeric|min_length[2]|max_length[3]',
+            // 'descripcion_hab' => 'required|alpha_numeric_space'
         ]);
 
         if(!$validation->withRequest($this->request)->run()){
@@ -74,9 +74,9 @@ class TipoHabController extends Controller{
 
         $validation = service('validation');
         $validation->setRules([ 
-            'tipo_hab' => 'required|is_not_unique[tipo_habitacion.idTipo]',
-            'precio_tipohab' => 'required|is_unique[tipo_habitacion.precio]|numeric|min_length[1]|max_length[4]',
-            'descripcion_hab' => 'required|alpha_space',
+            'tipo_hab' => 'required|alpha|is_unique[tipo_habitacion.tipo,tipo_habitacion.idTipo,'.$tipohab_id.']',
+            'precio_tipohab' => 'required|numeric|min_length[2]|max_length[3]',
+            // 'descripcion_hab' => 'required|alpha_numeric_space',
             'admin_usuario' => 'required|alpha_numeric',
             'admin_clave' => 'required|min_length[5]|max_length[8]' 
         ]);

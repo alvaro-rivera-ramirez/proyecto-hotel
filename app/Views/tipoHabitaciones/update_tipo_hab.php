@@ -43,12 +43,11 @@
                                     <div class="row">
                                         <div class="col-12 col-md-4">
                                             <div class="form-group">
-                                                <input type="hidden" name="tipo_hab" value="<?= $tipoHab['idTipo']?>">
-                                                <label for="tipo_hab" class="bmd-label-floating">Numero</label>
-                                                <input type="Button" class="form-control"
-                                                    value="<?= old('tipo_hab',$tipoHab['tipo']) ?>" name="tipo_hab"
-                                                    id="tipo_hab" class="validar" require>
-                                                <p class="text-danger"><?= session('errors.tipo_hab')?></p>
+                                                <input type="hidden" name="tipohab_id" value="<?= $tipoHab['idTipo']?>">
+                                                <label for="tipo_hab" class="bmd-label-floating">Tipo</label>
+                                                <input type="text" class="form-control validar"
+                                                    value="<?= $tipoHab['tipo'] ?>" name="tipo_hab"
+                                                    id="tipo_hab">
                                                 <p class="d-none text-danger validacion"></p>
                                             </div>
                                         </div>     
@@ -56,21 +55,19 @@
                                             <div class="form-group">
                                                 <label for="precio_tipohab" class="bmd-label-floating">Precio Tipo del Habitacion</label>
                                                 <input type="text" name="precio_tipohab" id="precio_tipohab"
-                                                    value="<?= old('precio_tipohab',$tipoHab['precio'])?>" class="validar">
-                                                <p class="text-danger"><?= session('errors.precio_tipohab')?></p>
+                                                    value="<?= $tipoHab['precio'] ?>" class="form-control validar">
                                                 <p class="d-none text-danger validacion" ></p>
                                             </div>
                                         </div>
-                                        <div class="col-12 col-md-4">
+                                        <!-- <div class="col-12 col-md-4">
                                             <div class="form-group">
                                                 <label for="descripcion_hab" class="bmd-label-floating">Descripcion</label>
                                                 <input type="text" name="descripcion_hab" id="descripcion_hab"
-                                                    value="<?= old('descripcion_hab',$tipoHab['descripcion'])?>" class="validar" require>
-                                                <p class="text-danger"><?= session('errors.descripcion_hab')?></p>
+                                                    value="" class="form-control validar">
                                                 <p class="d-none text-danger validacion" ></p>
                                             </div>
-                                        </div>
-                                        </div>
+                                        </div> -->
+                                        
                                     </div>
                                 </div>
                             </fieldset>
@@ -119,7 +116,6 @@
 
     <?php include "include/script.php"?>
     <script src="<?= base_url('js/tiposHabitacion/editarTipoH.js') ?>"></script>
-    <!-- <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script> -->
     <script>     
         // let boton_enviar = document.getElementById('act_tipohab');
         // let val1 = document.getElementById('tipo_hab');

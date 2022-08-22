@@ -33,13 +33,13 @@
                   <input type="text" id="exampleInputEmail1" class="invalidos" name="usuario">
                 </div>
                 <div class="form-input ">
-                  <div class="d-flex justify-content-between ">
+                  <!-- <div class="d-flex justify-content-between ">
                     <label for="exampleInputPassword1" class="form-label">Contraseña</label>
                     <a href="#" class="login-recu" onclick="Forget()">Olvidate tu
                       contraseña? </a>
 
-                  </div>
-
+                  </div> -->
+                  <label for="exampleInputPassword1" class="form-label">Contraseña</label>
                   <input type="password" id="exampleInputPassword1" name="password">
                 </div>
 
@@ -54,24 +54,7 @@
       </div>
     </div>
   </div>
-  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-body">
-          <h5 class="modal-title mb-4" id="exampleModalLabel">Recuperar tu cuenta</h5>
-          <p> Ingresa tu correo electrónico para buscar tu cuenta.</p>
-          <form action="" method="">
-            <input class="modal-email" type="email" placeholder="Correo electronico">
-            <div class="modal-button d-flex justify-content-end">
-              <button type="submit" class="btn-res">Restablecer</button>
-              <button type="button" class="btn-cas" data-bs-dismiss="modal">Cancelar</button>
-            </div>
-          </form>
-        </div>
-      </div>
-    </div>
-  </div>
-
+  
   <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   <script src="js/bootstrap.bundle.min.js"></script>
   <script>
@@ -119,7 +102,9 @@
     }
     )
   </script>
-  <script src="js/Correo.js"></script>
+
+  <!-- <script src="js/Login.js"></script> -->
+
 
 </body>
 
