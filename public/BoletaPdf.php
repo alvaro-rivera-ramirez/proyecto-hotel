@@ -73,28 +73,29 @@ $pdf->SetFont('Arial','',12);
 $pdf->Cell(67,10,$row['dni'],'',0,'',0);
 $pdf->Ln(20);
 
-$consulta2 = "SELECT idReserva, idHab, fechaIni, fechaFin, Precio FROM detalle_reserva where idDetalle = 12345";
+$consulta2 = "SELECT detalle_reserva.idReserva, detalle_reserva.fechaIni, detalle_reserva.fechaFin, detalle_reserva.Precio, 
+tipo_habitacion.tipo FROM detalle_reserva INNER JOIN habitacion ON detalle_reserva.idHab=habitacion.idHab INNER JOIN tipo_habitacion 
+ON habitacion.idTipo=tipo_habitacion.idTipo where detalle_reserva.idDetalle = 12345";
 $resultado2 = $mysqli->query($consulta2);
-
 $row = $resultado2->fetch_assoc();
 
 //encabezado de la tabla
-$pdf->RoundedRect(10,90.25,187,41.5, 2, '1234', 'D');
+$pdf->RoundedRect(10,90.25,187,70, 2, '1234', 'D');
 $pdf->SetFillColor(125,205,255);
 $pdf->SetFont('Arial','B',11);
 $pdf->Cell(15,10,'ID','B',0,'C',0);
-$pdf->Cell(35,10,'ID Habitacion','B',0,'C',0);
+$pdf->Cell(35,10,'Tipo Habitacion','B',0,'C',0);
 $pdf->Cell(35,10,'Fecha de Inicio','B',0,'',0);
 $pdf->Cell(80,10,'Fecha de Fin','B',0,'',0);
 $pdf->Cell(22,10,'Precio','B',0,'',0);
 $pdf->Ln(10.2);
 $pdf->SetFont('Arial','',11);
-$pdf->Cell(15,10,$row['idReserva'],'',0,'',1);
-$pdf->Cell(35,10,$row['idHab'],'',0,'C',1);
-$pdf->Cell(35,10,$row['fechaIni'],'',0,'',1);
-$pdf->Cell(80,10,$row['fechaFin'],'',0,'',1);
-$pdf->Cell(22,10,$row['Precio'],'',0,'',1);
-$pdf->Ln(10.2);
+$pdf->Cell(15,10,$row['idReserva'],'',0,'',0);
+$pdf->Cell(35,10,$row['tipo'],'',0,'C',0);
+$pdf->Cell(35,10,$row['fechaIni'],'',0,'',0);
+$pdf->Cell(80,10,$row['fechaFin'],'',0,'',0);
+$pdf->Cell(22,10,$row['Precio'],'',0,'',0);
+$pdf->Ln(15);
 $pdf->SetFont('Arial','',10);
 $pdf->Cell(145,7,'SUB. TOTAL','',0,'R',0);
 $pdf->Cell(20,7,'S/','',0,'C',0);
@@ -109,8 +110,8 @@ $pdf->Cell(145,7,'TOTAL','',0,'R',0);
 $pdf->Cell(20,7,'S/','',0,'C',0);
 $pdf->Cell(22,7,$row['Precio'],'',0,'',0);
 
-$pdf->Ln(20);
-$pdf->RoundedRect(10,145,187,15, 2, '1234', 'D');
+$pdf->Ln(40);
+$pdf->RoundedRect(10,165,187,15, 2, '1234', 'D');
 $pdf->Cell(187,15,'OBSERVACIONES:',0,'');
 
 $pdf->Output();
