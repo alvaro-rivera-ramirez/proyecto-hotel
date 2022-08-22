@@ -165,7 +165,7 @@ class ClientesController extends Controller{
         $data=$cliente->getClientes();
     
         // Creación del objeto de la clase heredada
-        $pdf = new PDF("Reporte de Clientes");
+        $pdf = new PDF("Lista de Clientes");
         $pdf->AliasNbPages();
         $pdf->AddPage();//añade l apagina / en blanco
         $pdf->SetMargins(10,10,10);

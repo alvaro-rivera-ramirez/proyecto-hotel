@@ -132,7 +132,7 @@ $routes->post('ganancia_mes', 'ReportesController::gananciaM');
 $routes->post('reservas_mes', 'ReportesController::listaReporteMesFull');
 
 //PDF REPORTES
-$routes->get('imprimirpdfCliente', 'ReportesController::imprimirReporteCliente',['filter' => 'auth']);
+//$routes->get('imprimirpdfCliente', 'ReportesController::imprimirReporteCliente',['filter' => 'auth']);
 
 
 //PDF

@@ -54,14 +54,6 @@ class ReportesController extends Controller{
         echo json_encode($reporteT);
     }
     
-
-    public function listaReporteDia(){
-        $dato=json_decode(file_get_contents("php://input"));
-        $reporte=new ReservasModel();
-        $lista=$reporte->mostrarReporteDia($dato);
-        echo json_encode($lista);
-    }
-
     public function listaReporteMes(){
         $dato=json_decode(file_get_contents("php://input"));
         // $dato->mes=($dato->mes<10)?'0'.$dato->mes:$dato->mes;

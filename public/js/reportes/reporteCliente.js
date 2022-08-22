@@ -81,14 +81,6 @@ const actualizarCardCliente = async()=>{
     nClientes.innerHTML=datos[1].cantidad;
 }
 
-
-
-const imprimir =(e)=>{
-
-    let enlace=e;
-    enlace.setAttribute('href','http://localhost/proyecto-hotel/public/imprimirpdfCliente?dato='+dato_buscar.value+'&fecha='+mesR.value);
-}
-
 const listarReporte = async(mes,dato) =>{
     await fetch('clientes_reservas', {
 

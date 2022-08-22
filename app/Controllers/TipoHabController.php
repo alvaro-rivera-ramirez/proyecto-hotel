@@ -120,7 +120,7 @@ class TipoHabController extends Controller{
 
             
         // Creación del objeto de la clase heredada
-        $pdf = new PDF("Reporte de Tipos de Habitación");
+        $pdf = new PDF("Lista de Tipos de Habitación");
         $pdf->AliasNbPages();
         $pdf->AddPage();//añade l apagina / en blanco
         $pdf->SetMargins(10,10,10);

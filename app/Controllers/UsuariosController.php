@@ -272,7 +272,7 @@ class UsuariosController extends Controller{
     public function imprimir(){
         $usuario=new UsuariosModel();
         $data=$usuario->getUsuarios();
-        $pdf = new Pdf("Reporte de Usuarios");
+        $pdf = new Pdf("Lista de Usuarios");
         //hacemos una instancia de la clase
         $pdf->AliasNbPages();
         $pdf->AddPage();//añade l apagina / en blanco

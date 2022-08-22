@@ -1,5 +1,3 @@
-
-
 const agregarHab = (detalleHab,cont,Jtipo) => {
     let hab = document.createElement('div');
         hab.setAttribute('class', 'row g-2')
@@ -46,12 +44,24 @@ const agregarFecha = (fechaI,fechaF) =>{
     let mes = fecha.getMonth()+1;
     let dia = fecha.getDate();
     let anio = fecha.getFullYear();
+
+    let fechanext=new Date(fecha.setDate(fecha.getDate()+1));
+    let mes2 = fechanext.getMonth()+1;
+    let dia2 = fechanext.getDate();
+    let anio2 = fechanext.getFullYear();
     if(dia<10)
         dia='0'+dia;
     if(mes<10)
     mes='0'+mes
+
+    if(dia2<10)
+        dia2='0'+dia2;
+    if(mes2<10)
+    mes2='0'+mes2
+
+
   fechaI.value=anio+"-"+mes+"-"+dia;
-  fechaF.value=anio+"-"+mes+"-"+dia;
+  fechaF.value=anio2+"-"+mes2+"-"+dia2;
 }
 const reservar = async() =>{
     let Jhabitacion;

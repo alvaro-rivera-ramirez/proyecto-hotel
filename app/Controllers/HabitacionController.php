@@ -123,7 +123,7 @@ class HabitacionController extends Controller{
         //var_dump($model->getAll());
 
         // Creación del objeto de la clase heredada
-        $pdf = new PDF("Reporte de Habitaciones");
+        $pdf = new PDF("Lista de Habitaciones");
         $pdf->AliasNbPages();
         $pdf->AddPage();//añade l apagina / en blanco
         $pdf->SetMargins(10,10,10);
