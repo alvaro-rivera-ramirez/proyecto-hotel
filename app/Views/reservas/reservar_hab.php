@@ -110,7 +110,8 @@
                                     <div class="col-md-4">
                                         <label for="Hab1">Habitación</label>
                                         <select id="Hab1" class="form-select" name="hab[]">
-                                            <option selected> Seleccione una opción </option>
+                                            
+                                            <option selected> Seleccione una opción  </option>
                                         </select>
                                     </div>
                                     <div class="col-md-3">
@@ -158,9 +159,13 @@
         </div>
     </div>
     <?php include "include/script.php"?>
-    <script src="js/reservas/cliente.js"></script>
+    <script src="<?= base_url('js/reservas/cliente.js') ?>"></script>
+    <script src="<?= base_url('js/reservas/filtroHab.js') ?>"></script>
+    <script src="<?= base_url('js/reservas/reservar.js') ?>"></script>
+
+    <!-- <script src="js/reservas/cliente.js"></script>
     <script src="js/reservas/filtroHab.js"></script>
-    <script src="js/reservas/reservar.js"></script>
+    <script src="js/reservas/reservar.js"></script> -->
     <!-- <script>
 
     let $tipo = document.getElementById('TipoHab1');

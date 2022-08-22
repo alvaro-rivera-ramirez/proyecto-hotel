@@ -79,13 +79,49 @@
                                             <th>Total</th>
                                         </tr>
                                     </thead>
-                                    <tbody id="resultado">
+                                    <tbody id="lista">
                                         
                                     </tbody>
                                 </table>
                             </div>
-                            <p class="text-end">Mostrando 1 al 10 de un total de 27</p>
+
                             <?php include "../app/Views/pagination/view_pag.php"?>
+
+                            <div class="modal fade" id="detalle_reserva" tabindex="-1"
+                                aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog modal-lg">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalLabel">Detalle de Reserva</h5>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <div class="table-responsive mt-2">
+                                                <table class="table bg-white">
+                                                    <thead class="bg-dark text-light">
+                                                        <tr class="text-center">
+                                                            <th>N°</th>
+                                                            <th>Tipo de Habitacion</th>
+                                                            <th>Número</th>
+                                                            <th>Fecha Inicio</th>
+                                                            <th>Fecha Fin</th>
+                                                            <th>Dias</th>
+                                                            <th>Precio/D</th>
+                                                            <th>Precio</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody id="detalle">
+
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                            <button type="button" class="btn btn-secondary"
+                                                data-bs-dismiss="modal">Cerrar</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </section>
                     </div>
                     <!----->
@@ -96,6 +132,7 @@
     </div>
 
     <?php include "include/script.php"?>
+    <script src="js/reportes/mostrarModal.js"></script>
     <script src="js/reportes/reporteMes.js"></script>
     <!-- <script src="js/reportes/paginacion.js"></script> -->
 

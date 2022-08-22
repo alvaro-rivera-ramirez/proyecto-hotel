@@ -55,8 +55,8 @@ const actualizarCardMes = (mesValor) =>{
 
 }
 
-const listarReporte = (mes,dato) =>{
-    fetch('reservas_mes', {
+const listarReporte = async(mes,dato) =>{
+    await fetch('reservas_mes', {
         method: 'POST',
         mode: 'no-cors',
         headers: {
@@ -65,20 +65,25 @@ const listarReporte = (mes,dato) =>{
         },
         body: JSON.stringify({"mes":mes,"dato":dato})
     }).then(response => response.json()).then( datos=> {
-        let lista='';
+        let filas='';
         console.log(datos);
         for(let i=0;i<datos.length;i++){
-            lista+=`<tr class="text-wrap"> <td>${datos[i].idReserva}</td> <td>${datos[i].dni}</td> <td>${datos[i].nombreC}</td> <td>${datos[i].fechas}</td><td> <button type="button" class="btn detalleR"><i class="fa-solid fa-circle-info"></i></button> </td> <td>${datos[i].precioT}</td></tr>`      
+            filas+=`<tr class="text-wrap"> <td>${datos[i].idReserva}</td> <td>${datos[i].dni}</td> <td>${datos[i].nombreC}</td> <td>${datos[i].fechas}</td><td> <button type="button" class="btn detalleR" onclick="listarDetalle(${datos[i].idReserva})"><i class="fa-solid fa-circle-info"></i></button> </td> <td>${datos[i].precioT}</td></tr>`      
         }
-        resultado.innerHTML=lista;
+        lista.innerHTML=filas;
     })
 }
 
 
-document.getElementById('buscar_reserva').addEventListener('click', e=>{
+document.getElementById('buscar_reserva').addEventListener('click', async e=>{
     e.preventDefault();
     let dato=document.getElementById('dato_buscar').value;
-    listarReporte(mesR.value,dato);
+    await listarReporte(mesR.value,dato);
+    
+    arrayTr=[];
+    generarPaginas();
+    paginacion();
+    buttonGenerator();
 })
 
 const actualizarChart = async (myChart,mes,totalCard) =>{
@@ -100,9 +105,13 @@ const actualizarChart = async (myChart,mes,totalCard) =>{
     myChart.update();
     actualizarCardMes(mes)
     totalCard.innerHTML=reportes[4].ganancia;
-    listarReporte(mes,'');
+    await listarReporte(mes,'');
+    arrayTr=[];
+    generarPaginas();
+    paginacion();
+    buttonGenerator();
 }
-const reporteDiario = async() =>{
+const reporteMes = async() =>{
     let mesReporte=document.querySelector('#mesR');
     let totalCard=document.getElementById('gTotal');
 
@@ -167,10 +176,12 @@ const reporteDiario = async() =>{
     const myChart = new Chart(ctx,
         config
         );
-    listarReporte(mesR.value,'');
+    await listarReporte(mesR.value,'');
+    paginacion();
+    buttonGenerator();
     mesReporte.addEventListener('change', e => {
         actualizarChart(myChart,e.target.value,totalCard);
     });
     
 }
-reporteDiario();
+reporteMes();
