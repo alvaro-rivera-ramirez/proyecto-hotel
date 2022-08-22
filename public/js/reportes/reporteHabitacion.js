@@ -1,5 +1,5 @@
-const reservasMes = async(mes,anio) =>{
-    const peticion=await fetch('cantidad_mes',{
+const reservasMesHabitacion = async(mes,anio) =>{
+    const peticion=await fetch('cantidad_mes_habitacion',{
         method:'POST',
         mode:'no-cors',
         headers:{
@@ -55,8 +55,8 @@ const actualizarCardMes = (mesValor) =>{
 
 }
 
-const actualizarCardCliente = async()=>{
-    const peticion=await fetch('resumen-cliente',{
+const actualizarCardHabitacion = async()=>{
+    const peticion=await fetch('resumen-habitacion',{
         method:'GET',
         mode:'no-cors',
         headers:{
@@ -68,8 +68,8 @@ const actualizarCardCliente = async()=>{
     tClientes.innerHTML=datos[0].cantidad;
     nClientes.innerHTML=datos[1].cantidad;
 }
-const listarReporte = async(mes,dato) =>{
-    await fetch('clientes_reservas', {
+const listarReporte = (mes,dato) =>{
+    fetch('habitaciones_reservas', {
         method: 'POST',
         mode: 'no-cors',
         headers: {
@@ -79,24 +79,20 @@ const listarReporte = async(mes,dato) =>{
         body: JSON.stringify({"mes":mes,"dato":dato})
     }).then(response => response.json()).then( datos=> {
         console.log(datos)
-        let filas='';
+        let lista='';
         for(let i=0;i<datos.length;i++){
-            filas+=`<tr class="text-wrap"> <td>${datos[i].idCliente}</td> <td>${datos[i].dni}</td> <td>${datos[i].nombreC}</td> <td>${datos[i].fecha}</td><td> <button type="button" class="btn detalleR" onclick="listarReservas(${datos[i].idCliente},'${datos[i].fecha}')"><i class="fa-solid fa-circle-info"></i></button> </td> <td>${datos[i].gastoT}</td><td>${datos[i].cantidad}</td></tr>`      
+            lista+=`<tr class="text-wrap"> <td>${datos[i].idHab}</td> <td>${datos[i].numero}</td> <td>${datos[i].tipo}</td> <td>${datos[i].fecha}</td><td> <button type="button" class="btn detalleR"><i class="fa-solid fa-circle-info"></i></button> </td> <td>${datos[i].racaudacionT}</td><td>${datos[i].cantidad}</td></tr>`      
         }
-        lista.innerHTML=filas;
+        resultado.innerHTML=lista;
     })
 }
 
-document.getElementById('buscar_reserva').addEventListener('click',async (e)=>{
+document.getElementById('buscar_reserva').addEventListener('click', e=>{
     e.preventDefault();
     let dato=document.getElementById('dato_buscar').value;
-    await listarReporte(mesR.value,dato);
-    arrayTr=[];
-    generarPaginas();
-    paginacion();
-    buttonGenerator();
+    listarReporte(mesR.value,dato);
 })
-//Actualizar grafico de barras
+
 const actualizarChart = async (myChart,mes,totalCard) =>{
     let reportes={};
     await reservasMes(mes).then((dato) =>{
@@ -110,21 +106,17 @@ const actualizarChart = async (myChart,mes,totalCard) =>{
         return obj.cantidad;
     });
 
-    console.log(reportes)
-
+    //La data ingresada sera solo de 1 mes
     myChart.config.data.labels=dates;
     myChart.config.data.datasets[0].data=cantidad;
 
+    //Aqui deberia visualizar solo 1 mes
     myChart.update();
     actualizarCardMes(mes)
-    totalCard.innerHTML=reportes[4].cantidad;
-    await listarReporte(mes,'');
-    arrayTr=[];
-    generarPaginas();
-    paginacion();
-    buttonGenerator();
+    totalCard.innerHTML=reportes[0].cantidad;
+    listarReporte(mes,'');
 }
-const reporteCliente = async() =>{
+const reporteHabitacion = async() =>{
     let mesReporte=document.querySelector('#mesR');
 
     let totalCard=document.getElementById('reservasCard');
@@ -136,7 +128,7 @@ const reporteCliente = async() =>{
         reportes=dato;
     });
     
-    totalCard.innerHTML=reportes[4].cantidad;
+    totalCard.innerHTML=reportes[0].cantidad;
     let dates=reportes.map(function(obj) {
         return obj.mes;
     });
@@ -146,7 +138,6 @@ const reporteCliente = async() =>{
     const data={
         labels: dates,
         datasets: [{
-            label: 'Cantidad',
             data: cantidad,
             backgroundColor: [
                 'rgba(255, 99, 132, 0.2)',
@@ -165,37 +156,41 @@ const reporteCliente = async() =>{
                 'rgba(255, 159, 64, 1)'
             ],
             borderWidth: 1
-        }]
+        }],
+
+        labels: [
+            'Red',
+            'Yellow',
+            'Blue',
+            'Orange',
+            'Purple',
+            'Green'
+        ]
     };
     
     const config={
-        type: 'bar',
+        type: 'doughnut',
         data,
         options: {
             plugins: {
                 title: {
                     display: true,
-                    text: 'Cantidad de Reservas por Mes'
+                    text: 'Cantidad de Ganancia por Mes'
                 }
             },
-            scales: {
-                y: {
-                    beginAtZero: true
-                }
-            }
+            
         }
     }
     const ctx = document.getElementById('myChart');
     const myChart = new Chart(ctx,
         config
         );
-    await listarReporte(mesR.value,'');
-    paginacion();
-    buttonGenerator();
+    listarReporte(mesR.value,'');
     mesReporte.addEventListener('change', e => {
         actualizarChart(myChart,e.target.value,totalCard)
     });
     
 }
-reporteCliente();
-actualizarCardCliente();
+reporteHabitacion();
+
+actualizarCardHabitacion();

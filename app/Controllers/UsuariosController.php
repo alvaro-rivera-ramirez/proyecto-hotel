@@ -29,14 +29,26 @@ class UsuariosController extends Controller{
     public function guardar(){
         $validation = service('validation');
         $validation->setRules([
-            'user_dni' => 'required|numeric|max_length[8]|alpha_numeric',
+            'user_dni' => 'required|numeric|max_length[8]',
             'user_nombre' => 'required|alpha_space',
             'user_apellido' => 'required|alpha_space',
             'user_telefono' => 'required|alpha_numeric',
             'user_usuario' =>  'required|alpha_numeric|is_unique[usuarios.username]',
             'user_email' => 'required|valid_email|is_unique[usuarios.email]',
             'user_clave_1' => 'required|matches[user_clave_2]|min_length[5]|max_length[8]',
+            'user_clave_2' => 'required|matches[user_clave_1]|min_length[5]|max_length[8]',
             'user_privilegio' => 'required|is_not_unique[roles.idRol]'
+        ],
+        [
+            'user_usuario' =>[
+                'is_unique' => 'El nombre de usuario ya existe'
+            ],
+            'user_clave_1' => [
+                'matches' => 'Las contraseñas no coinciden'
+            ],
+            'user_clave_2' => [
+                'matches' => 'Las contraseñas no coinciden'
+            ]
         ]);
 
         if(!$validation->withRequest($this->request)->run()){
@@ -87,15 +99,28 @@ class UsuariosController extends Controller{
             'user_dni' => 'required|numeric|is_unique[usuarios.dni,usuarios.id,'.$user_id.']|max_length[8]',
             'user_nombre' => 'required|alpha_space',
             'user_apellido' => 'required|alpha_space',
-            'user_telefono' => 'required|alpha_numeric',
+            'user_telefono' => 'required|numeric|min_length[9]|max_length[12]',
             'user_usuario' =>  'required|alpha_numeric|is_unique[usuarios.username,usuarios.id,'.$user_id.']',
             'user_email' => 'required|valid_email|is_unique[usuarios.email,usuarios.id,'.$user_id.']',
             'user_clave_1' => 'permit_empty|matches[user_clave_2]|min_length[5]|max_length[8]',
+            'user_clave_2' => 'permit_empty|matches[user_clave_1]|min_length[5]|max_length[8]',
             'user_activo' => 'required|is_not_unique[usuarios.activo]',
             'user_privilegio' => 'required|is_not_unique[roles.idRol]',
             'admin_usuario' =>  'required|alpha_numeric',
             'admin_clave' => 'required|min_length[5]|max_length[8]'
-        ]);
+        ],
+        [
+            'user_usuario' =>[
+                'is_unique' => 'El nombre de usuario ya existe'
+            ],
+            'user_clave_1' => [
+                'matches' => 'Las contraseñas no coinciden'
+            ],
+            'user_clave_2' => [
+                'matches' => 'Las contraseñas no coinciden'
+            ]
+        ]
+        );
 
         if(!$validation->withRequest($this->request)->run()){
             //dd($validation->getErrors());
@@ -105,7 +130,7 @@ class UsuariosController extends Controller{
         $admin_usuario=$this->request->getPost('admin_usuario');
         $admin_pass=$this->request->getPost('admin_clave');
         if($admin['username']!=$admin_usuario || !PASSWORD_VERIFY($admin_pass,$admin['pass'])){
-            return redirect()->to(base_url('editar_usuario/'.$user_id))->withInput()->with('msg','Usuario y/o Password Incorrectos'); 
+            return json_encode(['respuesta' => false, 'errors' => ['datosAdmin' =>'Usuario y/o Password Incorrectos']]); 
         }
 
         $username=$this->request->getPost('user_usuario');

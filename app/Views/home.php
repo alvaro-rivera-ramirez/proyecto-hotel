@@ -78,6 +78,10 @@
                                             <a href="http://localhost/proyecto-hotel/public/editar_habitacion/<?= $habitaciones['idHab']?>">
                                         <?php break;?>
                                     <?php endswitch;?>
+
+                                            
+                                          <a href="<?= base_url('reservar'.'?id='.$habitaciones['idHab'].'&idTipo='.$habitaciones['idTipo']) ?>">
+
                                             <mark><?= $habitaciones['numero'];?></mark>
                                             <p><?= $habitaciones['tipo'];?></p>
                                             <img src="Imagenes/cama.png" width="40px">

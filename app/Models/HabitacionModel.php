@@ -30,7 +30,7 @@ class HabitacionModel extends Model{
     public function innerJoinTipoHab()
     {
         $query=$this->db->table('habitacion as h');
-        $query->select('h.*, tipoHab.tipo');
+        $query->select('h.*, tipoHab.idTipo,tipoHab.tipo');
         $query->join('tipo_habitacion as tipoHab', 'h.idTipo= tipoHab.idTipo');
         $query->where('h.deleted_at IS NULL');
         $query->orderBy('h.idHab','ASC');
