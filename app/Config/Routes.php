@@ -111,6 +111,7 @@ $routes->post('actualizar_usuario', 'UsuariosController::actualizar');
 $routes->get('eliminar_usuario/(:num)', 'UsuariosController::borrar/$1',['filter' => 'auth:Administrador']);
 $routes->get('recuperar_password', 'UsuariosController::recuperarPassword');
 
+
 $routes->get('demo-pdf', 'PdfController::demoPDF');
 
 //reportes del dia
@@ -142,6 +143,14 @@ $routes->get('/imprimir_usuarios', 'UsuariosController::imprimir',['filter' => '
 $routes->get('/imprimir_clientes', 'ClientesController::imprimir',['filter' => 'auth:Administrador']);
 $routes->get('/imprimir_boleta/(:num)', 'ReservasController::imprimir_boleta/$1',['filter' => 'auth']);
 //$routes->post('imprimir_boleta', 'ReservasController::imprimir_boleta',['filter' => 'auth']);
+
+//PDF
+
+//REPORTES EN PDF
+$routes->get('imprimirpdfCliente', 'ReportesController::PDF_cliente',['filter' => 'auth']);
+$routes->get('imprimirpdfMes', 'ReportesController::PDF_mes',['filter' => 'auth']);
+$routes->get('imprimirpdfDia', 'ReportesController::PDF_dia',['filter' => 'auth']);
+
 
 
 //Reporte de Habitacion

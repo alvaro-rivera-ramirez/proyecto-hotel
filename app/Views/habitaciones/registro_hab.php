@@ -35,7 +35,7 @@
                                     <div class="box-nav"> <a class="active" href="#"><i
                                                 class="fas fa-clipboard-list fa-fw"></i> LISTA DE HABITACIONES</a>
                                     </div>
-                                    <div class="box-nav"> <a href="<?= base_url('imprimir_hab')?>" target="_blank"><i class="fa-solid fa-print"></i> IMPRIMIR</a>
+                                    <div class="box-nav"> <button><i class="fa-solid fa-print"></i> IMPRIMIR</button>
                                     </div>
                                     <div class="box-nav">
                                         <form class="d-flex">
