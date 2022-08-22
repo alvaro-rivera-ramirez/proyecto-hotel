@@ -72,7 +72,8 @@
                                             <div class="d-block box-disabled">
                                         <?php break;?>
                                     <?php endswitch;?>
-                                            <a href="#">
+                                            
+                                            <a href="<?= base_url('reservar'.'?id='.$habitaciones['idHab'].'&idTipo='.$habitaciones['idTipo']) ?>">
                                             <mark><?= $habitaciones['numero'];?></mark>
                                             <p><?= $habitaciones['tipo'];?></p>
                                             <img src="Imagenes/cama.png" width="40px">

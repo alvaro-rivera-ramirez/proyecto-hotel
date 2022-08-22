@@ -100,6 +100,12 @@ class ReservasController extends Controller{
         echo json_encode($datosR);
     }
 
+    public function listar_reservas(){
+        $data=json_decode(file_get_contents("php://input"));
+        $reserva=new ReservasModel();
+        $datosR=$reserva->obtenerReservas($data);
+        echo json_encode($datosR);
+    }
     public function listar_detalle(){
         $dataJSON=file_get_contents("php://input");
         
@@ -221,6 +227,16 @@ class ReservasController extends Controller{
         }
     }
 
+    public function borrar(){
+        $reserva=new ReservasModel();
+        $id=file_get_contents("php://input");
+        $dato=$reserva->where('idReserva',$id)->first();        
+        if($dato['idEstadoR']==3 || $dato['idEstadoR']==2){
+            return json_encode(['respuesta' => false]); 
+        }
+        $reserva->where('idReserva',$id)->delete($id);        
+        return json_encode(['respuesta' => true]);
+    }
     public function imprimir_boleta($id){
         $pdf=new ReservaPdf("Boleta Electrónica");
 

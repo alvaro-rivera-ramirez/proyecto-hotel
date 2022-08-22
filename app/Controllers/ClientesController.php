@@ -32,7 +32,7 @@ class ClientesController extends Controller{
             'cli_apellidop_reg' => 'required|alpha_space',
             'cli_apellidom_reg' => 'permit_empty|alpha_numeric',
             'cli_telefono_reg' =>  'required|alpha_numeric',
-            'cli_email_reg' => 'permit_empty|max_length[50]',
+            'cli_email_reg' => 'permit_empty|max_length[50]|valid_email',
         ]);
 
         if(!$validation->withRequest($this->request)->run()){
@@ -113,20 +113,23 @@ class ClientesController extends Controller{
             'cliente_apellidop' => 'permit_empty|alpha_space',
             'cliente_apellidom' => 'permit_empty|alpha_space',
             'cliente_telefono' =>  'required|alpha_numeric',
-            'cliente_email' => 'permit_empty|max_length[50]',
+            'cliente_email' => 'permit_empty|max_length[50]|valid_email',
             'admin_usuario' => 'required|alpha_numeric',
             'admin_clave' => 'required|min_length[5]|max_length[8]'
+        ],[
+            'cliente_dni' =>[
+                'is_unique' =>'El dni ya esta registrado'
+            ]
         ]);
     
         if(!$validation->withRequest($this->request)->run()){
-            return json_encode(['respuesta' => false]);
-            // return redirect()->to(base_url('editar_cliente/'.$cliente_id))->withInput()->with('errors',$validation->getErrors());
+            return json_encode(['respuesta' => false,'errors' => $validation->getErrors()]);
         }
     
         $admin_usuario=$this->request->getPost('admin_usuario');
         $admin_pass=$this->request->getPost('admin_clave');
         if($admin['username']!=$admin_usuario || !PASSWORD_VERIFY($admin_pass,$admin['pass'])){
-            return redirect()->to(base_url('editar_cliente/'.$cliente_id))->withInput()->with('msg','Usuario y/o Password Incorrectos'); 
+            return json_encode(['respuesta' => false, 'errors' => ['datosAdmin' =>'Usuario y/o Password Incorrectos']]);
         }
     
         $dni=$this->request->getPost('cliente_dni');

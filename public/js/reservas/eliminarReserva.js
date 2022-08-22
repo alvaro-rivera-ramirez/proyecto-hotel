@@ -1,4 +1,4 @@
-function Eliminar(id) {
+const eliminarReserva= (id) =>{
     console.log(id);
     Swal.fire({
         title: '¿Está seguro de eliminar?',
@@ -11,30 +11,31 @@ function Eliminar(id) {
         cancelButtonText: 'Cancelar'
     }).then((result) => {
         if (result.isConfirmed) {                    
-            fetch('eliminar_usuario/' + id  , {
-                    method: 'GET',
+            fetch('eliminar_reserva', {
+                    method: 'POST',
                     mode: 'no-cors',
                     headers: {
                         "Content-Type": "application/json",
                         "X-Requested-With": "XMLHttpRequest"
-                    }
-            }).then(res => res.json()).then(res => {
-                if (res['respuesta']) {
-                    Swal.fire(
+                    },
+                    body: id
+                }).then(res => res.json()).then(res => {
+                    if (res['respuesta']) {
+                        Swal.fire(
                         'ELIMINADO!',
                         'El registro fue eliminado exitosamente',
                         'success'
-                    ).then((value) => {
-                        location.reload();
-                    });
-                } else {
-                    Swal.fire(
+                        ).then((value) => {
+                            location.reload();
+                        });
+                    } else {
+                        Swal.fire(
                         'Error!',
-                        res['mensaje'],
+                        'No se puede eliminar el registro',
                         'error'
-                    );
-                }
-            })                 
+                        );
+                    }
+                });                    
         }
     })
 }
