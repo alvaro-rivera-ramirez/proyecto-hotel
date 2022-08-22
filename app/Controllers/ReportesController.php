@@ -24,12 +24,22 @@ class ReportesController extends Controller{
         }
         echo json_encode($reporteT);
     }
+    
+    public function listaReporteDia(){
+        $dato=json_decode(file_get_contents("php://input"));
+        $reporte=new ReservasModel();
+        $lista=$reporte->mostrarReporteDia($dato);
+        echo json_encode($lista);
+    }
+
+    //Reporte de Clientes
+    public function reporteCliente(){
+        return view('reportes/reporte_cliente');
+    }
+    
 
     public function reservasMes(){
         $mesActual=json_decode(file_get_contents("php://input"));
-        // $mes=($mesActual->mes<10)?'0'.$mesActual->mes:$mesActual->mes;
-        // $fechaReporte=$mesActual->anio.'-'.$mes;
-
         $reporte=new ReservasModel();
         $fechaLimite=date("Y-m",strtotime($mesActual->mes."- 5 month"));
         $reporteT=[];
@@ -42,13 +52,7 @@ class ReportesController extends Controller{
         echo json_encode($reporteT);
     }
     
-    public function listaReporteDia(){
-        $dato=json_decode(file_get_contents("php://input"));
-        $reporte=new ReservasModel();
-        $lista=$reporte->mostrarReporteDia($dato);
-        echo json_encode($lista);
-    }
-
+    
     public function listaReporteMes(){
         $dato=json_decode(file_get_contents("php://input"));
         // $dato->mes=($dato->mes<10)?'0'.$dato->mes:$dato->mes;
@@ -63,6 +67,8 @@ class ReportesController extends Controller{
         $datos=$cliente->datosGenerales($fechaActual);
         echo json_encode($datos);
     }
+
+
     /*reporte de mes */
     public function reporteMes(){
         return view('reportes/reporte_mes');
@@ -88,34 +94,40 @@ class ReportesController extends Controller{
         echo json_encode($lista);
     }
     /*----------------*/
-    public function reporteCliente(){
-        return view('reportes/reporte_cliente');
-    }
-    
+
+
+    /* Reporte Habitacion*/
     public function reporteHabitacion(){
         return view('reportes/reporte_habitacion');
     }
 
-    public function gananciaMHabitacion(){
-        $fechaActual=file_get_contents("php://input");
+    public function gananciaTipoHab(){
+        $mes=file_get_contents("php://input");
         $reporte=new ReservasModel();
-        $fecha=date("Y-m",strtotime($fechaActual));
-        $fechas=[];
-        $reporteT=[];
-        while($fecha<$fechaActual){
-            $fecha=date("Y-m",strtotime($fecha)); 
-            $ganancia=$reporte->gananciaMesHab($fecha);
-            array_push($reporteT,['fecha' => $fecha, 'ganancia' => $ganancia['Total']]);
-            
-        }
+        $reporteT=$reporte->gananciaMesHab($mes);
         echo json_encode($reporteT);
     }
-
     public function listaReporteMesHabitacion(){
         $dato=json_decode(file_get_contents("php://input"));
-        // $dato->mes=($dato->mes<10)?'0'.$dato->mes:$dato->mes;
         $reporte=new ReservasModel();
         $lista=$reporte->mostrarReporteMesHabitacion($dato);
         echo json_encode($lista);
     }
+
+    public function listarDetalleHab(){
+        $data=json_decode(file_get_contents("php://input"));
+        $reserva=new ReservasModel();
+        $lista=$reserva->mostrarReservasHab($data);
+        echo json_encode($lista);
+    }
+    
+    public function imprimirReporteCliente(){
+        $datoB=$_GET['dato'];
+        $fecha=$_GET['fecha'];
+        $dato=(Object)(['dato' => $datoB,'mes' =>$fecha]);
+        $reporte=new ReservasModel();
+        $lista=$reporte->mostrarReporteMes($dato);
+        echo json_encode($lista);
+    }
+
 }

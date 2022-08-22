@@ -113,8 +113,7 @@
                                                 <label for="user_clave_2" class="bmd-label-floating">Repetir
                                                     contraseña</label>
                                                 <input type="password" name="user_clave_2" id="user_clave_2" class="validar" required>
-                                                <p class="d-none text-danger validacion" id="validacion8">Complete este campo por
-                                                    favor</p>
+                                                <p class="d-none text-danger validacion"></p>
                                             </div>
                                         </div>
                                     </div>

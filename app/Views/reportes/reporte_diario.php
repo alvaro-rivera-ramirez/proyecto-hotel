@@ -83,7 +83,7 @@
                                     </tbody>
                                 </table>
                             </div>
-                            <p class="text-end">Mostrando 1 al 10 de un total de 27</p>
+                            
                             <?php include "../app/Views/pagination/view_pag.php"?>
 
                             <div class="modal fade" id="detalle_reserva" tabindex="-1"

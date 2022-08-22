@@ -84,7 +84,7 @@
                                         <input type="month" name="" id="mesR" class="form-control">
                                     </div>
                                     <div class="col-3 align-self-center">
-                                        <a href="<?= base_url('demo-pdf') ?>" target="_blank"><i
+                                        <a class="pdfCliente" href="#" onclick="imprimir(this)" role="button"><i
                                                 class="fa-solid fa-print"></i> IMPRIMIR</a>
                                     </div>
                                 </div>
@@ -110,7 +110,6 @@
                                     </tbody>
                                 </table>
                             </div>
-                            <p class="text-end">Mostrando 1 al 10 de un total de 27</p>
                             <?php include "../app/Views/pagination/view_pag.php"?>
                             <div class="modal fade" id="detalle_reserva" tabindex="-1"
                                 aria-labelledby="exampleModalLabel" aria-hidden="true">

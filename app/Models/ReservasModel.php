@@ -77,6 +77,15 @@ class ReservasModel extends Model{
         return $query->getResultArray();
     }
     
+    //Buscar Reserva por idHabitacion y fecha mes
+    public function mostrarReservasHab($dato=null){
+        $pQuery = $this->db->prepare(static function ($db) {
+            $sql = "SELECT r.*,dt.*,h.numero,DATE_FORMAT(r.created_at, '%Y-%m-%d') as fecha FROM reserva r,detalle_reserva dt,habitacion h WHERE r.idReserva=dt.idReserva AND dt.idHab=h.idHab AND r.idEstadoR=3 AND dt.idHab=? AND DATE_FORMAT(r.created_at, '%Y-%m')=? AND r.deleted_at IS NULL";
+        
+            return (new Query($db))->setQuery($sql);
+        });
+        return $pQuery->execute($dato->id,$dato->fecha)->getResultArray();
+    }
     public function gananciaDia($fecha=null){
         $sql='SELECT ifnull(sum(dt.precio),0) as Total FROM reserva r INNER JOIN detalle_reserva dt ON r.idReserva=dt.idReserva WHERE DATE_FORMAT(r.created_at, "%Y-%m-%d")=? AND r.deleted_at IS NULL AND r.idEstadoR=3';
         
@@ -139,24 +148,22 @@ class ReservasModel extends Model{
     }
 
     public function gananciaMesHab($fecha=null){
-        $sql='SELECT ifnull(sum(dt.precio),0) as Total FROM reserva r INNER JOIN detalle_reserva dt ON r.idReserva=dt.idReserva WHERE DATE_FORMAT(r.created_at, "%Y-%m")=? AND r.deleted_at IS NULL AND r.idEstadoR=3';
+        $sql='SELECT th.idTipo,th.tipo, ifnull(sum(r.Total),0) as ganancia FROM tipo_habitacion th LEFT JOIN (SELECT dt.idHab,h.idTipo, ifnull(sum(dt.precio),0) as Total FROM reserva r,detalle_reserva dt,habitacion h WHERE r.idReserva=dt.idReserva AND h.idHab=dt.idHab AND DATE_FORMAT(r.created_at, "%Y-%m")=? AND r.deleted_at IS NULL AND r.idEstadoR=3 GROUP BY dt.idHab) as r ON th.idTipo=r.idTipo GROUP BY th.tipo ORDER BY ganancia DESC';
         $query=$this->db->query($sql, $fecha);
-        return $query->getRowArray();
+        return $query->getResultArray();
     }
 
     public function mostrarReporteMesHabitacion($dato=null){
         if(empty($dato->dato)){
             $pQuery = $this->db->prepare(static function ($db) {
-                $sql = 'SELECT h.idHab,h.numero,th.tipo, r.fecha,SUM(r.costoT) as recaudacionT,COUNT(h.idHab) as cantidad FROM habitacion h, tipo_habitacion th, detalle_reserva dt, cliente c,(SELECT r.idReserva,DATE_FORMAT(r.created_at, "%Y-%m") as fecha,h.numero, th.tipo, SUM(dt.precio) as costoT FROM
-                detalle_reserva dt, habitacion h, reserva r, tipo_habitacion th WHERE dt.idHab=h.idHab AND r.idReserva=dt.idReserva AND r.idEstadoR=3 AND r.idEstadoP=2 AND r.deleted_at IS NULL GROUP BY r.idReserva HAVING fecha=?) as r WHERE h.idTipo=th.idTipo GROUP BY th.idTipo ORDER BY `cantidad` DESC';
+                $sql = 'SELECT dt.idHab,h.numero,h.idTipo,th.tipo, DATE_FORMAT(r.created_at, "%Y-%m") as fecha, ifnull(sum(dt.precio),0) as Total,COUNT(dt.idHab) as cantidad FROM reserva r,detalle_reserva dt,habitacion h,tipo_habitacion th WHERE r.idReserva=dt.idReserva AND h.idHab=dt.idHab AND h.idTipo=th.idTipo AND DATE_FORMAT(r.created_at, "%Y-%m")=? AND r.deleted_at IS NULL AND r.idEstadoR=3 GROUP BY h.idHab ORDER BY cantidad DESC';
             
                 return (new Query($db))->setQuery($sql);
             });
             return $pQuery->execute($dato->mes)->getResultArray();
         }else{
             $pQuery = $this->db->prepare(static function ($db) {
-                $sql = 'SELECT h.idHab,h.numero,th.tipo, r.fecha,SUM(r.costoT) as recaudacionT,COUNT(h.idHab) as cantidad FROM habitacion h, tipo_habitacion th, detalle_reserva dt, cliente c,(SELECT r.idReserva,DATE_FORMAT(r.created_at, "%Y-%m") as fecha,h.numero, th.tipo, SUM(dt.precio) as costoT FROM 
-                detalle_reserva dt, habitacion h, reserva r, tipo_habitacion th WHERE dt.idHab=h.idHab AND r.idReserva=dt.idReserva AND r.idEstadoR=3 AND r.idEstadoP=2 AND r.deleted_at IS NULL GROUP BY r.idReserva HAVING fecha=?) as r WHERE h.idTipo=th.idTipo GROUP BY th.idTipo HAVING th.tipo like ? OR h.numero like ? ORDER BY `cantidad` DESC';
+                $sql = 'SELECT dt.idHab,h.numero,h.idTipo,th.tipo, DATE_FORMAT(r.created_at, "%Y-%m") as fecha, ifnull(sum(dt.precio),0) as Total,COUNT(dt.idHab) as cantidad FROM reserva r,detalle_reserva dt,habitacion h,tipo_habitacion th WHERE r.idReserva=dt.idReserva AND h.idHab=dt.idHab AND h.idTipo=th.idTipo AND DATE_FORMAT(r.created_at, "%Y-%m")=? AND r.deleted_at IS NULL AND r.idEstadoR=3 AND (h.numero like ? OR th.tipo like ?) GROUP BY h.idHab ORDER BY cantidad DESC';
             
                 return (new Query($db))->setQuery($sql);
             });
