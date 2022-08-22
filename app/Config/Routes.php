@@ -117,13 +117,13 @@ $routes->get('reporte-diario', 'ReportesController::reporteDiario');
 $routes->post('ganancia_diario', 'ReportesController::gananciaD');
 $routes->post('reservas_dia', 'ReportesController::listaReporteDia');
 $routes->post('cantidad_mes', 'ReportesController::reservasMes');
+
 $routes->post('clientes_reservas', 'ReportesController::listaReporteMes');
 $routes->get('resumen-cliente', 'ReportesController::resumenCliente');
 $routes->get('reporte-mes', 'ReportesController::reporteMes');
 $routes->post('ganancia_mes', 'ReportesController::gananciaM');
 $routes->post('reservas_mes', 'ReportesController::listaReporteMesFull');
 $routes->get('reporte-cliente', 'ReportesController::reporteCliente');
-$routes->get('reporte-habitacion', 'ReportesController::reporteHabitacion');
 
 
 //PDF
@@ -136,3 +136,7 @@ $routes->get('/imprimir_boleta/(:num)', 'ReservasController::imprimir_boleta/$1'
 //$routes->post('imprimir_boleta', 'ReservasController::imprimir_boleta',['filter' => 'auth']);
 
 
+$routes->get('reporte-habitacion', 'ReportesController::reporteHabitacion');
+$routes->post('habitaciones_reservas', 'ReportesController::listaReporteMesHabitacion');
+$routes->post('cantidad_mes_habitacion', 'ReportesController::reservasMesHabitacion');
+//$routes->get('reporte-habitacion', 'ReportesController::reporteHabitacion');
