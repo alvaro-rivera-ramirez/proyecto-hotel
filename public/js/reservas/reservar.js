@@ -67,11 +67,7 @@ const reservar = async() =>{
     });
     console.log(Jhabitacion,Jtipos);
 
-    agregarFecha(document.getElementById('fechaI1'),document.getElementById('fechaF1'))
-    let val=id;
-    let select=document.querySelector('#Hab1');
-    let opcion=select.querySelector('option[value="'+val+'"]');
-    opcion.setAttribute('selected',true);
+    agregarFecha(document.getElementById('fechaI1'),document.getElementById('fechaF1'));
     document.getElementById('buscar').addEventListener('click', e=>{
         e.preventDefault()
         buscarDNI(idCliente)
