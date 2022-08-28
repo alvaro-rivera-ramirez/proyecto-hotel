@@ -51,7 +51,7 @@
                                             RESERVA</a></div>
                                     <div class="box-nav"> <a class="active" href="#"><i
                                                 class="fas fa-clipboard-list fa-fw"></i> LISTA DE REGISTROS</a> </div>
-                                    <div class="box-nav"> <a href="<?= base_url('demo-pdf') ?>" target="_blank"><i
+                                    <div class="box-nav"> <a href="#" target="_blank" role="button" onclick="imprimir(this)"><i
                                                 class="fa-solid fa-print"></i> IMPRIMIR</a></div>
                                     <div class="box-nav">
                                         <form class="d-flex" id="form_busca_reserva">

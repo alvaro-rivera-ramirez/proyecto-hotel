@@ -1,3 +1,8 @@
+const imprimir =(e)=>{
+    let enlace=e;
+    enlace.setAttribute('href','http://localhost/proyecto-hotel/public/imprimirpdfHab?dato='+dato_buscar.value+'&fecha='+mesR.value);
+}
+
 const gananciaTiposHab = async(mes) =>{
     const peticion=await fetch('ganancia_tipohab',{
         method:'POST',

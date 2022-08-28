@@ -195,7 +195,7 @@ class ReportesController extends Controller{
     
 
         // Creación del objeto de la clase heredada
-        $pdf = new PDF("Reporte de Clientes");
+        $pdf = new PDF("Reporte del mes");
         $pdf->AliasNbPages();
         $pdf->AddPage();//añade l apagina / en blanco
         $pdf->SetMargins(10,10,10);
@@ -285,7 +285,7 @@ class ReportesController extends Controller{
     
 
         // Creación del objeto de la clase heredada
-        $pdf = new PDF("Reporte de Diario");
+        $pdf = new PDF("Reporte del Día");
         $pdf->AliasNbPages();
         $pdf->AddPage();//añade l apagina / en blanco
         $pdf->SetMargins(10,10,10);
@@ -344,6 +344,80 @@ class ReportesController extends Controller{
         
         $this->response->setHeader('Content-Type','application/pdf');
         $pdf->Output();     
+    }
+
+    public function PDF_hab(){
+        $datoB=$_GET['dato'];
+        $fecha=$_GET['fecha'];
+        $dato=(Object)(['dato' => $datoB,'mes' =>$fecha]);
+        $reporte=new ReservasModel();
+        $lista=$reporte->mostrarReporteMesHabitacion($dato);
+        // echo json_encode($lista);
+        
+    
+
+        // Creación del objeto de la clase heredada
+        $pdf = new PDF("Reporte de Habitaciones");
+        $pdf->AliasNbPages();
+        $pdf->AddPage();//añade l apagina / en blanco
+        $pdf->SetMargins(10,10,10);
+        $pdf->SetAutoPageBreak(true,20);//salto de pagina automatico
+        $pdf->SetX(15);
+        $pdf->SetFont('Helvetica','B',12);
+        $pdf->Cell(7,8,utf8_decode('Id'),'B',0,'C',0);
+        $pdf->Cell(30,8,utf8_decode('Habitación'),'B',0,'C',0);
+        $pdf->Cell(30,8,utf8_decode('Tipo'),'B',0,'C',0);
+        $pdf->Cell(40,8,utf8_decode('Fecha'),'B',0,'C',0);
+        $pdf->Cell(30,8,utf8_decode('Cant. Reservas'),'B',0,'C',0);
+        $pdf->Cell(40,8,utf8_decode('Monto Total'),'B',1,'C',0);
+
+        $pdf->SetFillColor(241, 240, 238);//color de fondo rgb
+        $pdf->SetDrawColor(61, 61, 61);//color de linea  rgb
+     
+        $pdf->SetFont('Arial','',11.5);
+
+        $aux = 0;
+        foreach($lista as $listas){
+            $pdf->Ln(0.6);
+            $pdf->setX(15);
+            $pdf->Cell(7,8,utf8_decode($listas['idHab']),'B',0,'C',0);
+            $pdf->Cell(30,8,utf8_decode($listas['numero']),'B',0,'C',0);
+            $pdf->Cell(30,8,utf8_decode($listas['tipo']),'B',0,'C',0);
+            $pdf->Cell(40,8,utf8_decode($listas['fecha']),'B',0,'C',0);
+            $pdf->Cell(30,8,utf8_decode($listas['cantidad']),'B',0,'C',0);
+            $pdf->Cell(40,8,utf8_decode('S/.'.$listas['Total']),'B',1,'C',0);
+            $aux = $aux + $listas['Total'];
+        }
+        $pdf->SetX(15);
+        $pdf->SetFont('Arial','',11.5);
+        $pdf->Cell(11,8,utf8_decode('Total'),'B',0,'C',1);
+        $pdf->Cell(30,8,'','B',0,'C',1);
+        $pdf->Cell(70,8,'','B',0,'C',1);
+        $pdf->Cell(36,8,'','B',0,'C',1);
+        $pdf->Cell(30,8,'S/.'.$aux.'.00','B',1,'C',1);
+
+        $espacio='                                                                                                      ';
+        
+        $pdf->Ln(10);
+        $pdf->Ln(8);
+        $pdf->SetX(15);
+        $pdf->Write(5,utf8_decode($espacio.'Fecha evaluada: '.$fecha));
+        $pdf->Ln(6);
+        $pdf->SetX(15);
+        $pdf->Write(5,utf8_decode($espacio.'Suma total de montos: '.'S/.'.$aux));
+
+
+        setlocale(LC_TIME, "spanish"); 
+        $pdf->Ln(8);
+        $pdf->SetX(15);
+        $pdf->Write(5,utf8_decode($espacio.'Fecha de hoy: '));
+        $pdf->Ln(6);
+        $pdf->SetX(15);
+        $pdf->Write(5,utf8_decode($espacio.strftime("%A, %d de %B de %Y")));
+
+        
+        $this->response->setHeader('Content-Type','application/pdf');
+        $pdf->Output();  
     }
     public function gananciaTipoHab(){
         $mes=file_get_contents("php://input");

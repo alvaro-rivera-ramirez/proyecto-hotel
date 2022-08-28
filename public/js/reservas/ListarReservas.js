@@ -1,3 +1,9 @@
+const imprimir =(e)=>{
+    let enlace=e;
+    console.log(e)
+    enlace.setAttribute('href','http://localhost/proyecto-hotel/public/imprimir_reservas?dato='+dato_buscar.value);
+}
+
 /* listar reserva
     el argumento dato puede ser vacio o tener un valor
     si dato = '' entonces muestra todas las reservas

@@ -110,13 +110,14 @@
                                     <div class="col-md-4">
                                         <label for="Hab1">Habitación</label>
                                         <select id="Hab1" class="form-select" name="hab[]">
-                                            
-                                            <option selected> Seleccione una opción  </option>
+
+                                            <option selected> Seleccione una opción </option>
                                         </select>
                                     </div>
                                     <div class="col-md-3">
                                         <label for="Num1">Noches</label>
-                                        <input type="text" id="Num1" class="form-control" disabled readonly>
+                                        <input type="text" placeholder="1" id="Num1" class="form-control" disabled
+                                            readonly>
                                     </div>
                                     <div class="col-md-1 d-flex align-items-end justify-content-center">
                                         <button class="btn btn-dark ocultar eliminar_hab" type="button"><i
@@ -125,22 +126,19 @@
                                     </div>
                                     <div class="col-md-4">
                                         <label for="fechaI1">Fecha Ingreso</label>
-                                        <input type="date" id="fechaI1" class="form-control" name="fechaI[]">
+                                        <input type="date" id="fechaI1" class="form-control fecha-r" name="fechaI[]">
                                     </div>
                                     <div class="col-md-4">
                                         <label for="fechaF1">Fecha Salida</label>
-                                        <input type="date" id="fechaF1" class="form-control" name="fechaF[]">
+                                        <input type="date" id="fechaF1" class="form-control fecha-r" name="fechaF[]">
                                     </div>
                                     <div class="col-md-3 input-costo">
-                                        <label for="costo1">Costo (S/.)</label>
-                                        <input placeholder="00,00" type="text" class="form-control" id="costo1" disabled
-                                            readonly>
+                                        <label for="precio1">Precio (S/.)</label>
+                                        <input placeholder="00,00" type="text" class="form-control" id="precio1"
+                                            disabled readonly>
                                     </div>
                                 </div>
                             </div>
-
-
-
 
                             <!------botones----------->
                             <div class="col-12 pt-4">

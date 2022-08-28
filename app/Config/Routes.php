@@ -139,6 +139,7 @@ $routes->post('reservas_mes', 'ReportesController::listaReporteMesFull');
 
 $routes->get('/imprimir_hab', 'HabitacionController::imprimir',['filter' => 'auth']);
 $routes->get('/imprimir_tipohab', 'TipoHabController::imprimir',['filter' => 'auth']);
+$routes->get('/imprimir_reservas', 'ReservasController::imprimir',['filter' => 'auth:Administrador']);
 $routes->get('/imprimir_usuarios', 'UsuariosController::imprimir',['filter' => 'auth:Administrador']);
 $routes->get('/imprimir_clientes', 'ClientesController::imprimir',['filter' => 'auth:Administrador']);
 $routes->get('/imprimir_boleta/(:num)', 'ReservasController::imprimir_boleta/$1',['filter' => 'auth']);
@@ -150,6 +151,7 @@ $routes->get('/imprimir_boleta/(:num)', 'ReservasController::imprimir_boleta/$1'
 $routes->get('imprimirpdfCliente', 'ReportesController::PDF_cliente',['filter' => 'auth']);
 $routes->get('imprimirpdfMes', 'ReportesController::PDF_mes',['filter' => 'auth']);
 $routes->get('imprimirpdfDia', 'ReportesController::PDF_dia',['filter' => 'auth']);
+$routes->get('imprimirpdfHab', 'ReportesController::PDF_hab',['filter' => 'auth']);
 
 
 

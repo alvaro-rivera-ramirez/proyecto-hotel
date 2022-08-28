@@ -91,7 +91,7 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label for="cli_email_reg" class="form-label">Email</label>
-                                            <input type="email" name="cli_email_reg" id="cli_email_reg" class="validar">
+                                            <input type="email" name="cli_email_reg" id="cli_email_reg">
                                             <p class="d-none text-danger validacion"></p>
                                         </div>
                                     </div>

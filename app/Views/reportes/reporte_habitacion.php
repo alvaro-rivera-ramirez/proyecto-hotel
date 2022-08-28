@@ -65,7 +65,7 @@
                                         <input type="month" name="" id="mesR" class="form-control">
                                     </div>
                                     <div class="col-3 align-self-center">
-                                        <a href="<?= base_url('demo-pdf') ?>" target="_blank"><i
+                                        <a href="#" target="_blank" onclick="imprimir(this)" role="button"><i
                                             class="fa-solid fa-print"></i> IMPRIMIR</a>
                                     </div>
                                 </div>

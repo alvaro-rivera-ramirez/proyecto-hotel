@@ -29,9 +29,9 @@ class ClientesController extends Controller{
         $validation->setRules([
             'cli_dni_reg' => 'required|numeric|min_length[8]|max_length[8]',
             'cli_nombre_reg' => 'required|alpha_space',
-            'cli_apellidop_reg' => 'required|alpha_space',
-            'cli_apellidom_reg' => 'permit_empty|alpha_numeric',
-            'cli_telefono_reg' =>  'required|alpha_numeric',
+            'cli_apellidop_reg' => 'required|alpha',
+            'cli_apellidom_reg' => 'permit_empty|alpha',
+            'cli_telefono_reg' =>  'required|alpha_numeric|min_length[9]|max_length[12]',
             'cli_email_reg' => 'permit_empty|max_length[50]|valid_email',
         ]);
 
@@ -110,9 +110,9 @@ class ClientesController extends Controller{
         $validation->setRules([
             'cliente_dni' => 'required|is_unique[cliente.dni,cliente.idCliente,'.$cliente_id.']|numeric|min_length[8]|max_length[8]',
             'cliente_nombre' => 'required|alpha_space',
-            'cliente_apellidop' => 'permit_empty|alpha_space',
-            'cliente_apellidom' => 'permit_empty|alpha_space',
-            'cliente_telefono' =>  'required|alpha_numeric',
+            'cliente_apellidop' => 'permit_empty|alpha',
+            'cliente_apellidom' => 'permit_empty|alpha',
+            'cliente_telefono' =>  'required|alpha_numeric|min_length[9]|max_length[12]',
             'cliente_email' => 'permit_empty|max_length[50]|valid_email',
             'admin_usuario' => 'required|alpha_numeric',
             'admin_clave' => 'required|min_length[5]|max_length[8]'

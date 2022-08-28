@@ -42,13 +42,7 @@ const editarCliente = () =>{
                 if(result.isConfirmed){
                     let form_upd = document.getElementById('upd_form');
                     let update = new FormData(form_upd);
-                    // let mensajes=document.querySelectorAll('.validacion');
-                    // mensajes.forEach(function(item) {
-                    //     if(!item.classList.contains('d-none')){
-                    //         item.innerHTML='';
-                    //         item.classList.add('d-none');
-                    //     }
-                    // });
+
                     fetch('http://localhost/proyecto-hotel/public/actualizar_cliente', {
                         method: 'POST',
                         mode: 'no-cors',
@@ -56,8 +50,7 @@ const editarCliente = () =>{
                             "Content-Type": "application/json",
                             "X-Requested-With": "XMLHttpRequest"
                         },
-                        body: update
-    
+                        body: update   
                     }).then(res => res.json()).then(res => {
                         console.log(res);
                         console.log("prueb")

@@ -14,7 +14,7 @@ const agregarHab = (detalleHab,cont,Jtipo) => {
                                     </div>
                                     <div class="col-md-3">
                                         <label for="Num${cont}">Noches</label>
-                                        <input type="text" id="Num${cont}" class="form-control" disabled readonly>
+                                        <input type="text" placeholder="1" id="Num${cont}" class="form-control" disabled readonly>
                                     </div>      
                                     <div class="col-md-auto d-flex align-items-end justify-content-center">
                                     <button class="btn btn-dark eliminar_hab" type="button"><i class="fa-solid fa-trash-can"></i>
@@ -22,15 +22,15 @@ const agregarHab = (detalleHab,cont,Jtipo) => {
                                     </div>  
                                     <div class="col-md-4">
                                         <label for="fechaI${cont}">Fecha Ingreso</label>
-                                        <input type="date" id="fechaI${cont}" class="form-control" name="fechaI[]">
+                                        <input type="date" id="fechaI${cont}" class="form-control fecha-r" name="fechaI[]">
                                     </div>
                                     <div class="col-md-4">
                                         <label for="fechaF${cont}">Fecha Salida</label>
-                                        <input type="date" id="fechaF${cont}" class="form-control" name="fechaF[]">
+                                        <input type="date" id="fechaF${cont}" class="form-control fecha-r" name="fechaF[]">
                                     </div>
                                     <div class="col-md-3 input-costo">
-                                        <label for="costo${cont}">Costo (S/.)</label>
-                                        <input placeholder="00,00" type="text" class="form-control" id="costo${cont}" disabled
+                                        <label for="precio${cont}">Precio (S/.)</label>
+                                        <input placeholder="00,00" type="text" class="form-control" id="precio${cont}" disabled
                                         readonly>
                                     </div>`
     
@@ -63,6 +63,20 @@ const agregarFecha = (fechaI,fechaF) =>{
   fechaI.value=anio+"-"+mes+"-"+dia;
   fechaF.value=anio2+"-"+mes2+"-"+dia2;
 }
+
+const asignarPrecio = (tipos,selectTipo,inputPrecio,fechaI,fechaF,noches) =>{
+    let fechaInicio = new Date(fechaI).getTime();
+    let fechaFin    = new Date(fechaF).getTime();
+
+    let diff = fechaFin - fechaInicio;
+    let dias=diff/(1000*60*60*24);
+    console.log(dias)
+    let tipoFilter = tipos.filter(f => f.idTipo == selectTipo.value)
+    console.log(tipoFilter)
+    inputPrecio.value=tipoFilter[0]['precio']*dias+'.00';
+    noches.value=dias;
+}
+
 const reservar = async() =>{
     let Jhabitacion;
     let Jtipos;
@@ -98,16 +112,19 @@ const reservar = async() =>{
         let selecttipo=document.querySelector('#TipoHab1');
         let opcionT=selecttipo.querySelector('option[value="'+idtipo+'"]');
         opcionT.setAttribute('selected', true);
-
+        
         filtroHab(selecttipo,Jhabitacion);
         let idH=getParameterByName('id');
         let selecthab=document.querySelector('#Hab1');
         let opcion=selecthab.querySelector('option[value="'+idH+'"]');
         opcion.setAttribute('selected',true);
         console.log("idtipo");
+        asignarPrecio(Jtipos,selecttipo,document.getElementById('precio1'),fechaI1.value,fechaF1.value,document.getElementById('Num1'));
     }
     //tipo
     //-----------
+    
+    //agregar otra habitacion a la reserva
     agregar.addEventListener('click',e =>{
         e.preventDefault();
         agregarHab(detalleHab,++cont,Jtipos);
@@ -115,14 +132,24 @@ const reservar = async() =>{
         cont_hab.value=cont;
     })
 
+    //cambiar la lista de habitaciones segun tipo de hab escogido
     detalleHab.addEventListener('change', (e) =>{
         if(e.target.classList.contains('tipo-filtro')){
             filtroHab(e.target,Jhabitacion);
+            let aux=e.target.id;
+            let id=aux.charAt(aux.length - 1);
+            asignarPrecio(Jtipos,document.getElementById('TipoHab'+id),document.getElementById('precio'+id),document.getElementById('fechaI'+id).value,document.getElementById('fechaF'+id).value,document.getElementById('Num'+id));
+
+        }
+        if(e.target.classList.contains('fecha-r')){
+            console.log(55)
+            let aux=e.target.id;
+            let id=aux.charAt(aux.length - 1);
+            asignarPrecio(Jtipos,document.getElementById('TipoHab'+id),document.getElementById('precio'+id),document.getElementById('fechaI'+id).value,document.getElementById('fechaF'+id).value,document.getElementById('Num'+id));
         }
     })
 
-    
-
+    //eliminar habitacion
     detalleHab.addEventListener('click', (e) =>{
         if(e.target.classList.contains('eliminar_hab')){
             console.log(e.target)
@@ -130,8 +157,7 @@ const reservar = async() =>{
         }
     })
 
-    
-
+    //guardar reserva
     boton_enviar.addEventListener('click', e => {
         e.preventDefault();
         if (idCliente.idC != '') {

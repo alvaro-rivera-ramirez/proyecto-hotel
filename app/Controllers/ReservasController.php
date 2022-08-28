@@ -8,6 +8,8 @@ use App\Models\HabitacionModel;
 use App\Models\UsuariosModel;
 use App\Models\TipoHabModel;
 use App\Libraries\ReservaPdf;
+use App\Libraries\Pdf;
+
 
 class ReservasController extends Controller{
     public function index(){
@@ -91,15 +93,11 @@ class ReservasController extends Controller{
     public function listar(){
         $dato=file_get_contents("php://input");
         $reserva=new ReservasModel();
+        $datosR=$reserva->mostrarReserva($dato);
 
-        if(!empty($dato)){
-            $datosR=$reserva->mostrarBusqueda($dato);
-        }else{
-            $datosR=$reserva->mostrarReserva();
-        }
         echo json_encode($datosR);
     }
-
+    //listar reservas por cli
     public function listar_reservas(){
         $data=json_decode(file_get_contents("php://input"));
         $reserva=new ReservasModel();
@@ -239,7 +237,41 @@ class ReservasController extends Controller{
     }
 
     public function imprimir(){
+        $datoB=$_GET['dato'];
+        $reporte=new ReservasModel();
+        $lista=$reporte->mostrarReserva($datoB);
+
+        $pdf = new PDF("Lista de Reservas");
+        $pdf->AliasNbPages();
+        $pdf->AddPage();//añade l apagina / en blanco
+        $pdf->SetMargins(10,10,10);
+        $pdf->SetAutoPageBreak(true,20);//salto de pagina automatico
+        $pdf->SetX(15);
+        $pdf->SetFont('Helvetica','B',15);
+        $pdf->Cell(7,8,'N','B',0,'C',0);
+        $pdf->Cell(30,8,'DNI','B',0,'C',0);
+        $pdf->Cell(70,8,utf8_decode('Nombre completo'),'B',0,'C',0);    
+        $pdf->Cell(35,8,utf8_decode('Fecha'),'B',0,'C',0);
+        $pdf->Cell(35,8,utf8_decode('Monto Total'),'B',1,'C',0);
         
+        $pdf->SetFillColor(241, 240, 238);//color de fondo rgb
+        $pdf->SetDrawColor(61, 61, 61);//color de linea  rgb
+
+        $pdf->SetFont('Arial','',11);
+        foreach($lista as $reservas){   
+        
+            $pdf->Ln(0.6);
+            $pdf->setX(15);
+            $pdf->Cell(7,8,$reservas['idReserva'],'B',0,'C',0);
+            $pdf->Cell(30,8,$reservas['dni'],'B',0,'C',0);
+            $pdf->Cell(70,8,utf8_decode($reservas['nombreC']),'B',0,'C',0);   
+            $pdf->Cell(35,8,utf8_decode($reservas['fecha']),'B',0,'C',0);
+            $pdf->Cell(35,8,utf8_decode($reservas['precioT']),'B',1,'C',0);
+
+        }
+
+        $this->response->setHeader('Content-Type','application/pdf');
+        $pdf->Output();
     }
     public function imprimir_boleta($id){
         $reserva=new ReservasModel();

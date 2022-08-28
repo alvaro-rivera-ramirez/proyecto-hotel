@@ -27,13 +27,25 @@ class ReservasModel extends Model{
         $pQuery->execute($id_r,$id_hab,$fechaI,$fechaF,$dias,$precio);
     }
 
-    public function mostrarReserva(){
-        $query=$this->db->query('SELECT r.idReserva,r.idCliente,r.idUser,DATE_FORMAT(r.created_at, "%Y-%m-%d") as fecha,c.dni,concat(c.nombre," ",c.apellidoPaterno," ",if(c.apellidoMaterno IS NULL,"",c.apellidoMaterno)) as nombreC,u.nombre as nombreU, SUM(dt.precio) as precioT,
-        er.*,ep.* FROM reserva r,cliente c,usuarios u,detalle_reserva dt,estado_reserva er,estado_pago ep WHERE 
-        r.idCliente=c.idCliente AND r.idUser=u.id AND r.idReserva=dt.idReserva AND r.idEstadoR=er.idEstadoR AND r.idEstadoP=ep.idEstadoP AND r.deleted_at IS NULL
-        GROUP BY r.idReserva  ORDER BY r.idReserva DESC');
-
-        return $query->getResultArray();
+    public function mostrarReserva($dato=null){
+        if(empty($dato)){
+            $query=$this->db->query('SELECT r.idReserva,r.idCliente,r.idUser,DATE_FORMAT(r.created_at, "%Y-%m-%d") as fecha,c.dni,concat(c.nombre," ",c.apellidoPaterno," ",if(c.apellidoMaterno IS NULL,"",c.apellidoMaterno)) as nombreC,u.nombre as nombreU, SUM(dt.precio) as precioT,
+            er.*,ep.* FROM reserva r,cliente c,usuarios u,detalle_reserva dt,estado_reserva er,estado_pago ep WHERE 
+            r.idCliente=c.idCliente AND r.idUser=u.id AND r.idReserva=dt.idReserva AND r.idEstadoR=er.idEstadoR AND r.idEstadoP=ep.idEstadoP AND r.deleted_at IS NULL
+            GROUP BY r.idReserva  ORDER BY r.idReserva DESC');
+    
+            return $query->getResultArray();
+            
+        }else{
+            $pQuery = $this->db->prepare(static function ($db) {
+                $sql = "SELECT r.idReserva,r.idCliente,r.idUser,DATE_FORMAT(r.created_at, '%Y-%m-%d') as fecha,c.dni,concat(c.nombre,' ',c.apellidoPaterno,' ',if(c.apellidoMaterno IS NULL,'',c.apellidoMaterno)) as nombreC,u.nombre as nombreU, SUM(dt.precio) as precioT,er.*,ep.* FROM reserva r,cliente c,usuarios u,detalle_reserva dt, estado_reserva er,estado_pago ep WHERE 
+                r.idCliente=c.idCliente AND r.idUser=u.id AND r.idReserva=dt.idReserva AND r.idEstadoR=er.idEstadoR AND r.idEstadoP=ep.idEstadoP AND r.deleted_at IS NULL GROUP BY r.idReserva HAVING nombreC like ? OR c.dni like ? ORDER BY r.idReserva DESC";
+            
+                return (new Query($db))->setQuery($sql);
+            });
+            $datoB = "%$dato%";
+            return $pQuery->execute($datoB,$datoB)->getResultArray();
+        }
     }
 
     //Buscar Reserva por dni y nombre
@@ -118,6 +130,7 @@ class ReservasModel extends Model{
         }
     }
 
+    //lista de reporte de clientes
     public function mostrarReporteMes($dato=null){
         if(empty($dato->dato)){
             $pQuery = $this->db->prepare(static function ($db) {

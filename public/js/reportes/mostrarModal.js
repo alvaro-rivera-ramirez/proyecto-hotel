@@ -14,6 +14,8 @@ const listarDetalle =(id) =>{
     })
 }
 
+
+//reservas por cliente
 const listarReservas =(id,fecha) =>{
     fetch('obtener_reservas', {
         method: 'POST',
