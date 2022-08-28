@@ -238,8 +238,8 @@ class UsuariosController extends Controller{
         //Validamos las entradas del formulario
         $validation = service('validation');
         $validation->setRules([
-            'user_clave_1' => 'trim|permit_empty|matches[user_clave_2]|min_length[4]|max_length[12]',
-            'admin_clave' => 'trim|required|min_length[4]|max_length[12]'
+            'user_clave_1' => 'trim|permit_empty|matches[user_clave_2]|min_length[5]|max_length[8]',
+            'admin_clave' => 'trim|required|min_length[5]|max_length[8]'
         ]);
 
         if(!$validation->withRequest($this->request)->run()){

@@ -40,7 +40,7 @@
                                 <div class="form-group" id="grupo__user_clave_1">
                                     <label for="user_clave_1" class="bmd-label-floating">Nueva Contraseña</label>
                                     <input type="password" name="user_clave_1" id="user_clave_1">
-                                    <p class="formulario__input-error">La contraseña tiene que ser de 4 a 12 dígitos y sin espacio.</p>                     
+                                    <p class="formulario__input-error">La contraseña tiene que ser de 5 a 8 dígitos y sin espacio.</p>                     
                                 </div>
                             </div>
                             <div class="col-md-12">
@@ -93,7 +93,7 @@
         const inputs = document.querySelectorAll('#upd_form input');
 
         const expresiones = {
-            password: /^.{4,12}$/, // 4 a 12 digitos.
+            password: /^.{5,8}$/, // 4 a 12 digitos.
         }
         
         const campos = {

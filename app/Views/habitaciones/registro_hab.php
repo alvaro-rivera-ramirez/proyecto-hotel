@@ -72,9 +72,6 @@
                             </div>
 
 
-                            <p class="text-end">Mostrando Habitaciones 1 al 10 de un total de 15</p>
-
-
                             <!---- navegacion de pag ------>
 
                             <?php include "../app/Views/pagination/view_pag.php"?>

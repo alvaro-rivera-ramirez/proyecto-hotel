@@ -327,11 +327,11 @@ class ReservasController extends Controller{
         $pdf->SetFont('Arial','',10);
         $pdf->Cell(145,7,'SUB. TOTAL','',0,'R',0);
         $pdf->Cell(20,7,'S/','',0,'C',0);
-        $pdf->Cell(22,7,$boleta['precioT']*(82/100),'',0,'',0);
+        $pdf->Cell(22,7,number_format($boleta['precioT']*(82/100),2),'',0,'',0);
         $pdf->Ln(7);
         $pdf->Cell(145,7,'I.G.V.','',0,'R',0);
         $pdf->Cell(20,7,'S/','',0,'C',0);
-        $pdf->Cell(22,7,$boleta['precioT']*(18/100),'',0,'',0);
+        $pdf->Cell(22,7,number_format($boleta['precioT']*(18/100),2),'',0,'',0);
         $pdf->Ln(7);
         $pdf->SetFont('Arial','B',10);
         $pdf->Cell(145,7,'TOTAL','',0,'R',0);
