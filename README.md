@@ -1,1 +1,1 @@
-# Sistema de gestion de reservas para un hotel
+# Sistema de gestión de reservas para un hotel
